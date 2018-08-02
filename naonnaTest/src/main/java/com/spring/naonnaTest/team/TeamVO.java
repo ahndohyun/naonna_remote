@@ -5,14 +5,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class TeamVO {
 	private String team_name;
-	private String name_cap;
+	private String nickname;
 	private String emblem;
 	private String ability;
 	private String intro;
-	private int members;
+	private int number_team;
 	private String area;
 	private int point;
 	private String review;
+	
 	
 	public String getTeam_name() {
 		return team_name;
@@ -20,11 +21,11 @@ public class TeamVO {
 	public void setTeam_name(String team_name) {
 		this.team_name = team_name;
 	}
-	public String getName_cap() {
-		return name_cap;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setName_cap(String name_cap) {
-		this.name_cap = name_cap;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getEmblem() {
 		return emblem;
@@ -44,11 +45,11 @@ public class TeamVO {
 	public void setIntro(String intro) {
 		this.intro = intro;
 	}
-	public int getMembers() {
-		return members;
+	public int getNumber_team() {
+		return number_team;
 	}
-	public void setMembers(int members) {
-		this.members = members;
+	public void setNumber_team(int number_team) {
+		this.number_team = number_team;
 	}
 	public String getArea() {
 		return area;
@@ -68,6 +69,8 @@ public class TeamVO {
 	public void setReview(String review) {
 		this.review = review;
 	}
+	
+	
 	
 	
 }

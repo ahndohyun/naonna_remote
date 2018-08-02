@@ -3,9 +3,9 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
     
-<mapper namespace="com.spring.naonnaP.PeopleMapper">
+<mapper namespace="com.spring.naonnaTest.team.TeamMapper">
 
-   <resultMap type="TeamVO" id="peopleResultMap">
+   <resultMap type="TeamVO" id="teamResultMap">
       <result property="team_name" column="TEAM_NAME"/>
       <result property="name_cap" column="NAME_CAP"/>
       <result property="emblem" column="EMBLEM"/>
@@ -24,7 +24,26 @@
       SELECT * FROM people order by id
    </select>
 -->
+
+	<select id ="getTeamlist" resultMap="teamResultMap">
+      SELECT * FROM Team order by team_name
+   </select>
    
+   <select id ="findTeam" parameterType="com.spring.naonnaTest.team.TeamVO" resultMap="teamResultMap">
+      SELECT * FROM Team where team_name like '%%'
+      <if test = "team_name != ''">
+      	AND team_name = #{team_name, javaType=String}
+      </if>
+      <if test = "area != ''">
+      	AND area = #{area, javaType=String}
+      </if>
+      <if test = "nickname != ''">
+      	AND nickname = #{nickname, javaType=String}
+      </if>     
+      order by team_name
+   
+   </select>
+
    <!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래스명이나 별칭이 들어간다. -->
 <!-- 
    <insert id="insertPeople" parameterType = "com.spring.springajax.PeopleVO">
