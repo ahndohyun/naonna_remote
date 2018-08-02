@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    
+<mapper namespace="com.spring.naonnaP.PeopleMapper">
+
+   <resultMap type="TeamVO" id="peopleResultMap">
+      <result property="team_name" column="TEAM_NAME"/>
+      <result property="name_cap" column="NAME_CAP"/>
+      <result property="emblem" column="EMBLEM"/>
+      <result property="ability" column="ABILITY"/>
+      <result property="intro" column="INTRO"/>
+      <result property="members" column="members"/>
+      <result property="area" column="area"/>
+      <result property="point" column="POINT"/>
+      <result property="review" column="review"/>
+   </resultMap>
+   
+ 	<!--  id는 Mapper.java(여기서 PeopleMapper.java)에 동일하게 사용해야된다.  -->
+ 
+ <!--  
+   <select id ="getPeopleList" resultMap="peopleResultMap">
+      SELECT * FROM people order by id
+   </select>
+-->
+   
+   <!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래스명이나 별칭이 들어간다. -->
+<!-- 
+   <insert id="insertPeople" parameterType = "com.spring.springajax.PeopleVO">
+      INSERT INTO  people VALUES
+         (#{id, javaType=String},#{name, jdbcType=VARCHAR},#{job},#{address},#{bloodtype})   
+    </insert>
+ -->
+
+</mapper>

@@ -1,3 +1,1 @@
 # naonna_remote
-
-гохдхд
