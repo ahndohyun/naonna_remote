@@ -74,4 +74,27 @@ public class GroundController {
 		
 		return str;
 	}
+	
+	@RequestMapping(value = "/ground_detail.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
+	public String That_Ground_Info_JSON(GroundVO vo) {
+		
+		ArrayList<GroundVO> list = groundService.That_Ground_Info_JSON(vo);
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+		
+		try {
+			str = mapper.writeValueAsString(list);
+			System.out.println("str=" + str);
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+		
+		return str;
+	
+	
+	}
+	
+	
 }

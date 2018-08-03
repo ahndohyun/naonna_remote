@@ -82,4 +82,8 @@
       order by ground_soccer.ground_name
    </select>
    
+   <select id ="getThatGroundList" parameterType = "com.spring.naonnaTest.ground.GroundVO" resultMap="GroundResultMap">
+      SELECT * FROM ground_soccer where ground_name = #{ground_name, javaType=String}
+   </select>
+   
 </mapper>

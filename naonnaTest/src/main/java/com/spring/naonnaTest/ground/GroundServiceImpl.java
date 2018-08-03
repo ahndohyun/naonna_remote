@@ -36,4 +36,14 @@ public class GroundServiceImpl implements GroundService{
 		return groundList;
 	}
 	
+	@Override
+	public ArrayList<GroundVO> That_Ground_Info_JSON(GroundVO vo){
+		ArrayList<GroundVO> groundList = null;
+		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+		groundList = groundMapper.getGroundList();
+		
+		return groundList;
+		
+	}
+	
 }

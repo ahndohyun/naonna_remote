@@ -217,7 +217,37 @@
 
   </style>
   <script>
-	
+  $(document).ready(function() {
+	  function printGround() {
+		  $.ajax({
+				url:'/naonnaTest/ground_detail.do',
+				type:'POST',
+				dataType: "json",
+				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+				//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+				success:function(data) {
+					$.each(data, function(index, team) {
+						var output = '';
+										
+						output +=  ground.grass;
+						output +=  ground.light ;
+						output +=  ground.parking ;
+						output +=  ground.shower;																								
+						
+						console.log("output:" + output);
+						$('#ground_print').append(output);
+					});
+				},
+				error:function() {
+					alert("새로고침을 눌러주세요.")
+				}
+			}); // ajax  
+	  }
+	  
+	  printGround();
+	  
+  });
+
   </script>
 </head>
 
@@ -414,12 +444,15 @@
   		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/ju.png"></div>
   		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/sh.png"></div>
   	</div>
-  	<div class="ground-detail-texts col-sm-12">
+  	<div class="ground-detail-texts col-sm-12" id="ground_print">
+  		<!-- 
   		<div class="ground-detail-textmore col-sm-3"><p>잔디유무</p></div>
   		<div class="ground-detail-textmore col-sm-3"><p>조명유무</p></div>
   		<div class="ground-detail-textmore col-sm-3"><p>주차장유무</p></div>
-  		<div class="ground-detail-textmore col-sm-3"><p>샤워시설유무</p></div>
+  		<div class="ground-detail-textmore col-sm-3"><p>샤워시설유무</p></div> 
+  		-->
   	</div>
+  	
   	<div class="ground-detail-size col-sm-12">
   		<div class="ground-detail-size-pics">
   			<img class="formal-ground-size" src="https://www.iamground.kr/img/sample/ssize.jpg">

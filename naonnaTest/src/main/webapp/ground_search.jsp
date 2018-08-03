@@ -230,7 +230,7 @@
 						$.each(data, function(index, ground) {
 							var output = '';
 							output += '<tr>';
-							output += '<td>' + ground.ground_Name + '</td>';
+							output += '<td id="'+ground.ground_Name+'"> <a link href="ground_detail.jsp" >' + ground.ground_Name + '</td>';
 							output += '<td>' + ground.ground_addr + '</td>';
 							output += '<td>' + ground.grass + '</td>';
 							output += '<td>' + ground.shower + '</td>';
@@ -240,8 +240,9 @@
 							output += '<td>' + ground.ground_people + '</td>';
 							output += '</tr>';
 							console.log("output:" + output);
-							$('#ground_print').append(output);
-						});
+							$('#ground_print').append(output);												
+						});						
+						
 					},
 					error:function() {
 						alert("새로고침을 눌러주세요.")
@@ -300,7 +301,12 @@
           		var endDate = new Date(startDate);
           		endDate.setHours(startDate.getHours() + 1);
           		goDAO_time(startDate, endDate);
-          	});		
+          	});	
+          	
+          	$('#thatground').on('click', function() {
+		         alert('thatground 이동');
+		         openr.location.href ="/ground_detail.do"
+		      });
 
 	});
 	
@@ -327,7 +333,7 @@
 				$.each(data, function(index, ground) {		//새로 뿌리기
 					var output = '';
 					output += '<tr>';
-					output += '<td>' + ground.ground_Name + '</td>';
+					output += '<td> <a link id="godetail">' + ground.ground_Name + '</td>';
 					output += '<td>' + ground.ground_addr + '</td>';
 					output += '<td>' + ground.grass + '</td>';
 					output += '<td>' + ground.shower + '</td>';
@@ -337,7 +343,7 @@
 					output += '<td>' + ground.ground_people + '</td>';
 					output += '</tr>';
 					console.log("output:" + output);
-					$('#ground_print').append(output);
+					$('#ground_print').append(output);										
 				});
 				
 				console.log(data);
@@ -368,7 +374,7 @@
 				$.each(data, function(index, ground) {		//새로 뿌리기
 					var output = '';
 					output += '<tr>';
-					output += '<td>' + ground.ground_Name + '</td>';
+					output += '<td> <a link id="godetail">' + ground.ground_Name + '</td>';
 					output += '<td>' + ground.ground_addr + '</td>';
 					output += '<td>' + ground.grass + '</td>';
 					output += '<td>' + ground.shower + '</td>';
@@ -379,9 +385,15 @@
 					output += '</tr>';
 					console.log("output:" + output);
 					$('#ground_print').append(output);
+										
 				});
 				
 				console.log(data);
+				
+				$(document).on('click', '#godetail', function() {
+			         alert('ground_detail 이동');
+			         href ="ground_detail.do"
+			      });
 			},
 			error:function() {
 				alert("ajax통신 실패!!");
@@ -390,7 +402,11 @@
 	
 	}
 			
-
+	 $(document).on('click', '#godetail', function() {
+         alert('ground_detail 이동');
+         href ="ground_detail.do"
+         alert('성공`1');
+      });
 	
 </script>
 
