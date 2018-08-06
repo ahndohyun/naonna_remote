@@ -1,6 +1,6 @@
 package com.spring.naonnaTest.ground;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GroundController {
@@ -75,16 +76,16 @@ public class GroundController {
 		return str;
 	}
 	
-	@RequestMapping(value = "/ground_detail.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	/*@RequestMapping(value = "/ground_detail.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
 	public String That_Ground_Info_JSON(GroundVO vo) {
 		
-		ArrayList<GroundVO> list = groundService.That_Ground_Info_JSON(vo);
+		ArrayList<GroundVO> getThatGroundList = groundService.That_Ground_Info_JSON(vo);
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		
 		try {
-			str = mapper.writeValueAsString(list);
+			str = mapper.writeValueAsString(getThatGroundList);
 			System.out.println("str=" + str);
 		}
 		catch (Exception e){
@@ -94,7 +95,23 @@ public class GroundController {
 		return str;
 	
 	
-	}
+	}*/
 	
 	
+	@RequestMapping("/ground_detail.do")
+	public ModelAndView That_Ground_Info(GroundVO vo, String ground_Name) {
+		String Ground_Name = vo.getGround_Name();
+		System.out.println("Ground_Name = " + Ground_Name);
+		vo = groundService.That_Ground_Info(Ground_Name);
+		System.out.println("ground_detail complete");
+
+		ModelAndView result = new ModelAndView();
+		result.addObject("vo", vo);
+		result.setViewName("ground_detail");
+		System.out.println("불러오기  complete??");
+		return result;
+		
+	
+}
+
 }

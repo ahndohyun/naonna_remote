@@ -9,4 +9,5 @@ public interface GroundMapper {
 	ArrayList<GroundVO> MapperFromDAO(GroundVO vo);
 	ArrayList<GroundVO> MapperFromTime(HashMap map);
 	ArrayList<GroundVO> getThatGroundList();
+	GroundVO getThatGroundList(String Ground_Name);
 }

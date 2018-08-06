@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.*, com.spring.naonnaTest.ground.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -230,7 +232,7 @@
 						$.each(data, function(index, ground) {
 							var output = '';
 							output += '<tr>';
-							output += '<td id="'+ground.ground_Name+'"> <a link href="ground_detail.jsp" >' + ground.ground_Name + '</td>';
+							output += '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
 							output += '<td>' + ground.ground_addr + '</td>';
 							output += '<td>' + ground.grass + '</td>';
 							output += '<td>' + ground.shower + '</td>';
@@ -251,6 +253,32 @@
 			}
 			
 			printGround();
+			
+			/* 
+			$('#ground.ground_Name').on('click',function(){
+					alert('gjf');
+					location.href="ground_detail.do?ground.ground_Name=" +ground.ground_Name;
+				});			
+						 */
+			/*  $(document).on('click', '#ground.ground_Name', function() {
+		         alert('ground_detail 이동');
+		         //location href ="ground_detail.do";
+		         alert('성공1');
+		      });  */
+		
+			/* $('#ground.ground_Name').on('click', function() {
+		         alert('thatground 이동');
+		         location.href ="ground_detail.do?ground.ground_Name="+ground.ground_Name;
+		         
+		      }); */
+		      
+		     /* 
+				$('#ground.ground_Name').on('click', function() {
+			        alert('thatground 이동');
+			        location.href ="ground_detail.do?ground.ground_Name="+ground.ground_Name;
+				 });
+			 */
+			
 			
 			$('#sel2').on('change',function(){
 				goDAO();				
@@ -303,10 +331,7 @@
           		goDAO_time(startDate, endDate);
           	});	
           	
-          	$('#thatground').on('click', function() {
-		         alert('thatground 이동');
-		         openr.location.href ="/ground_detail.do"
-		      });
+          
 
 	});
 	
@@ -333,7 +358,7 @@
 				$.each(data, function(index, ground) {		//새로 뿌리기
 					var output = '';
 					output += '<tr>';
-					output += '<td> <a link id="godetail">' + ground.ground_Name + '</td>';
+					output += '<td>' + ground.ground_Name + '</td>';
 					output += '<td>' + ground.ground_addr + '</td>';
 					output += '<td>' + ground.grass + '</td>';
 					output += '<td>' + ground.shower + '</td>';
@@ -374,7 +399,7 @@
 				$.each(data, function(index, ground) {		//새로 뿌리기
 					var output = '';
 					output += '<tr>';
-					output += '<td> <a link id="godetail">' + ground.ground_Name + '</td>';
+					output += '<td>' + ground.ground_Name + '</td>';
 					output += '<td>' + ground.ground_addr + '</td>';
 					output += '<td>' + ground.grass + '</td>';
 					output += '<td>' + ground.shower + '</td>';
@@ -389,11 +414,7 @@
 				});
 				
 				console.log(data);
-				
-				$(document).on('click', '#godetail', function() {
-			         alert('ground_detail 이동');
-			         href ="ground_detail.do"
-			      });
+			
 			},
 			error:function() {
 				alert("ajax통신 실패!!");
@@ -401,12 +422,13 @@
 		});	
 	
 	}
-			
+	
+	/* 		
 	 $(document).on('click', '#godetail', function() {
          alert('ground_detail 이동');
          href ="ground_detail.do"
          alert('성공`1');
-      });
+      }); */
 	
 </script>
 
