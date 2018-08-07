@@ -1,6 +1,9 @@
 package com.spring.naonnaTest.ground;
 
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -111,7 +116,40 @@ public class GroundController {
 		System.out.println("불러오기  complete??");
 		return result;
 		
+	}
 	
-}
+	//MultipartHttpservletRequest를 이용한 업로드 파일 접근
+	   @RequestMapping("fileUpload2")
+	   public ModelAndView fileUpload2(MultipartHttpServletRequest request) throws Exception{
+	      
+	      String name = request.getParameter("name");
+	      MultipartFile mf = request.getFile("file");
+	      
+	      //String uploadPath = request.getSession().getServletContext().getRealPath("/upload");
+	      String uploadPath = "C:\\BigDeep\\upload\\"; //직접 업로드 될 위치 지정
+	      
+	      String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
+	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+	      
+	      //지정한 주소에 파일 저장
+	      if(mf.getSize() != 0) {
+	         //mf.transferTo(new File(uploadPath="/"+mf.getoriginalFilename()));
+	         mf.transferTo(new File(uploadPath+storedFileName));
+	      }
+	      
+	      
+	      ModelAndView mav = new ModelAndView();
+	      mav.setViewName("ground_detail");
+	      
+	      //뷰에 출력한 데이터 모델에 저장
+	      mav.addObject("name", name);
+	      mav.addObject("paramName", mf.getName());
+	      mav.addObject("fileName", mf.getOriginalFilename());
+	      mav.addObject("fileSize", mf.getSize());
+	      	     	      
+	      return mav;
+	      
+	   }
+	
 
 }
