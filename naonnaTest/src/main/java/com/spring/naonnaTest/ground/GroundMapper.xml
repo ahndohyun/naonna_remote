@@ -30,12 +30,6 @@
       <result property="confirm" column="confirm"/>
    </resultMap>
    
-    <resultMap type="GroundImgVO" id="BookingResultMap">
-    	<result property="name" column="name"/>
-    	<result property="file" column="file"/>
-    </resultMap>
-   
- 
  	<!--  id는 Mapper.java(여기서 GroundMapper.java)에 동일하게 사용해야된다.  -->
 
    <select id ="getGroundList" resultMap="GroundResultMap">
@@ -92,14 +86,15 @@
       SELECT * FROM ground_soccer where ground_name = #{ground_name, javaType=String}
    </select>
    
-   <insert id="insertFile" parameterType="java.util.Map">
-      INSERT INTO ground_soccer VALUES(#{img})
+   
+   <insert id ="insertGround" parameterType = "com.spring.naonnaTest.ground.GroundVO" >
+   	insert into ground_soccer values(#{ground_Name, javaType=String}, #{ground_admin, jdbcType=VARCHAR2}, #{ground_addr},#{ground_city},#{grass},#{shower},#{parking},
+   	#{light},#{week_morning},#{week_evening},#{weekend_morning},#{weekend_evening},#{review},#{rule},#{ground_people}#{ground_size})
    </insert>
    
-   <select id="getByteImage" resultType="java.util.Map">
-      SELECT IMG FROM ground_soccer
-   </select>
-   
-   
+   <insert id ="insertGround2" parameterType = "hashmap" >
+   	insert into ground_soccer values(#{ground_Name, javaType=String}, #{ground_admin jdbcType=VARCHAR2}, #{ground_addr},#{ground_city},#{grass},#{shower},#{parking},
+   	#{light},#{week_morning},#{week_evening},#{weekend_morning},#{weekend_evening},#{review},#{rule},#{ground_people}#{ground_size})
+   </insert>
    
 </mapper>

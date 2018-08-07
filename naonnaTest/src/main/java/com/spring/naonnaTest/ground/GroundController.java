@@ -1,22 +1,15 @@
 package com.spring.naonnaTest.ground;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import oracle.jdbc.OracleBlob;
 
 @Controller
 public class GroundController {
@@ -121,6 +114,86 @@ public class GroundController {
 		
 	}
 	
+	@RequestMapping("/insertGround.do")
+	public ModelAndView Insert_Ground_Info(GroundVO vo) {
+		System.out.println("찾아감?");
+		
+		groundService.insertGround(vo);
+				
+		ModelAndView result = new ModelAndView();
+		result.addObject("vo", vo);
+		result.setViewName("ground_search");
+		System.out.println("추가 complete??");
+		return result;
+		
+		
+	}
+	
+	@RequestMapping("/insertGround2.do")
+	public ModelAndView Insert_Ground_Info2(GroundVO vo) {
+		System.out.println("찾아감?");
+		
+		HashMap<String, String> map = new HashMap<String, String>(); 
+		  map.put("ground_Name", vo.getGround_Name()); 
+		  map.put("ground_addr;", vo.getGround_addr()); 
+		  map.put("ground_city;", vo.getGround_city());
+		  map.put("grass",vo.getGrass());
+		  map.put("shower",vo.getShower()); 
+		  map.put("parking", vo.getParking() ); 
+		  map.put("light", vo.getLight());
+		  map.put("week_morning", vo.getWeek_morning() );
+		  map.put("week_evening;",vo.getWeek_evening()); 
+		  map.put("weekend_morning" ,vo.getWeekend_morning()); 
+		  map.put("weekend_evening" ,vo.getWeekend_evening());
+		  map.put("review",vo.getReview() );
+		  map.put("rule",vo.getRule() );
+		  map.put("ground_people",vo.getGround_people() );
+		  map.put("ground_size", vo.getGround_size());
+		  groundService.insertGround(vo);
+		
+		
+		
+		ModelAndView result = new ModelAndView();
+		result.addObject("vo", vo);
+		result.setViewName("ground_search");
+		System.out.println("추가 complete??");
+		return result;
+		
+		
+	}
+	
+	 /* @RequestMapping("/fileUpload1")
+	   public ModelAndView fileUpload1(HttpServletRequest request, RequestModel model) throws Exception{
+	      MultipartFile mf = model.getFile();
+	      
+	      String uploadPath = "C:\\BigDeep\\upload\\";
+	      
+	      String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));// 마지막 .을 기준으로 파일명을 분리
+	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension; //하이픈을 공백으로 바꾸고 + 확장자
+	      
+	      //지정한 주소에 파일 저장
+	      if(mf.getSize() != 0) {
+	         mf.transferTo(new File(uploadPath+storedFileName));// -> 업로드가 된다
+	      }
+	      
+	      ModelAndView mav = new ModelAndView();
+	      mav.setViewName("download");
+	      mav.addObject("name", model.getName());
+	      mav.addObject("paramName", mf.getName());
+	      mav.addObject("fileName", mf.getOriginalFilename());
+	      mav.addObject("fileSize", mf.getSize());
+	      
+	      //스프링은 기본적으로 분자처리 방식으로 utf-8을 사용하므로
+	      //서버에 업로드된 한들 파일을 다운로드 하기 위해서 utf-8로 엔코딩 한다.         //화면에 보여줄떄 밑에                                                                                                //저장될 떄?
+	      String downlink = "fileDownload?of="+URLEncoder.encode(storedFileName, "UTF-8") + "&of2=" + URLEncoder.encode(mf.getOriginalFilename(), "UTF-8");
+	      mav.addObject("downlink", downlink);
+	      
+	      return mav;
+	      
+	   }
+	
+	*/
+	
 	/*//MultipartHttpservletRequest를 이용한 업로드 파일 접근
 	   @RequestMapping("fileUpload2")
 	   public ModelAndView fileUpload2(MultipartHttpServletRequest request) throws Exception{
@@ -154,35 +227,7 @@ public class GroundController {
 	      
 	   }*/
 	
-		@Override
-		public void saveImage(Map<String, Object> hmap) throws SQLException {
-	      System.out.println("service 부분 : " + hmap.size());
-	      SearchMapper planmapper = sqlsession.getMapper(GroundMapper.class);
-	      int res = planmapper.insertFile(hmap);
-	      System.out.println("saveImage 성공여부: " + res);
-	      //sqlsession.insert("sqlsession.saveImage", hmap);
-	      
-	      
-	   }
 	
 	   
-	   @RequestMapping(value = "getByteImage.search")
-	   public ResponseEntity<byte[]> getByteImage() {
-	      System.out.println("response 왓니?");
-	      Map<String, Object> map = searchService.getByteImage();
-	      OracleBlob blob = (OracleBlob)map.get("IMG");
-	      System.out.println("blob : " + blob);
-	      try {
-	         byte[] imageContent = blob.getBytes(1l, (int)blob.length());
-	         blob.free();
-	         System.out.println("imageContent22 왓니? : " + imageContent.toString());
-	         final HttpHeaders headers = new HttpHeaders();
-	         headers.setContentType(MediaType.IMAGE_PNG);
-	         return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
-	      }catch(Exception e) {
-	         e.printStackTrace();
-	      }
-	      return null;
-	   }
 
 }

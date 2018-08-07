@@ -11,7 +11,6 @@ public interface GroundMapper {
 	ArrayList<GroundVO> MapperFromTime(HashMap map);
 	ArrayList<GroundVO> getThatGroundList();
 	GroundVO getThatGroundList(String Ground_Name);
-	
-	int insertFile(Map<String, Object> hmap);
-	Map<String, Object> getByteImage();
+	int insertGround(GroundVO vo);
+	int insertGround2(HashMap<String, String> map);
 }
