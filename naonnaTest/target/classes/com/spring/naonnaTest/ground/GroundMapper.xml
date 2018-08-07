@@ -92,4 +92,14 @@
       SELECT * FROM ground_soccer where ground_name = #{ground_name, javaType=String}
    </select>
    
+   <insert id="insertFile" parameterType="java.util.Map">
+      INSERT INTO ground_soccer VALUES(#{img})
+   </insert>
+   
+   <select id="getByteImage" resultType="java.util.Map">
+      SELECT IMG FROM ground_soccer
+   </select>
+   
+   
+   
 </mapper>

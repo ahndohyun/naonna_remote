@@ -1,19 +1,22 @@
 package com.spring.naonnaTest.ground;
 
-import java.io.File;
-import java.net.URLEncoder;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+
+import oracle.jdbc.OracleBlob;
 
 @Controller
 public class GroundController {
@@ -118,7 +121,7 @@ public class GroundController {
 		
 	}
 	
-	//MultipartHttpservletRequest를 이용한 업로드 파일 접근
+	/*//MultipartHttpservletRequest를 이용한 업로드 파일 접근
 	   @RequestMapping("fileUpload2")
 	   public ModelAndView fileUpload2(MultipartHttpServletRequest request) throws Exception{
 	      
@@ -149,7 +152,37 @@ public class GroundController {
 	      	     	      
 	      return mav;
 	      
+	   }*/
+	
+		@Override
+		public void saveImage(Map<String, Object> hmap) throws SQLException {
+	      System.out.println("service 부분 : " + hmap.size());
+	      SearchMapper planmapper = sqlsession.getMapper(GroundMapper.class);
+	      int res = planmapper.insertFile(hmap);
+	      System.out.println("saveImage 성공여부: " + res);
+	      //sqlsession.insert("sqlsession.saveImage", hmap);
+	      
+	      
 	   }
 	
+	   
+	   @RequestMapping(value = "getByteImage.search")
+	   public ResponseEntity<byte[]> getByteImage() {
+	      System.out.println("response 왓니?");
+	      Map<String, Object> map = searchService.getByteImage();
+	      OracleBlob blob = (OracleBlob)map.get("IMG");
+	      System.out.println("blob : " + blob);
+	      try {
+	         byte[] imageContent = blob.getBytes(1l, (int)blob.length());
+	         blob.free();
+	         System.out.println("imageContent22 왓니? : " + imageContent.toString());
+	         final HttpHeaders headers = new HttpHeaders();
+	         headers.setContentType(MediaType.IMAGE_PNG);
+	         return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
+	      }catch(Exception e) {
+	         e.printStackTrace();
+	      }
+	      return null;
+	   }
 
 }

@@ -1,6 +1,7 @@
 package com.spring.naonnaTest.ground;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,12 @@ public class GroundServiceImpl implements GroundService{
 		return ThatGroundInfo;
 	}
 	
-	
+	@Override
+	   public Map<String, Object> getByteImage() {
+	      System.out.println("ServiceImpl 왓니?");
+	      SearchMapper planmapper = sqlsession.getMapper(SearchMapper.class);
+	      Map<String, Object> imgMap =  planmapper.getByteImage();
+	      System.out.println("imgMap" + imgMap.size());
+	      return imgMap;
+	   }
 }
