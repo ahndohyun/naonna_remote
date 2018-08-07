@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.naonnaTest.ground.GroundVO;
 
 @Controller
 public class TeamController {
@@ -51,4 +54,17 @@ public class TeamController {
 		return str;
 	}	
 
+	@RequestMapping(value = "/insertTeam.do",  method = RequestMethod.POST)
+	public ModelAndView Insert_Team_Info(TeamVO teamvo) {
+		System.out.println("찾아감?");
+		
+		teamService.insertTeam(teamvo);
+				
+		ModelAndView result = new ModelAndView();
+		result.addObject("teamvo", teamvo);
+		result.setViewName("team_search");
+		System.out.println("추가 complete??");
+		return result; 
+	}
+	
 }

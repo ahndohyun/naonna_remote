@@ -8,8 +8,9 @@
    <title>Insert title here</title>
 </head>
 <body>
-   <h1>파일 Upload!!</h1>
-   <form id="multiform" action="insertGround.do" method="post" enctype="multipart/form-data">
+   <h1>경기장 등록!!</h1>
+   <form id="multiform" action="insertGround.do" method="post">
+   <fieldset>
 	   경기장이름 : <input type="text" name="ground_Name" /><br /><br />
 	  경기장관리자:  <input type="text" name="ground_admin" /><br /><br />
 	  경기장주소 : <input type="text" name="ground_addr" /><br /><br /> 
@@ -28,7 +29,9 @@
 	     경기장사이즈  : <input type="text" name="ground_size" /><br /><br />
      
     <!--  파일 : <input type="file" name="imgfile" /><br /><br />      -->
+    </fieldset>
        <input type="button" value="서버전달2" onclick="fnAction('insertGround.do')"/>
+    
    </form>
    
    <script>

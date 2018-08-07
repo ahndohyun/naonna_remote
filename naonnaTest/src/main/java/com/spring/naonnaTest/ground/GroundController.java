@@ -99,7 +99,7 @@ public class GroundController {
 	}*/
 	
 	
-	@RequestMapping("/ground_detail.do")
+	@RequestMapping(value = "/ground_detail.do", method = RequestMethod.POST)
 	public ModelAndView That_Ground_Info(GroundVO vo, String ground_Name) {
 		String Ground_Name = vo.getGround_Name();
 		System.out.println("Ground_Name = " + Ground_Name);
@@ -114,7 +114,7 @@ public class GroundController {
 		
 	}
 	
-	@RequestMapping("/insertGround.do")
+	@RequestMapping(value = "/insertGround.do", method = RequestMethod.POST)
 	public ModelAndView Insert_Ground_Info(GroundVO vo) {
 		System.out.println("찾아감?");
 		
@@ -129,7 +129,7 @@ public class GroundController {
 		
 	}
 	
-	@RequestMapping("/insertGround2.do")
+	/*@RequestMapping("/insertGround2.do")
 	public ModelAndView Insert_Ground_Info2(GroundVO vo) {
 		System.out.println("찾아감?");
 		
@@ -161,7 +161,7 @@ public class GroundController {
 		
 		
 	}
-	
+	*/
 	 /* @RequestMapping("/fileUpload1")
 	   public ModelAndView fileUpload1(HttpServletRequest request, RequestModel model) throws Exception{
 	      MultipartFile mf = model.getFile();

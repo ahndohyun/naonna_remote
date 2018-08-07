@@ -66,12 +66,12 @@ public class GroundServiceImpl implements GroundService{
 		
 	}
 	
-	@Override
+/*	@Override
 	public void insertGround2(HashMap<String, String> map) {
 		System.out.println("hashmap");
 		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
 		groundMapper.insertGround2(map);
 		
 	}
-	
+	*/
 }

@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.naonnaTest.ground.GroundVO;
+
 @Service("teamService")
 public class TeamServiceImpl implements TeamService {
 
@@ -35,5 +37,13 @@ public class TeamServiceImpl implements TeamService {
 		
 	}
 	
+	@Override
+	public void insertTeam(TeamVO teamvo) {
+		TeamMapper teamMapper = sqlSession.getMapper(TeamMapper.class);
+		int res = teamMapper.addTeam(teamvo);
+		System.out.println("res = " + res);
+				
+		
+	}
 
 }

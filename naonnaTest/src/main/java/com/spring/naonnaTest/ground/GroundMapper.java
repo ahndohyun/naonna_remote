@@ -12,5 +12,5 @@ public interface GroundMapper {
 	ArrayList<GroundVO> getThatGroundList();
 	GroundVO getThatGroundList(String Ground_Name);
 	int insertGround(GroundVO vo);
-	int insertGround2(HashMap<String, String> map);
+	//int insertGround2(HashMap<String, String> map);
 }

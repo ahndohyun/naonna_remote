@@ -12,7 +12,7 @@ public interface GroundService {
 	GroundVO That_Ground_Info(String Ground_Name);
 	public void insertGround(GroundVO vo);
 	
-	public void insertGround2(HashMap<String, String> map);
+	//public void insertGround2(HashMap<String, String> map);
 	
 	/* public void saveImage(Map<String, Object> hmap) throws SQLException;
 	 public Map<String, Object> getByteImage();*/
