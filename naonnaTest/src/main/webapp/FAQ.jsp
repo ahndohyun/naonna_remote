@@ -15,7 +15,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
-  <!-- <link rel="stylesheet" href="naonna_main.css"> -->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="js/faq.js"></script>
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
 
   <script>
@@ -123,28 +124,50 @@
       //end of multiple modal
   </script>
   
+  <script>
+  	function faqFunction(idMyDiv){
+  		var objDiv = document.getElementById(idMyDiv);
+  		if(objDiv.style.display=="block"){
+  			objDiv.style.display = "none";
+  		}else{
+  			objDiv.style.display = "block";
+  		}
+  	}
+  </script>
   
   <style>
+  .answer{
+  	display:none;
+  }
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  	.faqTitle{
+  		display:inline-block;
+  		margin-left: 10%;
+  	}
+  	.faqTitle2{
+  		display:inline-block;
+  		margin-left: 10px;
+  	}
+  	.faqNav{
+  		width:70%;
+  		margin-left: 10%;
+  		margin-top: 20px;
+  	}
+  	.faqTab{
+  		margin-left: 10%;
+  	}
+  	
+  	
+  	
+
   </style>
+  
+  
   
 </head>
 
 <body>
-
   <!-- Top menu -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <!-- Logo div -->
@@ -219,6 +242,12 @@
         <p><a href="#">▶ Booking </a></p>
 
 
+
+
+
+
+
+
         <!-- show login modal -->
         <button id="login-button" type="button" data-toggle="modal" data-target="#LoginModal" name="login_btn">Login</button>
 
@@ -246,7 +275,6 @@
                     <label for="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="psw" required>
                     <button type="submit" name="login">Login</button>
-                    <!-- <a href="joinform.html" name="join">Join</a> <--></-->
                     <a href="#" data-toggle="modal" data-target="#JoinModal" name="join_btn">Join</a>
                   </div>
                 </div>
@@ -292,7 +320,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
     <!-- side menu bar end -->
@@ -305,42 +332,49 @@
 
 
 
-
-  <!-- start matching_register -->
+  <!-- start main content -->
   <div class="main col-sm-8"><br>
-  	<div class="col-sm-1">
-  	</div>
-  	
-    <div class="form col-sm-8">
-    	<div class="container">
-      		<h3><b>매칭 등록</b></h3>
-      
-      		<label>경기 지역</label>
-      		<input>
-      
-      		<label>경기 일정</label>
-      		<input>
-      
-      		<label>팀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</label>
-      		<input>
-      
-      		<label>제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</label>
-      		<input>
-      
-      		<label>인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;원</label>
-      		<input>    
-      </div>
-    </div>
-    
-    <div class="notice col-sm-3">
-      
-    </div>
+    <div>
+  		<h2 class="faqTitle">FAQ</h2>
+  		<p class="faqTitle2">자주묻는질문</p>
+	</div>
+
+  	<ul class="nav nav-tabs faqNav">
+    	<li class="active"><a data-toggle="tab" href="#menu1">대관</a></li>
+    	<li><a data-toggle="tab" href="#menu2">매칭</a></li>
+	    <li><a data-toggle="tab" href="#menu3">용병</a></li>
+	    <li><a data-toggle="tab" href="#menu4">팀</a></li>
+  	</ul>
+
+  	<div class="faqTab">
+    	<div id="menu1" class="tab-pane faqSection fade in active">
+    		<table>
+    			<tr>
+    				<td>번호</td>
+    				<td>내용</td>
+    			</tr>
+    			<tr>
+    				<td><a href="#" onclick="faqFunction('faq_01'); return false;" class="question">여기를</a></td>
+    				<td><div class="answer" id="faq_01">질문에 대한 답변</div></td>
+    			</tr>
+    		</table>
+	    </div>
+	    <div id="menu2" class="tab-pane fade">
+	    <p>2</p>  
+	    </div>
+	    <div id="menu3" class="tab-pane fade">
+	      
+	    </div>
+	    <div id="menu4" class="tab-pane fade">
+	   
+	    </div>
+	</div>
   </div>
-  <!-- end matching_register -->
-  
+  <!-- end main content -->
   
   
   </div>
   <!-- main body end -->
 </body>
+
 </html>
