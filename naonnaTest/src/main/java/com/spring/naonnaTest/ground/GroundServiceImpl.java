@@ -1,6 +1,8 @@
 package com.spring.naonnaTest.ground;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +57,29 @@ public class GroundServiceImpl implements GroundService{
 		return ThatGroundInfo;
 	}
 	
+	@Override
+	public void insertGround(GroundVO vo) {
+		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+		try {
+			int res = groundMapper.insertGround(vo);		//삽입 후 삽인한 결과 상태 반환하기 위해 반환값을 int로 줌
+			System.out.println("res = " + res);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			e.getMessage();
+			
+		}
+		//return res;
+		
+		
+	}
 	
+/*	@Override
+	public void insertGround2(HashMap<String, String> map) {
+		System.out.println("hashmap");
+		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+		groundMapper.insertGround2(map);
+		
+	}
+	*/
 }

@@ -29,7 +29,7 @@
       <result property="endTime" column="end_time"/>
       <result property="confirm" column="confirm"/>
    </resultMap>
- 
+   
  	<!--  id는 Mapper.java(여기서 GroundMapper.java)에 동일하게 사용해야된다.  -->
 
    <select id ="getGroundList" resultMap="GroundResultMap">
@@ -86,4 +86,16 @@
       SELECT * FROM ground_soccer where ground_name = #{ground_name, javaType=String}
    </select>
    
+  
+   <insert id ="insertGround" parameterType = "com.spring.naonnaTest.ground.GroundVO" >
+   	insert into ground_soccer values(#{ground_Name}, #{ground_admin}, #{ground_addr},#{ground_city},#{grass},#{shower},#{parking},
+   	#{light},#{week_morning},#{week_evening},#{weekend_morning},#{weekend_evening},#{review},#{rule},#{ground_people},#{ground_size},#{photo})
+   </insert>
+    
+   <!-- 
+   <insert id ="insertGround2" parameterType = "hashmap" >
+   	insert into ground_soccer values(#{ground_Name, javaType=String}, #{ground_admin jdbcType=VARCHAR2}, #{ground_addr},#{ground_city},#{grass},#{shower},#{parking},
+   	#{light},#{week_morning},#{week_evening},#{weekend_morning},#{weekend_evening},#{review},#{rule},#{ground_people}#{ground_size})
+   </insert>
+    -->
 </mapper>

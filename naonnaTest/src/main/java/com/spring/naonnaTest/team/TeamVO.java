@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class TeamVO {
 	private String team_name;
 	private String nickname;
+	private String grade;
 	private String emblem;
 	private String ability;
 	private String intro;
@@ -15,6 +16,12 @@ public class TeamVO {
 	private String review;
 	
 	
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 	public String getTeam_name() {
 		return team_name;
 	}
