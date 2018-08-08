@@ -136,11 +136,6 @@
   </script>
   
   <style>
-  .answer{
-  	display:none;
-  }
-  
-  
   	.faqTitle{
   		display:inline-block;
   		margin-left: 10%;
@@ -157,7 +152,25 @@
   	.faqTab{
   		margin-left: 10%;
   	}
-  	
+  	.question{
+  		color: black;
+  	}
+  	.question:hover{
+  		color:black;
+  	}
+  	.answer{
+  		display:none;
+  	}
+  	table{
+  	border:1px solid silver;
+  	margin-top: 5px;
+  	}
+  	.thead{
+  		text-align:center;
+  	}
+  	.table_number{
+  		text-align: center;
+  	}
   	
   	
 
@@ -350,12 +363,19 @@
     	<div id="menu1" class="tab-pane faqSection fade in active">
     		<table>
     			<tr>
-    				<td>번호</td>
-    				<td>내용</td>
+    				<td class="thead" style="width:100px;">번호</td>
+    				<td class="thead" style="width:600px;">내용</td>
     			</tr>
     			<tr>
-    				<td><a href="#" onclick="faqFunction('faq_01'); return false;" class="question">여기를</a></td>
-    				<td><div class="answer" id="faq_01">질문에 대한 답변</div></td>
+    				<td class="table_number" rowspan="2">1</td>
+    				<td>
+    					<a href="#" onclick="faqFunction('faq_01'); return false;" class="question" style="text-decoration:none">상품 교환은 가능한가요?</a>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<div class="answer" id="faq_01" style="width:600px;">교환의 경우 동일 상품의 재고가 있을 경우 사이즈 교환만 가능합니다.다른 상품으로 교환을 원하실 경우 반품 후 재주문을 해주셔야 합니다. ※ 교환 신청을 하지 않고 상품을 보내는 경우, 분실 우려가 있으니 반드시 마이페이지에서 교환 신청해 주셔야 합니다. </div>
+    				</td>
     			</tr>
     		</table>
 	    </div>
