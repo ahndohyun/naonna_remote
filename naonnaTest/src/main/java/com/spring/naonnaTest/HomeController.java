@@ -51,7 +51,12 @@ public class HomeController {
 	
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String go_index() {
-		return "index";
+		return "main";
+	}
+	
+	@RequestMapping(value = "/team_search.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public String go_team_search() {
+		return "team_search";
 	}
 	
 	
