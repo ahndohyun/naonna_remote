@@ -105,8 +105,8 @@ public class GroundController {
 	}*/
 	
 	
-	@RequestMapping(value = "/ground_detail.do", method = RequestMethod.POST)
-	public ModelAndView That_Ground_Info(GroundVO vo, String ground_Name) {
+	@RequestMapping(value = "/ground_detail.do", method = RequestMethod.GET)
+	public ModelAndView That_Ground_Info(GroundVO vo) {
 		String Ground_Name = vo.getGround_Name();
 		System.out.println("Ground_Name = " + Ground_Name);
 		vo = groundService.That_Ground_Info(Ground_Name);
@@ -122,21 +122,39 @@ public class GroundController {
 	
 	@RequestMapping(value = "/insertGround.do", method = RequestMethod.POST)
 	public ModelAndView Insert_Ground_Info(GroundVO vo ,MultipartHttpServletRequest multiRequest , HttpServletResponse response)  throws Exception {
-		  MultipartFile mf = multiRequest.getFile("imgfile");
-	      String uploadPath = "C:\\BigDeep\\upload";
-	      String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
-	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
-	      System.out.println("storedFileName : " + storedFileName);
-	      System.out.println("아휴");
-	      if(mf.getSize() != 0) {
+		  MultipartFile mf1 = multiRequest.getFile("imgfile1");
+		  MultipartFile mf2 = multiRequest.getFile("imgfile2");
+		  MultipartFile mf3 = multiRequest.getFile("imgfile3");
+		  
+	      String uploadPath = "C:\\Users\\Playdata\\Desktop\\naonna_git\\naonna_remote\\naonnaTest\\src\\main\\webapp\\image\\";
+	      String originalFileExtension = mf1.getOriginalFilename().substring(mf1.getOriginalFilename().lastIndexOf("."));
+	      String storedFileName1 = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+	      String storedFileName2 = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+	      String storedFileName3= UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+	      System.out.println("storedFileName1 : " + storedFileName1);
+	      System.out.println("storedFileName2 : " + storedFileName2);
+	      System.out.println("storedFileName3 : " + storedFileName3);
+	    
+	      if(mf1.getSize() != 0) {
 	         //mf.transferTo(new File(uploadPath+ "/" + mf.getOriginalFilename()));
-	         mf.transferTo(new File(uploadPath + storedFileName));
+	         mf1.transferTo(new File(uploadPath + storedFileName1));
 	      }
+	      if(mf2.getSize() != 0) {
+		         //mf.transferTo(new File(uploadPath+ "/" + mf.getOriginalFilename()));
+		         mf2.transferTo(new File(uploadPath + storedFileName2));
+		      }
+	      if(mf3.getSize() != 0) {
+		         //mf.transferTo(new File(uploadPath+ "/" + mf.getOriginalFilename()));
+		         mf3.transferTo(new File(uploadPath + storedFileName3));
+		      }
 	      
 	      
-	      vo.setPhoto(storedFileName);
-
-		System.out.println("찾아감?");
+	      //vo.setPhoto(storedFileName);
+	      vo.setPhoto1(storedFileName1);
+	      vo.setPhoto2(storedFileName2);
+	      vo.setPhoto3(storedFileName3);
+	      
+		System.out.println("Groundphoto in ");
 		
 		groundService.insertGround(vo);
 		

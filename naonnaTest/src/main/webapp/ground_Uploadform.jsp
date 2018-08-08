@@ -28,7 +28,10 @@
 	     수용인원 : <input type="text" name="ground_people" /><br /><br />
 	     경기장사이즈  : <input type="text" name="ground_size" /><br /><br />
      
-   	  경기장 사진 : <input type="file" name="imgfile" /><br /><br />      
+   	  경기장 사진1: <input type="file" name="imgfile1" /><br /><br />
+   	    경기장 사진2: <input type="file" name="imgfile2" /><br /><br />
+   	      경기장 사진3: <input type="file" name="imgfile3" /><br /><br />
+   	            
     </fieldset>
        <input type="button" value="서버전달2" onclick="fnAction('insertGround.do')"/>
     
