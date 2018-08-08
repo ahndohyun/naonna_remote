@@ -16,88 +16,28 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
   <!-- <link rel="stylesheet" href="naonna_main.css"> -->
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
-
-<!-- 캘린더 라이브러리-->
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<!-- 캘린더 라이브러리-->
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<!-- 캘린더 라이브러리-->
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<!-- 캘린더 라이브러리-->
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/naonna_main.css">
   <style>
-  
-     .matching-filter {
-        width : 800px;
-        height : 200px;
-        margin : 45px 45px 45px 150px;
-        padding : 30px 40 0px 30px;
-        border : 1px solid black;
+  	 .naonna-board-container {
+  	 	margin-top : 15px;
+  	 }
+  	 .naonna-board-container h3 {
+  	 	font-weight : 700;
+  	 	display : inline-block;
+  	 }
+  	 .board-container {
+  	 	margin-top : 80px;
+  	 }
+  	 .table {
+  	 	margin-top : 30px;
+  	 }
+     .table thead td, .table tbody td:first-child, .table tbody td:nth-child(2), table tbody td:nth-child(3), table tbody td:nth-child(4) {
+     	text-align : center;
      }
-     .matching-filter-name {
-        width : 90%;
-     }
-     
-     .subject-location {
-        margin : 8px 0px 10px 8px;
-        display : block;
-     }
-     
-     .subject-location h3 {
-        color : #252525;
-        display : block;
-        text-align : center;
-        height : 60px;
-        padding : 18px 0;
-        margin : 8px;
-        letter-spacing : 0.8px;
-        font-size : 24px;
-        width : 144px;
-     }
-     .filter-location {
-        display : inline-block;
-        width : 300px;
-        padding : 20px 0px 10px 20px;
-        margin-left : 20px;   
-     }
-     
-     .filter-location h4 {
-        font-size : 16px;
-        color : black;
-        display : inline;
-        text-align : center;
-        height : 50px;
-        padding : 17px 0;
-        margin : 8px;
-     }
-     .filter-location form {
-        display :inline;
-     }
-     .filter-location select {
-        height : 40px;
-     }
-     .btn {
-        width : 100px;
-        margin-bottom : 15px;
-     }
-     .create-matching{
-        float : right;
-     }
-     .table th {
-        text-align : center;
-     }
-     .table-body tr td {
-        text-align : center;
-        background-color : skyblue;
-        border : 1px solid red;
-        padding : 10px 5px;
-        vertical-align : middle;
-     }
+   
+   	 #right {
+   	 	margin-top : 20px;
+   	 	float : right;
+   	 }
   </style>
 
 
@@ -312,81 +252,47 @@
 		<!-- side menu bar end -->
 
 		<!-- start main content -->
-
 		<div class="main col-sm-8">
-			<br>
-
-			<!--  team filter start -->
-			<div class="matching-filter">
-				<div class="matching-filter-name">
-					<div class="subject-location">
-						<h3>매칭 검색</h3>
-					</div>
-					<div class="filter-location">
-						<h4>위치</h4>
-						<form action="#">
-							<select name="location" class="custom-select mb-3" id="city">
-								<option value=''>지역 선택</option>
-								<option value="강동구">강동구</option>
-								<option value="강북구">강북구</option>
-								<option value="강서구">강서구</option>
-								<option value="관악구">관악구</option>
-								<option value="광진구">광진구</option>
-								<option value="구로구">구로구</option>
-								<option value="금천구">금천구</option>
-								<option value="노원구">노원구</option>
-								<option value="도봉구">도봉구</option>
-								<option value="동대문구">동대문구</option>
-								<option value="동작구">동작구</option>
-								<option value="마포구">마포구</option>
-								<option value="서대문구">서대문구</option>
-								<option value="서초구">서초구</option>
-								<option value="성동구">성동구</option>
-								<option value="성북구">성북구</option>
-								<option value="송파구">송파구</option>
-								<option value="양천구">양천구</option>
-								<option value="영등포구">영등포구</option>
-								<option value="용산구">용산구</option>
-								<option value="은평구">은평구</option>
-								<option value="종로구">종로구</option>
-								<option value="중구">중구</option>
-								<option value="중랑구">중랑구</option>
-							</select>
-						</form>
-					</div>
-					<div class="filter-location">
-						<h4>날짜</h4>
-						<!--  시간 선택 API  -->
-						<input type="text" id="datePick" name="datetimes" style="width: 55%" />
-						<button type="button" class="btn btn-primary" id="search_matching">검색</button>
-
-					</div>
+			<div class="naonna-board-container col-sm-12">
+				<div class="menu-nameboard col-sm-12">
+					<h3>팀원 모집</h3>
+					<span id="right"><button class="wirte-button btn btn-success">글쓰기</button></span>
 				</div>
-
-			</div>
-
-			<div class="container-board">
-				<button type="button" class="btn btn-primary create-matching">매칭 생성</button>
-				<table class="table">
-					<thead>
-						<tr class="success">
-							<th>지역</th>
-							<th>경기일정</th>
-							<th>팀</th>
-							<th>제목</th>
-							<th>인원</th>
-							<th>신청 버튼</th>							
-						</tr>
-					</thead>
-					<tbody class="table-body" id="print_match">
-
-					</tbody>
-				</table>
+				<div class="board-container">
+					<table class="board-table table table-striped table-hover">
+						<thead>
+							<tr>
+								<td>지역</td>
+								<td>제목</td>
+								<td>작성자</td>
+								<td>등록날짜</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>노원</td>
+								<td>석계에서 같이 뛰실 20~30대 분들 있으신가요?</td>
+								<td>zoca01</td>
+								<td>2018.08.05</td>
+							</tr>
+							<tr>
+								<td>용산</td>
+								<td>나이는 숫자에 불과해. 술좋아하시는분들 환영합니닷</td>
+								<td>nyaong_nyaong</td>
+								<td>2018.08.05</td>
+							</tr>
+							<tr>
+								<td>서초</td>
+								<td>나다 싶으면 들어와라</td>
+								<td>져보고싶다</td>
+								<td>2018.08.05</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-
 		<!-- main contents end -->
-
 	</div>
 
 
