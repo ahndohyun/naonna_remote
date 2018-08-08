@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.*, com.spring.naonnaTest.ground.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -163,7 +165,7 @@
 						$.each(data, function(index, ground) {
 							var output = '';
 							output += '<tr>';
-							output += '<td>' + ground.ground_Name + '</td>';
+							output += '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
 							output += '<td>' + ground.ground_addr + '</td>';
 							output += '<td>' + ground.grass + '</td>';
 							output += '<td>' + ground.shower + '</td>';
@@ -173,8 +175,9 @@
 							output += '<td>' + ground.ground_people + '</td>';
 							output += '</tr>';
 							console.log("output:" + output);
-							$('#ground_print').append(output);
-						});
+							$('#ground_print').append(output);												
+						});						
+						
 					},
 					error:function() {
 						alert("새로고침을 눌러주세요.")
@@ -183,6 +186,32 @@
 			}
 			
 			printGround();
+			
+			/* 
+			$('#ground.ground_Name').on('click',function(){
+					alert('gjf');
+					location.href="ground_detail.do?ground.ground_Name=" +ground.ground_Name;
+				});			
+						 */
+			/*  $(document).on('click', '#ground.ground_Name', function() {
+		         alert('ground_detail 이동');
+		         //location href ="ground_detail.do";
+		         alert('성공1');
+		      });  */
+		
+			/* $('#ground.ground_Name').on('click', function() {
+		         alert('thatground 이동');
+		         location.href ="ground_detail.do?ground.ground_Name="+ground.ground_Name;
+		         
+		      }); */
+		      
+		     /* 
+				$('#ground.ground_Name').on('click', function() {
+			        alert('thatground 이동');
+			        location.href ="ground_detail.do?ground.ground_Name="+ground.ground_Name;
+				 });
+			 */
+			
 			
 			$('#sel2').on('change',function(){
 				goDAO();				
@@ -233,7 +262,9 @@
           		var endDate = new Date(startDate);
           		endDate.setHours(startDate.getHours() + 1);
           		goDAO_time(startDate, endDate);
-          	});		
+          	});	
+          	
+          
 
 	});
 	
@@ -270,7 +301,7 @@
 					output += '<td>' + ground.ground_people + '</td>';
 					output += '</tr>';
 					console.log("output:" + output);
-					$('#ground_print').append(output);
+					$('#ground_print').append(output);										
 				});
 				
 				console.log(data);
@@ -312,9 +343,11 @@
 					output += '</tr>';
 					console.log("output:" + output);
 					$('#ground_print').append(output);
+										
 				});
 				
 				console.log(data);
+			
 			},
 			error:function() {
 				alert("ajax통신 실패!!");
@@ -322,8 +355,13 @@
 		});	
 	
 	}
-			
-
+	
+	/* 		
+	 $(document).on('click', '#godetail', function() {
+         alert('ground_detail 이동');
+         href ="ground_detail.do"
+         alert('성공`1');
+      }); */
 	
 </script>
 
