@@ -14,7 +14,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	<resources mapping="/img/**" location="file:///C:/BigDeep/upload/"/>
+	<resources mapping="/image/**" location="file:///C:/Users/Playdata/Desktop/naonna_git/naonna_remote/naonnaTest/src/main/webapp/image/"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,7 +23,7 @@
 	</beans:bean>
 	
 	<beans:bean id ="uploadPath" class = "java.lang.String">
-		<beans:constructor-arg value="C:\BigDeep\upload"></beans:constructor-arg>
+		<beans:constructor-arg value="C:\Users\Playdata\Desktop\naonna_git\naonna_remote\naonnaTest\src\main\webapp\image"></beans:constructor-arg>
 	</beans:bean>
 	
 	   <!-- 멀티파트(파일업로드) 관련 빈 설정 -->

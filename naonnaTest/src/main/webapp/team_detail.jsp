@@ -2,9 +2,12 @@
 
 <%@ page import="java.util.*" %>  
 <%@ page import="com.spring.naonnaTest.team.*" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<% request.setCharacterEncoding("utf-8"); %> 
  
  <% 
- 	TeamVO vo = (TeamVO)request.getAttribute("result");
+ 	TeamVO vo = (TeamVO)request.getAttribute("vo");
  %>
 
 
@@ -155,7 +158,9 @@
         <div class="page_name"><h2>팀 상세 보기</h2></div>
         <div class="team-detail-container col-sm-12">
            <div class="team-detail-header">
-              <div class="team-name-container col-sm-4"><h3 id="team-name">${vo.team_name}</h3></div>
+              <div class="team-name-container col-sm-4"><h3 id="team-name">${vo.team_name}</h3>
+              	<img src="<spring:url value='./image/${vo.emblem}' />"/>
+              </div>
               <div class="team-join-button btn btn-success"><p>팀 가입하기</p></div>
            </div>
            <div class="container team-detail-contents col-sm-12">

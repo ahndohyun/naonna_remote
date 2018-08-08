@@ -52,8 +52,7 @@
    
    
    <insert id="addTeam" parameterType="com.spring.naonnaTest.team.TeamVO" >
-   	insert into team values (#{team_name},#{nickname},#{grade},#{emblem},#{ability},
-   							#{intro},#{number_team},#{area},#{point},#{review})
+   	insert into team values (#{team_name},#{nickname},#{grade},#{emblem},#{ability},#{intro},#{number_team},#{area},#{point},#{review})
    </insert>
 
    <!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래스명이나 별칭이 들어간다. -->
