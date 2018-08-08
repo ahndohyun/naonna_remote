@@ -206,7 +206,7 @@ button[name="create"], [name="reset"]{
 						$.each(data, function(index, team) {
 							var output = '';
 							output += '<tr>';
-							output += '<td>' + team.team_name + '</td>';
+							output += '<td> <a link href="team_detail.do?team_name='+team.team_name + '">' + team.team_name  + '</td>';
 							output += '<td>' + team.area + '</td>';
 							output += '<td>' + team.nickname + '</td>';
 							output += '<td>' + team.ability + '</td>';
@@ -249,7 +249,7 @@ button[name="create"], [name="reset"]{
 					$.each(data, function(index, team) {		//새로 뿌리기
 						var output = '';
 						output += '<tr>';
-						output += '<td>' + team.team_name + '</td>';
+						output += '<td> <a link href="team_detail.do?team_name='+team.team_name + '">' + team.team_name  + '</td>';
 						output += '<td>' + team.area + '</td>';
 						output += '<td>' + team.nickname + '</td>';
 						output += '<td>' + team.ability + '</td>';

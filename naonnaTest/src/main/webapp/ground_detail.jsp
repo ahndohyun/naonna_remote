@@ -1,4 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.*" %>  
+<%@ page import="com.spring.naonnaTest.ground.*" %> 
+ 
+ <% 
+ 	GroundVO vo = (GroundVO)request.getAttribute("result");
+ %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,7 +209,7 @@
 		font-size : 12px;
 	}
 	.ground-pics {
-		margin : 50px 40px 0px 110px;
+		margin : 20px 40px 0px 110px;
 	}
 	.payment, .back-to-list {
 		display : inline-block;
@@ -217,7 +225,11 @@
 
   </style>
   <script>
-	
+ 
+  function res() {
+      location.href = "ground_info.do"
+   }
+
   </script>
 </head>
 
@@ -342,6 +354,9 @@
 
 <!-- start main content -->
   <div class="main col-sm-8"><br>
+  	<div>
+  		<h3>${vo.ground_Name}</h3>
+  	</div>
   	 <div class="ground-pics col-sm-6">
     	<div class="mySlides">
     		<div class="numbertext">1 / 3</div>
@@ -414,12 +429,13 @@
   		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/ju.png"></div>
   		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/sh.png"></div>
   	</div>
-  	<div class="ground-detail-texts col-sm-12">
-  		<div class="ground-detail-textmore col-sm-3"><p>잔디유무</p></div>
-  		<div class="ground-detail-textmore col-sm-3"><p>조명유무</p></div>
-  		<div class="ground-detail-textmore col-sm-3"><p>주차장유무</p></div>
-  		<div class="ground-detail-textmore col-sm-3"><p>샤워시설유무</p></div>
+  	<div class="ground-detail-texts col-sm-12" id="ground_print">
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.grass }</p></div>
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.light }</p></div>
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.parking }</p></div>
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.shower }</p></div> 
   	</div>
+  	
   	<div class="ground-detail-size col-sm-12">
   		<div class="ground-detail-size-pics">
   			<img class="formal-ground-size" src="https://www.iamground.kr/img/sample/ssize.jpg">
@@ -436,14 +452,14 @@
   		</div>
   	</div>
   	<div class="ground-detail-addr col-sm-12">
-  		<p>서울 시립 창동 운동장 </p>
-  		<p>창동 1-9번지</p>
+  		<p>${vo.ground_addr} </p>
+  		<p>${vo.ground_city }</p>
   	</div>
   </div>
   <!-- end main content -->
   <div class="button-container">
   	<div class="payment"><button class="btn btn-success">결제하기</button></div>
-  	<div class="back-to-list"><button class="btn btn-success">목록으로</button></div>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
   </div>
   </div>
 </div>

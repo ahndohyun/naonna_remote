@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.naonnaTest.ground.GroundVO;
 
 @Controller
 public class TeamController {
@@ -17,7 +20,7 @@ public class TeamController {
 		
 	@RequestMapping(value = "/getTeamlistJSON.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody			
-	public String TeamlistJSONGET(TeamVO teamvo) {
+	public String TeamlistJSONGET(TeamVO teamvo ) {
 		ArrayList<TeamVO> list = teamService.getTeamlistJson(teamvo);
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -51,4 +54,32 @@ public class TeamController {
 		return str;
 	}	
 
+	@RequestMapping(value = "/insertTeam.do",  method = RequestMethod.POST)
+	public ModelAndView Insert_Team_Info(TeamVO teamvo) {
+		System.out.println("찾아감?");
+		
+		teamService.insertTeam(teamvo);
+				
+		ModelAndView result = new ModelAndView();
+		result.addObject("teamvo", teamvo);
+		result.setViewName("team_search");
+		System.out.println("추가 complete??");
+		return result; 
+	}
+	
+	@RequestMapping(value = "/team_detail.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView That_Team_Info(TeamVO vo, String team_name) {
+		String Team_Name = vo.getTeam_name();
+		System.out.println("Team_Name = " + Team_Name);
+		System.out.println(team_name);
+		vo = teamService.That_Team_Info(Team_Name);
+		System.out.println("team_detail complete");
+
+		ModelAndView result = new ModelAndView();
+		result.addObject("vo", vo);
+		result.setViewName("team_detail");
+		System.out.println("불러오기  complete??");
+		return result;
+	}
+	
 }

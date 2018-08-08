@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>  
+<%@ page import="com.spring.naonnaTest.team.*" %> 
+ 
+ <% 
+ 	TeamVO vo = (TeamVO)request.getAttribute("result");
+ %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +24,7 @@
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
   .team-detail {
+<<<<<<< HEAD
   	border : 1px solid black;
   	margin-top : 47px;
   }
@@ -143,51 +151,47 @@
      <div class="main col-sm-8"><br>
      <!-- team detail start -->
        <div class ="team-detail col-sm-12">
-	     <div class="page_name"><h2>팀 상세 보기</h2></div>
-	     <div class="team-detail-container col-sm-12">
-	     	<div class="team-detail-header">
-	     		<div class="team-name-container col-sm-4"><h3 id="team-name">liver poor</h3></div>
-	     		<div class="team-join-button btn btn-success"><p>팀 가입하기</p></div>
-	     	</div>
-	     	<div class="container team-detail-contents col-sm-12">
-	     		<table class="table table-bordered table-striped table-hover">
-	     			<thead>
-	     				<tr>
-	     					<td> 위치 </td>
-	     					<td> 성북구 </td>
-	     				</tr>
-	     			</thead>
-	     			<tbody>
-	     				<tr>
-	     					<td> 연령대 </td>
-	     					<td> 10~50 </td>
-	     				</tr>
-	     				<tr>
-	     					<td> 실력 </td>
-	     					<td> 의족수준 </td>
-	     				</tr>
-	     				<tr>
-	     					<td> 인원 </td>
-	     					<td> 13명 </td>
-	     				</tr>
-	     				<tr>
-	     					<td> 팀 소개 </td>
-	     					<td> 우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우
-	     					     랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴
-	     					     우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴
-	     					     우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴우랴
-	     					</td>
-	     				</tr>
-	     				<tr>
-	     					<td> 팀 리뷰 </td>
-	     					<td> 좀 합디다 ㅋ </td>
-	     				</tr>
-	     			</tbody>
-	     		</table>
-	     	</div>
-	     	
-	     </div>
+        <div class="page_name"><h2>팀 상세 보기</h2></div>
+        <div class="team-detail-container col-sm-12">
+           <div class="team-detail-header">
+              <div class="team-name-container col-sm-4"><h3 id="team-name">${vo.team_name}</h3></div>
+              <div class="team-join-button btn btn-success"><p>팀 가입하기</p></div>
+           </div>
+           <div class="container team-detail-contents col-sm-12">
+              <table class="table table-bordered table-striped table-hover">
+                 <thead>
+                    <tr>
+                       <td> 위치 </td>
+                       <td>${vo.area } </td>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr>
+                       <td> 최근 경기전적 </td>
+                       <td> ${vo.grade } </td>
+                    </tr>
+                    <tr>
+                       <td> 실력 </td>
+                       <td> ${vo.ability } </td>
+                    </tr>
+                    <tr>
+                       <td> 인원 </td>
+                       <td> ${vo.number_team } </td>
+                    </tr>
+                    <tr>
+                       <td> 팀 소개 </td>
+                       <td> ${vo.intro }
+                       </td>
+                    </tr>
+                    <tr>
+                       <td> 팀 리뷰 </td>
+                       <td> ${vo.review } </td>
+                    </tr>
+                 </tbody>
+              </table>
+           </div>
            
+        </div>   
        </div>
       </div>
     </div>
