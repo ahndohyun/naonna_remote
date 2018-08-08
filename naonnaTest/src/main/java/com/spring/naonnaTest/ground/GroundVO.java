@@ -1,8 +1,7 @@
 package com.spring.naonnaTest.ground;
 
-import java.util.Date;
-
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class GroundVO {
@@ -18,12 +17,19 @@ public class GroundVO {
 	private String week_evening;
 	private String weekend_morning;
 	private String weekend_evening;
-	private String review;
-	private String photo;
+	private String review;	
 	private String rule;
 	private String ground_people;
-	private String ground_size;
+	private String ground_size;	
+	private String photo;
+		
 	
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	public String getGround_Name() {
 		return ground_Name;
 	}
@@ -102,12 +108,6 @@ public class GroundVO {
 	public void setReview(String review) {
 		this.review = review;
 	}
-	public String getPhoto() {
-		return photo;
-	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
 	public String getRule() {
 		return rule;
 	}
@@ -126,5 +126,7 @@ public class GroundVO {
 	public void setGround_size(String ground_size) {
 		this.ground_size = ground_size;
 	}
+	
+	
 	
 }
