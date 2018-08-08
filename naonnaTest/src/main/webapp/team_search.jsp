@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
@@ -13,7 +14,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
-  <!-- <link rel="stylesheet" href="naonna_main.css"> -->
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
   td {
@@ -87,6 +87,109 @@
      .table {
         margin-top : 40px;
      }
+     
+/* 팀생성 모달 */
+#team_create{
+	float: right;
+	border: none;
+	outline:0; /* 버튼 누르고 나서 테두리 없애기 위해 */
+  	margin-right: 50px;
+  	margin-bottom: 20px;
+  	display: inline-block;
+  	padding: 8px;
+  	color: white;
+  	background-color: #000;
+  	text-align: center;
+  	cursor: pointer;
+  	width: 10%;
+  	font-size: 18px;
+}
+#team_create:hover{
+	color:white;
+	background-color: #2c2d28;
+}
+#TeamModal {
+    display: none;
+    position: fixed;
+    width: 100%;
+    background-color: rgba(67, 68, 64, 0.4);
+    padding-top: 60px;  /*top으로 부터 얼마나 띄울지*/
+}
+/* 모달바디 */
+.team_title{
+	font-family: sans-serif;
+	font-size: 20px;
+	margin-left: 45%;
+}
+#team_close{
+	margin-top: 3px;
+	margin-right: -45px;
+	outline: none;
+}
+.create_modal_table{
+	border: 1px solid silver;
+  	border-left-style: none;
+  	border-right-style: none;
+  	width: 100%;
+  	margin-top: 20px;
+  	margin-bottom: 20px;
+  	table-layout: fixed;
+  	border-collapse: collapse;
+}
+.modal-body {
+	height : 550px;
+}
+.table_row{
+ 	border-bottom : 1px solid silver; 
+} 
+.table_menu{
+	background-color: #F9F6F6;	
+  	text-align: center;
+  	width:30%;
+  	height: 60px;
+}
+.table_contents{
+  	padding: 10px;
+  	font-size: 13px;
+  	width:70%;
+  	height: 60px;
+}
+#city{
+	padding: 10px;
+  	font-size: 13px;
+  	width:100%;
+  	float:left;
+  	height: 40px;
+}
+.table_contents input[type="text"]{
+	width:100%;
+	height: 40px;
+	padding-left: 10px;
+}
+.team_text{
+	width:100%;
+	height: 90px;
+	padding-left: 10px;
+}
+button[name="create"], [name="reset"]{
+	float: right;
+	border: none;
+	outline:0; /* 버튼 누르고 나서 테두리 없애기 위해 */
+  	margin-right: 50px;
+  	margin-top: 5px;
+  	padding: 8px;
+  	margin: 5px;
+  	color: white;
+  	background-color: #000;
+  	text-align: center;
+  	cursor: pointer;
+  	width: 100px;
+  	font-size: 12px;
+}
+
+
+
+
   </style>
   
   <script>
@@ -321,7 +424,81 @@
         <!-- team filter end -->
         
         <div class="container-board">
-           <button type="button" class="btn btn-primary">팀 생성</button>
+           <button id="team_create" type="button" data-toggle="modal" data-target="#TeamModal">팀생성</button>
+ 				<div class="modal fade" id="TeamModal" role="dialog">
+          			<div class="modal-dialog">
+            			<div class="modal-content">
+            				<div class="modal-body">
+           						<span class="team_title">팀생성</span>
+           						<button type="button" id="team_close" class="close" data-dismiss="modal">&times;</button>     
+           						
+           						<table class="create_modal_table">
+           							<tr class="table_row">
+           								<td class="table_menu">팀명</td>
+           								<td class="table_contents"><input type="text" placeholder="Enter Team Name" required></td>
+           								<!--중복확인 넣기-->
+           							</tr>
+           							<tr class="table_row">
+           								<td class="table_menu">위치</td>
+           								<td class="table_contents">
+           									<form action="#">
+												<select name="location" class="custom-select mb-3" id="city">
+													<option value=''>지역 선택</option>
+													<option value="강동구">강동구</option>
+													<option value="강북구">강북구</option>
+													<option value="강서구">강서구</option>
+													<option value="관악구">관악구</option>
+													<option value="광진구">광진구</option>
+													<option value="구로구">구로구</option>
+													<option value="금천구">금천구</option>
+													<option value="노원구">노원구</option>
+													<option value="도봉구">도봉구</option>
+													<option value="동대문구">동대문구</option>
+													<option value="동작구">동작구</option>
+													<option value="마포구">마포구</option>
+													<option value="서대문구">서대문구</option>
+													<option value="서초구">서초구</option>
+													<option value="성동구">성동구</option>
+													<option value="성북구">성북구</option>
+													<option value="송파구">송파구</option>
+													<option value="양천구">양천구</option>
+													<option value="영등포구">영등포구</option>
+													<option value="용산구">용산구</option>
+													<option value="은평구">은평구</option>
+													<option value="종로구">종로구</option>
+													<option value="중구">중구</option>
+													<option value="중랑구">중랑구</option>
+												</select>
+											</form>
+           								</td>
+           							</tr>
+           							<tr class="table_row">
+           								<td class="table_menu">연령</td>
+           								<td class="table_contents"><input type="text" placeholder="Enter Age" required></td>
+           							</tr>
+           							<tr class="table_row">
+           								<td class="table_menu">실력</td>
+           								<td class="table_contents"><input type="text" placeholder="Enter Level" required></td>
+           							</tr>
+           							<tr class="table_row">
+           								<td class="table_menu">인원</td>
+           								<td class="table_contents"><input type="text" placeholder="Enter Number of Team" required></td>
+           							</tr>
+           							<tr class="table_row">
+           								<td class="table_menu">팀소개</td>
+           								<td class="table_contents">
+           								<textarea class="team_text"></textarea>
+           								</td>
+           							</tr>
+           						</table>
+           						
+           						<button type="submit" name="create">Create</button>
+                				<button type="reset" name="reset">Reset</button>
+                			</div>
+                		</div>
+                	</div>
+                </div> 	
+           
            <table class="table">
            <thead>
                <tr class="success">
