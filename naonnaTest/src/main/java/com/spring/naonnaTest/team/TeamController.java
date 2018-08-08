@@ -1,6 +1,9 @@
 package com.spring.naonnaTest.team;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.spring.naonnaTest.ground.GroundVO;
 
 @Controller
 public class TeamController {
@@ -55,8 +58,23 @@ public class TeamController {
 	}	
 
 	@RequestMapping(value = "/insertTeam.do",  method = RequestMethod.POST)
-	public ModelAndView Insert_Team_Info(TeamVO teamvo) {
-		System.out.println("찾아감?");
+	public ModelAndView Insert_Team_Info(TeamVO teamvo , MultipartHttpServletRequest multiRequest) throws Exception {
+		
+		 MultipartFile mf = multiRequest.getFile("emblem");
+	      String uploadPath = "C:\\Users\\Playdata\\Desktop\\naonna_git\\naonna_remote\\naonnaTest\\src\\main\\webapp\\image\\";
+	      String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
+	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+	      System.out.println("storedFileName : " + storedFileName);
+	    
+	      if(mf.getSize() != 0) {
+	         //mf.transferTo(new File(uploadPath+ "/" + mf.getOriginalFilename()));
+	    	  mf.transferTo(new File(uploadPath + storedFileName));
+	      }
+	      
+	      
+	      teamvo.setEmblem(storedFileName);
+
+		System.out.println("emblem in ?");
 		
 		teamService.insertTeam(teamvo);
 				
@@ -67,7 +85,7 @@ public class TeamController {
 		return result; 
 	}
 	
-	@RequestMapping(value = "/team_detail.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/team_detail.do", method =RequestMethod.GET)
 	public ModelAndView That_Team_Info(TeamVO vo, String team_name) {
 		String Team_Name = vo.getTeam_name();
 		System.out.println("Team_Name = " + Team_Name);
