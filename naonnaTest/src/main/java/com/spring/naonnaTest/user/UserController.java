@@ -73,6 +73,8 @@ public class UserController {
 		mNv.addObject("gender", vo.getGender());
 		
 		session.setAttribute("forPerson", vo.getForPerson());
+		session.setAttribute("nickName", vo.getNickname());
+		
 		
 		return mNv;
 	}

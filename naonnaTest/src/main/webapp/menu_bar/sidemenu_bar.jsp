@@ -15,6 +15,7 @@
         Kakao.init('aecd4acbce2512282f0d82282be7ebb3');
         
 			var s = "${sessionScope.forPerson}";
+			var n = "${sessionScope.nickname}";
 			console.log(s);
 			
 	    		if(s != "") {
