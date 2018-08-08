@@ -20,17 +20,16 @@ public class GroundVO {
 	private String review;	
 	private String rule;
 	private String ground_people;
-	private String ground_size;
-	
-	//private MultipartFile photo;
+	private String ground_size;	
+	private String photo;
 		
 	
-	/*public MultipartFile getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
-	public void setPhoto(MultipartFile photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
-	}*/
+	}
 	public String getGround_Name() {
 		return ground_Name;
 	}

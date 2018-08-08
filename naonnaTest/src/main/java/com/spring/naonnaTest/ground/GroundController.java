@@ -1,7 +1,11 @@
 package com.spring.naonnaTest.ground;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -115,11 +121,25 @@ public class GroundController {
 	}
 	
 	@RequestMapping(value = "/insertGround.do", method = RequestMethod.POST)
-	public ModelAndView Insert_Ground_Info(GroundVO vo) {
+	public ModelAndView Insert_Ground_Info(GroundVO vo ,MultipartHttpServletRequest multiRequest , HttpServletResponse response)  throws Exception {
+		  MultipartFile mf = multiRequest.getFile("imgfile");
+	      String uploadPath = "C:\\BigDeep\\upload";
+	      String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
+	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+	      System.out.println("storedFileName : " + storedFileName);
+	      System.out.println("아휴");
+	      if(mf.getSize() != 0) {
+	         //mf.transferTo(new File(uploadPath+ "/" + mf.getOriginalFilename()));
+	         mf.transferTo(new File(uploadPath + storedFileName));
+	      }
+	      
+	      
+	      vo.setPhoto(storedFileName);
+
 		System.out.println("찾아감?");
 		
 		groundService.insertGround(vo);
-				
+		
 		ModelAndView result = new ModelAndView();
 		result.addObject("vo", vo);
 		result.setViewName("ground_search");

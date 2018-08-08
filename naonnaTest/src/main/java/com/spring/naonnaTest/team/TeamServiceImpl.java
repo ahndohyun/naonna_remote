@@ -45,5 +45,15 @@ public class TeamServiceImpl implements TeamService {
 				
 		
 	}
+	
+	@Override
+	public TeamVO That_Team_Info(String Team_Name) {
+		
+		TeamVO ThatTeamInfo = new TeamVO();
+		TeamMapper teamMapper = sqlSession.getMapper(TeamMapper.class);
+		ThatTeamInfo = teamMapper.getThatTeamInfo(Team_Name);
+		
+		return ThatTeamInfo;
+	}
 
 }

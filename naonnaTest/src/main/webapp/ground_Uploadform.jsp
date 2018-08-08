@@ -9,7 +9,7 @@
 </head>
 <body>
    <h1>경기장 등록!!</h1>
-   <form id="multiform" action="insertGround.do" method="post">
+   <form id="multiform" action="insertGround.do" method="post" enctype="multipart/form-data">
    <fieldset>
 	   경기장이름 : <input type="text" name="ground_Name" /><br /><br />
 	  경기장관리자:  <input type="text" name="ground_admin" /><br /><br />
@@ -28,7 +28,7 @@
 	     수용인원 : <input type="text" name="ground_people" /><br /><br />
 	     경기장사이즈  : <input type="text" name="ground_size" /><br /><br />
      
-    <!--  파일 : <input type="file" name="imgfile" /><br /><br />      -->
+   	  경기장 사진 : <input type="file" name="imgfile" /><br /><br />      
     </fieldset>
        <input type="button" value="서버전달2" onclick="fnAction('insertGround.do')"/>
     
