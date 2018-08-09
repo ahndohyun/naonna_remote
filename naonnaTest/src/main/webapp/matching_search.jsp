@@ -2,20 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jquery-ui-1.12.1/jquery-ui.min.css">
-	<script src="${pageContext.request.contextPath}/resources/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<<<<<<< HEAD
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
 
@@ -314,88 +311,11 @@ button[name="create"], [name="reset"]{
 </head>
 
 <body>
-	<!-- Top menu -->
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<!-- Logo div -->
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#myPage">Input NAONNALogo</a>
-		</div>
-		<!-- Logo div end -->
-
-		<!-- Main menu -->
-
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#myPage">대관신청</a></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">매칭 신청 <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">매칭 검색/등록</a></li>
-						<li><a href="#">용병 모집/등록</a></li>
-					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">팀 관리 <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">팀 검색/생성</a></li>
-						<li><a href="#">용병 모집/등록</a></li>
-					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">고객센터 <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">공지사항</a></li>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">QnA</a></li>
-					</ul></li>
-				<li><a href="#tour">자유게시판</a></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">관리메뉴 <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">회원관리</a></li>
-						<li><a href="#">경기장 등록</a></li>
-					</ul></li>
-			</ul>
-		</div>
-
-		<!-- Main menu end -->
-
-	</nav>
-
-	<!-- end of top menu -->
-
-
+ 	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
 	<!-- main contents -->
 
 	<div class="container-content">
-
-		<!-- side menu bar start -->
-
-		<div class="side-profile col-sm-4">
-			<div class="card">
-				<img src="https://t1.daumcdn.net/cfile/tistory/213D18435900DDE00E"
-					alt="John" style="width: 100%">
-				<h1>User Name</h1>
-				<br>
-				<p>
-					<a href="#">My page</a>
-				</p>
-				<p>
-					<a href="#">My team</a>
-				</p>
-				<p>
-					<a href="#">Matching</a>
-				</p>
-				<p>
-					<a href="#">Booking</a>
-				</p>
-				<p>
-					<a href="#">My page</a>
-				</p>
-				<p>
-					<a href="#">My page</a>
-				</p>
-			</div>
-		</div>
-		<!-- side menu bar end -->
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
 
 		<!-- start main content -->
 

@@ -1,29 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.*, com.spring.naonnaTest.ground.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jquery-ui-1.12.1/jquery-ui.min.css">
-<script
-	src="${pageContext.request.contextPath}/resources/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/css?family=Lato"
-	rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat"
-	rel="stylesheet" type="text/css">
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
+  <!-- <link rel="stylesheet" href="naonna_main.css"> -->
+  <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
 <!-- 캘린더 라이브러리-->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <!-- 캘린더 라이브러리-->
@@ -76,6 +70,7 @@
 	color: white;
 	text-align: center;
 	letter-spacing: 2px;
+	font-size : 14px;
 }
 
 .form-select-citydetail {
@@ -107,66 +102,6 @@
 	left: 10px;
 }
 
-.rating { -
-	-star-size: 2;
-	/* use CSS variables to calculate dependent dimensions later */
-	padding: 0; /* to prevent flicker when mousing over padding */
-	border: none; /* to prevent flicker when mousing over border */
-	unicode-bidi: bidi-override;
-	direction: rtl; /* for CSS-only style change on hover */
-	text-align: left; /* revert the RTL direction */
-	user-select: none; /* disable mouse/touch selection */
-	font-size: 2em; /* fallback - IE doesn't support CSS variables */
-	font-size: calc(var(- -star-size)* 1em);
-	/* because `var(--star-size)em` would be too good to be true */
-	cursor: pointer;
-	/* disable touch feedback on cursor: pointer - http://stackoverflow.com/q/25704650/1269037 */
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	-webkit-tap-highlight-color: transparent;
-	margin-top: -40px;
-}
-/* the stars */
-.rating>label {
-	display: inline-block;
-	position: relative;
-	width: 1.1em;
-	/* magic number to overlap the radio buttons on top of the stars */
-	width: calc(var(- -star-size)/3* 1.1em);
-	margin-left: 15px;
-}
-
-.rating>*:hover, .rating>*:hover ~ label, .rating:not (:hover ) >input:checked 
-	~ label {
-	color: transparent;
-	/* reveal the contour/white star from the HTML markup */
-	cursor: inherit;
-	/* avoid a cursor transition from arrow/pointer to text selection */
-}
-
-.rating>*:hover:before, .rating>*:hover ~ label:before, .rating:not (:hover
-	) >input:checked ~ label:before {
-	content: "★";
-	position: absolute;
-	left: 0;
-	color: gold;
-}
-
-.rating>input {
-	position: relative;
-	transform: scale(3);
-	/* make the radio buttons big; they don't inherit font-size */
-	transform: scale(var(- -star-size));
-	/* the magic numbers below correlate with the font-size */
-	top: -0.5em; /* margin-top doesn't work */
-	top: calc(var(- -star-size)/6* -1em);
-	margin-left: -2.5em;
-	/* overlap the radio buttons exactly under the stars */
-	margin-left: calc(var(- -star-size)/6* -5em);
-	z-index: 2;
-	/* bring the button above the stars so it captures touches/clicks */
-	opacity: 0; /* comment to see where the radio buttons are */
-	font-size: initial; /* reset to default */
-}
 
 #sel1 {
 	display: inline-block;
@@ -230,7 +165,7 @@
 						$.each(data, function(index, ground) {
 							var output = '';
 							output += '<tr>';
-							output += '<td>' + ground.ground_Name + '</td>';
+							output += '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
 							output += '<td>' + ground.ground_addr + '</td>';
 							output += '<td>' + ground.grass + '</td>';
 							output += '<td>' + ground.shower + '</td>';
@@ -240,8 +175,9 @@
 							output += '<td>' + ground.ground_people + '</td>';
 							output += '</tr>';
 							console.log("output:" + output);
-							$('#ground_print').append(output);
-						});
+							$('#ground_print').append(output);												
+						});						
+						
 					},
 					error:function() {
 						alert("새로고침을 눌러주세요.")
@@ -250,6 +186,32 @@
 			}
 			
 			printGround();
+			
+			/* 
+			$('#ground.ground_Name').on('click',function(){
+					alert('gjf');
+					location.href="ground_detail.do?ground.ground_Name=" +ground.ground_Name;
+				});			
+						 */
+			/*  $(document).on('click', '#ground.ground_Name', function() {
+		         alert('ground_detail 이동');
+		         //location href ="ground_detail.do";
+		         alert('성공1');
+		      });  */
+		
+			/* $('#ground.ground_Name').on('click', function() {
+		         alert('thatground 이동');
+		         location.href ="ground_detail.do?ground.ground_Name="+ground.ground_Name;
+		         
+		      }); */
+		      
+		     /* 
+				$('#ground.ground_Name').on('click', function() {
+			        alert('thatground 이동');
+			        location.href ="ground_detail.do?ground.ground_Name="+ground.ground_Name;
+				 });
+			 */
+			
 			
 			$('#sel2').on('change',function(){
 				goDAO();				
@@ -300,7 +262,9 @@
           		var endDate = new Date(startDate);
           		endDate.setHours(startDate.getHours() + 1);
           		goDAO_time(startDate, endDate);
-          	});		
+          	});	
+          	
+          
 
 	});
 	
@@ -337,7 +301,7 @@
 					output += '<td>' + ground.ground_people + '</td>';
 					output += '</tr>';
 					console.log("output:" + output);
-					$('#ground_print').append(output);
+					$('#ground_print').append(output);										
 				});
 				
 				console.log(data);
@@ -379,9 +343,11 @@
 					output += '</tr>';
 					console.log("output:" + output);
 					$('#ground_print').append(output);
+										
 				});
 				
 				console.log(data);
+			
 			},
 			error:function() {
 				alert("ajax통신 실패!!");
@@ -389,87 +355,24 @@
 		});	
 	
 	}
-			
-
+	
+	/* 		
+	 $(document).on('click', '#godetail', function() {
+         alert('ground_detail 이동');
+         href ="ground_detail.do"
+         alert('성공`1');
+      }); */
 	
 </script>
 
 </head>
 
 <body>
-	<!-- Top menu -->
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<!-- Logo div -->
-		<div class="navbar-header">
-			<a class="navbar-brand" href="home.do">Input NAONNALogo</a>
-		</div>
-		<!-- Logo div end -->
-
-		<!-- Main menu -->
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#myPage">대관신청</a></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">매칭 신청 <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="matching_search.do">매칭 검색/등록</a></li>
-						<li><a href="#">용병 모집/등록</a></li>
-					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">팀 관리 <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">팀 검색/생성</a></li>
-						<li><a href="#">용병 모집/등록</a></li>
-					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">고객센터 <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">공지사항</a></li>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">QnA</a></li>
-					</ul></li>
-				<li><a href="#tour">자유게시판</a></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">관리메뉴 <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">회원관리</a></li>
-						<li><a href="#">경기장 등록</a></li>
-					</ul></li>
-			</ul>
-		</div>
-		<!-- Main menu end -->
-	</nav>
-	<!-- end of top menu -->
-
+ 	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
 	<!-- main contents -->
+
 	<div class="container-content">
-		<!-- side menu bar start -->
-		<div class="side-profile col-sm-4">
-			<div class="card">
-				<img src="https://t1.daumcdn.net/cfile/tistory/213D18435900DDE00E"
-					alt="John" style="width: 100%">
-				<h1>User Name</h1>
-				<br>
-				<p>
-					<a href="#">My page</a>
-				</p>
-				<p>
-					<a href="#">My team</a>
-				</p>
-				<p>
-					<a href="#">Matching</a>
-				</p>
-				<p>
-					<a href="#">Booking</a>
-				</p>
-				<p>
-					<a href="#">My page</a>
-				</p>
-				<p>
-					<a href="#">My page</a>
-				</p>
-			</div>
-		</div>
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
 
 		<!-- start main content -->
 		<div class="main col-sm-8">

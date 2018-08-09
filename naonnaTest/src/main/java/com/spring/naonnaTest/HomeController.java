@@ -51,7 +51,33 @@ public class HomeController {
 	
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String go_index() {
-		return "index";
+		return "main";
 	}
+	
+	@RequestMapping(value = "/team_search.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public String go_team_search() {
+		return "team_search";
+	}
+	
+	@RequestMapping(value = "/player_search.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public String go_player_search() {
+		return "player";
+	}
+		
+	@RequestMapping(value = "/notice.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public String go_notice() {
+		return "notice";
+	}
+	
+	@RequestMapping(value = "/faq.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public String go_faq() {
+		return "faq";
+	}
+	
+	@RequestMapping(value = "/qna.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public String go_qna() {
+		return "qna";
+	}
+	
 	
 }

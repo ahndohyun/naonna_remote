@@ -1,14 +1,12 @@
-package com.spring.naonnaTest.person;
+package com.spring.naonnaTest.user;
 
-import org.springframework.stereotype.Component;
-
-@Component
-public class PersonVO {
+public class UserVO {
 	private String nickname;
-	private String team_name;
-	private int gender;
+	private String teamName;
+	private String gender;
 	private int age;
-	private int position;
+	private String position;
+	private String email;
 	private String forPerson;
 	private String city;
 	
@@ -18,16 +16,16 @@ public class PersonVO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public String getTeam_name() {
-		return team_name;
+	public String getTeamName() {
+		return teamName;
 	}
-	public void setTeam_name(String team_name) {
-		this.team_name = team_name;
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
-	public int getGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(int gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	public int getAge() {
@@ -36,11 +34,17 @@ public class PersonVO {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public int getPosition() {
+	public String getPosition() {
 		return position;
 	}
-	public void setPosition(int position) {
+	public void setPosition(String position) {
 		this.position = position;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getForPerson() {
 		return forPerson;
@@ -55,5 +59,4 @@ public class PersonVO {
 		this.city = city;
 	}
 	
-
 }
