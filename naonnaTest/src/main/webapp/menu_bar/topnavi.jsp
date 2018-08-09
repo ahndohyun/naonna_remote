@@ -25,7 +25,7 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="matching_search.do">매칭 검색/등록</a></li>
-            <li><a href="#">용병 모집/등록</a></li>
+            <li><a href="player_search.do">용병 모집/등록</a></li>
           </ul>
         </li>
 
@@ -33,8 +33,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">팀관리
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">팀 검색/생성</a></li>
-            <li><a href="#">용병 모집/등록</a></li>
+            <li><a href="team_search.do">팀 검색/생성</a></li>
           </ul>
         </li>
         
@@ -43,9 +42,9 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">고객센터
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">공지사항</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">QnA</a></li>
+            <li><a href="notice.do">공지사항</a></li>
+            <li><a href="faq.do">FAQ</a></li>
+            <li><a href="qna.do">QnA</a></li>
           </ul>
         </li>
 
