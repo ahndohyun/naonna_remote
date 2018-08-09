@@ -211,10 +211,6 @@ button[name="create"], [name="reset"]{
 				}
 			});
 		});
-
-		
-		
-		
 		
 		$(function() {
 			$.ajax({

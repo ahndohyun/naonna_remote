@@ -19,7 +19,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
   
-  
+ 
   <style>
   td {
   
@@ -176,7 +176,7 @@
 	height: 90px;
 	padding-left: 10px;
 }
-button[name="create"], [name="reset"]{
+button[name="reset"]{
 	float: right;
 	border: none;
 	outline:0; /* 버튼 누르고 나서 테두리 없애기 위해 */
@@ -191,10 +191,21 @@ button[name="create"], [name="reset"]{
   	width: 100px;
   	font-size: 12px;
 }
-
-
-
-
+input[type="button"]{
+	float: right;
+	border: none;
+	outline:0; /* 버튼 누르고 나서 테두리 없애기 위해 */
+  	margin-right: 50px;
+  	margin-top: 5px;
+  	padding: 8px;
+  	margin: 5px;
+  	color: white;
+  	background-color: #000;
+  	text-align: center;
+  	cursor: pointer;
+  	width: 100px;
+  	font-size: 12px;
+}
   </style>
   
   <script>
@@ -272,11 +283,7 @@ button[name="create"], [name="reset"]{
 			});	
 										
 		}				
-			
-	
 			printTeam();
-			
-		  
 		$('#target2').click(function (){
 			printTeam();
 		});
@@ -284,6 +291,11 @@ button[name="create"], [name="reset"]{
 
 });
 	
+	 function fnAction(url) {
+         var frm = document.getElementById("multiform");
+         frm.action = url;
+         frm.submit();
+      }
 </script>
   
 </head>
@@ -437,6 +449,7 @@ button[name="create"], [name="reset"]{
            						<span class="team_title">팀생성</span>
            						<button type="button" id="team_close" class="close" data-dismiss="modal">&times;</button>     
            						
+           						<form id="multiform" action="insertTeam.do" method="post" method="post" enctype="multipart/form-data">
            						<table class="create_modal_table">
            							<tr class="table_row">
            								<td class="table_menu">팀명</td>
@@ -445,37 +458,7 @@ button[name="create"], [name="reset"]{
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">위치</td>
-           								<td class="table_contents">
-           									<form action="#">
-												<select name="location" class="custom-select mb-3" id="city">
-													<option value=''>지역 선택</option>
-													<option value="강동구">강동구</option>
-													<option value="강북구">강북구</option>
-													<option value="강서구">강서구</option>
-													<option value="관악구">관악구</option>
-													<option value="광진구">광진구</option>
-													<option value="구로구">구로구</option>
-													<option value="금천구">금천구</option>
-													<option value="노원구">노원구</option>
-													<option value="도봉구">도봉구</option>
-													<option value="동대문구">동대문구</option>
-													<option value="동작구">동작구</option>
-													<option value="마포구">마포구</option>
-													<option value="서대문구">서대문구</option>
-													<option value="서초구">서초구</option>
-													<option value="성동구">성동구</option>
-													<option value="성북구">성북구</option>
-													<option value="송파구">송파구</option>
-													<option value="양천구">양천구</option>
-													<option value="영등포구">영등포구</option>
-													<option value="용산구">용산구</option>
-													<option value="은평구">은평구</option>
-													<option value="종로구">종로구</option>
-													<option value="중구">중구</option>
-													<option value="중랑구">중랑구</option>
-												</select>
-											</form>
-           								</td>
+           								<td class="table_contents"><input type="text" placeholder="Enter Area" required></td>
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">연령</td>
@@ -497,8 +480,9 @@ button[name="create"], [name="reset"]{
            							</tr>
            						</table>
            						
-           						<button type="submit" name="create">Create</button>
+           						<input type="button" value="서버전달2" onclick="fnAction('insertTeam.do')"/>
                 				<button type="reset" name="reset">Reset</button>
+                				</form>
                 			</div>
                 		</div>
                 	</div>
@@ -515,9 +499,6 @@ button[name="create"], [name="reset"]{
                </tr>
           </thead>
            <tbody class="table-body" id="team_print">
-           		
-           
-              
            </tbody>
            </table>
         </div>
