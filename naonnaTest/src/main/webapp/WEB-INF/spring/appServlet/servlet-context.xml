@@ -22,10 +22,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<beans:bean id ="uploadPath" class = "java.lang.String">
-		<beans:constructor-arg value="C:\Users\Playdata\Desktop\naonna_git\naonna_remote\naonnaTest\src\main\webapp\image"></beans:constructor-arg>
-	</beans:bean>
-	
 	   <!-- 멀티파트(파일업로드) 관련 빈 설정 -->
    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
    </beans:bean>

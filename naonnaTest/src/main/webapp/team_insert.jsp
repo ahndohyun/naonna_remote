@@ -10,7 +10,7 @@
 <body>
 	<fieldset>
 	<h1>팀등록 등록!!</h1>
-   <form id="multiform" action="insertTeam.do" method="post" method="post" enctype="multipart/form-data">
+   <form id="multiform" action="insertTeam.do" method="post" enctype="multipart/form-data">
    <fieldset>
 	   팀 이름 : <input type="text" name="team_name" /><br /><br />
 	  닉네임:  <input type="text" name="nickname" /><br /><br />
