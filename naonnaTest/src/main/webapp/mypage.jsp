@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html lang="utf-8">
 
 <head>
@@ -22,7 +23,8 @@
 	$(document).ready(function() {
 		
 		$('#nickname').text('${info.nickname}');
-		
+		$('#nickname2').attr('value', '${info.nickname}');
+		$('#nickname1').attr('value', '${info.nickname}');
 		if('${info.teamName}' == "") {
 			$('#teamname').text("현재 소속된 팀이 없습니다.");
 		}
@@ -50,7 +52,7 @@
       width:100%;
    }
    .mypage_label{
-      width: 15%;
+      width: 25%;
       margin: 15px;
    }
    input[name="email"]{
@@ -90,9 +92,18 @@
             <h3>My Page</h3><hr>
          </div>
          <div>
+         <form id="mypageForm" action="update_profile.do" method="post" enctype="multipart/form-data">
+               <div>
+               <input type="hidden" name="nickname" id="nickname1">
+               <input type="hidden" name="kakao_Id">
+               <label class="mypage_label">프로필 이미지 :</label> 
+               		<span><input type="file" name="imgfile" /> </span>   
+               		<input type="submit" value="사진 변경 " />  
+        </form>
             <form id="mypageForm" action="update_userinfo.do" method="post">
                <div>
                <input type="hidden" name="kakao_Id">
+               <input type="hidden" name="nickname" id="nickname2">
                   <label class="mypage_label">Nickname</label> 
                   <span name="nickname" id = "nickname"> </span> 
                </div>

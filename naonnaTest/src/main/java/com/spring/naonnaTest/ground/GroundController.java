@@ -100,9 +100,8 @@ public class GroundController {
 		  MultipartFile mf1 = multiRequest.getFile("imgfile1");
 		  MultipartFile mf2 = multiRequest.getFile("imgfile2");
 		  MultipartFile mf3 = multiRequest.getFile("imgfile3");
-		  
-	      String uploadPath = "C:\\BigDeep\\upload\\";
 
+	      String uploadPath = "C:\\BigDeep\\upload\\";
 	      
 	      String originalFileExtension = mf1.getOriginalFilename().substring(mf1.getOriginalFilename().lastIndexOf("."));
 	      String storedFileName1 = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
@@ -118,10 +117,10 @@ public class GroundController {
 	      }
 	      if(mf2.getSize() != 0) {		        
 		         mf2.transferTo(new File(uploadPath + storedFileName2));
-		      }
+		  }
 	      if(mf3.getSize() != 0) {		        
 		         mf3.transferTo(new File(uploadPath + storedFileName3));
-		      }
+		  }
 	      
 	      
 	      //vo.setPhoto(storedFileName);
@@ -140,110 +139,9 @@ public class GroundController {
 		result.addObject("vo", vo);
 		result.setViewName("ground_search");
 		System.out.println("추가 complete??");
-		return result;
-		
-		
-	}
-	
-	/*@RequestMapping("/insertGround2.do")
-	public ModelAndView Insert_Ground_Info2(GroundVO vo) {
-		System.out.println("찾아감?");
-		
-		HashMap<String, String> map = new HashMap<String, String>(); 
-		  map.put("ground_Name", vo.getGround_Name()); 
-		  map.put("ground_addr;", vo.getGround_addr()); 
-		  map.put("ground_city;", vo.getGround_city());
-		  map.put("grass",vo.getGrass());
-		  map.put("shower",vo.getShower()); 
-		  map.put("parking", vo.getParking() ); 
-		  map.put("light", vo.getLight());
-		  map.put("week_morning", vo.getWeek_morning() );
-		  map.put("week_evening;",vo.getWeek_evening()); 
-		  map.put("weekend_morning" ,vo.getWeekend_morning()); 
-		  map.put("weekend_evening" ,vo.getWeekend_evening());
-		  map.put("review",vo.getReview() );
-		  map.put("rule",vo.getRule() );
-		  map.put("ground_people",vo.getGround_people() );
-		  map.put("ground_size", vo.getGround_size());
-		  groundService.insertGround(vo);
-		
-		
-		
-		ModelAndView result = new ModelAndView();
-		result.addObject("vo", vo);
-		result.setViewName("ground_search");
-		System.out.println("추가 complete??");
-		return result;
-		
+		return result;		
 		
 	}
-	*/
-	 /* @RequestMapping("/fileUpload1")
-	   public ModelAndView fileUpload1(HttpServletRequest request, RequestModel model) throws Exception{
-	      MultipartFile mf = model.getFile();
-	      
-	      String uploadPath = "C:\\BigDeep\\upload\\";
-	      
-	      String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));// 마지막 .을 기준으로 파일명을 분리
-	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension; //하이픈을 공백으로 바꾸고 + 확장자
-	      
-	      //지정한 주소에 파일 저장
-	      if(mf.getSize() != 0) {
-	         mf.transferTo(new File(uploadPath+storedFileName));// -> 업로드가 된다
-	      }
-	      
-	      ModelAndView mav = new ModelAndView();
-	      mav.setViewName("download");
-	      mav.addObject("name", model.getName());
-	      mav.addObject("paramName", mf.getName());
-	      mav.addObject("fileName", mf.getOriginalFilename());
-	      mav.addObject("fileSize", mf.getSize());
-	      
-	      //스프링은 기본적으로 분자처리 방식으로 utf-8을 사용하므로
-	      //서버에 업로드된 한들 파일을 다운로드 하기 위해서 utf-8로 엔코딩 한다.         //화면에 보여줄떄 밑에                                                                                                //저장될 떄?
-	      String downlink = "fileDownload?of="+URLEncoder.encode(storedFileName, "UTF-8") + "&of2=" + URLEncoder.encode(mf.getOriginalFilename(), "UTF-8");
-	      mav.addObject("downlink", downlink);
-	      
-	      return mav;
-	      
-	   }
-	
-	*/
-	
-	/*//MultipartHttpservletRequest를 이용한 업로드 파일 접근
-	   @RequestMapping("fileUpload2")
-	   public ModelAndView fileUpload2(MultipartHttpServletRequest request) throws Exception{
-	      
-	      String name = request.getParameter("name");
-	      MultipartFile mf = request.getFile("file");
-	      
-	      //String uploadPath = request.getSession().getServletContext().getRealPath("/upload");
-	      String uploadPath = "C:\\BigDeep\\upload\\"; //직접 업로드 될 위치 지정
-	      
-	      String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
-	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
-	      
-	      //지정한 주소에 파일 저장
-	      if(mf.getSize() != 0) {
-	         //mf.transferTo(new File(uploadPath="/"+mf.getoriginalFilename()));
-	         mf.transferTo(new File(uploadPath+storedFileName));
-	      }
-	      
-	      
-	      ModelAndView mav = new ModelAndView();
-	      mav.setViewName("ground_detail");
-	      
-	      //뷰에 출력한 데이터 모델에 저장
-	      mav.addObject("name", name);
-	      mav.addObject("paramName", mf.getName());
-	      mav.addObject("fileName", mf.getOriginalFilename());
-	      mav.addObject("fileSize", mf.getSize());
-	      	     	      
-	      return mav;
-	      
-	   }*/
-	
-	
 	   
 
 }

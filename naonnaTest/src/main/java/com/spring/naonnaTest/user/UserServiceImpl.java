@@ -59,4 +59,11 @@ public class UserServiceImpl implements UserService{
 		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 		userMapper.updateInfo(vo);
 	}
+	
+	@Override
+	public void updateProfile(UserVO vo) {
+		System.out.println("vo.getUserPhoto(service) = " + vo.getUserPhoto());
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		userMapper.updateProfile(vo);
+	}
 }

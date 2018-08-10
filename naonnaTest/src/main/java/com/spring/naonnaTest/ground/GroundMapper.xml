@@ -44,7 +44,7 @@
    </select>
    
     <select id ="MapperFromDAO" parameterType = "com.spring.naonnaTest.ground.GroundVO" resultMap="GroundResultMap, BookingResultMap">
-      SELECT * FROM ground_soccer where substr(ground_addr,1,3) = #{ground_addr, javaType=String}
+      SELECT * FROM ground_soccer where ground_addr like '%%'
       <if test = "ground_city != ''">
       	AND ground_city = #{ground_city, javaType=String}
       </if>
@@ -68,7 +68,6 @@
       FROM ground_soccer, booking
       where
       	ground_soccer.ground_name = booking.ground_name 
-      	AND substr(ground_addr,1,3) = #{ground_addr, javaType=String} 
 		AND booking.start_time not between #{startTime, javaType=Date} and #{endTime, javaType=Date} 
 		AND booking.end_time not between #{startTime, javaType=Date} and #{endTime, javaType=Date} 
       <if test = "ground_city != ''">
@@ -95,8 +94,12 @@
    
   
    <insert id ="insertGround" parameterType = "com.spring.naonnaTest.ground.GroundVO" >
-   	insert into ground_soccer values(#{ground_Name}, #{ground_admin}, #{ground_addr},#{ground_city},#{grass},#{shower},#{parking},
+   	insert into ground_soccer values(#{ground_Name}, #{ground_admin}, #{ground_city},#{ground_addr},#{grass},#{shower},#{parking},
    	#{light},#{week_morning},#{week_evening},#{weekend_morning},#{weekend_evening},#{rule},#{ground_people},#{ground_size},#{photo1},#{photo2},#{photo3})
+   </insert>
+   
+    <insert id ="insertBookingGround" parameterType = "com.spring.naonnaTest.ground.GroundVO" >
+   	insert into booking (ground_name, start_time, end_time) values (#{ground_Name}, sysdate-2, sysdate-1);
    </insert>
     
    <!-- 
