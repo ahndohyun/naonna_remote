@@ -41,7 +41,9 @@
 	     			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
 	     			success:function(data) {
 	     				$('#myPage').append(data.nickname);
+	     				$('#myPage').attr("href", "myPage.do?nickname=" + data.nickname);
 	     				$('#myTeam').append(data.teamName);
+	     				$('#myTeam').attr('href', "team_detail.do?team_name="+data.team_name);
 	     				$('#matching').append(data.teamName);
 	     				$('#booking').append(data.teamName);
 	     				
@@ -89,7 +91,7 @@
 	              persistRefreshToken: true,
 	              success: function(authObj) {
 	                	getKakaotalkUserProfile();
-	//               	 	 createKakaotalkLogout();
+	//               	createKakaotalkLogout();
 	              },
 	              fail: function(err) {
 	                console.log(err);
@@ -116,6 +118,7 @@
 	        
 	        $('#kakao-logout-group').on("click", function(){
 	        	Kakao.Auth.logout();
+				Kakao.Auth.cleanup();
 	        });
 	        
 	        if (Kakao.Auth.getRefreshToken() != undefined && Kakao.Auth.getRefreshToken().replace(/ /gi, "") != "") {

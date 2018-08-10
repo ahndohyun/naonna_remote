@@ -46,6 +46,42 @@ public class UserController {
 		return mnv;
 	}
 	
+	@RequestMapping(value = "/myPage.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public ModelAndView go_myPage(String nickname) {
+		ModelAndView mnv = new ModelAndView();
+		UserVO info = null;
+		try {
+			info = userService.goMyPage(nickname);
+			mnv.setViewName("mypage");
+			mnv.addObject("info", info);
+		}
+	
+		catch (Exception e){
+			e.getMessage();
+			e.printStackTrace();
+		}
+		
+		return mnv;
+	}
+	
+	@RequestMapping(value = "/update_userinfo.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	public ModelAndView update_userInfo(UserVO vo) {
+		ModelAndView mnv = new ModelAndView();
+		UserVO info = null;
+
+		try {
+			userService.updateInfo(vo);
+			mnv.setViewName("main");
+		}
+	
+		catch (Exception e){
+			e.getMessage();
+			e.printStackTrace();
+		}
+		
+		return mnv;
+	}
+	
 	
 	@RequestMapping(value = "/insertUserForm.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public ModelAndView insert_Form(String forPerson, HttpSession session) {
@@ -73,8 +109,7 @@ public class UserController {
 		mNv.addObject("gender", vo.getGender());
 		
 		session.setAttribute("forPerson", vo.getForPerson());
-		session.setAttribute("nickName", vo.getNickname());
-		
+		session.setAttribute("nickname", vo.getNickname());
 		
 		return mNv;
 	}
@@ -85,7 +120,7 @@ public class UserController {
 		UserVO vo = userService.printUser(forPerson);
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		try {
 			str = mapper.writeValueAsString(vo);
 			System.out.println("str=" + str);

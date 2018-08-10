@@ -158,12 +158,7 @@
   		margin-left: 10%;
   	}
   	
-  	
-  	
-
-  </style>
-  
-  
+  </style> 
   
 </head>
 

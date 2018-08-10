@@ -31,6 +31,15 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
+	public UserVO goMyPage(String nickname) {
+		UserVO vo = null;
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		vo = userMapper.myUserInfo(nickname);	
+		
+		return vo;
+	}
+	
+	@Override
 	public void insertUser(UserVO vo) {
 		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 		userMapper.insertUserInfo(vo);
@@ -43,5 +52,11 @@ public class UserServiceImpl implements UserService{
 		vo = userMapper.getUserInfo(forPerson);
 		
 		return vo;
+	}
+	
+	@Override
+	public void updateInfo(UserVO vo) {
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		userMapper.updateInfo(vo);
 	}
 }

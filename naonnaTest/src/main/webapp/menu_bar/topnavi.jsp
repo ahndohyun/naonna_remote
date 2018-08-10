@@ -11,7 +11,7 @@
   <nav class="navbar navbar-default navbar-fixed-top">
     <!-- Logo div -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">NAONNA</a>
+      <a class="navbar-brand" href="home.do">NAONNA</a>
     </div>
     <!-- Logo div end -->
 

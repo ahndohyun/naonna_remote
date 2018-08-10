@@ -20,11 +20,19 @@
    <select id ="getUserInfo" parameterType="String" resultMap="UserResultMap">
       SELECT * FROM user_info where forPerson = trim(#{forPerson, javaType=String})
    </select>
+   
+   <select id ="myUserInfo" parameterType="String" resultMap="UserResultMap">
+      SELECT * FROM user_info where nickname = trim(#{nickname, javaType=String})
+   </select>
 
    
    <insert id ="insertUserInfo" parameterType="com.spring.naonnaTest.user.UserVO">
       insert into user_info (nickname, age, gender, email, forPerson, city) values (#{nickname, javaType=String}, #{age, javaType=int}, #{gender}, #{email}, trim(#{forPerson}), #{city})
    </insert>
+   
+   <update id ="updateInfo" parameterType="com.spring.naonnaTest.user.UserVO">
+      update user_info set age = #{age}, city = #{city}, position = #{position}, email = #{email}
+   </update>
    
 </mapper>
    
