@@ -18,8 +18,7 @@
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
-  
-  
+
   <style>
   td {
   
@@ -211,7 +210,7 @@ button[name="create"], [name="reset"]{
 						$.each(data, function(index, team) {
 							var output = '';
 							output += '<tr>';
-							output += '<td>' + team.team_name + '</td>';
+							output += '<td> <a link href="team_detail.do?team_name='+team.team_name + '">' + team.team_name  + '</td>';
 							output += '<td>' + team.area + '</td>';
 							output += '<td>' + team.nickname + '</td>';
 							output += '<td>' + team.ability + '</td>';
@@ -254,7 +253,7 @@ button[name="create"], [name="reset"]{
 					$.each(data, function(index, team) {		//새로 뿌리기
 						var output = '';
 						output += '<tr>';
-						output += '<td>' + team.team_name + '</td>';
+						output += '<td> <a link href="team_detail.do?team_name='+team.team_name + '">' + team.team_name  + '</td>';
 						output += '<td>' + team.area + '</td>';
 						output += '<td>' + team.nickname + '</td>';
 						output += '<td>' + team.ability + '</td>';

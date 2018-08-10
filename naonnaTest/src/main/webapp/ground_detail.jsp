@@ -1,4 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.*" %>  
+<%@ page import="com.spring.naonnaTest.ground.*" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<% request.setCharacterEncoding("utf-8"); %> 
+
+ <% 
+ 	GroundVO vo = (GroundVO)request.getAttribute("vo");
+ 	
+ %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,7 +213,7 @@
 		font-size : 12px;
 	}
 	.ground-pics {
-		margin : 50px 40px 0px 110px;
+		margin : 20px 40px 0px 110px;
 	}
 	.payment, .back-to-list {
 		display : inline-block;
@@ -217,7 +229,11 @@
 
   </style>
   <script>
-	
+ 
+  function res() {
+      location.href = "ground_info.do"
+   }
+
   </script>
 </head>
 
@@ -342,20 +358,24 @@
 
 <!-- start main content -->
   <div class="main col-sm-8"><br>
+  	<div>
+  		<h3>${vo.ground_Name}</h3>
+  	</div>
   	 <div class="ground-pics col-sm-6">
     	<div class="mySlides">
     		<div class="numbertext">1 / 3</div>
-    			<img src="https://gif.fmkorea.com/files/attach/new/20161213/486616/47017249/533826390/223e96e691e76354f671b407d997f2d2.gif" style="width:100%">
+    			
+    			<img src="<spring:url value='/image/${vo.photo1}' />" style="width:100%" />   			
   			</div>
 
 			  <div class="mySlides">
 			    <div class="numbertext">2 / 3</div>
-			    <img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201704/21/img_20170421085646_f1d41d88.jpg" style="width:100%">
+			    <img src="<spring:url value='/image/${vo.photo2}' />" style="width:100%" />
 			  </div>
 
 			  <div class="mySlides">
 			    <div class="numbertext">3 / 3</div>
-			    <img src="http://kstatic.inven.co.kr/upload/2016/05/15/bbs/i13095811292.jpg" style="width:100%">
+			    <img src="<spring:url value='/image/${vo.photo3}' />" style="width:100%" />
 			  </div>
     
 			  <a class="prev" onclick="plusSlides(-1)">❮</a>
@@ -367,13 +387,13 @@
 
 			  <div class="row">
 			    <div class="column">
-			      <img class="demo cursor" src="https://gif.fmkorea.com/files/attach/new/20161213/486616/47017249/533826390/223e96e691e76354f671b407d997f2d2.gif" style="width:100%" onclick="currentSlide(1)">
+			     <img class="demo cursor" src="<spring:url value='/image/${vo.photo1}'/>" style="width:100%" onclick="currentSlide(1)">
 			    </div>
 			    <div class="column">
-			      <img class="demo cursor" src="http://cdnweb01.wikitree.co.kr/webdata/editor/201704/21/img_20170421085646_f1d41d88.jpg" style="width:100%" onclick="currentSlide(2)">
+			      <img class="demo cursor" src="<spring:url value='/image/${vo.photo2}'/>" style="width:100%" onclick="currentSlide(2)">
 			    </div>
 			    <div class="column">
-			      <img class="demo cursor" src="http://kstatic.inven.co.kr/upload/2016/05/15/bbs/i13095811292.jpg" style="width:100%" onclick="currentSlide(3)">
+			      <img class="demo cursor" src="<spring:url value='/image/${vo.photo3}'/>" style="width:100%" onclick="currentSlide(3)">
 			    </div>
   			  </div>
   <script>
@@ -414,12 +434,13 @@
   		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/ju.png"></div>
   		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/sh.png"></div>
   	</div>
-  	<div class="ground-detail-texts col-sm-12">
-  		<div class="ground-detail-textmore col-sm-3"><p>잔디유무</p></div>
-  		<div class="ground-detail-textmore col-sm-3"><p>조명유무</p></div>
-  		<div class="ground-detail-textmore col-sm-3"><p>주차장유무</p></div>
-  		<div class="ground-detail-textmore col-sm-3"><p>샤워시설유무</p></div>
+  	<div class="ground-detail-texts col-sm-12" id="ground_print">
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.grass }</p></div>
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.light }</p></div>
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.parking }</p></div>
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.shower }</p></div> 
   	</div>
+  	
   	<div class="ground-detail-size col-sm-12">
   		<div class="ground-detail-size-pics">
   			<img class="formal-ground-size" src="https://www.iamground.kr/img/sample/ssize.jpg">
@@ -436,14 +457,14 @@
   		</div>
   	</div>
   	<div class="ground-detail-addr col-sm-12">
-  		<p>서울 시립 창동 운동장 </p>
-  		<p>창동 1-9번지</p>
+  		<p>${vo.ground_addr} </p>
+  		<p>${vo.ground_city }</p>
   	</div>
   </div>
   <!-- end main content -->
   <div class="button-container">
   	<div class="payment"><button class="btn btn-success">결제하기</button></div>
-  	<div class="back-to-list"><button class="btn btn-success">목록으로</button></div>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
   </div>
   </div>
 </div>
