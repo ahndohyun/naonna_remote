@@ -38,16 +38,6 @@ public class GroundServiceImpl implements GroundService{
 		return groundList;
 	}
 	
-	/*@Override
-	public ArrayList<GroundVO> That_Ground_Info_JSON(GroundVO vo){
-		ArrayList<GroundVO> getThatGroundList = null;
-		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
-		getThatGroundList = groundMapper.getGroundList();
-		
-		return getThatGroundList;
-		
-	}*/
-	
 	@Override
 	public GroundVO That_Ground_Info(String Ground_Name){
 		GroundVO ThatGroundInfo = new GroundVO();
@@ -68,18 +58,8 @@ public class GroundServiceImpl implements GroundService{
 			e.printStackTrace();
 			e.getMessage();
 			
-		}
-		//return res;
-		
-		
+		}		
 	}
 	
-/*	@Override
-	public void insertGround2(HashMap<String, String> map) {
-		System.out.println("hashmap");
-		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
-		groundMapper.insertGround2(map);
-		
-	}
-	*/
+
 }

@@ -1,7 +1,6 @@
 package com.spring.naonnaTest.team;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -60,14 +59,15 @@ public class TeamController {
 	@RequestMapping(value = "/insertTeam.do",  method = RequestMethod.POST)
 	public ModelAndView Insert_Team_Info(TeamVO teamvo , MultipartHttpServletRequest multiRequest) throws Exception {
 		
-		 MultipartFile mf = multiRequest.getFile("emblem");
-	      String uploadPath = "C:\\Users\\Playdata\\Desktop\\naonna_git\\naonna_remote\\naonnaTest\\src\\main\\webapp\\image\\";
+		 MultipartFile mf = multiRequest.getFile("emblem2");
+		 
+		 String uploadPath = "C:\\BigDeep\\upload\\";
+	      
 	      String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
 	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
 	      System.out.println("storedFileName : " + storedFileName);
 	    
-	      if(mf.getSize() != 0) {
-	         //mf.transferTo(new File(uploadPath+ "/" + mf.getOriginalFilename()));
+	      if(mf.getSize() != 0) {	         
 	    	  mf.transferTo(new File(uploadPath + storedFileName));
 	      }
 	      

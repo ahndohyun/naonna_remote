@@ -15,7 +15,7 @@
 	   팀 이름 : <input type="text" name="team_name" /><br /><br />
 	  닉네임:  <input type="text" name="nickname" /><br /><br />
 	 최근 경기결과 : <input type="text" name="grade" /><br /><br />
-	  엠블럼 : <input type="file" name="emblem" /><br /><br /> 
+	  엠블럼 : <input type="file" name="emblem2" /><br /><br /> 
 	  팀 능력 : <input type="text" name="ability" /><br /><br />    
 	   소개글 : <input type="text" name="intro" /><br /><br />
 	   팀 인원 : <input type="text" name="number_team" /><br /><br />

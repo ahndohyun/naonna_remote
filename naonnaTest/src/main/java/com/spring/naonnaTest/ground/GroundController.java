@@ -1,11 +1,8 @@
 package com.spring.naonnaTest.ground;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.UUID;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,28 +80,6 @@ public class GroundController {
 		return str;
 	}
 	
-	/*@RequestMapping(value = "/ground_detail.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
-	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
-	public String That_Ground_Info_JSON(GroundVO vo) {
-		
-		ArrayList<GroundVO> getThatGroundList = groundService.That_Ground_Info_JSON(vo);
-		String str = "";
-		ObjectMapper mapper = new ObjectMapper();
-		
-		try {
-			str = mapper.writeValueAsString(getThatGroundList);
-			System.out.println("str=" + str);
-		}
-		catch (Exception e){
-			System.out.println("first() mapper : " + e.getMessage());
-		}
-		
-		return str;
-	
-	
-	}*/
-	
-	
 	@RequestMapping(value = "/ground_detail.do", method = RequestMethod.GET)
 	public ModelAndView That_Ground_Info(GroundVO vo) {
 		String Ground_Name = vo.getGround_Name();
@@ -121,12 +96,13 @@ public class GroundController {
 	}
 	
 	@RequestMapping(value = "/insertGround.do", method = RequestMethod.POST)
-	public ModelAndView Insert_Ground_Info(GroundVO vo ,MultipartHttpServletRequest multiRequest , HttpServletResponse response)  throws Exception {
+	public ModelAndView Insert_Ground_Info(GroundVO vo ,MultipartHttpServletRequest multiRequest)  throws Exception {
 		  MultipartFile mf1 = multiRequest.getFile("imgfile1");
 		  MultipartFile mf2 = multiRequest.getFile("imgfile2");
 		  MultipartFile mf3 = multiRequest.getFile("imgfile3");
 		  
 	      String uploadPath = "C:\\BigDeep\\upload\\";
+
 	      
 	      String originalFileExtension = mf1.getOriginalFilename().substring(mf1.getOriginalFilename().lastIndexOf("."));
 	      String storedFileName1 = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
@@ -135,17 +111,15 @@ public class GroundController {
 	      System.out.println("storedFileName1 : " + storedFileName1);
 	      System.out.println("storedFileName2 : " + storedFileName2);
 	      System.out.println("storedFileName3 : " + storedFileName3);
-	    
-	      if(mf1.getSize() != 0) {
-	         //mf.transferTo(new File(uploadPath+ "/" + mf.getOriginalFilename()));
+	      System.out.println("uploadPath : " + uploadPath);
+	      
+	      if(mf1.getSize() != 0) {	        
 	         mf1.transferTo(new File(uploadPath + storedFileName1));
 	      }
-	      if(mf2.getSize() != 0) {
-		         //mf.transferTo(new File(uploadPath+ "/" + mf.getOriginalFilename()));
+	      if(mf2.getSize() != 0) {		        
 		         mf2.transferTo(new File(uploadPath + storedFileName2));
 		      }
-	      if(mf3.getSize() != 0) {
-		         //mf.transferTo(new File(uploadPath+ "/" + mf.getOriginalFilename()));
+	      if(mf3.getSize() != 0) {		        
 		         mf3.transferTo(new File(uploadPath + storedFileName3));
 		      }
 	      
@@ -155,7 +129,10 @@ public class GroundController {
 	      vo.setPhoto2(storedFileName2);
 	      vo.setPhoto3(storedFileName3);
 	      
-		System.out.println("Groundphoto in ");
+
+		System.out.println("Groundphoto in b2 변경사항 ");
+		
+
 		
 		groundService.insertGround(vo);
 		

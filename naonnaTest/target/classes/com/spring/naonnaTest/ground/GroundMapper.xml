@@ -96,7 +96,7 @@
   
    <insert id ="insertGround" parameterType = "com.spring.naonnaTest.ground.GroundVO" >
    	insert into ground_soccer values(#{ground_Name}, #{ground_admin}, #{ground_addr},#{ground_city},#{grass},#{shower},#{parking},
-   	#{light},#{week_morning},#{week_evening},#{weekend_morning},#{weekend_evening},#{review},#{rule},#{ground_people},#{ground_size},#{photo1},#{photo2},#{photo3})
+   	#{light},#{week_morning},#{week_evening},#{weekend_morning},#{weekend_evening},#{rule},#{ground_people},#{ground_size},#{photo1},#{photo2},#{photo3})
    </insert>
     
    <!-- 
