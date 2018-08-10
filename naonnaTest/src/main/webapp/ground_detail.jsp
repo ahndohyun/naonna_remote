@@ -365,17 +365,17 @@
     	<div class="mySlides">
     		<div class="numbertext">1 / 3</div>
     			
-    			<img src="<spring:url value='./image/${vo.photo1}' />" style="width:100%" />   			
+    			<img src="<spring:url value='/image/${vo.photo1}' />" style="width:100%" />   			
   			</div>
 
 			  <div class="mySlides">
 			    <div class="numbertext">2 / 3</div>
-			    <img src="<spring:url value='./image/${vo.photo2}' />" style="width:100%" />
+			    <img src="<spring:url value='/image/${vo.photo2}' />" style="width:100%" />
 			  </div>
 
 			  <div class="mySlides">
 			    <div class="numbertext">3 / 3</div>
-			    <img src="<spring:url value='./image/${vo.photo3}' />" style="width:100%" />
+			    <img src="<spring:url value='/image/${vo.photo3}' />" style="width:100%" />
 			  </div>
     
 			  <a class="prev" onclick="plusSlides(-1)">❮</a>
@@ -387,13 +387,13 @@
 
 			  <div class="row">
 			    <div class="column">
-			     <img class="demo cursor" src="<spring:url value='./image/${vo.photo1}'/>" style="width:100%" onclick="currentSlide(1)">
+			     <img class="demo cursor" src="<spring:url value='/image/${vo.photo1}'/>" style="width:100%" onclick="currentSlide(1)">
 			    </div>
 			    <div class="column">
-			      <img class="demo cursor" src="<spring:url value='./image/${vo.photo2}'/>" style="width:100%" onclick="currentSlide(2)">
+			      <img class="demo cursor" src="<spring:url value='/image/${vo.photo2}'/>" style="width:100%" onclick="currentSlide(2)">
 			    </div>
 			    <div class="column">
-			      <img class="demo cursor" src="<spring:url value='./image/${vo.photo3}'/>" style="width:100%" onclick="currentSlide(3)">
+			      <img class="demo cursor" src="<spring:url value='/image/${vo.photo3}'/>" style="width:100%" onclick="currentSlide(3)">
 			    </div>
   			  </div>
   <script>

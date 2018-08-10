@@ -15,7 +15,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
-  <!-- <link rel="stylesheet" href="naonna_main.css"> -->
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
 
   <script>
@@ -125,7 +124,6 @@
 </head>
 
 <body>
-
   <!-- Top menu -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <!-- Logo div -->
@@ -233,7 +231,6 @@
                     <label for="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="psw" required>
                     <button type="submit" name="login">Login</button>
-                    <!-- <a href="joinform.html" name="join">Join</a> <--></-->
                     <a href="#" data-toggle="modal" data-target="#JoinModal" name="join_btn">Join</a>
                   </div>
                 </div>
@@ -318,6 +315,7 @@
   <!-- end main content -->
   </div>
   <!-- main body end -->
+ </div>
 </body>
 
 </html>

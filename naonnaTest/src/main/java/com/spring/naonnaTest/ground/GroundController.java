@@ -126,7 +126,8 @@ public class GroundController {
 		  MultipartFile mf2 = multiRequest.getFile("imgfile2");
 		  MultipartFile mf3 = multiRequest.getFile("imgfile3");
 		  
-	      String uploadPath = "C:\\Users\\Playdata\\Desktop\\naonna_git\\naonna_remote\\naonnaTest\\src\\main\\webapp\\image\\";
+	      String uploadPath = "C:\\BigDeep\\upload\\";
+	      
 	      String originalFileExtension = mf1.getOriginalFilename().substring(mf1.getOriginalFilename().lastIndexOf("."));
 	      String storedFileName1 = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
 	      String storedFileName2 = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
