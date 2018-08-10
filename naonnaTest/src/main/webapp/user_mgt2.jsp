@@ -59,11 +59,7 @@
 				}
 			});
 		});
-
-		
-		
-		
-		
+	
 		$(function() {
 			$.ajax({
 				url:'/naonnaTest/print_matching.do',
