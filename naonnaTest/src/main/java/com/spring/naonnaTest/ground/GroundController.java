@@ -121,7 +121,7 @@ public class GroundController {
 	}
 	
 	@RequestMapping(value = "/insertGround.do", method = RequestMethod.POST)
-	public ModelAndView Insert_Ground_Info(GroundVO vo ,MultipartHttpServletRequest multiRequest , HttpServletResponse response)  throws Exception {
+	public ModelAndView Insert_Ground_Info(GroundVO vo, MultipartHttpServletRequest multiRequest , HttpServletResponse response)  throws Exception {
 		  MultipartFile mf = multiRequest.getFile("imgfile");
 	      String uploadPath = "C:\\BigDeep\\upload";
 	      String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
@@ -144,8 +144,7 @@ public class GroundController {
 		result.addObject("vo", vo);
 		result.setViewName("ground_search");
 		System.out.println("추가 complete??");
-		return result;
-		
+		return result;		
 		
 	}
 	

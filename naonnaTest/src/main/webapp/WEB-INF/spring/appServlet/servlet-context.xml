@@ -26,7 +26,7 @@
 		<beans:constructor-arg value="C:\BigDeep\upload"></beans:constructor-arg>
 	</beans:bean>
 	
-	   <!-- 멀티파트(파일업로드) 관련 빈 설정 -->
+	<!-- 멀티파트(파일업로드) 관련 빈 설정 -->
    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
    </beans:bean>
 
