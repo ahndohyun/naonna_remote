@@ -1,5 +1,6 @@
 package com.spring.naonnaTest.user;
 
+import java.io.File;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,19 +65,43 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/update_userinfo.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ModelAndView update_userInfo(UserVO vo, MultipartHttpServletRequest multiRequest) {
+	public ModelAndView update_userInfo(UserVO vo) throws Exception {
 		ModelAndView mnv = new ModelAndView();
 		UserVO info = null;
+		System.out.println("vo.getNickname() = " + vo.getNickname());
 		
+		try {			
+			userService.updateInfo(vo);
+			mnv.setViewName("main");
+		}
+
+		catch (Exception e) {
+			e.getMessage();
+			e.printStackTrace();
+		}
+
+		return mnv;
+	}
+	
+	@RequestMapping(value = "/update_profile.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public ModelAndView update_profile(UserVO vo, MultipartHttpServletRequest multiRequest) throws Exception {
+		ModelAndView mnv = new ModelAndView();
+		UserVO info = null;
+
 		MultipartFile mf = multiRequest.getFile("imgfile");
-		String uploadPath = "/user_thumbnail";
+		String uploadPath = "C:\\BigDeep\\upload\\";
 		String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
 		String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
 		System.out.println("storedFileName : " + storedFileName);
-
+		System.out.println("vo.getNickname() = " + vo.getNickname());
 		try {
-			userService.updateInfo(vo);
-			mnv.setViewName("main");
+			if (mf.getSize() != 0) {
+				mf.transferTo(new File(uploadPath + storedFileName));
+				vo.setUserPhoto(storedFileName);
+			}
+			
+			userService.updateProfile(vo);
+			mnv.setViewName("mypage");
 		}
 
 		catch (Exception e) {

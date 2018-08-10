@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,12 +10,12 @@
 <body>
 	<fieldset>
 	<h1>팀등록 등록!!</h1>
-   <form id="multiform" action="insertTeam.do" method="post">
+   <form id="multiform" action="insertTeam.do" method="post" method="post" enctype="multipart/form-data">
    <fieldset>
 	   팀 이름 : <input type="text" name="team_name" /><br /><br />
 	  닉네임:  <input type="text" name="nickname" /><br /><br />
 	 최근 경기결과 : <input type="text" name="grade" /><br /><br />
-	  엠블럼 : <input type="text" name="emblem" /><br /><br /> 
+	  엠블럼 : <input type="file" name="emblem2" /><br /><br /> 
 	  팀 능력 : <input type="text" name="ability" /><br /><br />    
 	   소개글 : <input type="text" name="intro" /><br /><br />
 	   팀 인원 : <input type="text" name="number_team" /><br /><br />

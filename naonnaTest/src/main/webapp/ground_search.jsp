@@ -263,8 +263,6 @@
           		endDate.setHours(startDate.getHours() + 1);
           		goDAO_time(startDate, endDate);
           	});	
-          	
-          
 
 	});
 	

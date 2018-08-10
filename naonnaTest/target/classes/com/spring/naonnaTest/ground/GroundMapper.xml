@@ -6,7 +6,9 @@
 
    <resultMap type="GroundVO" id="GroundResultMap">
       <result property="ground_Name" column="GROUND_NAME"/>
+      <result property="ground_admin" column="GROUND_ADMIN" />
       <result property="ground_addr" column="GROUND_ADDR"/>
+      <result property="ground_city" column="GROUND_CITY"/>
       <result property="grass" column="GRASS"/>
       <result property="shower" column="SHOWER"/>
       <result property="parking" column="PARKING"/>
@@ -15,8 +17,13 @@
       <result property="week_evening" column="WEEK_EVENING"/>
       <result property="weekend_morning" column="WEEKEND_MORNING"/>
       <result property="weekend_evening" column="WEEKEND_EVENING"/>
-      <result property="ground_size" column="GROUND_SIZE"/>
+      <result property="review" column="REVIEW"/>
+      <result property="rule" column="RULE"/>
       <result property="ground_people" column="GROUND_PEOPLE"/>
+      <result property="ground_size" column="GROUND_SIZE"/>     
+      <result property="photo1" column="PHOTO1" />
+      <result property="photo2" column="PHOTO2" />
+      <result property="photo3" column="PHOTO3" />
    </resultMap>
    
    <resultMap type="BookingVO" id="BookingResultMap">
@@ -37,7 +44,7 @@
    </select>
    
     <select id ="MapperFromDAO" parameterType = "com.spring.naonnaTest.ground.GroundVO" resultMap="GroundResultMap, BookingResultMap">
-      SELECT * FROM ground_soccer where substr(ground_addr,1,3) = #{ground_addr, javaType=String}
+      SELECT * FROM ground_soccer where ground_addr like '%%'
       <if test = "ground_city != ''">
       	AND ground_city = #{ground_city, javaType=String}
       </if>
@@ -61,7 +68,6 @@
       FROM ground_soccer, booking
       where
       	ground_soccer.ground_name = booking.ground_name 
-      	AND substr(ground_addr,1,3) = #{ground_addr, javaType=String} 
 		AND booking.start_time not between #{startTime, javaType=Date} and #{endTime, javaType=Date} 
 		AND booking.end_time not between #{startTime, javaType=Date} and #{endTime, javaType=Date} 
       <if test = "ground_city != ''">
@@ -88,8 +94,12 @@
    
   
    <insert id ="insertGround" parameterType = "com.spring.naonnaTest.ground.GroundVO" >
-   	insert into ground_soccer values(#{ground_Name}, #{ground_admin}, #{ground_addr},#{ground_city},#{grass},#{shower},#{parking},
-   	#{light},#{week_morning},#{week_evening},#{weekend_morning},#{weekend_evening},#{review},#{rule},#{ground_people},#{ground_size},#{photo})
+   	insert into ground_soccer values(#{ground_Name}, #{ground_admin}, #{ground_city},#{ground_addr},#{grass},#{shower},#{parking},
+   	#{light},#{week_morning},#{week_evening},#{weekend_morning},#{weekend_evening},#{rule},#{ground_people},#{ground_size},#{photo1},#{photo2},#{photo3})
+   </insert>
+   
+    <insert id ="insertBookingGround" parameterType = "com.spring.naonnaTest.ground.GroundVO" >
+   	insert into booking (ground_name, start_time, end_time) values (#{ground_Name}, sysdate-2, sysdate-1);
    </insert>
     
    <!-- 

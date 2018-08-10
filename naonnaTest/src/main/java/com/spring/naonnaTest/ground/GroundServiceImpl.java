@@ -38,16 +38,6 @@ public class GroundServiceImpl implements GroundService{
 		return groundList;
 	}
 	
-	/*@Override
-	public ArrayList<GroundVO> That_Ground_Info_JSON(GroundVO vo){
-		ArrayList<GroundVO> getThatGroundList = null;
-		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
-		getThatGroundList = groundMapper.getGroundList();
-		
-		return getThatGroundList;
-		
-	}*/
-	
 	@Override
 	public GroundVO That_Ground_Info(String Ground_Name){
 		GroundVO ThatGroundInfo = new GroundVO();
@@ -62,24 +52,15 @@ public class GroundServiceImpl implements GroundService{
 		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
 		try {
 			int res = groundMapper.insertGround(vo);		//삽입 후 삽인한 결과 상태 반환하기 위해 반환값을 int로 줌
+			groundMapper.insertBookingGround(vo);
 			System.out.println("res = " + res);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			e.getMessage();
 			
-		}
-		//return res;
-		
-		
+		}		
 	}
 	
-/*	@Override
-	public void insertGround2(HashMap<String, String> map) {
-		System.out.println("hashmap");
-		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
-		groundMapper.insertGround2(map);
-		
-	}
-	*/
+
 }
