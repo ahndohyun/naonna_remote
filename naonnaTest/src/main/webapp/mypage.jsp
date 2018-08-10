@@ -50,7 +50,7 @@
       width:100%;
    }
    .mypage_label{
-      width: 15%;
+      width: 20%;
       margin: 15px;
    }
    input[name="email"]{
@@ -93,6 +93,8 @@
             <form id="mypageForm" action="update_userinfo.do" method="post">
                <div>
                <input type="hidden" name="kakao_Id">
+               <label class="mypage_label">파일이름 :</label> 
+               		<span><input type="file" name="imgfile" /> </span>     
                   <label class="mypage_label">Nickname</label> 
                   <span name="nickname" id = "nickname"> </span> 
                </div>
