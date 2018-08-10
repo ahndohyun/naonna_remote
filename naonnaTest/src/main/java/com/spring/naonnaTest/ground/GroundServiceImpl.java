@@ -52,6 +52,7 @@ public class GroundServiceImpl implements GroundService{
 		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
 		try {
 			int res = groundMapper.insertGround(vo);		//삽입 후 삽인한 결과 상태 반환하기 위해 반환값을 int로 줌
+			groundMapper.insertBookingGround(vo);
 			System.out.println("res = " + res);
 		}
 		catch(Exception e) {

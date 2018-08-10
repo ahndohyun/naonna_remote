@@ -40,6 +40,9 @@
 	     			
 	     			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
 	     			success:function(data) {
+	     				if(data.userPhoto != null) {
+	     					$('#profileImage').attr('src','/naonnaTest/image/' + data.userPhoto);
+	     				}
 	     				$('#myPage').append(data.nickname);
 	     				$('#myPage').attr("href", "myPage.do?nickname=" + data.nickname);
 	     				$('#myTeam').append(data.teamName);
@@ -157,7 +160,7 @@
     <div class="side-profile col-sm-4">
       <div class="card">
         <!-- <img src="a1.jpg" alt="John" style="width:100%"> -->
-        <img src="resources/a1.jpg" alt="John" style="width:100%">
+        <img id="profileImage" src="/naonnaTest/resources/a1.jpg" alt="John" style="width:100%">
         <h1>User Name</h1><br/>
         <!--로그인과 로그아웃 구분하기 하위 메뉴에 히든주기!!!!!!!!!!!!!! -->
 				<p><a href="#" id="myPage"></a></p>
