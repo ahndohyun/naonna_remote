@@ -373,7 +373,7 @@ button[name="create"], [name="reset"]{
            							</tr>          						
            							<tr class="table_row">
            								<td class="table_menu">닉네임</td>
-           								<td class="table_contents"><input type="text" name="nickname" required></td>
+           								<td class="table_contents"><input type="text" name="nickname"required></td>
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">위치</td>
