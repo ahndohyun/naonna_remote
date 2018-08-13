@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<% 
+	String nickname = (String)request.getAttribute("nickname");	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -360,17 +364,22 @@ button[name="create"], [name="reset"]{
            						<span class="team_title">팀생성</span>
            						<button type="button" id="team_close" class="close" data-dismiss="modal">&times;</button>     
            						
-           						<table class="create_modal_table">
+           						<form id="multiform" action="insertTeam.do" method="post" enctype="multipart/form-data">
+           						<table class="create_modal_table" >
            							<tr class="table_row">
            								<td class="table_menu">팀명</td>
-           								<td class="table_contents"><input type="text" placeholder="Enter Team Name" required></td>
+           								<td class="table_contents"><input type="text" placeholder="Enter Team Name" name ="team_name" required></td>
            								<!--중복확인 넣기-->
+           							</tr>          						
+           							<tr class="table_row">
+           								<td class="table_menu">닉네임</td>
+           								<td class="table_contents"><input type="text" name="nickname" required></td>
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">위치</td>
            								<td class="table_contents">
            									<form action="#">
-												<select name="location" class="custom-select mb-3" id="city">
+												<select name="area" class="custom-select mb-3" id="city">
 													<option value=''>지역 선택</option>
 													<option value="강동구">강동구</option>
 													<option value="강북구">강북구</option>
@@ -402,26 +411,31 @@ button[name="create"], [name="reset"]{
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">연령</td>
-           								<td class="table_contents"><input type="text" placeholder="Enter Age" required></td>
+           								<td class="table_contents"><input type="text" placeholder="Enter Age" name="age" required></td>
+           							</tr>
+           							<tr class="table_row">
+           								<td class="table_menu">엠블럼</td>
+           								<td class="table_contents"><input type="file" placeholder="put in your emblem" name="emblem2" required></td>
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">실력</td>
-           								<td class="table_contents"><input type="text" placeholder="Enter Level" required></td>
+           								<td class="table_contents"><input type="text" placeholder="Enter Level" name="ability" required></td>
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">인원</td>
-           								<td class="table_contents"><input type="text" placeholder="Enter Number of Team" required></td>
+           								<td class="table_contents"><input type="text" placeholder="Enter Number of Team" name="number_team" required></td>
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">팀소개</td>
            								<td class="table_contents">
-           								<textarea class="team_text"></textarea>
+           								<textarea class="team_text" name="intro" ></textarea>
            								</td>
            							</tr>
            						</table>
            						
            						<button type="submit" name="create">Create</button>
                 				<button type="reset" name="reset">Reset</button>
+                				</form>
                 			</div>
                 		</div>
                 	</div>

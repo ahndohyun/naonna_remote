@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- 
 	<fieldset>
 	<h1>팀등록 등록!!</h1>
    <form id="multiform" action="insertTeam.do" method="post" enctype="multipart/form-data">
@@ -19,10 +20,9 @@
 	  팀 능력 : <input type="text" name="ability" /><br /><br />    
 	   소개글 : <input type="text" name="intro" /><br /><br />
 	   팀 인원 : <input type="text" name="number_team" /><br /><br />
-	   지역 : <input type="text" name="area" /><br /><br />   
-	    매너점수 : <input type="text" name="point" /><br /><br />
+	   지역 : <input type="text" name="area" /><br /><br />   	 
 	  평가:<input type="text" name="review" /><br /><br />
-
+	
     </fieldset>
        <input type="button" value="서버전달2" onclick="fnAction('insertTeam.do')"/>
     
@@ -35,6 +35,6 @@
          frm.submit();
       }
    </script>
-
+ -->
 </body>
 </html>
