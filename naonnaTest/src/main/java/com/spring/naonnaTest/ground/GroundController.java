@@ -142,6 +142,23 @@ public class GroundController {
 		return result;		
 		
 	}
+	
+	@RequestMapping(value = "/ground_updating.do", method = RequestMethod.GET)
+	public ModelAndView That_Ground_Updating(String ground_Name ) {
+		GroundVO vo = null;
+		String Ground_Name = vo.getGround_Name();
+		System.out.println("Ground_Name = " + Ground_Name);
+		vo = groundService.That_Ground_Info(Ground_Name);
+		System.out.println("ground_update complete");
+
+		ModelAndView result = new ModelAndView();
+		result.addObject("vo", vo);
+		result.setViewName("ground_update");
+		System.out.println("불러오기  complete??");
+		return result;
+		
+	}
+	
 	   
 
 }

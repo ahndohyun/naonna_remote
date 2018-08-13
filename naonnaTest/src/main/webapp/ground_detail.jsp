@@ -7,8 +7,7 @@
 <% request.setCharacterEncoding("utf-8"); %> 
 
  <% 
- 	GroundVO vo = (GroundVO)request.getAttribute("vo");
- 	
+ 	GroundVO vo = (GroundVO)request.getAttribute("vo"); 	
  %>
  
 <!DOCTYPE html>
@@ -233,6 +232,11 @@
   function res() {
       location.href = "ground_info.do"
    }
+  
+  function res2() {
+	  location.href = "ground_updating.do?ground_name="+${vo.ground_Name}
+	// location.href = "ground_updating.do?"
+  }
 
   </script>
 </head>
@@ -337,7 +341,7 @@
   		<div class="ground-detail-size-texts col-sm-12">
 			<div class="ground-detail-size-fieldtext col-sm-6">
 				<div class="gray-box small-box"></div>
-				<p>경기장(100 x 70)</p>
+				<p>경기장${vo.ground_size }</p>
 			</div>
 			<div class="ground-detail-size-formaltext col-sm-6">
 				<div class="green-box small-box"></div>
@@ -354,6 +358,7 @@
   <div class="button-container">
   	<div class="payment"><button class="btn btn-success">결제하기</button></div>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
   </div>
   </div>
 </div>

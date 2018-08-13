@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("utf-8"); %>
+<%@ page import="java.util.*" %>  
+<%@ page import="com.spring.naonnaTest.ground.*" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<% request.setCharacterEncoding("utf-8"); %> 
+
+ <% 
+ 	GroundVO vo = (GroundVO)request.getAttribute("vo"); 	
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,17 +41,17 @@
 		<div class="main col-sm-8">
 	<div class="inputform container col-sm-12">
 		<div class="col-sm-8 col-sm-offset-4">
-   			<h1>경기장 등록!!</h1>
+   			<h1>경기장 수정사항</h1>
    		</div>
-		   <form class="form-horizontal" id="multiform" action="insertGround.do" method="post" enctype="multipart/form-data">
+		   <form class="form-horizontal" id="multiform" action="updateGround.do" method="post" enctype="multipart/form-data">
 				<div class="ground-upload form-group">
-		       	   <label for="inputGroundName" class="col-sm-2 control-label">경기장 이름</label>
+		       	   <label for="inputGroundName" class="col-sm-2 control-label">${vo.ground_Name}</label>
 			       <div class="col-sm-2">
      			       <input type="text" class="form-control" name="ground_Name" id="inputGroundName" placeholder="경기장이름">
     		       </div>
    		       	   <label for="inputGroundManagerName" class="col-sm-2 control-label">경기장관리자</label>
 			       <div class="col-sm-2">
-     			       <input type="text" class="form-control" name="ground_admin" id="inputGroundManagerName" placeholder="경기장관리자">
+     			       <input type="hidden" class="form-control" name="ground_admin" id="inputGroundManagerName" placeholder="경기장관리자">
     		       </div>
 		       	   <label for="inputGroundSize" class="col-sm-2 control-label">경기장사이즈</label>
 			       <div class="col-sm-2">

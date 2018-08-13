@@ -6,6 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
+  <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
+
 
 <script>
   // start 카카오톡 API
@@ -173,12 +185,14 @@
 				<div id="kakao-logout-group">로그아웃</div>
 				
 		<!-- Modal -->
+		
         <div class="modal fade" id="LoginModal" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
+				
                 <ul class="nav nav-tabs nav-justified" name="login_select">
                   <li class="active"><a data-toggle="tab" href="#login_P">사용자 로그인</a></li>
                   <li><a data-toggle="tab" href="#login_A">관리자 로그인</a></li>
@@ -189,15 +203,17 @@
                     <div id="kakao-logged-group"></div>
                       <a id="custom-login-btn" href="javascript:loginWithKakao()" style="cursor:hand;"></a>
                   </div>
-
+				  
+				  <form action="login_a.do" method="post">
                   <div id="login_A" class="tab-pane fade">
-                    <label for="uname"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="uname" required>
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <label for="ground_admin"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="ground_admin" required>
+                    <label for="ground_ad_pw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="ground_ad_pw" required>
                     <button type="submit" name="login">Login</button>
                     <a href="#" data-toggle="modal" data-target="#JoinModal" name="join_btn">Join</a>
                   </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -213,24 +229,27 @@
                 <h3>Only for Ground_Admin!!!</h3>
               </div>
 
-              <div class="modal-body">
+             <div class="modal-body">
                 <div id="join">
 
+				  <form action="joinadmin.do" method="post">
+                  <label for="ground_admin"><b>Id</b></label>
+                  <input type="text" placeholder="Enter id" name="ground_admin" required>
+				  <input type="button" value="중복확인" onclick='idCheck()'>
+                  <label for="ground_ad_pw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="ground_ad_pw" required>
+<!-- 
+                  <label for="ground_ad_repw"><b>Repeat Password</b></label>
+                  <input type="password" placeholder="Repeat password" name="ground_ad_repw" required> -->
 
-                  <label for="email"><b>Email</b></label>
-                  <input type="text" placeholder="Enter Email" name="email" required>
+                  <label for="ground_ad_pin"><b>PIN</b></label>
+                  <input type="text" placeholder="Enter PIN" name="ground_ad_pin" required>
 
-                  <label for="psw_A"><b>Password</b></label>
-                  <input type="password" placeholder="Enter Password" name="psw_A" required>
-
-                  <label for="psw_repeat"><b>Repeat Password</b></label>
-                  <input type="password" placeholder="Repeat password" name="psw_repeat" required>
-
-                  <label for="PIN"><b>PIN</b></label>
-                  <input type="text" placeholder="Enter PIN" name="pin" required>
-
-                  <label for="grouond_name"><b>Ground Name</b></label>
-                  <input type="text" placeholder="Enter Ground Name" name="grouond_name" required>
+                  <label for="ground_name"><b>Ground Name</b></label>
+                  <input type="text" placeholder="Enter Ground Name" name="ground_name" required>
+                
+               
+                </div>
                 </div>
               </div>
 
@@ -238,6 +257,7 @@
                 <button type="submit" name="join">Join</button>
                 <button type="reset" name="reset">Reset</button>
               </div>
+               </form>
             </div>
           </div>
         </div>

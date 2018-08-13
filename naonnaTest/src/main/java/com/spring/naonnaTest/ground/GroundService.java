@@ -9,6 +9,7 @@ public interface GroundService {
 	ArrayList<GroundVO> Ground_DAO_Json(GroundVO vo);
 	ArrayList<GroundVO> Ground_Time_Json(GroundVO groundvo, BookingVO bookingvo);	
 	GroundVO That_Ground_Info(String Ground_Name);
+	GroundVO That_Ground_Updating(String Ground_Name);
 	public void insertGround(GroundVO vo);
 	
 	
