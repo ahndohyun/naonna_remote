@@ -161,8 +161,8 @@
 					dataType: "json",
 					contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 					//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
-					success:function(data) {
-						$.each(data, function(index, ground) {
+					success:function(data) {																
+						$.each(data, function(index, ground) {														
 							var output = '';
 							output += '<tr>';
 							output += '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';

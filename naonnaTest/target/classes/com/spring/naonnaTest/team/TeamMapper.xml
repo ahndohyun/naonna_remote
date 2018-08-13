@@ -8,14 +8,12 @@
    <resultMap type="TeamVO" id="teamResultMap">
       <result property="team_name" column="TEAM_NAME"/>
       <result property="nickname" column="NICKNAME"/>
-       <result property="grade" column="GRADE"/>
+      <result property="age" column="AGE"/>
       <result property="emblem" column="EMBLEM"/>
       <result property="ability" column="ABILITY"/>
       <result property="intro" column="INTRO"/>
-      <result property="members" column="MEMBERS"/>
-      <result property="area" column="AREA"/>
-      <result property="point" column="POINT"/>
-      <result property="review" column="REVIEW"/>
+      <result property="number_team" column="NUMBER_TEAM"/>
+      <result property="area" column="AREA"/>     
    </resultMap>
    
  	<!--  id는 Mapper.java(여기서 PeopleMapper.java)에 동일하게 사용해야된다.  -->
@@ -52,7 +50,7 @@
    
    
    <insert id="addTeam" parameterType="com.spring.naonnaTest.team.TeamVO" >
-   	insert into team values (#{team_name},#{nickname},#{grade},#{emblem},#{ability},#{intro},#{number_team},#{area},#{point},#{review})
+   	insert into team values (#{team_name},#{nickname},#{age},#{emblem},#{ability},#{intro},#{number_team},#{area})
    </insert>
 
    <!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래스명이나 별칭이 들어간다. -->

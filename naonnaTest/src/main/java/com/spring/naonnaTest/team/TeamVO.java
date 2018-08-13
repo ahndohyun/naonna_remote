@@ -6,21 +6,20 @@ import org.springframework.stereotype.Component;
 public class TeamVO {
 	private String team_name;
 	private String nickname;
-	private String grade;
+	private String age;
 	private String emblem;
 	private String ability;
 	private String intro;
 	private int number_team;
 	private String area;
-	private int point;
-	private String review;
 	
 	
-	public String getGrade() {
-		return grade;
+
+	public String getAge() {
+		return age;
 	}
-	public void setGrade(String grade) {
-		this.grade = grade;
+	public void setAge(String age) {
+		this.age = age;
 	}
 	public String getTeam_name() {
 		return team_name;
@@ -64,20 +63,6 @@ public class TeamVO {
 	public void setArea(String area) {
 		this.area = area;
 	}
-	public int getPoint() {
-		return point;
-	}
-	public void setPoint(int point) {
-		this.point = point;
-	}
-	public String getReview() {
-		return review;
-	}
-	public void setReview(String review) {
-		this.review = review;
-	}
-	
-	
-	
-	
+
+
 }
