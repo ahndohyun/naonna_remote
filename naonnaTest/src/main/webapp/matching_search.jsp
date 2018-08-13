@@ -156,6 +156,10 @@
 	width:100%;
 	height:40px;
 }
+#city_Search{
+	width:100%;
+	height:40px;
+}
 #datepick{
 	width:50%;
 	height:40px;
@@ -195,22 +199,18 @@ button[name="create"], [name="reset"]{
 			$('input[name="datetimes"]').daterangepicker({
 
 				singleDatePicker : true,
-				//        		 		timePicker: true,
+				timePicker: true,
 				showDropdowns : true,
 				startDate : moment().startOf('hour'),
 				minDate : currentDate,
 				//    		     endDate: moment().startOf('hour').add(0, 'hour'),
 				locale : {
-					format : 'YYYY/M/DD hh:00'
+					format : 'YYYY/M/DD hh:mm'
 				//         		    	format: 'YYYY/M/DD'
 
 				}
 			});
 		});
-
-		
-		
-		
 		
 		$(function() {
 			$.ajax({
@@ -263,6 +263,51 @@ button[name="create"], [name="reset"]{
 	  		search_match(matchDate, matchingCity);
 		});
 		
+		$('#matching_create').on('click', function() {
+			alert('${sessionScope.forPerson}');
+			console.log("왜 안되니?");
+			
+			$.ajax({
+				url:'/naonnaTest/print_matching.do',
+				type:'POST',
+				dataType: "json",
+				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+				//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+				success:function(data) {
+					
+					$('#print_match').html('');		//기존 것 날려주고..		
+					var output = '';
+					$.each(data, function(
+							index, match) {		//새로 뿌리기
+						var d = new Date(match.playDate);
+						var y = d.getFullYear();
+						var m = (d.getMonth()+1);
+						var da = d.getDate();
+						var h = d.getHours();
+						var mi = d.getMinutes();
+						
+						
+						output += '<tr>';
+						output += '<td>' + match.matchLocation + '</td>';
+						output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
+						output += '<td>' + match.homeTeam + '</td>';
+						output += '<td>' + match.matchingID + '</td>';
+						output += '<td>' + match.people + '</td>';
+						output += '<td><button type="button" class="btn btn-success" id="match_want">신청</button></td>';
+						output += '</tr>';
+						console.log("output:" + output);
+						
+					});
+					$('#print_match').html(output);
+					console.log(data);
+				},
+				error:function() {
+					alert("ajax통신 실패!!");
+				}
+			});
+		});
+		
+		
 	});
 		
 	function search_match(matchDate, matchingCity) {
@@ -308,6 +353,8 @@ button[name="create"], [name="reset"]{
 				alert("ajax통신 실패!!");
 			}	
 		});
+		
+
 	}
 
 </script>
@@ -319,6 +366,9 @@ button[name="create"], [name="reset"]{
 
 	<div class="container-content">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+	<form name="kakaoId">
+		<input type="hidden" name="kakao_Id">
+	</form>	
 
 		<!-- start main content -->
 
@@ -334,7 +384,7 @@ button[name="create"], [name="reset"]{
 					<div class="filter-location">
 						<h4>위치</h4>
 						<form action="#">
-							<select name="location" class="custom-select mb-3" id="city">
+							<select name="location" class="custom-select mb-3" id="city_Search">
 								<option value=''>지역 선택</option>
 								<option value="강동구">강동구</option>
 								<option value="강북구">강북구</option>
@@ -366,7 +416,7 @@ button[name="create"], [name="reset"]{
 					<div class="filter-location">
 						<h4>날짜</h4>
 						<!--  시간 선택 API  -->
-						<input type="text" id="datePick" name="datetimes" style="width: 55%" />
+						<input type="text" id="datePick_Search" name="datetimes" style="width: 55%" />
 						<button type="button" class="btn btn-primary" id="search_matching">검색</button>
 
 					</div>

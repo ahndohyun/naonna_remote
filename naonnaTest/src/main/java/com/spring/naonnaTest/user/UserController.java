@@ -32,6 +32,7 @@ public class UserController {
 			if (info == null) {
 				mnv.setViewName("add_info");
 				mnv.addObject("forPerson", forPerson);
+				
 			} else {
 				mnv.setViewName("main");
 				session.setAttribute("forPerson", forPerson);
@@ -86,7 +87,6 @@ public class UserController {
 	@RequestMapping(value = "/update_profile.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public ModelAndView update_profile(UserVO vo, MultipartHttpServletRequest multiRequest) throws Exception {
 		ModelAndView mnv = new ModelAndView();
-		UserVO info = null;
 
 		MultipartFile mf = multiRequest.getFile("imgfile");
 		String uploadPath = "C:\\BigDeep\\upload\\";
@@ -119,7 +119,6 @@ public class UserController {
 		mNv.setViewName("add_info");
 		mNv.addObject("forPerson", forPerson);
 		System.out.println(forPerson);
-		session.setAttribute("forPerson", forPerson);
 		return mNv;
 	}
 
@@ -136,7 +135,7 @@ public class UserController {
 		mNv.addObject("forPerson", vo.getForPerson());
 		mNv.addObject("age", vo.getAge());
 		mNv.addObject("gender", vo.getGender());
-
+		
 		session.setAttribute("forPerson", vo.getForPerson());
 		session.setAttribute("nickname", vo.getNickname());
 
