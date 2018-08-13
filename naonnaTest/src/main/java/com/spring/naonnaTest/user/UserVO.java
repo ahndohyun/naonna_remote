@@ -7,6 +7,7 @@ public class UserVO {
 	private int age;
 	private String position;
 	private String email;
+	private String cap;
 	private String forPerson;
 	private String city;
 	private String userPhoto;
@@ -46,6 +47,12 @@ public class UserVO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getCap() {
+		return cap;
+	}
+	public void setCap(String cap) {
+		this.cap = cap;
 	}
 	public String getForPerson() {
 		return forPerson;

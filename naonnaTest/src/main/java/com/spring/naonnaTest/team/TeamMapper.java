@@ -10,5 +10,5 @@ public interface TeamMapper {
 	public ArrayList<TeamVO> findTeam(TeamVO teamvo);
 	public int addTeam (TeamVO teamvo);
 	public TeamVO getThatTeamInfo(String Team_Name);
-
+	public void insertCap(TeamVO teamvo);
 }

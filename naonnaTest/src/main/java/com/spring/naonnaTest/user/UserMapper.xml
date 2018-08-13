@@ -11,6 +11,7 @@
       <result property="gender" column="gender"/>
       <result property="position" column="position"/>
       <result property="email" column="email"/>
+      <result property="cap" column="cap"/>
       <result property="forPerson" column="forPerson"/>
       <result property="city" column="city"/>
       <result property="userPhoto" column="user_photo"/>
@@ -38,6 +39,8 @@
    <update id ="updateProfile" parameterType="com.spring.naonnaTest.user.UserVO">
       update user_info set user_photo = #{userPhoto} where nickname = #{nickname}
    </update>
+   
+
    
 </mapper>
    

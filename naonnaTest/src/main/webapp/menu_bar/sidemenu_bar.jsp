@@ -46,7 +46,7 @@
 	     				$('#myPage').append(data.nickname);
 	     				$('#myPage').attr("href", "myPage.do?nickname=" + data.nickname);
 	     				$('#myTeam').append(data.teamName);
-	     				$('#myTeam').attr('href', "team_detail.do?team_name="+data.team_name);
+	     				$('#myTeam').attr('href', "team_detail.do?team_name="+data.teamName);
 	     				$('#matching').append(data.teamName);
 	     				$('#booking').append(data.teamName);
 	     				
@@ -67,8 +67,7 @@
 		            	 form.kakao_Id.value = res.id;            	 
 		            	 form.action = '/naonnaTest/distUserInfo.do';
 		            	 form.method='POST';
-		            	 form.submit();
-		
+		            	 form.submit();		
 		             },
 		             fail: function(error) {
 		               alert("실패!");

@@ -85,11 +85,10 @@ public class TeamController {
 		return result; 
 	}
 	
-	@RequestMapping(value = "/team_detail.do", method =RequestMethod.GET)
+	@RequestMapping(value = "/team_detail.do", method =RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	public ModelAndView That_Team_Info(TeamVO vo, String team_name) {
 		String Team_Name = vo.getTeam_name();
 		System.out.println("Team_Name = " + Team_Name);
-		System.out.println(team_name);
 		vo = teamService.That_Team_Info(Team_Name);
 		System.out.println("team_detail complete");
 

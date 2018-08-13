@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.naonnaTest.ground.GroundVO;
+import com.spring.naonnaTest.user.UserMapper;
 
 @Service("teamService")
 public class TeamServiceImpl implements TeamService {
@@ -41,9 +42,10 @@ public class TeamServiceImpl implements TeamService {
 	public void insertTeam(TeamVO teamvo) {
 		TeamMapper teamMapper = sqlSession.getMapper(TeamMapper.class);
 		int res = teamMapper.addTeam(teamvo);
+		System.out.println("teamvo.getNickname() + teamvo.getTeam_name() = " + teamvo.getNickname() + teamvo.getTeam_name());
+		teamMapper.insertCap(teamvo);
 		System.out.println("res = " + res);
-				
-		
+						
 	}
 	
 	@Override

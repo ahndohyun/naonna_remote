@@ -26,10 +26,6 @@
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
   .team-detail {
-<<<<<<< HEAD
-=======
-
->>>>>>> 763d27dfc9bb224cf50014f14b5324bcfd51b6c2
   	border : 1px solid black;
   	margin-top : 47px;
   }
@@ -103,8 +99,8 @@
                  </thead>
                  <tbody>
                     <tr>
-                       <td> 최근 경기전적 </td>
-                       <td> ${vo.grade } </td>
+                       <td> 최근 연령대 </td>
+                       <td> ${vo.age } </td>
                     </tr>
                     <tr>
                        <td> 실력 </td>
@@ -118,10 +114,6 @@
                        <td> 팀 소개 </td>
                        <td> ${vo.intro }
                        </td>
-                    </tr>
-                    <tr>
-                       <td> 팀 리뷰 </td>
-                       <td> ${vo.review } </td>
                     </tr>
                  </tbody>
               </table>

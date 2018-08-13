@@ -265,14 +265,13 @@ button[name="create"], [name="reset"]{
 		
 		$('#matching_create').on('click', function() {
 			alert('${sessionScope.forPerson}');
-			console.log("왜 안되니?");
 			
 			$.ajax({
-				url:'/naonnaTest/print_matching.do',
+				url:'/naonnaTest/capCanMatch.do',
 				type:'POST',
 				dataType: "json",
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-				//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+				data : {"nickname" : nickname},
 				success:function(data) {
 					
 					$('#print_match').html('');		//기존 것 날려주고..		

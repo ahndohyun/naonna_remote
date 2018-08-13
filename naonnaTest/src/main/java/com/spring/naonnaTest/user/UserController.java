@@ -36,6 +36,8 @@ public class UserController {
 			} else {
 				mnv.setViewName("main");
 				session.setAttribute("forPerson", forPerson);
+				session.setAttribute("nickname", info.getNickname());
+				System.out.println(info.getNickname());
 			}
 		}
 
