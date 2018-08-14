@@ -118,10 +118,10 @@
     position: fixed;
     width: 100%;
     background-color: rgba(67, 68, 64, 0.4);
-    padding-top: 80px;  /*top으로 부터 얼마나 띄울지*/
+    padding-top: 0;  /*top으로 부터 얼마나 띄울지*/
 }
 .modal-content{
-	height: 550px;
+	height: 500px;
 }
 
 /* 모달바디 */
@@ -213,6 +213,25 @@ button[name="create"], [name="reset"]{
 		});
 		
 		$(function() {
+			var currentDate = new Date();
+			//					var tomorrow = currentDate.setDate(currentDate.getDate()+1);
+			$('#datePick').daterangepicker({
+
+				singleDatePicker : true,
+				timePicker: true,
+				showDropdowns : true,
+				startDate : moment().startOf('hour'),
+				minDate : currentDate,
+				//    		     endDate: moment().startOf('hour').add(0, 'hour'),
+				locale : {
+					format : 'YYYY/M/DD hh:mm'
+				//         		    	format: 'YYYY/M/DD'
+
+				}
+			});
+		});
+		
+		$(function() {
 			$.ajax({
 				url:'/naonnaTest/print_matching.do',
 				type:'POST',
@@ -234,12 +253,12 @@ button[name="create"], [name="reset"]{
 						
 						
 						output += '<tr>';
+						output += '<td id="match_want">' + match.matchingID + '</td>';
 						output += '<td>' + match.matchLocation + '</td>';
 						output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
 						output += '<td>' + match.homeTeam + '</td>';
-						output += '<td>' + match.matchingID + '</td>';
 						output += '<td>' + match.people + '</td>';
-						output += '<td><button type="button" class="btn btn-success" id="match_want">신청</button></td>';
+// 						output += '<td><button type="button" class="btn btn-success" id="match_want">신청</button></td>';
 						output += '</tr>';
 						console.log("output:" + output);
 						
@@ -254,7 +273,7 @@ button[name="create"], [name="reset"]{
 		});
 
 		$(document).on('click', '#match_want', function() {
-			alert('되니?!!!!');
+			alert("ㅇㅇㅇ");
 		});
 
 		$('#search_matching').click(function(){
@@ -264,48 +283,16 @@ button[name="create"], [name="reset"]{
 		});
 		
 		$('#matching_create').on('click', function() {
-			alert('${sessionScope.forPerson}');
 			
-			$.ajax({
-				url:'/naonnaTest/capCanMatch.do',
-				type:'POST',
-				dataType: "json",
-				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-				data : {"nickname" : nickname},
-				success:function(data) {
-					
-					$('#print_match').html('');		//기존 것 날려주고..		
-					var output = '';
-					$.each(data, function(
-							index, match) {		//새로 뿌리기
-						var d = new Date(match.playDate);
-						var y = d.getFullYear();
-						var m = (d.getMonth()+1);
-						var da = d.getDate();
-						var h = d.getHours();
-						var mi = d.getMinutes();
-						
-						
-						output += '<tr>';
-						output += '<td>' + match.matchLocation + '</td>';
-						output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
-						output += '<td>' + match.homeTeam + '</td>';
-						output += '<td>' + match.matchingID + '</td>';
-						output += '<td>' + match.people + '</td>';
-						output += '<td><button type="button" class="btn btn-success" id="match_want">신청</button></td>';
-						output += '</tr>';
-						console.log("output:" + output);
-						
-					});
-					$('#print_match').html(output);
-					console.log(data);
-				},
-				error:function() {
-					alert("ajax통신 실패!!");
-				}
-			});
-		});
-		
+			if('${sessionScope.cap}' == 1) {
+				$('#matching_create').attr('data-target', '#MatchingModal');
+				$("#teamNamePrint").text('${sessionScope.teamName}');
+				$('#teamNameOut').val('${sessionScope.teamName}');
+			}
+			else {
+				alert("매칭 기능은 주장만 이용할 수 있습니다.");
+			}			
+		});		
 		
 	});
 		
@@ -334,10 +321,10 @@ button[name="create"], [name="reset"]{
 					
 					var output = '';
 					output += '<tr>';
+					output += '<td id="match_want">' + match.matchingID + '</td>';
 					output += '<td>' + match.matchLocation + '</td>';
 					output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
 					output += '<td>' + match.homeTeam + '</td>';
-					output += '<td>' + match.matchingID + '</td>';
 					output += '<td>' + match.people + '</td>';
 					output += '<td><input type="button" class="btn btn-success" id="match_want">신청</td>';
 
@@ -383,7 +370,7 @@ button[name="create"], [name="reset"]{
 					<div class="filter-location">
 						<h4>위치</h4>
 						<form action="#">
-							<select name="location" class="custom-select mb-3" id="city_Search">
+							<select name="matchLocation" class="custom-select mb-3" id="city_Search">
 								<option value=''>지역 선택</option>
 								<option value="강동구">강동구</option>
 								<option value="강북구">강북구</option>
@@ -424,20 +411,37 @@ button[name="create"], [name="reset"]{
 			</div>
 
 			<div class="container-board">
-				<button id="matching_create" type="button" data-toggle="modal" data-target="#MatchingModal">매칭생성</button>
+				<button id="matching_create" type="button" data-toggle="modal">매칭생성</button>
 					<div class="modal fade" id="MatchingModal" role="dialog">
           				<div class="modal-dialog">
             				<div class="modal-content">
             					<div class="modal-body">
             						<span class="matching_title">매 칭 등 록</span>
             						<button type="button" id="matching_close" class="close" data-dismiss="modal">&times;</button>
-            						
+            						<form action="makeMatch.do" method="post">
+            						<input type="hidden" id="teamNameOut" name="homeTeam">
             						<table class="matching_create_table">
+            							<tr class="table_row">
+      										<td class="table_menu">팀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</td>
+      										<td class="table_contents" id="teamNamePrint">
+      											
+      										</td>
+      									</tr>
+            							<tr class="table_row">
+      										<td class="table_menu">매칭제목</td>
+      										<td class="table_contents"><input type="text" name="matchingID" placeholder="Enter Matching Title" required></td>
+      									</tr>
+      									
       									<tr class="table_row">
-      										<td class="table_menu">경기지역</td>
+      										<td class="table_menu">경기일정</td>
+      										<td class="table_contents"><input type="text" id="datePick" name="playDate"/></td>
+      									</tr>
+      									
+      									<tr class="table_row">
+     										<td class="table_menu">경기지역</td>
       										<td class="table_contents">
-      											<form action="#">
-													<select name="location" class="custom-select mb-3" id="city">
+      											
+													<select name="matchLocation" class="custom-select mb-3" id="city">
 														<option value=''>지역 선택</option>
 														<option value="강동구">강동구</option>
 														<option value="강북구">강북구</option>
@@ -464,29 +468,21 @@ button[name="create"], [name="reset"]{
 														<option value="중구">중구</option>
 														<option value="중랑구">중랑구</option>
 													</select>
-												</form>
+												
 											</td>
       									</tr>
-      									<tr class="table_row">
-      										<td class="table_menu">경기일정</td>
-      										<td class="table_contents"><input type="text" id="datePick" name="datetimes"/></td>
-      									</tr>
-      									<tr class="table_row">
-      										<td class="table_menu">팀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</td>
-      										<td class="table_contents"><input type="text" placeholder="Enter Team Name" required></td>
-      									</tr>
-      									<tr class="table_row">
-      										<td class="table_menu">매칭제목</td>
-      										<td class="table_contents"><input type="text" placeholder="Enter Matching Title" required></td>
-      									</tr>
+
+      									
+      									
       									<tr class="table_row">
       										<td class="table_menu">매칭인원</td>
-      										<td class="table_contents"><input type="text" placeholder="Enter Matching Population" required></td>
+      										<td class="table_contents"><input type="number" name="people" placeholder="Enter Matching Population" required></td>
       									</tr>
       								</table>
       								
       								<button type="submit" name="create">Create</button>
                 					<button type="reset" name="reset">Reset</button>
+                					</form>
             					</div>	
             				</div>
             			</div>
@@ -495,12 +491,11 @@ button[name="create"], [name="reset"]{
 				<table class="table">
 					<thead>
 						<tr class="success">
+							<th>매칭 이름</th>						
 							<th>지역</th>
 							<th>경기일정</th>
 							<th>팀</th>
-							<th>제목</th>
-							<th>인원</th>
-							<th>신청 버튼</th>							
+							<th>인원</th>				
 						</tr>
 					</thead>
 					<tbody class="table-body" id="print_match">

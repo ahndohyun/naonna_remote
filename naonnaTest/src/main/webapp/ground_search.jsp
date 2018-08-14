@@ -391,8 +391,7 @@
 							</form>
 						</div>
 						<div class="form-select-citydetail">
-							<form name="city_name" class="form-selection" method="post"
-								action="filter_city.do">
+							<form name="city_name" class="form-selection" method="post" action="filter_city.do">
 								<div class="form-select">
 									<!-- <select class="form-control" name="ground_city" id="sel1" onChange="javascript:city_filter();"> -->
 									<select class="form-control" name="ground_city" id="sel2">

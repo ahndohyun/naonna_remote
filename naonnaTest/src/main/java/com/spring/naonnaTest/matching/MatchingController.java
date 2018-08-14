@@ -1,6 +1,5 @@
 package com.spring.naonnaTest.matching;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MatchingController {
@@ -52,6 +52,30 @@ public class MatchingController {
 		}
 		
 		return str;
+	}
+	
+	@RequestMapping(value = "/makeMatch.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	public ModelAndView makeMatch(MatchingVO vo) {
+		matchingService.makeMatching(vo);
+		ModelAndView mnv = new ModelAndView();
+		ObjectMapper mapper = new ObjectMapper();
+		
+		System.out.println(vo.getPeople());
+		System.out.println(vo.getHomeTeam());
+		System.out.println(vo.getPlayDate());
+		System.out.println(vo.getMatchingID());
+		System.out.println(vo.getMatchLocation());
+		
+		try {
+			mnv.addObject("matchingVO", vo);
+			mnv.setViewName("matching_search");
+
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+	
+		return mnv;
 	}
 	
 }

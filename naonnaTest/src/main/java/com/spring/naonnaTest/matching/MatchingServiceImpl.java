@@ -42,4 +42,12 @@ public class MatchingServiceImpl implements MatchingService	{
 		return matchingList;
 	}
 	
+	@Override
+	public void makeMatching(MatchingVO vo) {		
+		
+		MatchingMapper matchingMapper = sqlSession.getMapper(MatchingMapper.class);
+		matchingMapper.insertMatching(vo);
+	}	
+
+	
 }

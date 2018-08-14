@@ -6,5 +6,5 @@ public interface MatchingMapper {
 
 	ArrayList<MatchingVO> getMatchingList();
 	ArrayList<MatchingVO> searchMatchingList(MatchingVO vo);
-	
+	void insertMatching(MatchingVO vo);
 }

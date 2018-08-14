@@ -30,5 +30,9 @@
 <!--       </if> -->
       order by play_date
    </select>
+   
+   <insert id="insertMatching" parameterType="com.spring.naonnaTest.matching.MatchingVO">
+   		insert into matching (matchingid, hometeam, play_date, match_Location, people) values ( #{matchingID}, #{homeTeam}, #{playDate}, #{matchLocation}, #{people} )
+   </insert>
 
 </mapper>

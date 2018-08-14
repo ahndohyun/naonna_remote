@@ -6,5 +6,6 @@ public interface MatchingService {
 
 	ArrayList<MatchingVO> getMatching();
 	ArrayList<MatchingVO> getMatchingSearch(MatchingVO vo);
+	public void makeMatching(MatchingVO vo);
 	
 }
