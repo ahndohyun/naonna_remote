@@ -33,21 +33,24 @@ public class AdminServiceImpl implements AdminService {
 		return check;
 	}
 	
-	@Override
-	public boolean isAdmin(AdminVO vo) {
-		boolean result = false;
+	/*@Override
+	public String isAdmin(AdminVO vo) {
+		//boolean result = false;
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
-		int check = adminMapper.isAdmin(vo);
+		String check = adminMapper.isAdmin(vo);
 		System.out.println("isAdmin :" + check);
-		if(check == 1004) {
+		if(check == "abc") {
+			
 			result = true;
 		}
 		
+		
 		System.out.println("isAdmin :" + result);
 		
-		return result;
+		return check;
+		//return result;
 		
-	}
+	}*/
 	
 	@Override
 	public AdminVO getAdminInfo(AdminVO vo) {
@@ -58,4 +61,12 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 
+	@Override
+	public int idcheck (String admin) {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int check = adminMapper.getAdminId(admin);
+		
+		return check;
+		
+	}
 }

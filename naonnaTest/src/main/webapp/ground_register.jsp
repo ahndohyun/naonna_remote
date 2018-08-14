@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
+
+<% 
+	String admin = (String)request.getAttribute("admin");		
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +47,7 @@
     		       </div>
    		       	   <label for="inputGroundManagerName" class="col-sm-2 control-label">경기장관리자</label>
 			       <div class="col-sm-2">
-     			       <input type="hidden" class="form-control" name="ground_admin" id="inputGroundManagerName" placeholder="경기장관리자">
+     			       <input type="text" class="form-control" name="ground_admin" id="inputGroundManagerName" value=<%=admin%>>
     		       </div>
 		       	   <label for="inputGroundSize" class="col-sm-2 control-label">경기장사이즈</label>
 			       <div class="col-sm-2">

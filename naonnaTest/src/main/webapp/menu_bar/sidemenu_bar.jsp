@@ -6,19 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
-  <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
-
-
 <script>
   // start 카카오톡 API
     $(document).ready(function() {
@@ -142,6 +129,8 @@
 	        } else {
 	          createKakaotalkLogin();
 	        }
+	        
+	        
         
       });
   
@@ -162,7 +151,97 @@
         });
       });
       //end of multiple modal
-  </script>
+     </script>  
+     
+      <script>
+     //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+      var idck = 0;
+      $(function() {
+          //idck 버튼을 클릭했을 때 
+          $("#idck").click(function() {
+              
+              //userid 를 param.
+              var userid =  $("#admin").val(); 
+              
+              $.ajax({
+                  async: true,
+                  type : 'POST',
+                  data : userid,
+                  url : "idcheck.do",
+                  dataType : "json",
+                  contentType: "application/json; charset=UTF-8",
+                  success : function(data) {
+                      if (data.cnt > 0) {
+                          
+                          alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                         //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                         // $("#admin").addClass("has-error")
+                         // $("#admin").removeClass("has-success")
+                          $("#admin").focus();
+                          
+                      
+                      } else {
+                          alert("사용가능한 아이디입니다.");
+                          //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                          //$("#admin").addClass("has-success")
+                          // $("#admin").removeClass("has-error")
+                          $("#password").focus();
+                          //아이디가 중복하지 않으면  idck = 1 
+                          idck = 1;
+                          
+                      }
+                  },
+                  error : function(error) {
+                      
+                      alert("error : " + error);
+                  }
+              });
+          });
+          
+          function checkForm()
+          {
+        	  var userId = document.joinForm.ground_admin;
+        	    // 아이디 입력 유무 체크
+        	    if(userId.value == '') {
+        	        window.alert("아이디를 입력하시오");
+        	        document.joinForm.ground_admin.focus();
+        	        document.getElementById('ground_admin').select();
+        	        return false; // 아이디 입력이 안되어 있다면 submint 이벤트를 중지
+        	    }
+        	    var uerPw = document.getElementById('ground_ad_pw');
+        	    // 암호 입력 유무 체크
+        	    if(document.joinForm.ground_ad_pw.value == ''){
+        	        alert('암호를 입력하세요.');
+        	        userPw.focus();
+        	        return false;
+
+        	    }
+        	    
+        	    var pin = document.getElementById('ad_pin');
+        	    // 암호 입력 유무 체크
+        	    if(document.joinForm.ad_pin.value == ''){
+        	        alert('핀번호를 입력하세요.');
+        	        pin.focus();
+        	        return false;
+
+        	    }
+        	    else if (document.joinForm.ad_pin.value != 'abc'){
+        	    	 alert('핀번호를 제대로 입력하세요.');
+        	    	 pin.focus();
+         	         return false;
+        	    }
+        	    else {
+        	    	alert('회원가입 중입니다.');
+        	    	return true;
+        	    	
+        	    }
+          }
+          
+          });
+        	             
+	</script>   
+      
+ 
   
 </head>
 <body>
@@ -203,17 +282,19 @@
                     <div id="kakao-logged-group"></div>
                       <a id="custom-login-btn" href="javascript:loginWithKakao()" style="cursor:hand;"></a>
                   </div>
-				  
+                  
+				  <!-- 로그인 부분 -->
 				  <form action="login_a.do" method="post">
                   <div id="login_A" class="tab-pane fade">
                     <label for="ground_admin"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="ground_admin" required>
+                    <input type="text"  placeholder="Enter ID" name="ground_admin" required>
                     <label for="ground_ad_pw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="ground_ad_pw" required>
                     <button type="submit" name="login">Login</button>
                     <a href="#" data-toggle="modal" data-target="#JoinModal" name="join_btn">Join</a>
                   </div>
                   </form>
+                  
                 </div>
               </div>
             </div>
@@ -231,33 +312,48 @@
 
              <div class="modal-body">
                 <div id="join">
-
-				  <form action="joinadmin.do" method="post">
-                  <label for="ground_admin"><b>Id</b></label>
-                  <input type="text" placeholder="Enter id" name="ground_admin" required>
-				  <input type="button" value="중복확인" onclick='idCheck()'>
-                  <label for="ground_ad_pw"><b>Password</b></label>
-                  <input type="password" placeholder="Enter Password" name="ground_ad_pw" required>
-<!-- 
-                  <label for="ground_ad_repw"><b>Repeat Password</b></label>
-                  <input type="password" placeholder="Repeat password" name="ground_ad_repw" required> -->
-
-                  <label for="ground_ad_pin"><b>PIN</b></label>
-                  <input type="text" placeholder="Enter PIN" name="ground_ad_pin" required>
-
-                  <label for="ground_name"><b>Ground Name</b></label>
-                  <input type="text" placeholder="Enter Ground Name" name="ground_name" required>
                 
-               
+					<!-- 회원가입 부분  -->
+				  <form name="joinForm" action="joinAdmin.do" method="post">
+				  
+                  <label for="ground_admin"><b>Id</b></label>
+                  <input type="text" id="ground_admin" name="ground_admin" placeholder="Enter id"  required>
+				  <input type="button" value="중복확인" id="idck" >
+				  
+                  <label for="ground_ad_pw"><b>Password</b></label>
+                  <input type="password" id="ground_ad_pw" name="ground_ad_pw" placeholder="Enter Password" required>
+                  
+                  <label for="ground_ad_pw"><b>Password Confirm</b></label>
+                  <input type="password" id="ground_ad_pw2" name="ground_ad_pw2" placeholder="Enter Password" required>
+                  <script>
+                  	$('#ground_ad_pw2').blur(function () {
+                  		alert(pw1);
+                  		alert(pw2);
+                  		var pw1 = $('#ground_ad_pw').text();
+                  		var pw2 = $('#ground_ad_pw2').text();
+                  		
+                  		if(pw1 == pw2) {
+                  			$('#submitbut').attr("disabled", true);
+                  		}
+                  	});
+                  </script>
+                  
+                  <label for="ground_ad_pin"><b>PIN</b></label>
+                  <input type="text" id="ground_ad_pin" name="ground_ad_pin" placeholder="Enter PIN" required>
+                 
+                                 
+                  <label for="ground_name"><b>Ground Name</b></label>
+                  <input type="text" id="ground_name" name="ground_name" placeholder="Enter Ground Name"  required>
+                  
                 </div>
                 </div>
               </div>
 
               <div class="modal-footer">
-                <button type="submit" name="join">Join</button>
+                <button type="button" id="submitbut" name="join" >Join</button>
                 <button type="reset" name="reset">Reset</button>
               </div>
-               </form>
+              </form> 
             </div>
           </div>
         </div>

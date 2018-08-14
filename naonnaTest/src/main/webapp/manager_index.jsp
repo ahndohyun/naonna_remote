@@ -116,11 +116,11 @@
                   </thead>
                   <tbody>
                      <tr>
-                        <td>보라매 공원</td>
-                        <td>100&times;100</td>
-                        <td>천연잔디</td>
-                        <td>있음</td>
-                        <td>있음</td>
+                        <td> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                      </tr>
                   </tbody>
                </table>
