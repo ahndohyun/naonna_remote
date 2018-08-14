@@ -96,7 +96,7 @@
 	//               	createKakaotalkLogout();
 	              },
 	              fail: function(err) {
-	                console.log(err);
+	                console.log("CreateKakaotalkLogin():" + err);
 	              }
 	            });
 	          });

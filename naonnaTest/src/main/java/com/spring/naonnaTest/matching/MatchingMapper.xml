@@ -24,7 +24,8 @@
    
    <select id ="searchMatchingList" resultMap="matchingResultMap">
       select * from matching 
-      where play_date > #{playDate, javaType=Date} 	AND match_Location = #{matchLocation, javaType=String}
+      where match_Location = #{matchLocation, javaType=String}
+<!--       where play_date > #{playDate, javaType=Date} 	AND match_Location = #{matchLocation, javaType=String} -->
 <!--       <if test = "matchLocation != ''"> -->
 <!--       	AND match_Location = #{matchLocation, javaType=String} -->
 <!--       </if> -->

@@ -199,14 +199,14 @@ button[name="create"], [name="reset"]{
 			$('input[name="datetimes"]').daterangepicker({
 
 				singleDatePicker : true,
-				timePicker: true,
+// 				timePicker: true,
 				showDropdowns : true,
 				startDate : moment().startOf('hour'),
 				minDate : currentDate,
 				//    		     endDate: moment().startOf('hour').add(0, 'hour'),
 				locale : {
-					format : 'YYYY/M/DD hh:mm'
-				//         		    	format: 'YYYY/M/DD'
+// 					format : 'YYYY/M/DD hh:mm'
+				        		    	format: 'YYYY/MM/DD'
 
 				}
 			});
@@ -247,9 +247,21 @@ button[name="create"], [name="reset"]{
 						var d = new Date(match.playDate);
 						var y = d.getFullYear();
 						var m = (d.getMonth()+1);
+						if(m < 10) {
+							m = "0" + m;
+						}
 						var da = d.getDate();
+						if(da < 10) {
+							da = "0" + m;
+						}
 						var h = d.getHours();
+						if(h < 10) {
+							h = "0" + m;
+						}
 						var mi = d.getMinutes();
+						if(mi < 10) {
+							mi = "0" + m;
+						}
 						
 						
 						output += '<tr>';
@@ -273,12 +285,14 @@ button[name="create"], [name="reset"]{
 		});
 
 		$(document).on('click', '#match_want', function() {
-			alert("ㅇㅇㅇ");
+ 			location.href="go_matchingDetail.do?matchingID="+$('#match_want').text();
 		});
 
 		$('#search_matching').click(function(){
-			var matchingCity = $('#city').val();
+			var matchingCity = $('#city_Search').val();
 	  		var matchDate = new Date($('#datePick').val());
+	  		matchDate.setHours(0);
+	  		matchDate.setMinutes(0);
 	  		search_match(matchDate, matchingCity);
 		});
 		
@@ -326,7 +340,7 @@ button[name="create"], [name="reset"]{
 					output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
 					output += '<td>' + match.homeTeam + '</td>';
 					output += '<td>' + match.people + '</td>';
-					output += '<td><input type="button" class="btn btn-success" id="match_want">신청</td>';
+// 					output += '<td><input type="button" class="btn btn-success" id="match_want" value="신청"></td>';
 
 					output += '</tr>';
 					console.log("output:" + output);

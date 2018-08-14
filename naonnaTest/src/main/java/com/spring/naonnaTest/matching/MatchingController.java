@@ -39,10 +39,12 @@ public class MatchingController {
 	@RequestMapping(value = "/searchMatching.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
 	public String MatchingSearchGET(MatchingVO vo) {
+		System.out.println(vo.getMatchLocation());
+		System.out.println(vo.getPlayDate());
 		ArrayList<MatchingVO> list = matchingService.getMatchingSearch(vo);
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		try {
 			str = mapper.writeValueAsString(list);
 			System.out.println("str=" + str);
@@ -69,6 +71,27 @@ public class MatchingController {
 		try {
 			mnv.addObject("matchingVO", vo);
 			mnv.setViewName("matching_search");
+
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+	
+		return mnv;
+	}
+	
+	@RequestMapping(value = "/go_matchingDetail.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public ModelAndView go_MatchDetail(String matchingID) {
+//		matchingService.makeMatching(vo);
+		ModelAndView mnv = new ModelAndView();
+//		ObjectMapper mapper = new ObjectMapper();
+		
+		System.out.println(matchingID);
+		
+		
+		try {
+//			mnv.addObject("matchingID", matchingID);
+			mnv.setViewName("matching_detail");
 
 		}
 		catch (Exception e){
