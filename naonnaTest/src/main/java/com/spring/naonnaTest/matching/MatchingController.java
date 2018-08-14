@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.naonnaTest.user.UserVO;
+
 @Controller
 public class MatchingController {
 
@@ -84,13 +86,11 @@ public class MatchingController {
 	public ModelAndView go_MatchDetail(String matchingID) {
 //		matchingService.makeMatching(vo);
 		ModelAndView mnv = new ModelAndView();
-//		ObjectMapper mapper = new ObjectMapper();
 		
-		System.out.println(matchingID);
-		
+		System.out.println(matchingID);		
 		
 		try {
-//			mnv.addObject("matchingID", matchingID);
+			mnv.addObject("matchingID", matchingID);
 			mnv.setViewName("matching_detail");
 
 		}
@@ -99,6 +99,23 @@ public class MatchingController {
 		}
 	
 		return mnv;
+	}
+	
+	@RequestMapping(value = "/printUserInfo.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String PrintUserCont(String forPerson) {
+		UserVO vo = userService.printUser(forPerson);
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			str = mapper.writeValueAsString(vo);
+			System.out.println("str=" + str);
+		} catch (Exception e) {
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+
+		return str;
 	}
 	
 }

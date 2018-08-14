@@ -11,9 +11,9 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="naonna_main.css"> -->
+  <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
+  
   <style>
        .ds-btn li{ list-style:none; float:left; padding:10px; }
     .ds-btn li a span{padding-left:15px;padding-right:5px;width:100%;display:inline-block; text-align:left;}
@@ -72,16 +72,46 @@
           padding : 15px;
        }
   </style>
-
+	
+	<script>
+	$(document).ready(function () {
+		alert('${param.matchingID}');
+		
+		$(function() {
+			$.ajax({
+				url:'/naonnaTest/matching_detail.do',
+				type:'POST',
+				dataType: "json",
+				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+				//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+				data : {"matchingID" : '${param.matchingID}'},
+				
+				success:function(data) {
+					var output = '';
+					console.log("output:" + output);	
+					$('#print_match').html(output);
+					console.log(data);
+				},
+				error:function() {
+					alert("ajax통신 실패!!");
+				}
+		});
+	});
+		
+	</script>
 
 </head>
 
 <body>
-   <jsp:include page="./menu_bar/top_nav.jsp" flush="true"></jsp:include>
-   <!-- main contents -->
+  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+	<!-- main contents -->
 
-   <div class="container-content">
-      <jsp:include page="./menu_bar/side_menubar.jsp" flush="true"></jsp:include>
+	<div class="container-content">
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+	<form name="kakaoId">
+		<input type="hidden" name="kakao_Id">
+	</form>	
+	
       <!-- start main content -->
       <div class="main col-sm-9">
          <div class="player-board-container col-sm-12">

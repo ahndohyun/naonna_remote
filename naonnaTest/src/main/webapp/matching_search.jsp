@@ -252,20 +252,21 @@ button[name="create"], [name="reset"]{
 						}
 						var da = d.getDate();
 						if(da < 10) {
-							da = "0" + m;
+							da = "0" + da;
 						}
 						var h = d.getHours();
 						if(h < 10) {
-							h = "0" + m;
+							h = "0" + h;
 						}
 						var mi = d.getMinutes();
 						if(mi < 10) {
-							mi = "0" + m;
+							mi = "0" + mi;
 						}
 						
 						
 						output += '<tr>';
-						output += '<td id="match_want">' + match.matchingID + '</td>';
+// 						output += '<td onclick="match_want('+match.matchingID+')">' + match.matchingID + '</td>';
+						output += '<td>' + "<a href='go_matchingDetail.do?matchingID="+ match.matchingID + "'>"+ match.matchingID +'</a></td>';
 						output += '<td>' + match.matchLocation + '</td>';
 						output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
 						output += '<td>' + match.homeTeam + '</td>';
@@ -284,9 +285,12 @@ button[name="create"], [name="reset"]{
 			});
 		});
 
-		$(document).on('click', '#match_want', function() {
- 			location.href="go_matchingDetail.do?matchingID="+$('#match_want').text();
-		});
+// 		$(document).on('click', '#match_want', function() {
+// 			alert(this.text());
+//  			location.href="go_matchingDetail.do?matchingID="+$('#match_want').text();
+// 		});
+
+		
 
 		$('#search_matching').click(function(){
 			var matchingCity = $('#city_Search').val();
@@ -356,7 +360,11 @@ button[name="create"], [name="reset"]{
 		
 
 	}
-
+		
+	function match_want(tex) {		
+			location.href="go_matchingDetail.do?matchingID="+tex;
+	}
+	
 </script>
 </head>
 
