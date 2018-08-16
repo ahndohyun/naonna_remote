@@ -8,7 +8,7 @@
 	
 	if (session.getAttribute("admin") == null){
 		out.print("<script>");
-		out.print("alert('로그인해주세요')");
+		out.print("alert('로그인해주세요');");
 		out.print("location.href='home.do'");
 		out.print("</script>");
 	}

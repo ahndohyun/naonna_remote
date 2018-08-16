@@ -6,6 +6,12 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <% request.setCharacterEncoding("utf-8"); %> 
 
+<%
+String admin = (String)session.getAttribute("admin");
+String ground_name = (String)session.getAttribute("groundName");
+
+%>
+
  <% 
  	GroundVO vo = (GroundVO)request.getAttribute("vo"); 	
  %>
@@ -230,11 +236,12 @@
   <script>
  
   function res() {
-      location.href = "ground_info.do"
+     // location.href = "ground_info.do"
+	 history.go(-1);
    }
   
   function res2() {
-	  location.href = "ground_updating.do?ground_name="+${vo.ground_Name}
+	  location.href = "ground_updating.do?ground_name="+ <%=ground_name%>
 	// location.href = "ground_updating.do?"
   }
 
@@ -247,8 +254,9 @@
 	<!-- main contents -->
 
 	<div class="container-content">
-		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
-
+	<%if(session.getAttribute("admin") != null){ %>
+		<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
+	<%}%>
 <!-- start main content -->
   <div class="main col-sm-8"><br>
   	<div>
@@ -358,7 +366,9 @@
   <div class="button-container">
   	<div class="payment"><button class="btn btn-success">결제하기</button></div>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
+  	<%if(session.getAttribute("admin") !=null){ %>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
+  	<%} %>
   </div>
   </div>
 </div>

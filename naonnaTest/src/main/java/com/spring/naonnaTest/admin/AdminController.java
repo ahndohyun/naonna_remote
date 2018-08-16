@@ -109,10 +109,19 @@ public class AdminController {
     }
 	
 	@RequestMapping(value="logout_a.do")
-	public ModelAndView AdminLogout( HttpSession session)  {
+	public ModelAndView AdminLogout( HttpSession session, HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		session.invalidate();
-		ModelAndView mv = new ModelAndView("main");
-		return mv;
+		
+		out.println("<script>");
+		out.println("alert('로그아웃 되었습니다.');");
+		out.println("location.href='home.do';");
+		out.println("</script>");			
+		out.close();
+		
+
+		return null;
 		
 	}
 }

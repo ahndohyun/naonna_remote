@@ -5,6 +5,13 @@
 <% 
 	String admin = (String)request.getAttribute("admin");		
 	String ground_name = (String)request.getAttribute("groundName");
+	
+	if (session.getAttribute("admin") == null){
+		out.print("<script>");
+		out.print("alert('로그인해주세요');");
+		out.print("location.href='home.do'");
+		out.print("</script>");
+	}
 %>
 <html lang="utf-8">
 
@@ -134,8 +141,8 @@ printGround();
             <div class="show-book row col-sm-12">
                <div class="content-title col-sm-12">
                   <h3 class="bookingtitle content-title-name">운동장 정보</h3>
-                  <a href="ground_detail.jsp" class="right mov-btn btn btn-success">바로가기</a>
-                  <button class="btn btn-success" onclick="res()">경기장 등록</button>
+                  <button class="right mov-btn btn btn-success" onclick="res()">경기장 등록</a>
+                  
                </div>
                <table class="table table-straped table-hover">
                   <thead>
@@ -151,8 +158,9 @@ printGround();
                         
                      </tr>
                   </thead>
-                  <tbody class="table-body" id="ground_print">
-					</tbody>
+                 
+                  <tbody class="table-body" id="ground_print"></tbody>
+                
                </table>
             </div>
          </div>    
