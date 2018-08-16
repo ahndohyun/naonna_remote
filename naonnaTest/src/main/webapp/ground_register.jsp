@@ -3,7 +3,15 @@
 <% request.setCharacterEncoding("utf-8"); %>
 
 <% 
-	String admin = (String)request.getAttribute("admin");		
+	String admin = (String)session.getAttribute("admin");		
+	String ground_name = (String)session.getAttribute("groundName");
+	
+	if (session.getAttribute("admin") == null){
+		out.print("<script>");
+		out.print("alert('로그인해주세요')");
+		out.print("location.href='home.do'");
+		out.print("</script>");
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -32,7 +40,8 @@
 	<!-- main contents -->
 
 	<div class="container-content">
-		<jsp:include page="./menu_bar/side_menubar.jsp" flush="true"></jsp:include>
+		<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
+		
 		<!-- start main content -->
 		<div class="main col-sm-8">
 	<div class="inputform container col-sm-12">
@@ -43,7 +52,8 @@
 				<div class="ground-upload form-group">
 		       	   <label for="inputGroundName" class="col-sm-2 control-label">경기장 이름</label>
 			       <div class="col-sm-2">
-     			       <input type="text" class="form-control" name="ground_Name" id="inputGroundName" placeholder="경기장이름">
+     			       <input type="text" class="form-control" name="ground_Name" id="inputGroundName" value=<%=ground_name%>
+     			        placeholder="경기장이름">
     		       </div>
    		       	   <label for="inputGroundManagerName" class="col-sm-2 control-label">경기장관리자</label>
 			       <div class="col-sm-2">

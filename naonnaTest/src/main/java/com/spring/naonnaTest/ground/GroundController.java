@@ -137,7 +137,8 @@ public class GroundController {
 		
 		ModelAndView result = new ModelAndView();
 		result.addObject("vo", vo);
-		result.setViewName("ground_search");
+		//result.setViewName("ground_search");
+		result.setViewName("manager_index");
 		System.out.println("추가 complete??");
 		return result;		
 		

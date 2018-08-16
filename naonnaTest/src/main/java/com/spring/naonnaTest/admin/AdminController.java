@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class AdminController {
@@ -26,27 +29,7 @@ public class AdminController {
 	public String insert_Admin (AdminVO vo, HttpServletResponse response ) throws Exception {	
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		
-		/*String count = adminService.isAdmin(vo);
-		if (count == "abc" )
-		{
-			out.println("<script>");
-			out.println("alert('관리자 PIN번호 통과.');");
-			out.println("</script>");			
-			out.close();
-			
-			
-		}
-		else
-		{
-			out.println("<script>");
-			out.println("alert('PIN번호 틀림 확인바랍니다.');");
-			out.println("location.href='../home.do';");
-			out.println("</script>");
-			out.close();
-						
-		}*/
-		
+				
 		int check = adminService.insertAdmin(vo);	
 		
 		System.out.println("check :"+ check);
@@ -73,31 +56,25 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="login_a.do" , method = RequestMethod.POST)
-	public String AdminLogin(AdminVO vo, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+	public ModelAndView AdminLogin(AdminVO vo, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		
+		ModelAndView aaa = new ModelAndView();
+		AdminVO man = null;
 		int check = adminService.userCheck(vo);
+		System.out.println("check :" + check);
 		if(check ==1 ) {
 			
-			AdminVO adminvo = adminService.getAdminInfo(vo);
-			session.setAttribute("admin", adminvo.getGround_admin());
-			session.setAttribute("groundName", adminvo.getGround_name());
-			out.println("<script>");
-			out.println("location.href='manager.do'");
-			out.println("</script>"); 
 			
-			/*if(adminService.isAdmin(vo)) {
-				session.setAttribute("admin", adminvo.getGround_admin());
-				session.setAttribute("groundName", adminvo.getGround_name());
-				out.println("<script>");
-				out.println("location.href='..manager.do'");
-				out.println("</script>"); 
-			}else{
-				out.println("<script>");
-  				out.println("location.href='..home.do '");
-  				out.println("</script>"); 
-			}*/
+			man = adminService.getAdminInfo(vo);
+			System.out.println("man_관리자 :" + man.getGround_admin());
+			System.out.println("man_그라운드네임 :" + man.getGround_name());
+			
+			session.setAttribute("admin", man.getGround_admin());
+			session.setAttribute("groundName", man.getGround_name());
+			aaa.setViewName("manager_index");
+			
+			
 		}
 		else if(check == 0){
 			out.println("<script>");
@@ -112,7 +89,7 @@ public class AdminController {
 			out.println("</script>");
 			out.close();
 		}
-		return null;
+		return aaa;
 		
 		
 	}
@@ -131,6 +108,11 @@ public class AdminController {
         return map;
     }
 	
+	@RequestMapping(value="logout_a.do")
+	public ModelAndView AdminLogout( HttpSession session)  {
+		session.invalidate();
+		ModelAndView mv = new ModelAndView("main");
+		return mv;
 		
-
+	}
 }
