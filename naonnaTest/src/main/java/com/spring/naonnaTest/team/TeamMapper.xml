@@ -63,6 +63,11 @@
       INSERT INTO  people VALUES
          (#{id, javaType=String},#{name, jdbcType=VARCHAR},#{job},#{address},#{bloodtype})   
     </insert>
+    
  -->
+ 
+    <select id="atMatchDetail" parameterType="String" resultMap="teamResultMap">
+      SELECT * FROM team where team_name = #{team_name, javaType=String}
+   </select>
 
 </mapper>

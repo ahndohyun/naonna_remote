@@ -1,6 +1,10 @@
 package com.spring.naonnaTest.matching;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.spring.naonnaTest.user.UserVO;
 
 @Controller
 public class MatchingController {
@@ -84,15 +86,24 @@ public class MatchingController {
 	
 	@RequestMapping(value = "/go_matchingDetail.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public ModelAndView go_MatchDetail(String matchingID) {
-//		matchingService.makeMatching(vo);
 		ModelAndView mnv = new ModelAndView();
-		
-		System.out.println(matchingID);		
+		MatchingVO vo = matchingService.matchDetail(matchingID);
 		
 		try {
-			mnv.addObject("matchingID", matchingID);
+			System.out.println("vo.getMatchLocation() = " + vo.getMatchLocation());
+			System.out.println("vo.getHomeTeam() = " + vo.getHomeTeam());
+			System.out.println("vo.getPlayDate() = " + vo.getPlayDate());
+			System.out.println("vo.getMatchingID() = " + vo.getMatchingID());
+			System.out.println(vo.getPlayDate());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			String playDate = sdf.format(vo.getPlayDate());
+			mnv.addObject("homeTeam", vo.getHomeTeam());
+			mnv.addObject("matchingID", vo.getMatchingID());
+			mnv.addObject("people", vo.getPeople());
+			mnv.addObject("playDate", playDate);
+			mnv.addObject("matchLocation", vo.getMatchLocation());
+			mnv.addObject("matFin", vo.getMatFin());
 			mnv.setViewName("matching_detail");
-
 		}
 		catch (Exception e){
 			System.out.println("first() mapper : " + e.getMessage());
@@ -101,21 +112,37 @@ public class MatchingController {
 		return mnv;
 	}
 	
-	@RequestMapping(value = "/printUserInfo.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/matching_detail.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String PrintUserCont(String forPerson) {
-		UserVO vo = userService.printUser(forPerson);
+	public String PrintUserCont(String matchingID, HttpServletRequest request) {
+		MatchingVO vo = matchingService.matchDetail(matchingID);
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
 			str = mapper.writeValueAsString(vo);
+			System.out.println("vo.getHomeTeam() = " + vo.getHomeTeam());
+			request.setAttribute("homeTeam", vo.getHomeTeam());
 			System.out.println("str=" + str);
 		} catch (Exception e) {
 			System.out.println("first() mapper : " + e.getMessage());
 		}
 
 		return str;
+	}
+	
+	@RequestMapping(value = "/matchFinish.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int PrintUserCont(String matchingID) {
+		try {
+			matchingService.finishMatch(matchingID);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+		
+		return 1;
 	}
 	
 }

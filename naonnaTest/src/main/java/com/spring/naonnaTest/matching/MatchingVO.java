@@ -12,9 +12,8 @@ public class MatchingVO {
 	private String groundName;
 	private String matchLocation;
 	private Date playDate;
-	private int score;
 	private int people;
-	private int finish;
+	private int matFin;
 	
 	public String getMatchingID() {
 		return matchingID;
@@ -52,24 +51,19 @@ public class MatchingVO {
 	public void setPlayDate(Date playDate) {
 		this.playDate = playDate;
 	}
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
-	}
 	public int getPeople() {
 		return people;
 	}
 	public void setPeople(int people) {
 		this.people = people;
 	}
-	public int getFinish() {
-		return finish;
+	public int getMatFin() {
+		return matFin;
 	}
-	public void setFinish(int finish) {
-		this.finish = finish;
+	public void setMatFin(int matFin) {
+		this.matFin = matFin;
 	}
+	
 
 	
 }

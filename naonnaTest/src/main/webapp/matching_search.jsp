@@ -336,6 +336,21 @@ button[name="create"], [name="reset"]{
 					var da = d.getDate();
 					var h = d.getHours();
 					var mi = d.getMinutes();
+					if(m < 10) {
+						m = "0" + m;
+					}
+					var da = d.getDate();
+					if(da < 10) {
+						da = "0" + da;
+					}
+					var h = d.getHours();
+					if(h < 10) {
+						h = "0" + h;
+					}
+					var mi = d.getMinutes();
+					if(mi < 10) {
+						mi = "0" + mi;
+					}
 					
 					var output = '';
 					output += '<tr>';
@@ -497,7 +512,7 @@ button[name="create"], [name="reset"]{
       									
       									
       									<tr class="table_row">
-      										<td class="table_menu">매칭인원</td>
+      										<td class="table_menu">초기 인원</td>
       										<td class="table_contents"><input type="number" name="people" placeholder="Enter Matching Population" required></td>
       									</tr>
       								</table>
