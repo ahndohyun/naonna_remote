@@ -26,22 +26,26 @@ CREATE TABLE ground_soccer (
 
 
 create table team (
-team_name VARCHAR2(100) primary key,
-nickname VARCHAR2(150),
-age VARCHAR2(200),
-emblem VARCHAR2(200),
-ability VARCHAR2(200),
-intro VARCHAR2(200),
-number_team NUMBER,
-area VARCHAR2(200)
+    team_name VARCHAR2(100) primary key,
+    nickname VARCHAR2(150),
+    age VARCHAR2(200),
+    emblem VARCHAR2(200),
+    ability VARCHAR2(200),
+    intro VARCHAR2(200),
+    number_team NUMBER,
+    area VARCHAR2(200)
 );
 
 CREATE TABLE matching (
-	matchingID VARCHAR2(50) NOT NULL, /* 매칭제목 */
-	hometeam VARCHAR2(20) NOT NULL, /* 팀이름 */
+	matchingID VARCHAR2(100) NOT NULL, /* 매칭제목 */
+	hometeam VARCHAR2(100) NOT NULL, /* 팀이름 */
 	match_location varchar2(50) NOT NULL, /* 위치 */
 	play_date DATE NOT NULL, /* 날짜 */
-	people NUMBER /* 0X0 인원 */
+	people NUMBER, /* 0X0 인원 */
+    awayteam varchar2(100),
+    matFin number
+    ground_name varchar2(100),
+    
 );
 
 CREATE TABLE booking (
@@ -67,3 +71,23 @@ CREATE TABLE user_info (
    	user_photo varchar2(200),
 	City VARCHAR2(30) /* 시도 */
 );
+
+CREATE TABLE MESSAGE (
+    GETPEOPLE VARCHAR2(100),
+    SENDPEOPLE VARCHAR2(100),
+    MATCHINGID VARCHAR2(100),
+    MESSAGE NUMBER,  		/*1번 매칭신청, 2번 팀신청 */
+    CONFIRM NUMBER,
+    PEOPLE NUMBER,
+    TEAM_NAME VARCHAR2(100),
+    GROUND_NAME VARCHAR2(100)
+);
+
+select * from user_info;
+select * from team;
+select * from matching;
+drop table team;
+drop table user_info;
+drop table booking;
+drop table ground_soccer;
+drop table matching;

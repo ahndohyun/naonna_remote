@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -97,6 +99,24 @@ public class TeamController {
 		result.setViewName("team_detail");
 		System.out.println("불러오기  complete??");
 		return result;
+	}
+	
+	@RequestMapping(value = "/teamOnMatch.do",  method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody		 	
+	public String teamOnMatch(String team_name) {
+		TeamVO vo = teamService.atMatchDetail(team_name);
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			str = mapper.writeValueAsString(vo);
+			System.out.println("str=" + str);
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+		
+		return str;
 	}
 	
 }

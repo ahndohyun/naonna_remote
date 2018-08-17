@@ -7,4 +7,6 @@ public interface MatchingMapper {
 	ArrayList<MatchingVO> getMatchingList();
 	ArrayList<MatchingVO> searchMatchingList(MatchingVO vo);
 	void insertMatching(MatchingVO vo);
+	MatchingVO detailMatching(String matchingID);
+	void matchFin(String matchingID);
 }

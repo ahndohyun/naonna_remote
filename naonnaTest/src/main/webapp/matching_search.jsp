@@ -224,14 +224,14 @@
 			$('input[name="datetimes"]').daterangepicker({
 
 				singleDatePicker : true,
-				timePicker: true,
+// 				timePicker: true,
 				showDropdowns : true,
 				startDate : moment().startOf('hour'),
 				minDate : currentDate,
 				//    		     endDate: moment().startOf('hour').add(0, 'hour'),
 				locale : {
-					format : 'YYYY/M/DD hh:mm'
-				//         		    	format: 'YYYY/M/DD'
+// 					format : 'YYYY/M/DD hh:mm'
+				        		    	format: 'YYYY/MM/DD'
 
 				}
 			});
@@ -272,13 +272,26 @@
 						var d = new Date(match.playDate);
 						var y = d.getFullYear();
 						var m = (d.getMonth()+1);
+						if(m < 10) {
+							m = "0" + m;
+						}
 						var da = d.getDate();
+						if(da < 10) {
+							da = "0" + da;
+						}
 						var h = d.getHours();
+						if(h < 10) {
+							h = "0" + h;
+						}
 						var mi = d.getMinutes();
+						if(mi < 10) {
+							mi = "0" + mi;
+						}
 						
 						
 						output += '<tr>';
-						output += '<td id="match_want">' + match.matchingID + '</td>';
+// 						output += '<td onclick="match_want('+match.matchingID+')">' + match.matchingID + '</td>';
+						output += '<td>' + "<a href='go_matchingDetail.do?matchingID="+ match.matchingID + "'>"+ match.matchingID +'</a></td>';
 						output += '<td>' + match.matchLocation + '</td>';
 						output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
 						output += '<td>' + match.homeTeam + '</td>';
@@ -297,13 +310,18 @@
 			});
 		});
 
-		$(document).on('click', '#match_want', function() {
-			alert("ㅇㅇㅇ");
-		});
+// 		$(document).on('click', '#match_want', function() {
+// 			alert(this.text());
+//  			location.href="go_matchingDetail.do?matchingID="+$('#match_want').text();
+// 		});
+
+		
 
 		$('#search_matching').click(function(){
-			var matchingCity = $('#city').val();
+			var matchingCity = $('#city_Search').val();
 	  		var matchDate = new Date($('#datePick').val());
+	  		matchDate.setHours(0);
+	  		matchDate.setMinutes(0);
 	  		search_match(matchDate, matchingCity);
 		});
 		
@@ -343,6 +361,21 @@
 					var da = d.getDate();
 					var h = d.getHours();
 					var mi = d.getMinutes();
+					if(m < 10) {
+						m = "0" + m;
+					}
+					var da = d.getDate();
+					if(da < 10) {
+						da = "0" + da;
+					}
+					var h = d.getHours();
+					if(h < 10) {
+						h = "0" + h;
+					}
+					var mi = d.getMinutes();
+					if(mi < 10) {
+						mi = "0" + mi;
+					}
 					
 					var output = '';
 					output += '<tr>';
@@ -351,7 +384,7 @@
 					output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
 					output += '<td>' + match.homeTeam + '</td>';
 					output += '<td>' + match.people + '</td>';
-					output += '<td><input type="button" class="btn btn-success" id="match_want">신청</td>';
+// 					output += '<td><input type="button" class="btn btn-success" id="match_want" value="신청"></td>';
 
 					output += '</tr>';
 					console.log("output:" + output);
@@ -367,7 +400,11 @@
 		
 
 	}
-
+		
+	function match_want(tex) {		
+			location.href="go_matchingDetail.do?matchingID="+tex;
+	}
+	
 </script>
 </head>
 
@@ -486,7 +523,7 @@
 											</td>
       									</tr>
       									<tr class="table_row">
-      										<td class="table_menu">매칭인원</td>
+      										<td class="table_menu">초기 인원</td>
       										<td class="table_contents"><input type="number" name="people" placeholder="Enter Matching Population" required></td>
       									</tr>
       								</table>

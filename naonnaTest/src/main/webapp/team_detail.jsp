@@ -28,6 +28,10 @@
   	border : 1px solid black;
   	margin-top : 47px;
   }
+  .team-name-container img {
+  	width : 200px;
+  	height : 200px;
+  }
   .page_name {
   	border-bottom : 1px solid black;
   }
@@ -88,8 +92,14 @@
         <div class="page_name"><h2>팀 상세 보기</h2></div>
         <div class="team-detail-container col-sm-12">
            <div class="team-detail-header">
+<<<<<<< HEAD
               <div class="team-name-container col-sm-4"><h3 id="team-name">${vo.team_name}</h3>
               	<img class="team_emblem" src="<spring:url value='./image/${vo.emblem}' />"/>
+=======
+              <div class="team-name-container col-sm-4">
+              <h3 id="team-name">${vo.team_name}</h3>
+              	<img src="<spring:url value='./image/${vo.emblem}' />"/>
+>>>>>>> db8e191b0baf73c9265c12a9c0051dd485b9256e
               </div>
            </div>
            <div class="container team-detail-contents col-sm-8">
