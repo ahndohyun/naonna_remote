@@ -5,8 +5,6 @@ body {
     color: black;
     max-width: 100%;
 }
-
-
 /* start top menu */
 .top_menu {
     font-family: Montserrat, sans-serif;
@@ -18,7 +16,7 @@ body {
     background-color: #32435F;
 }
 .collapse{
-  width:96%;
+  width:98%;
 }
 .navbar-brand{
   color: white !important;
@@ -30,6 +28,11 @@ body {
 	margin-top:5px;
 	display:inline-block;
 }
+.firstMenu-logout{
+	color:white !important;
+	margin-top:20px;
+	display:inline-block;
+}
 .firstMenu:hover{
 	color: white !important;
     background : red !important;
@@ -37,15 +40,12 @@ body {
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
 	background-color : red;	
 }
-
 .secondMenu{
 	color:black !important;
 }
 .secondMenu:hover{
 	color:black !important;
 }
-
-/* side menu bar end */
 
 /* The Modal (background) */
 #LoginModal {
@@ -121,4 +121,3 @@ input[name=email], input[name=psw_A], input[name=psw_repeat], input[name=pin], i
 input[name=email]{
 	 margin-left: -40px;
 }
-

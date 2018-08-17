@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>부가정보 입력 폼</title>
 	
-	<style>
+	<!-- <style>
 		.add_info{
 			width: 600px;
 			height: 600px;
@@ -75,11 +75,11 @@
 		  	margin-right: 15px;
 		  	margin-top: 10px;
 		}
-	</style>
+	</style> -->
 </head>
 
 <body>
-	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+	
 	<div class="container col-sm-8 col-sm-offset-2">
 	  <div class="container-fluid form-box">
 		<form class="form-horizontal" action="insertUserInfo.do" method = "POST">

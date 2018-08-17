@@ -237,11 +237,11 @@
 <body>
   <!-- Top menu -->
   <nav class="top_menu navbar-default navbar-fixed-top">
+  
     <!-- Logo div -->
     <div class="navbar-header">
       <a class="navbar-brand" href="home.do">NAONNA</a>
     </div>
-    <!-- Logo div end -->
 
     <!-- Main menu -->
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -271,11 +271,10 @@
         <li>
         	<a href="#LoginModal" name="login_btn" data-toggle="modal" class="firstMenu" id="login-button">Login</a>
 			<!-- <button id="login-button" class="firstMenu" type="button" data-toggle="modal" data-target="#LoginModal" name="login_btn">Login</button> -->
-			<div id="kakao-logout-group">로그아웃</div>
+			<div id="kakao-logout-group" class="firstMenu-logout">로그아웃</div>
         </li>
       </ul>
     </div>
-    <!-- Main menu end -->
   </nav>
   
   <!-- Modal -->

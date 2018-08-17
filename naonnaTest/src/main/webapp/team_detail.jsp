@@ -83,7 +83,6 @@
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
 	<!-- main contents -->
 	<div class="container-content">
-		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
    
 	<!-- start main content -->
      <div class="main col-sm-7"><br>
@@ -92,14 +91,9 @@
         <div class="page_name"><h2>팀 상세 보기</h2></div>
         <div class="team-detail-container col-sm-12">
            <div class="team-detail-header">
-<<<<<<< HEAD
-              <div class="team-name-container col-sm-4"><h3 id="team-name">${vo.team_name}</h3>
-              	<img class="team_emblem" src="<spring:url value='./image/${vo.emblem}' />"/>
-=======
               <div class="team-name-container col-sm-4">
               <h3 id="team-name">${vo.team_name}</h3>
               	<img src="<spring:url value='./image/${vo.emblem}' />"/>
->>>>>>> db8e191b0baf73c9265c12a9c0051dd485b9256e
               </div>
            </div>
            <div class="container team-detail-contents col-sm-8">

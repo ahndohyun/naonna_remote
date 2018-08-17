@@ -2,7 +2,17 @@
 
 <%@ page import="java.util.*" %>  
 <%@ page import="com.spring.naonnaTest.ground.*" %> 
- 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<% request.setCharacterEncoding("utf-8"); %> 
+
+<%
+String admin = (String)session.getAttribute("admin");
+String ground_name = (String)session.getAttribute("groundName");
+
+%>
+
+
  <% 
  	GroundVO vo = (GroundVO)request.getAttribute("vo"); 	
  %>
@@ -395,11 +405,12 @@
   <script>
  
   function res() {
-      location.href = "ground_info.do"
+     // location.href = "ground_info.do"
+	 history.go(-1);
    }
   
   function res2() {
-	  location.href = "ground_updating.do?ground_name="+${vo.ground_Name}
+	  location.href = "ground_updating.do?ground_name="+ <%=ground_name%>
 	// location.href = "ground_updating.do?"
   }
 
@@ -410,8 +421,11 @@
 <!-- Top menu -->
     <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
    <!-- main contents -->
-
-   <div class="container-content">
+   
+	<div class="container-content">
+	<%if(session.getAttribute("admin") != null){ %>
+		<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
+	<%}%>
 
 <!-- start main content -->
   <div class="main col-sm-8"><br>
@@ -421,17 +435,18 @@
       <div class="ground-pics col-sm-6">
        <div class="mySlides">
           <div class="numbertext">1 / 3</div>
-             <img src="https://gif.fmkorea.com/files/attach/new/20161213/486616/47017249/533826390/223e96e691e76354f671b407d997f2d2.gif" style="width:100%">
+             <img src="<spring:url value='/image/${vo.photo1}' />" style="width:100%" />            
            </div>
 
            <div class="mySlides">
              <div class="numbertext">2 / 3</div>
-             <img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201704/21/img_20170421085646_f1d41d88.jpg" style="width:100%">
+             <img src="<spring:url value='/image/${vo.photo2}' />" style="width:100%" />
            </div>
 
            <div class="mySlides">
              <div class="numbertext">3 / 3</div>
-             <img src="http://kstatic.inven.co.kr/upload/2016/05/15/bbs/i13095811292.jpg" style="width:100%">
+             <img src="<spring:url value='/image/${vo.photo3}' />" style="width:100%" />
+
            </div>
     
            <a class="prev" onclick="plusSlides(-1)">❮</a>
@@ -521,7 +536,9 @@
   <div class="button-container">
   	<div class="payment"><button class="btn btn-success">결제하기</button></div>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
+  	<%if(session.getAttribute("admin") !=null){ %>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
+  	<%} %>
   </div>
   </div>
 </div>

@@ -413,7 +413,6 @@
 	
 	<!-- main contents -->
 	<div class="container-content">
-		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>	

@@ -42,9 +42,8 @@
 	</style>
 </head>
 	<body>
-		<jsp:include page="./menu_bar/top_nav.jsp" flush="true"></jsp:include>
+		<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
 		<div class="container-content">
-			<jsp:include page="./menu_bar/side_menubar.jsp" flush="true"></jsp:include>
 			<div class="main col-sm-8">
 				<div class="writing-form col-sm-12">
 				<div class="writing-headname">

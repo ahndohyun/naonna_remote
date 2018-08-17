@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<<<<<< HEAD
-=======
+
 
 <% 
 	String admin = (String)request.getAttribute("admin");		
 	String ground_name = (String)request.getAttribute("groundName");
+	
+	if (session.getAttribute("admin") == null){
+		out.print("<script>");
+		out.print("alert('로그인해주세요');");
+		out.print("location.href='home.do'");
+		out.print("</script>");
+	}
 %>
->>>>>>> 44a1830f0f43b73fd8ec8417437533951795fa5a
+
 <html lang="utf-8">
 
 <head>
@@ -91,7 +97,6 @@ printGround();
    <!-- main contents -->
 
    <div class="container-content">
-      <jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
   <!-- start main content -->
    
    
@@ -139,8 +144,8 @@ printGround();
             <div class="show-book row col-sm-12">
                <div class="content-title col-sm-12">
                   <h3 class="bookingtitle content-title-name">운동장 정보</h3>
-                  <a href="ground_detail.jsp" class="right mov-btn btn btn-success">바로가기</a>
-                  <button class="btn btn-success" onclick="res()">경기장 등록</button>
+                  <button class="right mov-btn btn btn-success" onclick="res()">경기장 등록</a>
+                  
                </div>
                <table class="table table-straped table-hover">
                   <thead>
@@ -156,8 +161,9 @@ printGround();
                         
                      </tr>
                   </thead>
-                  <tbody class="table-body" id="ground_print">
-					</tbody>
+                 
+                  <tbody class="table-body" id="ground_print"></tbody>
+                
                </table>
             </div>
          </div>    

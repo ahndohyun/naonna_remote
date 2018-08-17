@@ -78,11 +78,10 @@
 </head>
 
 <body>
-	<jsp:include page="./menu_bar/top_nav.jsp" flush="true"></jsp:include>
+	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
 	<!-- main contents -->
 
 	<div class="container-content">
-		<jsp:include page="./menu_bar/side_menubar.jsp" flush="true"></jsp:include>
 		<!-- start main content -->
 		<div class="main col-sm-9">
 			<div class="player-board-container col-sm-12">

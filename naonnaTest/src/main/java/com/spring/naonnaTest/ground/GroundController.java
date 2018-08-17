@@ -145,7 +145,7 @@ public class GroundController {
 	}
 	
 	@RequestMapping(value = "/ground_updating.do", method = RequestMethod.GET)
-	public ModelAndView That_Ground_Updating(String ground_Name ) {
+	public ModelAndView That_Ground_Updating(String ground_name ) {
 		GroundVO vo = null;
 		String Ground_Name = vo.getGround_Name();
 		System.out.println("Ground_Name = " + Ground_Name);

@@ -5,6 +5,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <% request.setCharacterEncoding("utf-8"); %> 
+<%
+String admin = (String)session.getAttribute("admin");		
+String ground_name = (String)session.getAttribute("groundName");
+
+if (session.getAttribute("admin") == null){
+	out.print("<script>");
+	out.print("alert('로그인해주세요');");
+	out.print("location.href='home.do'");
+	out.print("</script>");
+}
+
+%>
 
  <% 
  	GroundVO vo = (GroundVO)request.getAttribute("vo"); 	
@@ -32,11 +44,10 @@
 	}
 </style>
 <body>
-    <jsp:include page="./menu_bar/top_nav.jsp" flush="true"></jsp:include>
+    <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
 	<!-- main contents -->
 
 	<div class="container-content">
-		<jsp:include page="./menu_bar/side_menubar.jsp" flush="true"></jsp:include>
 		<!-- start main content -->
 		<div class="main col-sm-8">
 	<div class="inputform container col-sm-12">

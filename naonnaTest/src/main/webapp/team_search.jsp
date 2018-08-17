@@ -292,7 +292,6 @@ button[name="create"], [name="reset"]{
 	<!-- main contents -->
 
 	<div class="container-content">
-		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
    
    <!-- start main content -->
    

@@ -33,7 +33,6 @@
 	<!-- main contents -->
 
 	<div class="container-content">
-		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
 		<div class="main col-sm-8">
 		  <div class="col-sm-offset-4">
 			<h1 id="page_title">팀등록 </h1>
