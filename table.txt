@@ -76,18 +76,28 @@ CREATE TABLE MESSAGE (
     GETPEOPLE VARCHAR2(100),
     SENDPEOPLE VARCHAR2(100),
     MATCHINGID VARCHAR2(100),
-    MESSAGE NUMBER,  		/*1¹ø ¸ÅÄª½ÅÃ», 2¹ø ÆÀ½ÅÃ» */
+    MESSAGE varchar2(500),  		/*1¹ø ¸ÅÄª½ÅÃ», 2¹ø ÆÀ½ÅÃ» */
     CONFIRM NUMBER,
     PEOPLE NUMBER,
     TEAM_NAME VARCHAR2(100),
-    GROUND_NAME VARCHAR2(100)
+    GROUND_NAME VARCHAR2(100),
+    message_date date
+);
+
+CREATE TABLE PLAYER (
+    NICKNAME VARCHAR2(50),
+    MATCHINGid VARCHAR2(200),
+    PEOPLE NUMBER
 );
 
 select * from user_info;
 select * from team;
 select * from matching;
+select * from message;
+drop table message;
 drop table team;
 drop table user_info;
 drop table booking;
 drop table ground_soccer;
 drop table matching;
+select sysdate from dual;

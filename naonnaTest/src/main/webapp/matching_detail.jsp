@@ -114,6 +114,29 @@
 		output += "<tr><td>시간</td><td>" + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + "</td></tr>";
 		output += "<tr><td>참가자</td><td>" + "${requestScope.homeTeam}" +"팀 &nbsp" + "${requestScope.people}" +"명" +"</td></tr>";	
 		$('#matchingInfo').html(output);
+		
+		$.ajax({
+	   			url:'/naonnaTest/printPlayer.do',     			
+	   			type:'POST',
+	   			dataType: "json",
+	   			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+	   			data : {
+	   					'matchingID' : '${requestScope.matchingID}'
+	   				},
+	   			
+	   			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+	   			success:function(data) {
+	   				console.log("용병 =" + data);
+	   				output = "";
+	   				$.each(data, function(index, player) {
+	   					output += "<tr><td>참여자 : </td><td>" + player.nickname +" 외 " + player.people + "명" + "</td></tr>";
+	   				});
+	   				$('#playerInfo').html(output);
+	   			},
+	   			error:function() {
+	   				alert("새로고침을 눌러주세요.");			
+	   			}
+	       });
 
 		team_detail("${requestScope.homeTeam}");
 		
@@ -190,7 +213,7 @@
 				$('#teamName').text("");
 				$('#ability').text("");
 				$('#area').text("");
-				$('#teamName').text("팀명 : " + data.team_name);
+				$('#teamName').text("개최 팀 : " + data.team_name);
 				$('#ability').text("실력 : " + data.ability);
 				$('#area').text("주요 활동 지역 : " + data.area);
 				console.log(data);
@@ -243,6 +266,10 @@
                          <table class="table table-striped" id="matchingInfo">
 								<!-- 자바스크립트 출력 -->
                          </table>
+                         <table class="table table-striped" id="playerInfo">
+								<!-- 자바스크립트 출력 -->
+                         </table>
+                         
                       </div>
 
 	                      <select class="btn btn-primary" id="selectPeople" name="people">

@@ -13,14 +13,22 @@
       <result property="confirm" column="confirm"/>
       <result property="people" column="people"/>
       <result property="teamName" column="team_name"/>
-      <result property="groundName" column="ground_name"/>     
+      <result property="groundName" column="ground_name"/>
+      <result property="messageDate" column="message_Date"/>  
    </resultMap>
    
  	<!--  id는 Mapper.java(여기서 PeopleMapper.java)에 동일하게 사용해야된다.  -->
  
   
 	<insert id="playerMSG" parameterType="com.spring.naonnaTest.message.MessageVO">
-		insert into message (getpeople, sendpeople, matchingID, message, people) values ( (select nickname from team where team_name = #{teamName}), #{sendPeople}, #{matchingID}, 1, #{people})
+		insert into message (getpeople, sendpeople, matchingID, message, people, message_Date) values ( (select nickname from team where team_name = #{teamName}), #{sendPeople}, #{matchingID}, #{message}, #{people}, sysdate)
 	</insert>
-
+	 
+	<select id="countMsg" parameterType="String" resultType="int">
+		select count(*) from message where getPeople = #{nickname} and confirm is null
+	</select>
+	
+	<select id="printMsg" resultMap="MessageResultMap">
+		select * from message where getPeople = #{nickname} order by message_date
+	</select>
 </mapper>

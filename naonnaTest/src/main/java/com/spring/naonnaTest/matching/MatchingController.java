@@ -60,6 +60,26 @@ public class MatchingController {
 		return str;
 	}
 	
+	@RequestMapping(value = "/printPlayer.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
+	public String printPlayer(String matchingID) {
+		System.out.println(matchingID);
+		
+		ArrayList<PlayerVO> list = matchingService.playerPrint(matchingID);
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			str = mapper.writeValueAsString(list);
+			System.out.println("str=" + str);
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+		
+		return str;
+	}
+	
 	@RequestMapping(value = "/makeMatch.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	public ModelAndView makeMatch(MatchingVO vo) {
 		matchingService.makeMatching(vo);
@@ -136,6 +156,20 @@ public class MatchingController {
 	public int PrintUserCont(String matchingID) {
 		try {
 			matchingService.finishMatch(matchingID);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+		
+		return 1;
+	}
+	
+	@RequestMapping(value = "/confirmPlayer.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int confirmPlayer(PlayerVO playerVO) {
+		try {
+			matchingService.addPlayer(playerVO);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

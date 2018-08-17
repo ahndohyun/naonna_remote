@@ -44,6 +44,20 @@ public class MatchingServiceImpl implements MatchingService	{
 	}
 	
 	@Override
+	public ArrayList<PlayerVO> playerPrint(String matchingID) {
+		ArrayList<PlayerVO> matchingList = null;
+		try {
+			MatchingMapper matchingMapper = sqlSession.getMapper(MatchingMapper.class);
+			matchingList = matchingMapper.printPlayers(matchingID);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+		return matchingList;
+	}
+	
+	@Override
 	public void makeMatching(MatchingVO vo) {		
 		MatchingMapper matchingMapper = sqlSession.getMapper(MatchingMapper.class);
 		matchingMapper.insertMatching(vo);
@@ -65,6 +79,19 @@ public class MatchingServiceImpl implements MatchingService	{
 		try {
 			MatchingMapper matchingMapper = sqlSession.getMapper(MatchingMapper.class);
 			matchingMapper.matchFin(matchingID);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+	}
+	
+	@Override
+	public void addPlayer(PlayerVO vo) {
+		try {
+			MatchingMapper matchingMapper = sqlSession.getMapper(MatchingMapper.class);
+			matchingMapper.addPlayer(vo);
+			matchingMapper.confirmMatchMessage(vo);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

@@ -99,7 +99,7 @@
    </insert>
    
     <insert id ="insertBookingGround" parameterType = "com.spring.naonnaTest.ground.GroundVO" >
-   	insert into booking (ground_name, start_time, end_time) values (#{ground_Name}, sysdate-2, sysdate-1);
+   	insert into booking (ground_name, start_time, end_time) values (#{ground_Name}, sysdate-2, sysdate-1)
    </insert>
     
    <!-- 

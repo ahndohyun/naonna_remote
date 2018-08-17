@@ -79,5 +79,10 @@ public class HomeController {
 		return "qna";
 	}
 	
+	@RequestMapping(value = "/messageHome.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public String go_message() {
+		return "message";
+	}
+	
 	
 }

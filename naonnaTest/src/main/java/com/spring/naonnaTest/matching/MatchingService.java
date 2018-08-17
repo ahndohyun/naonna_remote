@@ -9,4 +9,6 @@ public interface MatchingService {
 	public void makeMatching(MatchingVO vo);
 	MatchingVO matchDetail(String matchingID);
 	public void finishMatch(String matchingID);
+	public void addPlayer(PlayerVO vo);
+	ArrayList<PlayerVO> playerPrint(String matchingID);
 }

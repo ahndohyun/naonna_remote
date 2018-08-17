@@ -242,8 +242,7 @@ button[name="create"], [name="reset"]{
 					
 					$('#print_match').html('');		//기존 것 날려주고..		
 					var output = '';
-					$.each(data, function(
-							index, match) {		//새로 뿌리기
+					$.each(data, function(index, match) {		//새로 뿌리기
 						var d = new Date(match.playDate);
 						var y = d.getFullYear();
 						var m = (d.getMonth()+1);

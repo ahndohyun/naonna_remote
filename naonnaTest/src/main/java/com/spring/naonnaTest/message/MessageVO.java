@@ -1,5 +1,7 @@
 package com.spring.naonnaTest.message;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,11 +10,12 @@ public class MessageVO {
 	private String getPeople;
 	private String sendPeople;
 	private String matchingID;
-	private int message;
+	private String message;
 	private int confirm;
 	private int people;
 	private String teamName;
 	private String groundName;
+	private Date messageDate;
 	
 	public String getGetPeople() {
 		return getPeople;
@@ -32,10 +35,10 @@ public class MessageVO {
 	public void setMatchingID(String matchingID) {
 		this.matchingID = matchingID;
 	}
-	public int getMessage() {
+	public String getMessage() {
 		return message;
 	}
-	public void setMessage(int message) {
+	public void setMessage(String message) {
 		this.message = message;
 	}
 	public int getConfirm() {
@@ -62,4 +65,11 @@ public class MessageVO {
 	public void setGroundName(String groundName) {
 		this.groundName = groundName;
 	}
+	public Date getMessageDate() {
+		return messageDate;
+	}
+	public void setMessageDate(Date messageDate) {
+		this.messageDate = messageDate;
+	}
+	
 }
