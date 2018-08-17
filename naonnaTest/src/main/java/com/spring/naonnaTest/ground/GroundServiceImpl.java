@@ -72,5 +72,21 @@ public class GroundServiceImpl implements GroundService{
 		
 	}
 	
+	@Override
+	public GroundVO getAdminGroundJson(String ad){
+		GroundVO admingroundList = new GroundVO();
+		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+		try {
+			admingroundList = groundMapper.getAdminGroundList(ad);
+			
+		}
+		catch(Exception e) {
+			e.getStackTrace();
+			e.getMessage();
+		}
+		
+		return admingroundList;
+		
+	}
 
 }

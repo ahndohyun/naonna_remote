@@ -33,18 +33,27 @@
 <script>
 $(document).ready(function() {
 function printGround() {
+	
+	
+	var admin = "${sessionScope.admin}"
+		console.log(admin);
+	
 	$('#ground_print').empty();
 	$.ajax({
-		url:'/naonnaTest/getGroundJSON.do',
+		url:'/naonnaTest/getAdminGroundJSON.do',
 		type:'POST',
 		dataType: "json",
 		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-		//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+		data : { 
+					'ground_admin' : admin
+		},
 		success:function(data) {																
 			$.each(data, function(index, ground) {														
 				var output = '';
 				output += '<tr>';
-				output += '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
+				output += '<tr>' + ground.ground_admin + '</th>';
+				output += '<td>' + ground.ground_Name  + '</td>';
+				//output += '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
 				output += '<td>' + ground.ground_addr + '</td>';
 				output += '<td>' + ground.grass + '</td>';
 				output += '<td>' + ground.shower + '</td>';
@@ -65,11 +74,15 @@ function printGround() {
 }
 
 printGround();
-});
-		function res() {
-		    location.href = "ground_regi.do"
-		 }
 
+
+
+
+});
+		
+function res() {
+    location.href = "ground_regi.do"
+ }
 </script>
 <style>
    .content-title-name {
@@ -147,6 +160,7 @@ printGround();
                <table class="table table-straped table-hover">
                   <thead>
                      <tr>
+                     		<th>경기장 관리자</th>
                        		<th>경기장 이름</th>
 							<th>주소</th>
 							<th>인조잔디</th>

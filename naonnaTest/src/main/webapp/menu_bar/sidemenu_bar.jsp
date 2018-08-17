@@ -132,7 +132,7 @@
 	        
 	        
 	        
-	         $('#ground_admin').blur(function(){
+	        $('#ground_admin').blur(function(){
 	        	if($('#ground_admin').val().leng<4){
 	        		$('#adminHelper').text('아이디는 4자이상')
 	        		$('#ground_admin').focus();
@@ -145,23 +145,27 @@
 	          });
 	          
 	          $('#ground_ad_pw').blur(function(){
-	          	if($('#ground_ad_pw').val().leng<4){
+	        	  
+	        	 if($('#ground_ad_pw').val() == ''){       				
+	       			$('#ad_pwHelper').text('비밀번호가 공백입니다.');      		
+	       			$('#ground_ad_pw').focus();
+	       		}	        	  
+	        	 else if($('#ground_ad_pw').val().leng<4){
 	          		$('#ad_pwHelper').text('비밀번호는 4자이상')
 	          		$('#ground_ad_pw').focus();
-	          	}
+	          	}          	
 	          	else{
-	          		$('#ad_pwHelper').text('');
-	          		$('#ground_ad_pin').focus();
+	          		$('#ad_pwHelper').text('');	          		
 	          	}
 	          	  
 	           }); 
 	    	  
 	    	  $('#ground_ad_pin').blur(function(){
-	          	if($('#ground_ad_pin').val().length < 4){
-	          		$('#ad_pinHelper').text('pin번호는 5자리입니다')
+	          	if($('#ground_ad_pin').val().length < 2){
+	          		$('#ad_pinHelper').text('pin번호는 3자리입니다')
 	          		$('#ground_ad_pin').focus();
 	          	}
-	          	else if ($('#ground_ad_pin').val() != 'aaaaa'){            		
+	          	else if ($('#ground_ad_pin').val() != 'aaa'){            		
 	          		$('#ad_pinHelper').text('알려드린 pin번호를 입력하세요');
 	          		$('#ground_ad_pin').focus();
 	          	}
@@ -352,7 +356,7 @@
                   <br/><span id="ad_pwHelper"></span>
                                                     
                   <label for="ground_ad_pin"><b>PIN</b></label>
-                  <input type="text" id="ground_ad_pin" name="ground_ad_pin" placeholder="Enter PIN" required>
+                  <input type="password" id="ground_ad_pin" name="ground_ad_pin" placeholder="Enter PIN" required>
                   <br/><span id="ad_pinHelper"></span>
                                  
                   <label for="ground_name"><b>Ground Name</b></label>

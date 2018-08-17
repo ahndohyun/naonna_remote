@@ -99,9 +99,16 @@
    </insert>
    
     <insert id ="insertBookingGround" parameterType = "com.spring.naonnaTest.ground.GroundVO" >
-   	insert into booking (ground_name, start_time, end_time) values (#{ground_Name}, sysdate-2, sysdate-1);
+   	insert into booking (ground_name, start_time, end_time) values (#{ground_Name}, sysdate-2, sysdate-1)
    </insert>
-    
+   
+   <!--  
+    <select id ="getAdminGroundList" parameterType = "String" resultMap="com.spring.naonnaTest.ground.GroundVO">
+    select * from ground_soccer where ground_admin = #{ground_admin}
+    </select>
+     -->
+     
+     
    <!-- 
    <insert id ="insertGround2" parameterType = "hashmap" >
    	insert into ground_soccer values(#{ground_Name, javaType=String}, #{ground_admin jdbcType=VARCHAR2}, #{ground_addr},#{ground_city},#{grass},#{shower},#{parking},
