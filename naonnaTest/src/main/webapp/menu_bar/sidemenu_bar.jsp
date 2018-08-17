@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 <style>
 	.side-profile {
-		margin-left : 50px;
+		margin: 0 auto;
+		margin-top: 70px;
 	}
 </style>
 
@@ -220,14 +221,11 @@
                   contentType: "application/json; charset=UTF-8",
                   success : function(data) {
                       if (data.cnt > 0) {
-                          
                           alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
                          //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                          // $("#admin").addClass("has-error")
                          // $("#admin").removeClass("has-success")
-                          $("#admin").focus();
-                          
-                      
+                          $("#admin").focus();  
                       } else {
                           alert("사용가능한 아이디입니다.");
                           //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
@@ -235,17 +233,14 @@
                           // $("#admin").removeClass("has-error")
                           $("#password").focus();
                           //아이디가 중복하지 않으면  idck = 1 
-                          idck = 1;
-                          
+                          idck = 1;        
                       }
                   },
-                  error : function(error) {
-                      
+                  error : function(error) {       
                       alert("error : " + error);
                   }
               });
           });
-          
 
            $('#submitbut').click(function () {
              	//아이디공백체크
@@ -270,38 +265,34 @@
        				 $('#joinForm').submit();
        			}       	       	  
                }); 
-          });
-        	             
+          });    	             
 	</script>   
-      
- 
-  
 </head>
 <body>
-  <!-- <div class="container-content"> -->
-    <!-- side menu bar start -->
     <div class="side-profile col-sm-3 col-sm-offset-1">
-      <div class="card sidecard">
-        <img id="profileImage" src="/naonnaTest/resources/a1.jpg" alt="John" style="width:100%">
-        <h1>User Name</h1><br/>
+      <div class="sidecard">
         <!--로그인과 로그아웃 구분하기 하위 메뉴에 히든주기!!!!!!!!!!!!!! -->
 				<p><a href="#" id="myPage"></a></p>
 				<p><a href="#" id="myTeam"></a></p>
 				<p><a href="#" id="matching"></a></p>
 				<p><a href="#" id="booking"></a></p>
 
+
+
+
+
+
+
         <!-- show login modal -->
 				<button id="login-button" type="button" data-toggle="modal" data-target="#LoginModal" name="login_btn">Login</button>
 				<div id="kakao-logout-group">로그아웃</div>
 				
 		<!-- Modal -->
-		
         <div class="modal fade" id="LoginModal" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-
 				
                 <ul class="nav nav-tabs nav-justified" name="login_select">
                   <li class="active"><a data-toggle="tab" href="#login_P">사용자 로그인</a></li>
@@ -315,17 +306,16 @@
                   </div>
                   
 				  <!-- 로그인 부분 -->
-				  <form action="login_a.do" method="post">
                   <div id="login_A" class="tab-pane fade">
-                    <label for="ground_admin"><b>Username</b></label>
-                    <input type="text"  placeholder="Enter ID" name="ground_admin" required>
-                    <label for="ground_ad_pw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="ground_ad_pw" required>
-                    <button type="submit" name="login">Login</button>
-                    <a href="#" data-toggle="modal" data-target="#JoinModal" name="join_btn">Join</a>
+                  	<form action="login_a.do" method="post">
+	                    <label for="ground_admin"><b>Username</b></label>
+	                    <input type="text"  placeholder="Enter ID" name="ground_admin" required>
+	                    <label for="ground_ad_pw"><b>Password</b></label>
+	                    <input type="password" placeholder="Enter Password" name="ground_ad_pw" required>
+	                    <button type="submit" name="login">Login</button>
+	                    <a href="#" data-toggle="modal" data-target="#JoinModal" name="join_btn">Join</a>
+                    </form> 
                   </div>
-                  </form>
-                  
                 </div>
               </div>
             </div>
@@ -362,17 +352,20 @@
                   <label for="ground_name"><b>Ground Name</b></label>
                   <input type="text" id="ground_name" name="ground_name" placeholder="Enter Ground Name"  required>
                   <br/><span id="ground_nameHelper"></span>
+                  
+                  <div class="modal-footer">
+		          	<button type="button" id="submitbut" name="join" >Join</button>
+		          </div>
+		          </form> 
                 </div>
                 </div>
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" id="submitbut" name="join" >Join</button>
-              </div>
-              </form> 
             </div>
           </div>
         </div>
+        
+        
+        
+        
       </div>
     </div>
     <!-- side menu bar end -->
