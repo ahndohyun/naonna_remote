@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -25,171 +25,196 @@
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/naonna_main.css"> --%>
 
   <style>
-  
+  	.main{
+  		
+  	}
      .matching-filter {
-        width : 800px;
-        height : 200px;
-        margin : 45px 45px 45px 150px;
-        padding : 30px 40 0px 30px;
-        border : 1px solid black;
+        height : 180px;
+        margin-top: 30px;
+        margin-left: 100px;
+        padding-bottom: 0px;
+        padding : 20px;
+        background-color : #9C6C87;
+      
+        /* border : 1px solid black; */
      }
-     .matching-filter-name {
-        width : 90%;
-     }
-     
-     .subject-location {
-        margin : 8px 0px 10px 8px;
-        display : block;
-     }
-     
-     .subject-location h3 {
-        color : #252525;
-        display : block;
-        text-align : center;
-        height : 60px;
-        padding : 18px 0;
-        margin : 8px;
-        letter-spacing : 0.8px;
+     .subject-location{
+     	margin-top: 10px;
+        /* text-align: center; */
+        letter-spacing : 5px;
         font-size : 24px;
-        width : 144px;
-     }
+        color : white;
+     } 
      .filter-location {
         display : inline-block;
-        width : 300px;
-        padding : 20px 0px 10px 20px;
-        margin-left : 20px;   
+       
+        margin-top: 30px;
+        margin-left: 80px;
      }
-     
-     .filter-location h4 {
-        font-size : 16px;
-        color : black;
-        display : inline;
-        text-align : center;
-        height : 50px;
-        padding : 17px 0;
-        margin : 8px;
+     .filter-time{
+        display : inline-block;
+        
+        margin-top: 30px;
+        margin-left: 40px;
      }
-     .filter-location form {
-        display :inline;
+     .filter-location h4, .filter-time h4 {
+     	display: inline-block;
+     	font-size: 18px;
+     	letter-spacing:8px;
+     	margin-right: 15px;
+    	color : white;
      }
-     .filter-location select {
-        height : 40px;
+     .filter-location form{
+     	display:inline-block;
+     	width: 200px;
+     	height:35px;
      }
-     .btn {
-        width : 100px;
-        margin-bottom : 15px;
+     .time_search{
+     	display:inline-block;
+     	width: 200px;
+     	height:35px;
      }
-     .create-matching{
-        float : right;
+     .matching_button {
+     	border: none;
+		outline:0; /* 버튼 누르고 나서 테두리 없애기 위해 */
+	  	margin-bottom: 20px;
+	  	margin-top: 20px;
+	  	margin-left: 60px;
+	  	display: inline-block;
+	  	padding: 8px;
+	  	color: white;
+	  	text-align: center;
+	  	cursor: pointer;
+	  	width: 100px;
+	  	font-size: 14px;
      }
-     .table th {
-        text-align : center;
+     .matching_button:hover {
+     	color:black;
+     	background-color:silver;
      }
-     .table-body tr td {
-        text-align : center;
-        background-color : skyblue;
-        border : 1px solid red;
-        padding : 10px 5px;
-        vertical-align : middle;
-     }
-     
-/* 매칭생성 모달 */
-#matching_create{
-	float: right;
-	border: none;
-	outline:0; /* 버튼 누르고 나서 테두리 없애기 위해 */
-  	margin-right: 50px;
-  	margin-bottom: 20px;
-  	display: inline-block;
-  	padding: 8px;
-  	color: white;
-  	background-color: #000;
-  	text-align: center;
-  	cursor: pointer;
-  	width: 10%;
-  	font-size: 18px;
-}
-#matching_create:hover{
-	color:white;
-	background-color: #2c2d28;
-}
-#MatchingModal {
-    display: none;
-    position: fixed;
-    width: 100%;
-    background-color: rgba(67, 68, 64, 0.4);
-    padding-top: 0;  /*top으로 부터 얼마나 띄울지*/
-}
-.modal-content{
-	height: 500px;
-}
+	.matching_main{
+		
+		margin-left: 40px;
+	}
 
-/* 모달바디 */
-.matching_title{
-	font-family: sans-serif;
-	font-size: 20px;
-	margin-left: 42%;
-}
-#matching_close{
-	margin-top: 3px;
-}
-.matching_create_table{
-  	border: 1px solid silver;;
-  	border-left-style: none;
-  	border-right-style: none;
-  	width: 100%;
-  	margin-top: 20px;
-  	margin-bottom: 20px;
-  	table-layout: fixed;
-}
-.table_row{
- 	border-bottom : 1px solid silver; 
-}
-.table_menu{
-	background-color: #F9F6F6;
-  	padding: 20px;
-  	text-align: center;
-  	width:30%;
-  	height:50px;
-} 
-#city{
-	width:100%;
-	height:40px;
-}
-#city_Search{
-	width:100%;
-	height:40px;
-}
-#datepick{
-	width:50%;
-	height:40px;
-}
-.table_contents{
-  	padding: 20px;
-  	font-size: 13px;
-  	height: 50px;
-}
-.table_contents input[type="text"]{
-	width:100%;
-	height: 40px;
-	padding-left: 10px;
-}
-button[name="create"], [name="reset"]{
-	float: right;
-	border: none;
-	outline:0; /* 버튼 누르고 나서 테두리 없애기 위해 */
-  	margin-right: 50px;
-  	padding: 8px;
-  	margin: 5px;
-  	color: white;
-  	background-color: #000;
-  	text-align: center;
-  	cursor: pointer;
-  	width: 100px;
-  	font-size: 12px;
-}
+	/* 매칭생성 모달 */
+	#matching_create{
+		float: right;
+		border: none;
+		outline:0; /* 버튼 누르고 나서 테두리 없애기 위해 */
+	  	margin-bottom: 20px;
+	  	margin-top: 20px;
+	  	display: inline-block;
+	  	padding: 8px;
+	  	color: white;
+	  	text-align: center;
+	  	cursor: pointer;
+	  	width: 100px;
+	  	font-size: 14px;
+	}
+	#matching_create:hover{
+		color:white;
+		background-color: #2c2d28;
+	}
+	#MatchingModal {
+	    display: none;
+	    position: fixed;
+	    width: 100%;
+	    background-color: rgba(67, 68, 64, 0.4);
+	    padding-top: 0;  /*top으로 부터 얼마나 띄울지*/
+	}
+	.modal-content{
+		height: 530px;
+	}
+	/* 모달바디 */
+	.matching_title{
+		font-family: sans-serif;
+		font-size: 20px;
+		margin-left: 42%;
+	}
+	#matching_close{
+		margin-top: 3px;
+	}
+	.matching_create_table{
+	  	border: 1px solid silver;;
+	  	border-left-style: none;
+	  	border-right-style: none;
+	  	width: 100%;
+	  	margin-top: 20px;
+	  	margin-bottom: 20px;
+	  	table-layout: fixed;
+	}
+	.table_row{
+	 	border-bottom : 1px solid silver; 
+	}
+	.table_menu{
+		background-color: #F9F6F6;
+	  	padding: 20px;
+	  	text-align: center;
+	  	width:30%;
+	  	height:50px;
+	  	color : black;
+	} 
+	#city{
+		width:100%;
+		height:40px;
+	}
+	#city_Search{
+		width:100%;
+		height:40px;
+	}
+	#datepick{
+		width:50%;
+		height:40px;
+	}
+	.table_contents{
+	  	padding: 20px;
+	  	font-size: 13px;
+	  	height: 50px;
+	}
+	.table_contents input[type="text"]{
+		width:100%;
+		height: 40px;
+		padding-left: 10px;
+	}
+	.table_contents input[type="number"]{
+		width:100%;
+		height: 40px;
+		padding-left: 10px;
+	}
+	button[name="create"]{
+		border: none;
+		outline:0; /* 버튼 누르고 나서 테두리 없애기 위해 */
+	  	padding: 8px;
+	  	color: white;
+	  	background-color: #000;
+	  	text-align: center;
+	  	cursor: pointer;
+	  	width: 100%;
+	  	font-size: 18px;
+	}
+	.matching_list{
+		margin-left: 100px;
+		margin-top: 80px;
+		margin-bottom:60px;
+	}
+	.matching_table{
+		margin-left : 10px;
+		width : 960px;
+	}
+	.tmatching_header th{
+		text-align:center;
+		/* border: 1px solid silver; */
+		height: 40px;
+		font-size:15px;
+	}
+	.tmatching_body tr, td{
+		text-align:center;
+		border-bottom: 1px solid silver;
+		verticle-align:middle;
+		height: 45px;
+	}
   </style>
-
 
 <script>
 	$(document).ready(function() {
@@ -348,8 +373,8 @@ button[name="create"], [name="reset"]{
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+	
 	<!-- main contents -->
-
 	<div class="container-content">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
 	<form name="kakaoId">
@@ -357,16 +382,12 @@ button[name="create"], [name="reset"]{
 	</form>	
 
 		<!-- start main content -->
-
-		<div class="main col-sm-8">
+		<div class="main col-sm-7">
 			<br>
 
 			<!--  team filter start -->
 			<div class="matching-filter">
-				<div class="matching-filter-name">
-					<div class="subject-location">
-						<h3>매칭 검색</h3>
-					</div>
+				<div class="subject-location container-fluid">매칭 검색</div>
 					<div class="filter-location">
 						<h4>위치</h4>
 						<form action="#">
@@ -399,19 +420,16 @@ button[name="create"], [name="reset"]{
 							</select>
 						</form>
 					</div>
-					<div class="filter-location">
+					<div class="filter-time">
 						<h4>날짜</h4>
 						<!--  시간 선택 API  -->
-						<input type="text" id="datePick_Search" name="datetimes" style="width: 55%" />
-						<button type="button" class="btn btn-primary" id="search_matching">검색</button>
-
+						<input type="text" id="datePick_Search" name="datetimes" class="time_search" />
 					</div>
-				</div>
-
+					<button type="button" class="btn btn-danger matching_button" id="search_matching">매칭검색</button>
 			</div>
 
-			<div class="container-board">
-				<button id="matching_create" type="button" data-toggle="modal">매칭생성</button>
+			<div class="container-board matching_main">
+				<button class="btn btn-danger" id="matching_create" type="button" data-toggle="modal">매칭등록</button>
 					<div class="modal fade" id="MatchingModal" role="dialog">
           				<div class="modal-dialog">
             				<div class="modal-content">
@@ -423,9 +441,7 @@ button[name="create"], [name="reset"]{
             						<table class="matching_create_table">
             							<tr class="table_row">
       										<td class="table_menu">팀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</td>
-      										<td class="table_contents" id="teamNamePrint">
-      											
-      										</td>
+      										<td class="table_contents" id="teamNamePrint"></td>
       									</tr>
             							<tr class="table_row">
       										<td class="table_menu">매칭제목</td>
@@ -440,7 +456,6 @@ button[name="create"], [name="reset"]{
       									<tr class="table_row">
      										<td class="table_menu">경기지역</td>
       										<td class="table_contents">
-      											
 													<select name="matchLocation" class="custom-select mb-3" id="city">
 														<option value=''>지역 선택</option>
 														<option value="강동구">강동구</option>
@@ -468,47 +483,37 @@ button[name="create"], [name="reset"]{
 														<option value="중구">중구</option>
 														<option value="중랑구">중랑구</option>
 													</select>
-												
 											</td>
       									</tr>
-
-      									
-      									
       									<tr class="table_row">
       										<td class="table_menu">매칭인원</td>
       										<td class="table_contents"><input type="number" name="people" placeholder="Enter Matching Population" required></td>
       									</tr>
       								</table>
-      								
       								<button type="submit" name="create">Create</button>
-                					<button type="reset" name="reset">Reset</button>
-                					</form>
-            					</div>	
-            				</div>
+                				</form>
+            				</div>	
             			</div>
             		</div>
-            				
-				<table class="table">
-					<thead>
-						<tr class="success">
-							<th>매칭 이름</th>						
-							<th>지역</th>
-							<th>경기일정</th>
-							<th>팀</th>
-							<th>인원</th>				
+            	</div>
+			</div>
+			<div class="matching_list">
+				<table class="matching_table">
+					<thead class="tmatching_header">
+						<tr class="bg-primary">
+							<th>매 칭&nbsp;&nbsp;이 름</th>						
+							<th>지&nbsp;&nbsp;&nbsp;역</th>
+							<th>경 기 &nbsp;&nbsp;일 정</th>
+							<th>팀&nbsp;&nbsp;&nbsp;명</th>
+							<th>인&nbsp;&nbsp;&nbsp;원</th>				
 						</tr>
 					</thead>
-					<tbody class="table-body" id="print_match">
-
+					<tbody class="tmatching_body" id="print_match">
 					</tbody>
 				</table>
 			</div>
 		</div>
-
 		<!-- main contents end -->
-
 	</div>
-
-
 </body>
 </html>

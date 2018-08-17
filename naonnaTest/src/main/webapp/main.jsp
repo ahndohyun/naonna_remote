@@ -35,24 +35,11 @@
 	</form>	
   <div class="main col-sm-8"><br>
     <!-- main content first low -->
-    <div class="divBoard">
-      <div class="conBoard" id="conBoard1">
-      </div>
-      <div class="conBoard" id="conBoard2">
-      </div>
-    </div>
-    <!-- main content second low -->
-    <div class="divBoard">
-      <div class="conBoard" id="conBoard3">
-      </div>
-      <div class="conBoard" id="conBoard4">
-      </div>
-    </div>
+    
   </div>
   <!-- end main content -->
   </div>
   <!-- main body end -->
- </div>
 </body>
 
 </html>

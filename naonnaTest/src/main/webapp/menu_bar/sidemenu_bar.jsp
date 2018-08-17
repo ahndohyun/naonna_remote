@@ -6,7 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-
+<style>
+	.side-profile {
+		margin-left : 50px;
+	}
+</style>
 <script>
   // start 카카오톡 API
     $(document).ready(function() {
@@ -48,8 +52,9 @@
 	     				$('#myTeam').append(data.teamName);
 	     				$('#myTeam').attr('href', "team_detail.do?team_name="+data.teamName);
 	     				$('#matching').append(data.teamName);
+	     				$('#myTeam').attr('href', "myMatching.do?team_name="+data.teamName);
 	     				$('#booking').append(data.teamName);
-	     				
+	     				$('#myTeam').attr('href', "myBooking.do?team_name="+data.teamName);
 	     			},
 	     			error:function() {
 	     				alert("새로고침을 눌러주세요..outUserInfo");			
@@ -153,12 +158,10 @@
   
 </head>
 <body>
-  <!-- start main body -->
-  <div class="container-content">
+  <!-- <div class="container-content"> -->
     <!-- side menu bar start -->
-    <div class="side-profile col-sm-4">
-      <div class="card">
-        <!-- <img src="a1.jpg" alt="John" style="width:100%"> -->
+    <div class="side-profile col-sm-3 col-sm-offset-1">
+      <div class="card sidecard">
         <img id="profileImage" src="/naonnaTest/resources/a1.jpg" alt="John" style="width:100%">
         <h1>User Name</h1><br/>
         <!--로그인과 로그아웃 구분하기 하위 메뉴에 히든주기!!!!!!!!!!!!!! -->
@@ -209,7 +212,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3>Only for Ground_Admin!!!</h3>
+                <h3>경기장 관리자 회원가입</h3>
               </div>
 
               <div class="modal-body">
@@ -229,13 +232,12 @@
                   <input type="text" placeholder="Enter PIN" name="pin" required>
 
                   <label for="grouond_name"><b>Ground Name</b></label>
-                  <input type="text" placeholder="Enter Ground Name" name="grouond_name" required>
+                  <input type="text" placeholder="Enter Ground Name" name="ground_name" required>
                 </div>
               </div>
 
               <div class="modal-footer">
-                <button type="submit" name="join">Join</button>
-                <button type="reset" name="reset">Reset</button>
+                <button type="submit" name="join" id="admin_join_btn">Join</button>
               </div>
             </div>
           </div>
