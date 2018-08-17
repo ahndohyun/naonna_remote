@@ -62,5 +62,15 @@ public class GroundServiceImpl implements GroundService{
 		}		
 	}
 	
+	@Override
+	public GroundVO That_Ground_Updating(String Ground_Name) {
+		GroundVO ThatGroundInfo = new GroundVO();
+		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+		ThatGroundInfo = groundMapper.getThatGroundList(Ground_Name);
+		
+		return ThatGroundInfo;
+		
+	}
+	
 
 }

@@ -47,6 +47,7 @@ html{
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
 	background-color : red;	
 }
+
 .secondMenu{
 	color:black !important;
 }
@@ -88,7 +89,6 @@ html{
 .sidecard p {
 	color : black;
 }
-
 
 button[name=login_btn] {
   border: none;
@@ -184,6 +184,4 @@ input[name=email], input[name=psw_A], input[name=psw_repeat], input[name=pin], i
 input[name=email]{
 	 margin-left: -40px;
 }
-.modal-footer{
-	margin-bottom:0;
-}
+

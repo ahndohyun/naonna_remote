@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository //DB에 접속해서 작업하는 것을 이야기함. 서비스와 유사.
 public class GroundDAO {
 
 	@Autowired

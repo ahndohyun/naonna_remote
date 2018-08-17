@@ -289,7 +289,7 @@
 				$.each(data, function(index, ground) {		//새로 뿌리기
 					var output = '';
 					output += '<tr>';
-					output += '<td>' + ground.ground_Name + '</td>';
+					output +=  '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
 					output += '<td>' + ground.ground_addr + '</td>';
 					output += '<td>' + ground.grass + '</td>';
 					output += '<td>' + ground.shower + '</td>';
@@ -322,6 +322,9 @@
 				 	'parking' : $('#sel4').val(),
 				 	'shower' : $('#sel5').val(),
 				 	'light' : $('#sel6').val()},
+			//JSon으로 data를 보내고, 그 보낼 data의 정보를 이렇게 지정해주어 나중에 request mapping에서 부합한 객체가 있으면 이와
+			같이 작동하여 java에서 사용.
+			
 			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
 			success:function(data) {
 				
@@ -330,7 +333,7 @@
 				$.each(data, function(index, ground) {		//새로 뿌리기
 					var output = '';
 					output += '<tr>';
-					output += '<td>' + ground.ground_Name + '</td>';
+					output +=  '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
 					output += '<td>' + ground.ground_addr + '</td>';
 					output += '<td>' + ground.grass + '</td>';
 					output += '<td>' + ground.shower + '</td>';

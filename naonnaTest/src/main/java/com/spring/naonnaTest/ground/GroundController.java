@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class GroundController {
 
 	@Autowired
-	private GroundService groundService;
+	private GroundService groundService; //DI 하는 것.
 		
 	@RequestMapping(value = "/getGroundJSON.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
@@ -67,7 +67,7 @@ public class GroundController {
 		ArrayList<GroundVO> list = groundService.Ground_Time_Json(groundvo, bookingvo);
 
 		String str = "";
-		ObjectMapper mapper = new ObjectMapper();
+		ObjectMapper mapper = new ObjectMapper(); // KV 사용하여 JSon 양식과 맞게함.
 		
 		try {
 			str = mapper.writeValueAsString(list);
@@ -137,11 +137,29 @@ public class GroundController {
 		
 		ModelAndView result = new ModelAndView();
 		result.addObject("vo", vo);
-		result.setViewName("ground_search");
+		//result.setViewName("ground_search");
+		result.setViewName("manager_index");
 		System.out.println("추가 complete??");
 		return result;		
 		
 	}
+	
+	@RequestMapping(value = "/ground_updating.do", method = RequestMethod.GET)
+	public ModelAndView That_Ground_Updating(String ground_Name ) {
+		GroundVO vo = null;
+		String Ground_Name = vo.getGround_Name();
+		System.out.println("Ground_Name = " + Ground_Name);
+		vo = groundService.That_Ground_Info(Ground_Name);
+		System.out.println("ground_update complete");
+
+		ModelAndView result = new ModelAndView();
+		result.addObject("vo", vo);
+		result.setViewName("ground_update");
+		System.out.println("불러오기  complete??");
+		return result;
+		
+	}
+	
 	   
 
 }

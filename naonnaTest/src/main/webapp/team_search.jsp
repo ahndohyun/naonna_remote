@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<% request.setCharacterEncoding("utf-8"); %>
 <% 
 	String nickname = (String)request.getAttribute("nickname");	
 %>
@@ -430,10 +431,7 @@ button[name="create"], [name="reset"]{
            								</td>
            							</tr>
            						</table>
-           						
-           						<button type="submit" name="create">Create</button>
-                				<button type="reset" name="reset">Reset</button>
-                				</form>
+           						<button type="submit" name="create">Create</button>	
                 			</div>
                 		</div>
                 	</div>
