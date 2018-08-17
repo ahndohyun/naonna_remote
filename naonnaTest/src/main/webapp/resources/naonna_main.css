@@ -5,6 +5,9 @@ body {
     color: black;
     max-width: 100%;
 }
+.main {
+	margin-top : 80px;
+}
 /* start top menu */
 .top_menu {
     font-family: Montserrat, sans-serif;
@@ -74,15 +77,19 @@ ul[name=login_select]{
 .close{
   margin-top: -10px;
 }
-input[name=uname], input[name=psw]{
-  width: 500px;
+#admin_login, #admin_login_pw {
+	width: 500px;
   height: 35px;
   margin-left: -50px;
   margin-bottom: 20px;
   padding-left: 20px;
 }
-
-button[name=login], a[name=join_btn], #admin_join_btn{
+.kakao_login{
+	margin-left:130px;
+	margin-top: 35px;
+	margin-bottom: 20px;
+}
+button[name=login], a[name=join_btn], #submitbut{
   border: none;
   display: block;
   width: 500px;
@@ -96,7 +103,7 @@ button[name=login], a[name=join_btn], #admin_join_btn{
   text-align: center;
   font-size: 18px;
 }
-#admin_join_btn {
+#submitbut {
 	margin-left : 30px;
 }
 a[name=join_btn]{
@@ -111,10 +118,10 @@ a[name=join_btn]{
   margin-left: 13px;
 }
 
-input[name=email], input[name=psw_A], input[name=psw_repeat], input[name=pin], input[name=ground_name]{
+input[name=ground_admin], input[name=ground_ad_pw], input[name=ground_ad_pin], input[name=ground_name]{
   width: 500px;
   height: 35px;
-  margin-left: -50px;
+  margin-left: 20px;
   margin-bottom: 20px;
   padding-left: 20px;
 }

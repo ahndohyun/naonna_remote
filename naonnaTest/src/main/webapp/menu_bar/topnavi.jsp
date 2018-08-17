@@ -247,15 +247,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="ground_info.do" class="firstMenu">대관신청</a></li>
-
-        <li class="dropdown">
-          <a class="dropdown-toggle firstMenu" data-toggle="dropdown" href="#">매칭신청
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="matching_search.do" class="secondMenu">매칭 검색/등록</a></li>
-            <li><a href="player_search.do" class="secondMenu">용병 모집/등록</a></li>
-          </ul>
-        </li>
+        
+		<li><a href="matching_search.do" class="firstMenu">매칭신청</a></li>
 		
 		<li><a href="team_search.do" class="firstMenu">팀관리</a></li>
 
@@ -291,7 +284,7 @@
 
                 <div class="tab-content">
                   <div id="login_P" class="tab-pane fade in active">
-                    <div id="kakao-logged-group"></div>
+                    <div id="kakao-logged-group" class="kakao_login"></div>
                       <a id="custom-login-btn" href="javascript:loginWithKakao()" style="cursor:hand;"></a>
                   </div>
                   
@@ -299,9 +292,9 @@
                   <div id="login_A" class="tab-pane fade">
                   	<form action="login_a.do" method="post">
 	                    <label for="ground_admin"><b>Username</b></label>
-	                    <input type="text"  placeholder="Enter ID" name="ground_admin" required>
+	                    <input type="text"  placeholder="Enter ID" name="ground_admin" id="admin_login"required>
 	                    <label for="ground_ad_pw"><b>Password</b></label>
-	                    <input type="password" placeholder="Enter Password" name="ground_ad_pw" required>
+	                    <input type="password" placeholder="Enter Password" name="ground_ad_pw" id="admin_login_pw" required>
 	                    <button type="submit" name="login">Login</button>
 	                    <a href="#" data-toggle="modal" data-target="#JoinModal" name="join_btn">Join</a>
                     </form> 

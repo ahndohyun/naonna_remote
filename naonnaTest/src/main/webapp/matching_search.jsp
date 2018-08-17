@@ -2,32 +2,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
-  <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
-
-<!-- 캘린더 라이브러리-->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<!-- 캘린더 라이브러리-->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<!-- 캘린더 라이브러리-->
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<!-- 캘린더 라이브러리-->
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/naonna_main.css"> --%>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
+	<link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
+	<!-- 캘린더 라이브러리-->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<!-- 캘린더 라이브러리-->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<!-- 캘린더 라이브러리-->
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
   <style>
-  	.main{
-  		
-  	}
      .matching-filter {
         height : 180px;
         margin-top: 30px;
@@ -232,7 +226,6 @@
 				locale : {
 // 					format : 'YYYY/M/DD hh:mm'
 				        		    	format: 'YYYY/MM/DD'
-
 				}
 			});
 		});
@@ -251,7 +244,6 @@
 				locale : {
 					format : 'YYYY/M/DD hh:mm'
 				//         		    	format: 'YYYY/M/DD'
-
 				}
 			});
 		});
@@ -264,7 +256,6 @@
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
 				success:function(data) {
-					
 					$('#print_match').html('');		//기존 것 날려주고..		
 					var output = '';
 					$.each(data, function(
@@ -286,8 +277,7 @@
 						var mi = d.getMinutes();
 						if(mi < 10) {
 							mi = "0" + mi;
-						}
-						
+						}	
 						
 						output += '<tr>';
 // 						output += '<td onclick="match_want('+match.matchingID+')">' + match.matchingID + '</td>';
@@ -298,8 +288,7 @@
 						output += '<td>' + match.people + '</td>';
 // 						output += '<td><button type="button" class="btn btn-success" id="match_want">신청</button></td>';
 						output += '</tr>';
-						console.log("output:" + output);
-						
+						console.log("output:" + output);	
 					});
 					$('#print_match').html(output);
 					console.log(data);
@@ -309,14 +298,6 @@
 				}
 			});
 		});
-
-// 		$(document).on('click', '#match_want', function() {
-// 			alert(this.text());
-//  			location.href="go_matchingDetail.do?matchingID="+$('#match_want').text();
-// 		});
-
-		
-
 		$('#search_matching').click(function(){
 			var matchingCity = $('#city_Search').val();
 	  		var matchDate = new Date($('#datePick').val());
@@ -325,8 +306,7 @@
 	  		search_match(matchDate, matchingCity);
 		});
 		
-		$('#matching_create').on('click', function() {
-			
+		$('#matching_create').on('click', function() {	
 			if('${sessionScope.cap}' == 1) {
 				$('#matching_create').attr('data-target', '#MatchingModal');
 				$("#teamNamePrint").text('${sessionScope.teamName}');
@@ -336,7 +316,6 @@
 				alert("매칭 기능은 주장만 이용할 수 있습니다.");
 			}			
 		});		
-		
 	});
 		
 	function search_match(matchDate, matchingCity) {
@@ -347,14 +326,10 @@
 			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 			data:{	'matchLocation' : matchingCity,
 					'playDate' : matchDate},
-			
 			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
 			success:function(data) {
-				
 				$('#print_match').html('');		//기존 것 날려주고..
-				
 				$.each(data, function(index, match) {		//새로 뿌리기
-					
 					var d = new Date(match.playDate);
 					var y = d.getFullYear();
 					var m = (d.getMonth()+1);

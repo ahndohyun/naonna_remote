@@ -43,7 +43,7 @@
 			<input type="hidden" name="kakao_Id">
 		</form>	
 	
-	  	<div class="main container-fluid">
+	  	<div class="mainy container-fluid">
 		  	<div class="row">
 		  		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		    		<!-- Indicators -->
