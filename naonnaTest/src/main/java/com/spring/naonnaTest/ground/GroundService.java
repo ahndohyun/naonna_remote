@@ -11,6 +11,7 @@ public interface GroundService {
 	GroundVO That_Ground_Info(String Ground_Name);
 	GroundVO That_Ground_Updating(String Ground_Name);
 	public void insertGround(GroundVO vo);
+	GroundVO getAdminGroundJson(String ad);
 	
 	
 	//ArrayList<GroundVO> That_Ground_Info_JSON(GroundVO vo);

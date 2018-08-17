@@ -13,5 +13,6 @@ public interface GroundMapper {
 	GroundVO getThatGroundList(String Ground_Name);
 	int insertGround(GroundVO vo);
 	void insertBookingGround(GroundVO vo);
+	GroundVO getAdminGroundList(String ad);
 	//int insertGround2(HashMap<String, String> map);
 }
