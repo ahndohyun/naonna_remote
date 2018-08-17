@@ -21,6 +21,7 @@
   	thead tr{
   		text-align : center;
   	}
+
   </style>
 </head>
 
@@ -88,7 +89,5 @@
   <!-- end main content -->
   </div>
   <!-- main body end -->
-
 </body>
-
 </html>

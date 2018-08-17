@@ -6,8 +6,10 @@
    <title>카카오페이</title>
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
-    <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/css/common.min.css">
-    <script src="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/js/lib/jquery.min.js"></script>
+<!--     <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/css/common.min.css"> -->
+<!--     <script src="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/js/lib/jquery.min.js"></script> -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script>
         var hash = "6d2439a7875de774d196f898def5a53b3eff5f28f56505cb9097a73d209bcdc7";
@@ -17,6 +19,42 @@
         var isCancelPost = false;
         var isFailPost = false;
         var isApprovalPost = false;
+        
+        $(document).ready(function() {
+        	
+        	IMP.init('imp02341854');
+        	
+        	$('#imp').on('click', function() {
+            	alert("음?");
+            	IMP.request_pay({
+            	    pg : 'inicis', // version 1.1.0부터 지원.
+            	    pay_method : 'card',
+            	    merchant_uid : 'merchant_' + new Date().getTime(),
+            	    name : '주문명:결제테스트',
+            	    amount : 14000,
+            	    buyer_email : 'iamport@siot.do',
+            	    buyer_name : '구매자이름',
+            	    buyer_tel : '010-1234-5678',
+            	    buyer_addr : '서울특별시 강남구 삼성동',
+            	    buyer_postcode : '123-456',
+            	    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+            	}, function(rsp) {
+            	    if ( rsp.success ) {
+            	        var msg = '결제가 완료되었습니다.';
+            	        msg += '고유ID : ' + rsp.imp_uid;
+            	        msg += '상점 거래ID : ' + rsp.merchant_uid;
+            	        msg += '결제 금액 : ' + rsp.paid_amount;
+            	        msg += '카드 승인번호 : ' + rsp.apply_num;
+            	    } else {
+            	        var msg = '결제에 실패하였습니다.';
+            	        msg += '에러내용 : ' + rsp.error_msg;
+            	    }
+            	    alert(msg);
+            	});
+            });
+        });
+        
+        
 </script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/common_payment.js?v=version"></script>
@@ -160,12 +198,15 @@
 							</span>
 							<input type="text" id="tfBirthday" class="tf_kakaopay" maxlength="6" placeholder="예) 840301" name="birthDate" autocomplete="off">
 							<span class="line_tf"><span class="inner_line"></span></span>
+							
 						</div>
 						<div class="area_btn">
 							<button type="submit" class="btn_submit" disabled="disabled">결제요청</button>
+							<input type="button" id="imp" value="TEST">
 						</div>
 					</fieldset>
 				</form>
+				
 			</div>
 			<div class="layer_foot">
 				<button class="btn_close"><span class="img_pay">닫기</span></button>

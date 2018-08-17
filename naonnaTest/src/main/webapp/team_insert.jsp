@@ -83,12 +83,5 @@
    	  </div>
    </div>
    </div>
-   <script>
-      function fnAction(url) {
-         var frm = document.getElementById("multiform");
-         frm.action = url;
-         frm.submit();
-      }
-   </script>
 </body>
 </html>

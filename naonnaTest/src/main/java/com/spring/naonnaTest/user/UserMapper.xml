@@ -11,8 +11,10 @@
       <result property="gender" column="gender"/>
       <result property="position" column="position"/>
       <result property="email" column="email"/>
+      <result property="cap" column="cap"/>
       <result property="forPerson" column="forPerson"/>
       <result property="city" column="city"/>
+      <result property="userPhoto" column="user_photo"/>
    </resultMap>
  
  	<!--  id는 Mapper.java(여기서 GroundMapper.java)에 동일하게 사용해야된다.  -->
@@ -31,8 +33,14 @@
    </insert>
    
    <update id ="updateInfo" parameterType="com.spring.naonnaTest.user.UserVO">
-      update user_info set age = #{age}, city = #{city}, position = #{position}, email = #{email}
+      update user_info set age = #{age}, city = #{city}, position = #{position}, email = #{email} where nickname = #{nickname}
    </update>
+   
+   <update id ="updateProfile" parameterType="com.spring.naonnaTest.user.UserVO">
+      update user_info set user_photo = #{userPhoto} where nickname = #{nickname}
+   </update>
+   
+
    
 </mapper>
    

@@ -1,9 +1,10 @@
 package com.spring.naonnaTest.team;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,14 +61,15 @@ public class TeamController {
 	@RequestMapping(value = "/insertTeam.do",  method = RequestMethod.POST)
 	public ModelAndView Insert_Team_Info(TeamVO teamvo , MultipartHttpServletRequest multiRequest) throws Exception {
 		
-		 MultipartFile mf = multiRequest.getFile("emblem");
-	      String uploadPath = "C:\\Users\\Playdata\\Desktop\\naonna_git\\naonna_remote\\naonnaTest\\src\\main\\webapp\\image\\";
+		 MultipartFile mf = multiRequest.getFile("emblem2");
+		 
+		 String uploadPath = "C:\\BigDeep\\upload\\";
+	      
 	      String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
 	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
 	      System.out.println("storedFileName : " + storedFileName);
 	    
-	      if(mf.getSize() != 0) {
-	         //mf.transferTo(new File(uploadPath+ "/" + mf.getOriginalFilename()));
+	      if(mf.getSize() != 0) {	         
 	    	  mf.transferTo(new File(uploadPath + storedFileName));
 	      }
 	      
@@ -85,11 +87,10 @@ public class TeamController {
 		return result; 
 	}
 	
-	@RequestMapping(value = "/team_detail.do", method =RequestMethod.GET)
+	@RequestMapping(value = "/team_detail.do", method =RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	public ModelAndView That_Team_Info(TeamVO vo, String team_name) {
 		String Team_Name = vo.getTeam_name();
 		System.out.println("Team_Name = " + Team_Name);
-		System.out.println(team_name);
 		vo = teamService.That_Team_Info(Team_Name);
 		System.out.println("team_detail complete");
 
@@ -98,6 +99,24 @@ public class TeamController {
 		result.setViewName("team_detail");
 		System.out.println("불러오기  complete??");
 		return result;
+	}
+	
+	@RequestMapping(value = "/teamOnMatch.do",  method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody		 	
+	public String teamOnMatch(String team_name) {
+		TeamVO vo = teamService.atMatchDetail(team_name);
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			str = mapper.writeValueAsString(vo);
+			System.out.println("str=" + str);
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+		
+		return str;
 	}
 	
 }

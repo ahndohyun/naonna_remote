@@ -29,6 +29,10 @@
   	border : 1px solid black;
   	margin-top : 47px;
   }
+  .team-name-container img {
+  	width : 200px;
+  	height : 200px;
+  }
   .page_name {
   	border-bottom : 1px solid black;
   }
@@ -84,7 +88,8 @@
         <div class="page_name"><h2>팀 상세 보기</h2></div>
         <div class="team-detail-container col-sm-12">
            <div class="team-detail-header">
-              <div class="team-name-container col-sm-4"><h3 id="team-name">${vo.team_name}</h3>
+              <div class="team-name-container col-sm-4">
+              <h3 id="team-name">${vo.team_name}</h3>
               	<img src="<spring:url value='./image/${vo.emblem}' />"/>
               </div>
               <div class="team-join-button btn btn-success"><p>팀 가입하기</p></div>
@@ -99,8 +104,8 @@
                  </thead>
                  <tbody>
                     <tr>
-                       <td> 최근 경기전적 </td>
-                       <td> ${vo.grade } </td>
+                       <td> 최근 연령대 </td>
+                       <td> ${vo.age } </td>
                     </tr>
                     <tr>
                        <td> 실력 </td>
@@ -114,10 +119,6 @@
                        <td> 팀 소개 </td>
                        <td> ${vo.intro }
                        </td>
-                    </tr>
-                    <tr>
-                       <td> 팀 리뷰 </td>
-                       <td> ${vo.review } </td>
                     </tr>
                  </tbody>
               </table>

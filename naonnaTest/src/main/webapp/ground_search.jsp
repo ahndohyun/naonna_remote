@@ -161,8 +161,8 @@
 					dataType: "json",
 					contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 					//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
-					success:function(data) {
-						$.each(data, function(index, ground) {
+					success:function(data) {																
+						$.each(data, function(index, ground) {														
 							var output = '';
 							output += '<tr>';
 							output += '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
@@ -263,8 +263,6 @@
           		endDate.setHours(startDate.getHours() + 1);
           		goDAO_time(startDate, endDate);
           	});	
-          	
-          
 
 	});
 	
@@ -376,6 +374,9 @@
 
 	<div class="container-content">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+			<form name="kakaoId">
+		<input type="hidden" name="kakao_Id">
+	</form>	
 
 		<!-- start main content -->
 		<div class="main col-sm-8">
@@ -396,8 +397,7 @@
 							</form>
 						</div>
 						<div class="form-select-citydetail">
-							<form name="city_name" class="form-selection" method="post"
-								action="filter_city.do">
+							<form name="city_name" class="form-selection" method="post" action="filter_city.do">
 								<div class="form-select">
 									<!-- <select class="form-control" name="ground_city" id="sel1" onChange="javascript:city_filter();"> -->
 									<select class="form-control" name="ground_city" id="sel2">

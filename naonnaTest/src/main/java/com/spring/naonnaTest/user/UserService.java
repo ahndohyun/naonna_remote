@@ -7,4 +7,6 @@ public interface UserService {
 	UserVO printUser(String forPerson);
 	UserVO goMyPage(String nickname);
 	void updateInfo(UserVO vo);
+	void updateProfile(UserVO vo);
+	
 }

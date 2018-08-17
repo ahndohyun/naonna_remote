@@ -57,7 +57,7 @@ public class GroundDAO {
 		
 		try {			
 			GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
-			groundList = groundMapper.MapperFromTime(map);	
+			groundList = groundMapper.MapperFromTime(map);
 			System.out.println("groundList=" + groundList);			
 		}
 		catch(Exception e) {

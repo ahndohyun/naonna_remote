@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    
+<mapper namespace="com.spring.naonnaTest.message.MessageMapper">
+
+   <resultMap type="MessageVO" id="MessageResultMap">
+      <result property="getPeople" column="GETPEOPLE"/>
+      <result property="sendPeople" column="SENDPEOPLE"/>
+      <result property="matchingID" column="MATCHINGID"/>
+      <result property="message" column="MESSAGE"/>
+      <result property="confirm" column="confirm"/>
+      <result property="people" column="people"/>
+      <result property="teamName" column="team_name"/>
+      <result property="groundName" column="ground_name"/>     
+   </resultMap>
+   
+ 	<!--  id는 Mapper.java(여기서 PeopleMapper.java)에 동일하게 사용해야된다.  -->
+ 
+  
+	<insert id="playerMSG" parameterType="com.spring.naonnaTest.message.MessageVO">
+		insert into message (getpeople, sendpeople, matchingID, message, people) values ( (select nickname from team where team_name = #{teamName}), #{sendPeople}, #{matchingID}, 1, #{people})
+	</insert>
+
+</mapper>
