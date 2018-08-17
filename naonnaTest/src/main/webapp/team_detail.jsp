@@ -26,10 +26,6 @@
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
   .team-detail {
-<<<<<<< HEAD
-=======
-
->>>>>>> 763d27dfc9bb224cf50014f14b5324bcfd51b6c2
   	border : 1px solid black;
   	margin-top : 47px;
   }

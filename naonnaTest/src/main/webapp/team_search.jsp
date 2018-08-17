@@ -420,8 +420,7 @@ button[name="create"], [name="reset"]{
            							</tr>
            						</table>
            						
-           						<button type="submit" name="create">Create</button>
-                				<button type="reset" name="reset">Reset</button>
+           						<button type="submit" name="create">Create</button>	
                 			</div>
                 		</div>
                 	</div>

@@ -156,7 +156,7 @@
     <!-- side menu bar start -->
     <div class="side-profile col-sm-4">
       <div class="card">
-        <!-- <img src="a1.jpg" alt="John" style="width:100%"> -->
+        <!-- <img src="" alt="John" style="width:100%"> -->
         <img src="resources/a1.jpg" alt="John" style="width:100%">
         <h1>User Name</h1><br/>
         <!--로그인과 로그아웃 구분하기 하위 메뉴에 히든주기!!!!!!!!!!!!!! -->
