@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<<<<<<< HEAD
+=======
+
+<% 
+	String admin = (String)request.getAttribute("admin");		
+	String ground_name = (String)request.getAttribute("groundName");
+%>
+>>>>>>> 44a1830f0f43b73fd8ec8417437533951795fa5a
 <html lang="utf-8">
 
 <head>
@@ -20,103 +28,139 @@
 
 <script>
 
+$(document).ready(function() {
+function printGround() {
+	$('#ground_print').empty();
+	$.ajax({
+		url:'/naonnaTest/getGroundJSON.do',
+		type:'POST',
+		dataType: "json",
+		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+		//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+		success:function(data) {																
+			$.each(data, function(index, ground) {														
+				var output = '';
+				output += '<tr>';
+				output += '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
+				output += '<td>' + ground.ground_addr + '</td>';
+				output += '<td>' + ground.grass + '</td>';
+				output += '<td>' + ground.shower + '</td>';
+				output += '<td>' + ground.parking + '</td>';
+				output += '<td>' + ground.light + '</td>';
+				output += '<td>' + ground.ground_size + '</td>';
+				output += '<td>' + ground.ground_people + '</td>';
+				output += '</tr>';
+				console.log("output:" + output);
+				$('#ground_print').append(output);												
+			});						
+			
+		},
+		error:function() {
+			alert("새로고침을 눌러주세요.")
+		}
+	});
+}
+
+printGround();
+});
+		function res() {
+		    location.href = "ground_regi.do"
+		 }
+
 </script>
 <style>
-	.content-title-name {
-		display : inline;
-	}
-	.manager-index {
-		margin-top : 4vw;
-	}
-	.mov-btn {
-	
-	}
-	.right {
-		float : right;
-	}
+   .content-title-name {
+      display : inline;
+   }
+   .manager-index {
+      margin-top : 4vw;
+   }
+   .mov-btn {
+   
+   }
+   .right {
+      float : right;
+   }
 </style>
 
 </head>
 
 <body>
- 	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
 
-	<div class="container-content">
-		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+    <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+   <!-- main contents -->
+
+   <div class="container-content">
+      <jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
   <!-- start main content -->
-  	<form name="kakaoId">
-		<input type="hidden" name="kakao_Id">
-	</form>	
+   
+   
   <div class="main col-sm-8"><br>
     <!-- main content first low -->
       <div class="row">
-      	<div class="container-fluid col-sm-12 manager-index">
-      		<div class="show-ground row col-sm-12">
-      			<div class="content-title col-sm-12">
-      				<h3 class="bookingtitle content-title-name">예약현황</h3>
-      				<a href="#" class="right mov-btn btn btn-success">더보기</a>
-      			</div>
-      			<table class="table table-straped table-hover">
-      				<thead>
-      					<tr>
-      						<th>예약자</th>
-      						<th>예약날짜</th>
-      						<th>사용시간</th>
-      					</tr>
-      				</thead>
-      				<tbody>
-      					<tr>
-      						<td>김경우</td>
-      						<td>2018.08.14</td>
-      						<td>2</td>
-      					</tr>
-      					<tr>
-      						<td>김도우</td>
-      						<td>2018.08.07</td>
-      						<td>3</td>
-      					</tr>
-      					<tr>
-      						<td>안도현</td>
-      						<td>2018.08.07</td>
-      						<td>2</td>
-      					</tr>
-      					<tr>
-      						<td>정상완</td>
-      						<td>2018.08.15</td>
-      						<td>5</td>
-      					</tr>
-      				</tbody>
-      			</table>
-      		</div>
-      		<div class="show-book row col-sm-12">
-      			<div class="content-title col-sm-12">
-      				<h3 class="bookingtitle content-title-name">운동장 정보</h3>
-      				<a href="ground_detail.jsp" class="right mov-btn btn btn-success">바로가기</a>
-      			</div>
-      			<table class="table table-straped table-hover">
-      				<thead>
-      					<tr>
-      						<th>경기장이름</th>
-      						<th>경기장 크기</th>
-      						<th>잔디</th>
-      						<th>샤워장</th>
-      						<th>주차장</th>
-      						
-      					</tr>
-      				</thead>
-      				<tbody>
-      					<tr>
-      						<td>보라매 공원</td>
-      						<td>100&times;100</td>
-      						<td>천연잔디</td>
-      						<td>있음</td>
-      						<td>있음</td>
-      					</tr>
-      				</tbody>
-      			</table>
-      		</div>
-      	</div>    
+         <div class="container-fluid col-sm-12 manager-index">
+            <div class="show-ground row col-sm-12">
+               <div class="content-title col-sm-12">
+                  <h3 class="bookingtitle content-title-name">예약현황</h3>
+                  <a href="#" class="right mov-btn btn btn-success">더보기</a>
+               </div>
+               <table class="table table-straped table-hover">
+                  <thead>
+                     <tr>
+                        <th>예약자</th>
+                        <th>예약날짜</th>
+                        <th>사용시간</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>김경우</td>
+                        <td>2018.08.14</td>
+                        <td>2</td>
+                     </tr>
+                     <tr>
+                        <td>김도우</td>
+                        <td>2018.08.07</td>
+                        <td>3</td>
+                     </tr>
+                     <tr>
+                        <td>안도현</td>
+                        <td>2018.08.07</td>
+                        <td>2</td>
+                     </tr>
+                     <tr>
+                        <td>정상완</td>
+                        <td>2018.08.15</td>
+                        <td>5</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="show-book row col-sm-12">
+               <div class="content-title col-sm-12">
+                  <h3 class="bookingtitle content-title-name">운동장 정보</h3>
+                  <a href="ground_detail.jsp" class="right mov-btn btn btn-success">바로가기</a>
+                  <button class="btn btn-success" onclick="res()">경기장 등록</button>
+               </div>
+               <table class="table table-straped table-hover">
+                  <thead>
+                     <tr>
+                       		<th>경기장 이름</th>
+							<th>주소</th>
+							<th>인조잔디</th>
+							<th>샤워시설</th>
+							<th>주차장</th>
+							<th>조명</th>
+							<th>크기</th>
+							<th>경기 인원 추천</th>
+                        
+                     </tr>
+                  </thead>
+                  <tbody class="table-body" id="ground_print">
+					</tbody>
+               </table>
+            </div>
+         </div>    
       </div>
   </div>
   <!-- end main content -->
@@ -124,5 +168,5 @@
   <!-- main body end -->
 
 </body>
-
 </html>
+

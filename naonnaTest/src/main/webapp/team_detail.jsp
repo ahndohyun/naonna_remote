@@ -104,7 +104,7 @@
                  </thead>
                  <tbody>
                     <tr>
-                       <td> 최근 연령대 </td>
+                       <td>  연령대 </td>
                        <td> ${vo.age } </td>
                     </tr>
                     <tr>

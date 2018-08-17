@@ -289,7 +289,7 @@
 				$.each(data, function(index, ground) {		//새로 뿌리기
 					var output = '';
 					output += '<tr>';
-					output += '<td>' + ground.ground_Name + '</td>';
+					output +=  '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
 					output += '<td>' + ground.ground_addr + '</td>';
 					output += '<td>' + ground.grass + '</td>';
 					output += '<td>' + ground.shower + '</td>';
@@ -333,7 +333,7 @@
 				$.each(data, function(index, ground) {		//새로 뿌리기
 					var output = '';
 					output += '<tr>';
-					output += '<td>' + ground.ground_Name + '</td>';
+					output +=  '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
 					output += '<td>' + ground.ground_addr + '</td>';
 					output += '<td>' + ground.grass + '</td>';
 					output += '<td>' + ground.shower + '</td>';

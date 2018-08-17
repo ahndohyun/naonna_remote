@@ -44,6 +44,11 @@ public class HomeController {
 		return "ground_search";
 	}
 	
+	@RequestMapping(value = "/ground_regi.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public String go_ground_regi() {
+		return "ground_register";
+	}
+	
 	@RequestMapping(value = "/matching_search.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String go_matching_search() {
 		return "matching_search";
@@ -79,5 +84,10 @@ public class HomeController {
 		return "qna";
 	}
 	
+	
+	@RequestMapping(value = "/manager.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public String go_manager_Page() {
+		return "manager_index";
+	}
 	
 }

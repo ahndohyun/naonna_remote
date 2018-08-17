@@ -4,7 +4,7 @@
 <%@ page import="com.spring.naonnaTest.ground.*" %> 
  
  <% 
-    GroundVO vo = (GroundVO)request.getAttribute("result");
+ 	GroundVO vo = (GroundVO)request.getAttribute("vo"); 	
  %>
  
 <!DOCTYPE html>
@@ -397,6 +397,11 @@
   function res() {
       location.href = "ground_info.do"
    }
+  
+  function res2() {
+	  location.href = "ground_updating.do?ground_name="+${vo.ground_Name}
+	// location.href = "ground_updating.do?"
+  }
 
   </script>
 </head>
@@ -480,43 +485,44 @@
   </script>
   </div>
   <div class="ground-detail col-sm-6">
-     <div class="ground-detail-contents col-sm-12">
-        <div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/chun.png"></div>
-        <div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/jo.png"></div>
-        <div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/ju.png"></div>
-        <div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/sh.png"></div>
-     </div>
-     <div class="ground-detail-texts col-sm-12" id="ground_print">
-        <div class="ground-detail-textmore col-sm-3"><p>${vo.grass }</p></div>
-        <div class="ground-detail-textmore col-sm-3"><p>${vo.light }</p></div>
-        <div class="ground-detail-textmore col-sm-3"><p>${vo.parking }</p></div>
-        <div class="ground-detail-textmore col-sm-3"><p>${vo.shower }</p></div> 
-     </div>
-     
-     <div class="ground-detail-size col-sm-12">
-        <div class="ground-detail-size-pics">
-           <img class="formal-ground-size" src="https://www.iamground.kr/img/sample/ssize.jpg">
-        </div>
-        <div class="ground-detail-size-texts col-sm-12">
-         <div class="ground-detail-size-fieldtext col-sm-6">
-            <div class="gray-box small-box"></div>
-            <p>경기장(100 x 70)</p>
-         </div>
-         <div class="ground-detail-size-formaltext col-sm-6">
-            <div class="green-box small-box"></div>
-            <p>정규 규격(105 x 70)</p>
-         </div>           
-        </div>
-     </div>
-     <div class="ground-detail-addr col-sm-12">
-        <p>${vo.ground_addr} </p>
-        <p>${vo.ground_city }</p>
-     </div>
+  	<div class="ground-detail-contents col-sm-12">
+  		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/chun.png"></div>
+  		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/jo.png"></div>
+  		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/ju.png"></div>
+  		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/sh.png"></div>
+  	</div>
+  	<div class="ground-detail-texts col-sm-12" id="ground_print">
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.grass }</p></div>
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.light }</p></div>
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.parking }</p></div>
+  		<div class="ground-detail-textmore col-sm-3"><p>${vo.shower }</p></div> 
+  	</div>
+  	
+  	<div class="ground-detail-size col-sm-12">
+  		<div class="ground-detail-size-pics">
+  			<img class="formal-ground-size" src="https://www.iamground.kr/img/sample/ssize.jpg">
+  		</div>
+  		<div class="ground-detail-size-texts col-sm-12">
+			<div class="ground-detail-size-fieldtext col-sm-6">
+				<div class="gray-box small-box"></div>
+				<p>경기장${vo.ground_size }</p>
+			</div>
+			<div class="ground-detail-size-formaltext col-sm-6">
+				<div class="green-box small-box"></div>
+				<p>정규 규격(105 x 70)</p>
+			</div>  			
+  		</div>
+  	</div>
+  	<div class="ground-detail-addr col-sm-12">
+  		<p>${vo.ground_addr} </p>
+  		<p>${vo.ground_city }</p>
+  	</div>
   </div>
   <!-- end main content -->
   <div class="button-container">
-     <div class="payment"><button class="btn btn-success">결제하기</button></div>
-     <div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
+  	<div class="payment"><button class="btn btn-success">결제하기</button></div>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
   </div>
   </div>
 </div>
