@@ -23,12 +23,16 @@
 	<insert id="playerMSG" parameterType="com.spring.naonnaTest.message.MessageVO">
 		insert into message (getpeople, sendpeople, matchingID, message, people, message_Date) values ( (select nickname from team where team_name = #{teamName}), #{sendPeople}, #{matchingID}, #{message}, #{people}, sysdate)
 	</insert>
+	
+	<insert id="insertMessageTeam" parameterType="com.spring.naonnaTest.message.MessageVO">
+		insert into message (getpeople, sendpeople, team_name, message, message_Date) values ( #{getPeople}, #{sendPeople}, #{teamName}, #{message}, sysdate)
+	</insert>
 	 
 	<select id="countMsg" parameterType="String" resultType="int">
-		select count(*) from message where getPeople = #{nickname} and confirm is null
+		select count(*) from message where confirm is null and getPeople = #{nickname}
 	</select>
 	
 	<select id="printMsg" resultMap="MessageResultMap">
-		select * from message where getPeople = #{nickname} order by message_date
+		select * from message where getPeople = #{nickname} order by message_date desc
 	</select>
 </mapper>

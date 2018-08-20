@@ -119,4 +119,37 @@ public class TeamController {
 		return str;
 	}
 	
+	@RequestMapping(value = "/printTeamMember.do",  method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody		 	
+	public String memberPrint(String team_name) {
+		System.out.println("team_name = " + team_name);
+		ArrayList<TeamMemberVO> list = teamService.memberPrint(team_name);
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			str = mapper.writeValueAsString(list);
+			System.out.println("print team member str=" + str);
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+		
+		return str;
+	}
+	
+	@RequestMapping(value = "/joinTeamMem.do",  method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody		 	
+	public int memberInsert(TeamVO vo) {
+	
+		try {
+			teamService.insertMember(vo);
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+		
+		return 1;
+	}
+	
 }

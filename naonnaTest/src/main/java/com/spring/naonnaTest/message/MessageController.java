@@ -58,4 +58,20 @@ public class MessageController {
 		return str;
 	}
 	
+	@RequestMapping(value = "/joinTeamMessage.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public int joinTeamMessage(MessageVO vo) {
+		System.out.println("getGetPeople = " + vo.getGetPeople());
+		System.out.println("getSendPeople = " + vo.getSendPeople());
+		
+		try {
+			messageService.joinTeamMSG(vo);
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+		
+		return 1;
+	}
+	
 }

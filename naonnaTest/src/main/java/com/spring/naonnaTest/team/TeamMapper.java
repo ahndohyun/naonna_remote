@@ -12,5 +12,9 @@ public interface TeamMapper {
 	public TeamVO getThatTeamInfo(String team_name);
 	public void insertCap(TeamVO teamvo);
 	public TeamVO atMatchDetail(String team_name);
+	void insertTeamMember(TeamVO vo);
+	void plusTeamPeople(TeamVO vo);
+	void joinConfirm(TeamVO vo);
+	public ArrayList<TeamMemberVO> printTeamMember(String team_name);
 	
 }

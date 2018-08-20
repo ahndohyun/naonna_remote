@@ -73,5 +73,38 @@ public class TeamServiceImpl implements TeamService {
 		
 		return atTheMatch;
 	}
+	
+	@Override
+	public void insertMember(TeamVO vo) {
+
+		try {
+			TeamMapper teamMapper = sqlSession.getMapper(TeamMapper.class);
+			teamMapper.insertTeamMember(vo);
+			teamMapper.plusTeamPeople(vo);
+			teamMapper.joinConfirm(vo);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+		
+	}
+	
+	@Override
+	public ArrayList<TeamMemberVO> memberPrint(String team_name) {
+		ArrayList<TeamMemberVO> list = null;
+		
+		try {
+			TeamMapper teamMapper = sqlSession.getMapper(TeamMapper.class);
+			list = teamMapper.printTeamMember(team_name);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+		
+		return list;
+		
+	}
 
 }
