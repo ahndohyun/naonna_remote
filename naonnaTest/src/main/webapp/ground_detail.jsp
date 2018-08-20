@@ -241,8 +241,8 @@ String ground_name = (String)session.getAttribute("groundName");
    }
   
   function res2() {
-	  location.href = "ground_updating.do?ground_name="+ <%=ground_name%>
-	// location.href = "ground_updating.do?"
+	  location.href = "ground_updating.do?ground_Name="+"<%=ground_name%>"
+	
   }
 
   </script>
@@ -256,7 +256,9 @@ String ground_name = (String)session.getAttribute("groundName");
 	<div class="container-content">
 	<%if(session.getAttribute("admin") != null){ %>
 		<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
-	<%}%>
+	<%}else { %>	
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+		<%} %>
 <!-- start main content -->
   <div class="main col-sm-8"><br>
   	<div>

@@ -48,23 +48,23 @@ function printGround() {
 					'ground_admin' : admin
 		},
 		success:function(data) {																
-			$.each(data, function(index, ground) {														
+													
 				var output = '';
 				output += '<tr>';
-				output += '<tr>' + ground.ground_admin + '</th>';
-				output += '<td>' + ground.ground_Name  + '</td>';
-				//output += '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
-				output += '<td>' + ground.ground_addr + '</td>';
-				output += '<td>' + ground.grass + '</td>';
-				output += '<td>' + ground.shower + '</td>';
-				output += '<td>' + ground.parking + '</td>';
-				output += '<td>' + ground.light + '</td>';
-				output += '<td>' + ground.ground_size + '</td>';
-				output += '<td>' + ground.ground_people + '</td>';
+				
+				output += '<td> <a link href="ground_detail.do?ground_Name='+data.ground_Name + '">' + data.ground_Name  + '</td>';
+				output += '<td>' + data.ground_admin + '</td>';				
+				output += '<td>' + data.ground_addr + '</td>';
+				output += '<td>' + data.grass + '</td>';
+				output += '<td>' + data.shower + '</td>';
+				output += '<td>' + data.parking + '</td>';
+				output += '<td>' + data.light + '</td>';
+				output += '<td>' + data.ground_size + '</td>';
+				output += '<td>' + data.ground_people + '</td>';
 				output += '</tr>';
 				console.log("output:" + output);
 				$('#ground_print').append(output);												
-			});						
+									
 			
 		},
 		error:function() {
@@ -160,8 +160,9 @@ function res() {
                <table class="table table-straped table-hover">
                   <thead>
                      <tr>
-                     		<th>경기장 관리자</th>
+                     		
                        		<th>경기장 이름</th>
+                       		<th>경기장 관리자</th>
 							<th>주소</th>
 							<th>인조잔디</th>
 							<th>샤워시설</th>

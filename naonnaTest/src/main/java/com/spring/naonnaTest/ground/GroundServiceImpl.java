@@ -63,21 +63,11 @@ public class GroundServiceImpl implements GroundService{
 	}
 	
 	@Override
-	public GroundVO That_Ground_Updating(String Ground_Name) {
-		GroundVO ThatGroundInfo = new GroundVO();
-		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
-		ThatGroundInfo = groundMapper.getThatGroundList(Ground_Name);
-		
-		return ThatGroundInfo;
-		
-	}
-	
-	@Override
-	public GroundVO getAdminGroundJson(String ad){
+	public GroundVO getAdminGroundJson(String ground_admin){
 		GroundVO admingroundList = new GroundVO();
 		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
 		try {
-			admingroundList = groundMapper.getAdminGroundList(ad);
+			admingroundList = groundMapper.getAdminGroundList(ground_admin);
 			
 		}
 		catch(Exception e) {
@@ -87,6 +77,25 @@ public class GroundServiceImpl implements GroundService{
 		
 		return admingroundList;
 		
+	}
+	
+	@Override
+	public GroundVO That_UpdateGround_Info(String ground_name) {
+		GroundVO ThatUpdateGroundInfo = new GroundVO();
+		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+		ThatUpdateGroundInfo = groundMapper.getThatUpdateGroundList(ground_name);
+		
+		return ThatUpdateGroundInfo;
+		
+	}
+	
+	@Override
+	public int updateThatGround(GroundVO vo) {
+		
+		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);		
+	    int res = groundMapper.modifyGround(vo);
+		 
+		return res;
 	}
 
 }
