@@ -23,15 +23,15 @@
 
   <style>
      .matching-filter {
-        height : 180px;
-        margin-top: 30px;
-        margin-left: 100px;
-        padding-bottom: 0px;
-        padding : 20px;
-        background-color : #9C6C87;
-      
-        /* border : 1px solid black; */
+        background-color: #9C6C87;
+		padding:10px;
+		padding-top:20px;
      }
+     #matching_title {
+     	font-size : 25px;
+     	font-weight : 800;
+     }
+     
      .subject-location{
      	margin-top: 10px;
         /* text-align: center; */
@@ -39,17 +39,10 @@
         font-size : 24px;
         color : white;
      } 
-     .filter-location {
-        display : inline-block;
-       
+     .filter-location, .filter-time {
+        display : inline-block; 
         margin-top: 30px;
-        margin-left: 80px;
-     }
-     .filter-time{
-        display : inline-block;
-        
-        margin-top: 30px;
-        margin-left: 40px;
+        margin-left: 70px;
      }
      .filter-location h4, .filter-time h4 {
      	display: inline-block;
@@ -87,7 +80,6 @@
      	background-color:silver;
      }
 	.matching_main{
-		
 		margin-left: 40px;
 	}
 
@@ -188,14 +180,9 @@
 	  	font-size: 18px;
 	}
 	.matching_list{
-		margin-left: 100px;
-		margin-top: 80px;
-		margin-bottom:60px;
+		padding : 0;
 	}
-	.matching_table{
-		margin-left : 10px;
-		width : 960px;
-	}
+	
 	.tmatching_header th{
 		text-align:center;
 		/* border: 1px solid silver; */
@@ -215,26 +202,7 @@
 		$(function() {
 			var currentDate = new Date();
 			//					var tomorrow = currentDate.setDate(currentDate.getDate()+1);
-			$('input[name="datetimes"]').daterangepicker({
-
-				singleDatePicker : true,
-// 				timePicker: true,
-				showDropdowns : true,
-				startDate : moment().startOf('hour'),
-				minDate : currentDate,
-				//    		     endDate: moment().startOf('hour').add(0, 'hour'),
-				locale : {
-// 					format : 'YYYY/M/DD hh:mm'
-				        		    	format: 'YYYY/MM/DD'
-				}
-			});
-		});
-		
-		$(function() {
-			var currentDate = new Date();
-			//					var tomorrow = currentDate.setDate(currentDate.getDate()+1);
 			$('#datePick').daterangepicker({
-
 				singleDatePicker : true,
 				timePicker: true,
 				showDropdowns : true,
@@ -244,6 +212,19 @@
 				locale : {
 					format : 'YYYY/M/DD hh:mm'
 				//         		    	format: 'YYYY/M/DD'
+				}
+			});
+		});
+		
+		$(function() {
+			var currentDate = new Date();
+			$('input[name="datetimes"]').daterangepicker({
+				singleDatePicker : true,
+				showDropdowns : true,
+				startDate : moment().startOf('hour'),
+				minDate : currentDate,
+				locale : {
+				        		    	format: 'YYYY/MM/DD'
 				}
 			});
 		});
@@ -278,15 +259,12 @@
 						if(mi < 10) {
 							mi = "0" + mi;
 						}	
-						
 						output += '<tr>';
-// 						output += '<td onclick="match_want('+match.matchingID+')">' + match.matchingID + '</td>';
 						output += '<td>' + "<a href='go_matchingDetail.do?matchingID="+ match.matchingID + "'>"+ match.matchingID +'</a></td>';
 						output += '<td>' + match.matchLocation + '</td>';
 						output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
 						output += '<td>' + match.homeTeam + '</td>';
 						output += '<td>' + match.people + '</td>';
-// 						output += '<td><button type="button" class="btn btn-success" id="match_want">신청</button></td>';
 						output += '</tr>';
 						console.log("output:" + output);	
 					});
@@ -351,7 +329,6 @@
 					if(mi < 10) {
 						mi = "0" + mi;
 					}
-					
 					var output = '';
 					output += '<tr>';
 					output += '<td id="match_want">' + match.matchingID + '</td>';
@@ -359,21 +336,16 @@
 					output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
 					output += '<td>' + match.homeTeam + '</td>';
 					output += '<td>' + match.people + '</td>';
-// 					output += '<td><input type="button" class="btn btn-success" id="match_want" value="신청"></td>';
-
 					output += '</tr>';
 					console.log("output:" + output);
 					$('#print_match').append(output);
 				});
-				
 				console.log(data);
 			},
 			error:function() {
 				alert("ajax통신 실패!!");
 			}	
 		});
-		
-
 	}
 		
 	function match_want(tex) {		
@@ -385,24 +357,20 @@
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	
 	<!-- main contents -->
-	<div class="container-content">
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>	
 
-		<!-- start main content -->
-		<div class="main col-sm-7">
-			<br>
-
-			<!--  team filter start -->
-			<div class="matching-filter">
-				<div class="subject-location container-fluid">매칭 검색</div>
+		<div class="main col-sm-12">
+			<div class="col-sm-8 col-sm-offset-2">
+				<p id="matching_title">매칭 검색</p>
+			</div>
+			<div class="matching-filter col-sm-8 col-sm-offset-2">
 					<div class="filter-location">
 						<h4>위치</h4>
 						<form action="#">
-							<select name="matchLocation" class="custom-select mb-3" id="city_Search">
+							<select name="matchLocation" class="custom-select mb-3 form-control" id="city_Search">
 								<option value=''>지역 선택</option>
 								<option value="강동구">강동구</option>
 								<option value="강북구">강북구</option>
@@ -434,94 +402,94 @@
 					<div class="filter-time">
 						<h4>날짜</h4>
 						<!--  시간 선택 API  -->
-						<input type="text" id="datePick_Search" name="datetimes" class="time_search" />
+						<input type="text" id="datePick_Search" name="datetimes" class="time_search form-control" />
 					</div>
 					<button type="button" class="btn btn-danger matching_button" id="search_matching">매칭검색</button>
-			</div>
-
-			<div class="container-board matching_main">
-				<button class="btn btn-danger" id="matching_create" type="button" data-toggle="modal">매칭등록</button>
-					<div class="modal fade" id="MatchingModal" role="dialog">
-          				<div class="modal-dialog">
-            				<div class="modal-content">
-            					<div class="modal-body">
-            						<span class="matching_title">매 칭 등 록</span>
-            						<button type="button" id="matching_close" class="close" data-dismiss="modal">&times;</button>
-            						<form action="makeMatch.do" method="post">
-            						<input type="hidden" id="teamNameOut" name="homeTeam">
-            						<table class="matching_create_table">
-            							<tr class="table_row">
-      										<td class="table_menu">팀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</td>
-      										<td class="table_contents" id="teamNamePrint"></td>
-      									</tr>
-            							<tr class="table_row">
-      										<td class="table_menu">매칭제목</td>
-      										<td class="table_contents"><input type="text" name="matchingID" placeholder="Enter Matching Title" required></td>
-      									</tr>
-      									
-      									<tr class="table_row">
-      										<td class="table_menu">경기일정</td>
-      										<td class="table_contents"><input type="text" id="datePick" name="playDate"/></td>
-      									</tr>
-      									
-      									<tr class="table_row">
-     										<td class="table_menu">경기지역</td>
-      										<td class="table_contents">
-													<select name="matchLocation" class="custom-select mb-3" id="city">
-														<option value=''>지역 선택</option>
-														<option value="강동구">강동구</option>
-														<option value="강북구">강북구</option>
-														<option value="강서구">강서구</option>
-														<option value="관악구">관악구</option>
-														<option value="광진구">광진구</option>
-														<option value="구로구">구로구</option>
-														<option value="금천구">금천구</option>
-														<option value="노원구">노원구</option>
-														<option value="도봉구">도봉구</option>
-														<option value="동대문구">동대문구</option>
-														<option value="동작구">동작구</option>
-														<option value="마포구">마포구</option>
-														<option value="서대문구">서대문구</option>
-														<option value="서초구">서초구</option>
-														<option value="성동구">성동구</option>
-														<option value="성북구">성북구</option>
-														<option value="송파구">송파구</option>
-														<option value="양천구">양천구</option>
-														<option value="영등포구">영등포구</option>
-														<option value="용산구">용산구</option>
-														<option value="은평구">은평구</option>
-														<option value="종로구">종로구</option>
-														<option value="중구">중구</option>
-														<option value="중랑구">중랑구</option>
-													</select>
-											</td>
-      									</tr>
-      									<tr class="table_row">
-      										<td class="table_menu">초기 인원</td>
-      										<td class="table_contents"><input type="number" name="people" placeholder="Enter Matching Population" required></td>
-      									</tr>
-      								</table>
-      								<button type="submit" name="create">Create</button>
-                				</form>
-            				</div>	
-            			</div>
-            		</div>
-            	</div>
-			</div>
-			<div class="matching_list">
-				<table class="matching_table">
+						</div>
+			
+			<div class="matching_list col-sm-8 col-sm-offset-2">
+				<table class="matching_table col-sm-12">
 					<thead class="tmatching_header">
 						<tr class="bg-primary">
-							<th>매 칭&nbsp;&nbsp;이 름</th>						
-							<th>지&nbsp;&nbsp;&nbsp;역</th>
-							<th>경 기 &nbsp;&nbsp;일 정</th>
-							<th>팀&nbsp;&nbsp;&nbsp;명</th>
-							<th>인&nbsp;&nbsp;&nbsp;원</th>				
+							<th>매 칭 이 름</th>						
+							<th>지 역</th>
+							<th>경 기 일 정</th>
+							<th>팀 명</th>
+							<th>인 원</th>				
 						</tr>
 					</thead>
 					<tbody class="tmatching_body" id="print_match">
 					</tbody>
 				</table>
+				<div class="matching_main">
+						<button class="btn btn-danger" id="matching_create" type="button" data-toggle="modal">매칭등록</button>
+							<div class="modal fade" id="MatchingModal" role="dialog">
+          						<div class="modal-dialog">
+            						<div class="modal-content">
+            							<div class="modal-body">
+            								<span class="matching_title">매 칭 등 록</span>
+            									<button type="button" id="matching_close" class="close" data-dismiss="modal">&times;</button>
+			            						<form action="makeMatch.do" method="post">
+			            						<input type="hidden" id="teamNameOut" name="homeTeam">
+			            						<table class="matching_create_table">
+			            							<tr class="table_row">
+			      										<td class="table_menu">팀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</td>
+			      										<td class="table_contents" id="teamNamePrint"></td>
+			      									</tr>
+			            							<tr class="table_row">
+			      										<td class="table_menu">매칭제목</td>
+			      										<td class="table_contents"><input type="text" name="matchingID" placeholder="Enter Matching Title" required></td>
+			      									</tr>
+			      									
+			      									<tr class="table_row">
+			      										<td class="table_menu">경기일정</td>
+			      										<td class="table_contents"><input type="text" id="datePick" name="playDate"/></td>
+			      									</tr>
+			      									
+			      									<tr class="table_row">
+			     										<td class="table_menu">경기지역</td>
+			      										<td class="table_contents">
+																<select name="matchLocation" class="custom-select mb-3" id="city">
+																	<option value=''>지역 선택</option>
+																	<option value="강동구">강동구</option>
+																	<option value="강북구">강북구</option>
+																	<option value="강서구">강서구</option>
+																	<option value="관악구">관악구</option>
+																	<option value="광진구">광진구</option>
+																	<option value="구로구">구로구</option>
+																	<option value="금천구">금천구</option>
+																	<option value="노원구">노원구</option>
+																	<option value="도봉구">도봉구</option>
+																	<option value="동대문구">동대문구</option>
+																	<option value="동작구">동작구</option>
+																	<option value="마포구">마포구</option>
+																	<option value="서대문구">서대문구</option>
+																	<option value="서초구">서초구</option>
+																	<option value="성동구">성동구</option>
+																	<option value="성북구">성북구</option>
+																	<option value="송파구">송파구</option>
+																	<option value="양천구">양천구</option>
+																	<option value="영등포구">영등포구</option>
+																	<option value="용산구">용산구</option>
+																	<option value="은평구">은평구</option>
+																	<option value="종로구">종로구</option>
+																	<option value="중구">중구</option>
+																	<option value="중랑구">중랑구</option>
+																</select>
+														</td>
+			      									</tr>
+			      									<tr class="table_row">
+			      										<td class="table_menu">초기 인원</td>
+			      										<td class="table_contents"><input type="number" class="form-control" name="people" placeholder="Enter Matching Population" required></td>
+			      									</tr>
+			      								</table>
+			      								<button type="submit" name="create">Create</button>
+			                				</form>
+			            				</div>	
+			            			</div>
+			            		</div>
+			            	</div>
+						</div>
 			</div>
 		</div>
 		<!-- main contents end -->

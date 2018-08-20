@@ -17,22 +17,20 @@
   <!-- <link rel="stylesheet" href="naonna_main.css"> -->
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
-  	 .naonna-board-container {
-  	 	margin-top : 15px;
+  	 .menu-nameboard {
+  	 	background-color : skyblue;
+  	 	margin-top : 5vw;
   	 }
-  	 .naonna-board-container h3 {
-  	 	font-weight : 700;
+  	 .menu-nameboard h3 {
+  	 	font-weight : 800;
+  	 	color : white;
   	 	display : inline-block;
-  	 }
-  	 .board-container {
-  	 	margin-top : 80px;
   	 }
   	 .table {
   	 	margin-top : 30px;
+  	 	background-color : red;
+  	 	text-align : center;
   	 }
-     .table thead td, .table tbody td:first-child, .table tbody td:nth-child(2), table tbody td:nth-child(3), table tbody td:nth-child(4) {
-     	text-align : center;
-     }
    
    	 #right {
    	 	margin-top : 20px;
@@ -146,20 +144,16 @@
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
-
-	<div class="container-content">
-		<!-- start main content -->
-		<div class="main col-sm-8">
-			<div class="naonna-board-container col-sm-12">
+	
+		<div class="main col-sm-12">
+			<div class="notice-container col-sm-8 col-sm-offset-2">
 				<div class="menu-nameboard col-sm-12">
 					<h3>공지 사항</h3>
-					<span id="right"><button class="wirte-button btn btn-success">글쓰기</button></span>
 				</div>
 				<div class="board-container">
 					<table class="board-table table table-striped table-hover">
 						<thead>
-							<tr>
+							<tr class="bg-primary">
 								<td>제목</td>
 								<td>작성자</td>
 								<td>등록날짜</td>
@@ -183,6 +177,7 @@
 							</tr>
 						</tbody>
 					</table>
+					<span id="right"><button class="wirte-button btn btn-success">글쓰기</button></span>
 				</div>
 			</div>
 		</div>

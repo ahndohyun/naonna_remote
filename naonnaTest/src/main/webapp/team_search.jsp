@@ -20,42 +20,15 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
-  td {
-  
-   text-align : center;
-  
-  }
-  
-     .main {
-        height : 700px;
-        display : relative;
-     }
      .team-filter {
-        margin : 47px 0 20px 5px;
-        height : 80px;
-        border : 1px solid black;
+     	background-color : skyblue;
      }
-     .team-filter-row {
-        width : 1080px;
-        display : absolute;
-        margin : 5px 20px 5px 0px;
-     }
-     .team-filter-name{
-        width : 120px;
-        height : 40px;
-        margin : 20px 20px 30px 15px;
-        padding : 6px;
-        display : inline-block;
-        background-color : black;
-        vertical-align : center;
-     }
-     .team-filter-name h4 {
-        text-align : center;
-        height : 100%;
-        color : white;
-        font-size : 14px;
-        letter-spacing : -1px;
-        margin : 10px 10px 0 10px;
+     .row p {
+     	font-weight : 700;
+     	font-size : 18px;
+     	color : white;
+     	text-align : center;
+     	letter-spacing : 1.5px;
      }
      .team-filter-name input {
         display : inline;
@@ -66,30 +39,8 @@
      .team-filter-value {
         display : inline-block;
      }
-     .success th {
-        text-align : center;
-     }
      .container-page {
-        margin : 50px auto;
-        padding-left : 400px;   
         display : inline;
-     }
-     
-     .team-list {
-     	float : left;
-     }
-     
-     .team-search {
-     	float : left;
-     }
-   
-     button {
-        width : 110px;
-        display : inline-block;
-
-     }
-     .table {
-        margin-top : 40px;
      }
      
 /* 팀생성 모달 */
@@ -97,15 +48,13 @@
 	float: right;
 	border: none;
 	outline:0; /* 버튼 누르고 나서 테두리 없애기 위해 */
-  	margin-right: 50px;
   	margin-bottom: 20px;
   	display: inline-block;
   	padding: 8px;
   	color: white;
-  	background-color: #000;
   	text-align: center;
   	cursor: pointer;
-  	width: 10%;
+  	width: 15%;
   	font-size: 18px;
 }
 #team_create:hover{
@@ -143,13 +92,11 @@
 .modal-body {
 	height : 550px;
 }
-.table_row{
- 	border-bottom : 1px solid silver; 
-} 
+
 .table_menu{
 	background-color: #F9F6F6;	
   	text-align: center;
-  	width:30%;
+
   	height: 60px;
 }
 .table_contents{
@@ -190,10 +137,29 @@ button[name="create"], [name="reset"]{
   	width: 100px;
   	font-size: 12px;
 }
-
-
-
-
+.menu-nameboard h3{
+	font-weight : 800;
+	color : white;
+	margin-bottom : 20px;
+}
+#team_title {
+	font-size : 25px;
+	font-weight : 700;
+	color : black;
+	letter-spacing : 1.8px;
+}
+.team-filter-row {
+	padding : 20px 5px;
+}
+.row {
+	padding : 10px 2px;
+	margin : 10px 3px;
+}
+.btn-search-select {
+	float : right;
+	margin-right : 14px;
+	width : 100px;
+}
   </style>
   
   <script>
@@ -289,25 +255,15 @@ button[name="create"], [name="reset"]{
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
-
-	<div class="container-content">
-   
-   <!-- start main content -->
-   
-     <div class="main col-sm-8"><br>
-     
-     <!--  team filter start -->
-     
-        <div class="team-filter">
-        
+     <div class="main col-sm-8 col-sm-offset-2"><br>
+     <p id="team_title">팀관리</p>
+        <div class="team-filter container-fluid">
            <div class="team-filter-row">
-              <div class="team-filter-name bg-dark"><h4> 팀 명 </h4></div>
-              <div class="team-filter-value"><input type="text" class="form-control" id="teamid" placeholder="팀의 이름을 입력하세요." autofocus></div>
-              
-              
-              <div class="team-filter-name"><h4> 팀 활동 지 역 </h4></div>
-              <div class="team-filter-value">
+           	  <div class="row">
+              <div class="team-filter-name col-sm-2"><p> 팀 명 </p></div>
+              <div class="team-filter-value col-sm-4"><input type="text" class="form-control" id="teamid" placeholder="팀의 이름을 입력하세요." autofocus></div>
+              <div class="team-filter-name col-sm-2"><p> 팀 활동 지역 </p></div>
+              <div class="team-filter-value col-sm-4">
                <form class="form-selection">
                   <select class="form-control" id="address">
                   	 <option value=''>선택사항</option>
@@ -339,24 +295,47 @@ button[name="create"], [name="reset"]{
                    </select>
                </form>
             </div>
-              <div class="team-filter-name"><h4> 주장 닉네임 </h4></div>
-              <div class="team-filter-value"><input type="text" class="form-control" id="capid" placeholder="주장의 닉네임을 입력하세요."></div>
-           </div>
+            </div>
+            <div class="row">
+              <div class="team-filter-name col-sm-2"><p> 주장 닉네임 </p></div>
+              <div class="team-filter-value col-sm-4"><input type="text" class="form-control" id="capid" placeholder="주장의 닉네임을 입력하세요."></div>
+        	  <div class="team-search">
+        	  	<button type="button" class="btn btn-danger btn-search-select" id="target">팀 검색</button>
+        	  </div>
+        	  </div>
+        	</div>
+        </div>
+        
+        <div class="container-board">           
+           <table class="table">
+           <thead>
+               <tr class="bg-primary">
+                 <th>팀명</th>
+                 <th>위치</th>
+                 <th>팀 주장</th>
+                 <th>실력</th>
+                 <th>인원</th>
+               </tr>
+          </thead>
+           <tbody class="table-body" id="team_print">
+           		
            
-           
-        </div>
-        <div class="team-list">
-        	<button type="button" class="btn btn-search-list" id="target2">목록 리스트</button>
-        </div>
-        
-        <div class="team-search">
-        	<button type="button" class="btn btn-search-select" id="target">팀 검색</button>
+              
+           </tbody>
+           </table>
         </div>
         
-        <!-- team filter end -->
-        
-        <div class="container-board">
-           <button id="team_create" type="button" data-toggle="modal" data-target="#TeamModal">팀생성</button>
+        <div class="container-page col-sm-4 col-sm-offset-4">
+	        <ul class="pagination">
+	          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+	          <li class="page-item"><a class="page-link" href="#">1</a></li>
+	          <li class="page-item active"><a class="page-link" href="#">2</a></li>
+	          <li class="page-item"><a class="page-link" href="#">3</a></li>
+	          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+	        </ul>
+      </div>
+      <div>
+      <button class="btn btn-primary" id="team_create" type="button" data-toggle="modal" data-target="#TeamModal">팀생성</button>
  				<div class="modal fade" id="TeamModal" role="dialog">
           			<div class="modal-dialog">
             			<div class="modal-content">
@@ -373,13 +352,12 @@ button[name="create"], [name="reset"]{
            							</tr>          						
            							<tr class="table_row">
            								<td class="table_menu">닉네임</td>
-           								<td class="table_contents"><input type="hidden" name="nickname" value='${sessionScope.nickname}' required> ${sessionScope.nickname} </td>
+           								<td class="table_contents"><input disabled="true" name="nickname" value='${sessionScope.nickname}' required> ${sessionScope.nickname} </td>
            								
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">위치</td>
            								<td class="table_contents">
-           									<form action="#">
 												<select name="area" class="custom-select mb-3" id="city">
 													<option value=''>지역 선택</option>
 													<option value="강남구">강남구</option>
@@ -408,7 +386,6 @@ button[name="create"], [name="reset"]{
 													<option value="중구">중구</option>
 													<option value="중랑구">중랑구</option>
 												</select>
-											</form>
            								</td>
            							</tr>
            							<tr class="table_row">
@@ -431,46 +408,13 @@ button[name="create"], [name="reset"]{
            							</tr>
            						</table>
            						<button type="submit" name="create">Create</button>	
+           						</form>
                 			</div>
                 		</div>
                 	</div>
-                </div> 	
-           
-           <table class="table">
-           <thead>
-               <tr class="success">
-                 <th>팀명</th>
-                 <th>위치</th>
-                 <th>팀 주장</th>
-                 <th>실력</th>
-                 <th>인원</th>
-               </tr>
-          </thead>
-           <tbody class="table-body" id="team_print">
-           		
-           
-              
-           </tbody>
-           </table>
-        </div>
+                </div>
+                </div>
         
-        <div class="container-page">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-        
-      </div>
-           
-     </div>
-        
-      <!-- main contents end -->
-           
-    </div>
-      
-
+    </div>   
 </body>
 </html>

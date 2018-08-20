@@ -30,7 +30,7 @@ body{
 	background-color:
 }
 .container-filter-box{
-	background-color: #768599;
+	background-color: #BDBDBF;
 	padding:10px;
 	padding-top:20px;
 }
@@ -53,17 +53,20 @@ body{
 }
 .ground-calendar-input{
 	margin-right: 30px;
+	display : inline-block;
 }
 .ground-search-btn{
 	margin-left: 250px;
 }
-.groun-llist-table-header{
-	width:100%;
+.ground-list-table{
+	width:882px;
 }
 .ground-list-table th{
-	text-align:center;	
 	height: 40px;
 	font-size:15px;
+	background-color:;
+	max-width:100%;
+	text-align:center;
 }
 .ground-list-table-body tr, td{
 	text-align:center;
@@ -71,12 +74,6 @@ body{
 	verticle-align:middle;
 	height: 45px;
 }
-
-
-
-
-
-
 </style>
 
 <script>
@@ -218,8 +215,7 @@ body{
 				 	'parking' : $('#sel4').val(),
 				 	'shower' : $('#sel5').val(),
 				 	'light' : $('#sel6').val()},
-			//JSon으로 data를 보내고, 그 보낼 data의 정보를 이렇게 지정해주어 나중에 request mapping에서 부합한 객체가 있으면 이와
-			같이 작동하여 java에서 사용.
+			//JSon으로 data를 보내고, 그 보낼 data의 정보를 이렇게 지정해주어 나중에 request mapping에서 부합한 객체가 있으면 이와같이 작동하여 java에서 사용.
 			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
 			success:function(data) {
 				$('#ground_print').html('');		//기존 것 날려주고..
@@ -354,18 +350,17 @@ body{
 							<!--  시간 선택 API  -->
 							<div class="demo-section k-content" id="timer">
 								<h4 class="ground-calendar-text">날짜 선택</h4>
-								<input class="ground-calendar-input" type="text" id="datePick" name="datetimes" style="width: 25%" />
+								<input class="form-control ground-calendar-input" type="text" id="datePick" name="datetimes" style="width: 25%" />
 								<h4 class="ground-calendar-text">대여 시간</h4>
 								<input type="number" id="hours" value="0" style="width: 5%;"/>시간
 								<input class="ground-search-btn btn btn-primary" type="button" id="time_Submit" value="검색">
 							</div>					
 					</div>
 				</div>
-
 			<div>
 				<table class="ground-list-table">
 					<thead class="ground-list-table-header">
-						<tr class="bg-warning">
+						<tr class="bg-primary">
 							<th>경기장 이름</th>
 							<th>주소</th>
 							<th>인조잔디</th>
