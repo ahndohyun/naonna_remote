@@ -8,4 +8,5 @@ public interface UserService {
 	UserVO goMyPage(String nickname);
 	void updateInfo(UserVO vo);
 	void updateProfile(UserVO vo);
+	
 }

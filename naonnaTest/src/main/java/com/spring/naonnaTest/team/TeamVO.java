@@ -12,8 +12,7 @@ public class TeamVO {
 	private String intro;
 	private int number_team;
 	private String area;
-	
-	
+		
 
 	public String getAge() {
 		return age;

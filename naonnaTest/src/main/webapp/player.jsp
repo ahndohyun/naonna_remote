@@ -13,7 +13,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
   <!-- <link rel="stylesheet" href="naonna_main.css"> -->
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
@@ -43,28 +42,6 @@
 
 <script>
 	$(document).ready(function() {
-		$(function() {
-			var currentDate = new Date();
-			//					var tomorrow = currentDate.setDate(currentDate.getDate()+1);
-			$('input[name="datetimes"]').daterangepicker({
-
-				singleDatePicker : true,
-				//        		 		timePicker: true,
-				showDropdowns : true,
-				startDate : moment().startOf('hour'),
-				minDate : currentDate,
-				//    		     endDate: moment().startOf('hour').add(0, 'hour'),
-				locale : {
-					format : 'YYYY/M/DD hh:00'
-				//         		    	format: 'YYYY/M/DD'
-
-				}
-			});
-		});
-
-		
-		
-		
 		
 		$(function() {
 			$.ajax({

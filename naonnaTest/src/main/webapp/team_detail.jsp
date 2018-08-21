@@ -22,12 +22,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
-  <!-- <link rel="stylesheet" href="naonna_main.css"> -->
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
   .team-detail {
   	border : 1px solid black;
   	margin-top : 47px;
+  }
+  .team-name-container img {
+  	width : 200px;
+  	height : 200px;
   }
   .page_name {
   	border-bottom : 1px solid black;
@@ -68,6 +71,62 @@
   }
   </style>
   
+  <script>
+  	$(document).ready(function() {
+  		
+  		$.ajax({
+   			url:'/naonnaTest/printTeamMember.do',     			
+   			type:'POST',
+   			dataType: "json",
+   			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+   			data : {
+   					'team_name' : '${vo.team_name}',
+   				},
+   			
+   			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+   			success:function(data) {
+   				var output = "";
+   				$('#teamMember').html('');
+   				output += "<tr><td>구성원</td><td>"
+   				$.each(data, function(index, member) {
+   						output += member.nickname
+   						output += "&nbsp&nbsp&nbsp"
+   				});
+   				output += "</td></tr>"
+   				
+   				$('#teamMember').html(output);
+   				console.log(output);
+   			},
+   			error:function() {
+   				alert("새로고침을 눌러주세요.");			
+   			}
+       });
+  		
+  		$('#joinTeam').click(function () {
+  			$.ajax({
+	   			url:'/naonnaTest/joinTeamMessage.do',     			
+	   			type:'POST',
+	   			dataType: "json",
+	   			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+	   			data : {
+	   					'teamName' : '${vo.team_name}',
+	   					'sendPeople' : "${sessionScope.nickname}",
+	   					'getPeople' : '${vo.nickname}'
+	   				},
+	   			
+	   			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+	   			success:function(data) {
+	   				alert("주장님께서 승낙하시면 가입 완료가 됩니다.");
+	   				
+	   			},
+	   			error:function() {
+	   				alert("새로고침을 눌러주세요.");			
+	   			}
+	       });
+  		});
+  	});
+  	
+  </script>
 </head>
 
 <body>
@@ -76,6 +135,9 @@
 
 	<div class="container-content">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+	<form name="kakaoId">
+		<input type="hidden" name="kakao_Id">
+	</form>
    
    <!-- start main content -->
      <div class="main col-sm-8"><br>
@@ -84,22 +146,32 @@
         <div class="page_name"><h2>팀 상세 보기</h2></div>
         <div class="team-detail-container col-sm-12">
            <div class="team-detail-header">
-              <div class="team-name-container col-sm-4"><h3 id="team-name">${vo.team_name}</h3>
+              <div class="team-name-container col-sm-4">
+              <h3 id="team-name">${vo.team_name}</h3>
               	<img src="<spring:url value='./image/${vo.emblem}' />"/>
               </div>
-              <div class="team-join-button btn btn-success"><p>팀 가입하기</p></div>
+              <div class="team-join-button btn btn-success" id="joinTeam"><p>팀 가입하기</p></div>
            </div>
            <div class="container team-detail-contents col-sm-12">
               <table class="table table-bordered table-striped table-hover">
                  <thead>
+
+                 </thead>
+                 <tbody>
+                    <tr>
+                       <td> 주장 </td>
+                       <td>${vo.nickname } </td>
+                    </tr>
                     <tr>
                        <td> 위치 </td>
                        <td>${vo.area } </td>
                     </tr>
-                 </thead>
-                 <tbody>
                     <tr>
+<<<<<<< HEAD
                        <td>  연령대 </td>
+=======
+                       <td> 최근 연령대 </td>
+>>>>>>> b3f36e962fcf04577a661583685866d97f0a38e4
                        <td> ${vo.age } </td>
                     </tr>
                     <tr>
@@ -112,10 +184,19 @@
                     </tr>
                     <tr>
                        <td> 팀 소개 </td>
+<<<<<<< HEAD
                        <td> ${vo.intro }
                        </td>
                     </tr>
+=======
+                       <td> ${vo.intro }</td>
+                    </tr>
+                    
+>>>>>>> b3f36e962fcf04577a661583685866d97f0a38e4
                  </tbody>
+                 <tfoot id="teamMember">
+                 	<!-- 자바스크립트 멤버 출력 -->
+                 </tfoot>
               </table>
            </div>
         </div>   

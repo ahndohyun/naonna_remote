@@ -93,13 +93,12 @@
          </div>
          <div>
          <form id="mypageForm" action="update_profile.do" method="post" enctype="multipart/form-data">
-               <div>
                <input type="hidden" name="nickname" id="nickname1">
                <input type="hidden" name="kakao_Id">
                <label class="mypage_label">프로필 이미지 :</label> 
                		<span><input type="file" name="imgfile" /> </span>   
                		<input type="submit" value="사진 변경 " />  
-        </form>
+       	 </form>
             <form id="mypageForm" action="update_userinfo.do" method="post">
                <div>
                <input type="hidden" name="kakao_Id">

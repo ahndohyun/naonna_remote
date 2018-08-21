@@ -52,7 +52,7 @@
   <!-- end main content -->
   </div>
   <!-- main body end -->
- </div>
+
 </body>
 
 </html>

@@ -20,6 +20,7 @@
 	    		if(s != "") {
 					$('#login-button').hide();
 	    			outUserInfo(s);
+	    			outMessage(n);
 	    			
 	    		}
 	    		else {
@@ -45,10 +46,31 @@
 	     				$('#myPage').append(data.nickname);
 	     				$('#myPage').attr("href", "myPage.do?nickname=" + data.nickname);
 	     				$('#myTeam').append(data.teamName);
-	     				$('#myTeam').attr('href', "team_detail.do?team_name="+data.team_name);
-	     				$('#matching').append(data.teamName);
-	     				$('#booking').append(data.teamName);
+	     				$('#myTeam').attr('href', "team_detail.do?team_name="+data.teamName);
 	     				
+	     			},
+	     			error:function() {
+	     				alert("새로고침을 눌러주세요..outUserInfo");			
+	     			}
+	     		});
+	
+	       }
+	       
+	       function outMessage(n) {
+	     		$.ajax({
+	     			url:'/naonnaTest/countMessage.do',     			
+	     			type:'POST',
+	     			dataType: "json",
+	     			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+	     			data : {
+	     					'nickname' : n
+	     				},
+	     			
+	     			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+	     			success:function(data) {
+	     				if(data > 0) {
+	     					$('#message').append(data);	   
+	     				}
 	     			},
 	     			error:function() {
 	     				alert("새로고침을 눌러주세요..outUserInfo");			
@@ -66,8 +88,7 @@
 		            	 form.kakao_Id.value = res.id;            	 
 		            	 form.action = '/naonnaTest/distUserInfo.do';
 		            	 form.method='POST';
-		            	 form.submit();
-		
+		            	 form.submit();		
 		             },
 		             fail: function(error) {
 		               alert("실패!");
@@ -96,7 +117,7 @@
 	//               	createKakaotalkLogout();
 	              },
 	              fail: function(err) {
-	                console.log(err);
+	                console.log("CreateKakaotalkLogin():" + err);
 	              }
 	            });
 	          });
@@ -286,8 +307,7 @@
         <!--로그인과 로그아웃 구분하기 하위 메뉴에 히든주기!!!!!!!!!!!!!! -->
 				<p><a href="#" id="myPage"></a></p>
 				<p><a href="#" id="myTeam"></a></p>
-				<p><a href="#" id="matching"></a></p>
-				<p><a href="#" id="booking"></a></p>
+				<a href="messageHome.do" >Message</a><div class="btn btn-danger" id="message"></div>
 
         <!-- show login modal -->
 				<button id="login-button" type="button" data-toggle="modal" data-target="#LoginModal" name="login_btn">Login</button>

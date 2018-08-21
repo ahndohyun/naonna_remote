@@ -293,6 +293,9 @@ button[name="create"], [name="reset"]{
 
 	<div class="container-content">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+	<form name="kakaoId">
+		<input type="hidden" name="kakao_Id">
+	</form>	
    
    <!-- start main content -->
    
@@ -374,7 +377,8 @@ button[name="create"], [name="reset"]{
            							</tr>          						
            							<tr class="table_row">
            								<td class="table_menu">닉네임</td>
-           								<td class="table_contents"><input type="text" name="nickname"required></td>
+           								<td class="table_contents"><input type="hidden" name="nickname" value='${sessionScope.nickname}' required> ${sessionScope.nickname} </td>
+           								
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">위치</td>
@@ -382,6 +386,7 @@ button[name="create"], [name="reset"]{
            									<form action="#">
 												<select name="area" class="custom-select mb-3" id="city">
 													<option value=''>지역 선택</option>
+													<option value="강남구">강남구</option>
 													<option value="강동구">강동구</option>
 													<option value="강북구">강북구</option>
 													<option value="강서구">강서구</option>
@@ -416,19 +421,15 @@ button[name="create"], [name="reset"]{
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">엠블럼</td>
-           								<td class="table_contents"><input type="file" placeholder="put in your emblem" name="emblem2" required></td>
+           								<td class="table_contents"><input type="file" placeholder="put in your emblem" name="emblem2"></td>
            							</tr>
            							<tr class="table_row">
            								<td class="table_menu">실력</td>
            								<td class="table_contents"><input type="text" placeholder="Enter Level" name="ability" required></td>
            							</tr>
-           							<tr class="table_row">
-           								<td class="table_menu">인원</td>
-           								<td class="table_contents"><input type="text" placeholder="Enter Number of Team" name="number_team" required></td>
-           							</tr>
-           							<tr class="table_row">
+           							<tr class="table_row">          						
            								<td class="table_menu">팀소개</td>
-           								<td class="table_contents">
+           								<td class="table_contents"><input type="hidden" placeholder="Enter Number of Team" name="number_team" value="1">
            								<textarea class="team_text" name="intro" ></textarea>
            								</td>
            							</tr>
