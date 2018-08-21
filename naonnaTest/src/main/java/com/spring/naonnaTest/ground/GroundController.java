@@ -239,27 +239,42 @@ public class GroundController {
 
 	@RequestMapping(value = "/bookingGround.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
-	public String Ground_Book_JSON(BookingVO bookingvo, HttpServletResponse response) throws Exception{
+	public String Ground_Book_JSON(BookingVO bookingvo) {
+		System.out.println("groundname : " + bookingvo.getGroundName());	
+		BookingVO list = groundService.Ground_Book_JSON(bookingvo);
 		
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		int res =  groundService.Ground_Book_JSON(bookingvo);
-		System.out.print("res : " + res);
-		if(res == 1) {
-			out.println("<script>");
-			out.println("alert('그라운드 예약 완료')");
-			out.println("location.href= 'ground_info.do'");
-			out.println("</script>");
-		}else {
-			out.println("<script>");
-			out.println("alert('그라운드예약 실패')");
-			out.println("history.back();");
-			out.println("</script>");
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+		
+		try {
+			str = mapper.writeValueAsString(list);
+			System.out.println("str=" + str);
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
 		}
 		
-		return null;
-		
-
+		return str;
+	}
 	
+	
+	@RequestMapping(value = "/getAdminBookingJSON.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
+	public String Ground_Bookedlist_JSON(BookingVO bookingvo) {
+		ArrayList<BookingVO> Bookinglist = groundService.Ground_Bookedlist_JSON(bookingvo);
+
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+		
+		try {
+			str = mapper.writeValueAsString(Bookinglist);
+			System.out.println("str=" + str);
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+		
+		return str;
+		
 	}
 }

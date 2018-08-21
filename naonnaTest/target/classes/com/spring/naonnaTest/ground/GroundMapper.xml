@@ -122,6 +122,10 @@
      assign = #{assign}, startTime = #{startTime}, endTime = #{endTime}, confirm =#{confirm} where groundName = #{groundName}
     </update>
     
+    <select id="selectBooking" parameterType = "com.spring.naonnaTest.ground.BookingVO" resultMap= "BookingResultMap">
+    select * from booking where groundName = #{ground_Name}
+    </select>
+    
    <!-- 
    <insert id ="insertGround2" parameterType = "hashmap" >
    	insert into ground_soccer values(#{ground_Name, javaType=String}, #{ground_admin jdbcType=VARCHAR2}, #{ground_addr},#{ground_city},#{grass},#{shower},#{parking},

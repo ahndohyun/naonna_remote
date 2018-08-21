@@ -251,60 +251,60 @@ String nickname = (String)session.getAttribute("nickname");
   </style>
   <script>
   
-  $(function() {
-		 
-		var currentDate = new Date();
-//		var tomorrow = currentDate.setDate(currentDate.getDate()+1);
-	  $('input[name="datetimes"]').daterangepicker({
-		
-
-		singleDatePicker : true,
-	 		timePicker: true,
-	    showDropdowns: true, 
-	    startDate: moment().startOf('hour'),
-	    minDate : currentDate,
-//   endDate: moment().startOf('hour').add(0, 'hour'),
-	    locale: {
-	       format: 'YYYY/M/DD hh:00'
-//	    	format: 'YYYY/M/DD'
-
-	    }
-	  });
-});
- 
-$('#reserve').click (function(){
+  
+  
+	  $(function() {
+			 
+			var currentDate = new Date();
+		  $('input[name="datetimes"]').daterangepicker({
+			
 	
-	var startDate = new Date($('#datePick').val());
-	var assign = $('#hours').val();
-	assign = assign*1;
-	var endDate = new Date(startDate);
-	endDate.setHours(startDate.getHours() + 1);
-	goGroundB_time(startDate, endDate);
-});	
-
-
- 
-  	
-  	function goGroundB_time(startDate, endDate) {	
+			singleDatePicker : true,
+		 		timePicker: true,
+		    showDropdowns: true, 
+		    startDate: moment().startOf('hour'),
+		    minDate : currentDate,
+		    locale: {
+		       format: 'YYYY/M/DD hh:00'
+		    }
+		  });
+	});
+	 
+		function res3(){
+			
+			var startDate = new Date($('#datePick').val());
+			var assign = $('#hours').val();
+			assign = assign*1;
+			var endDate = new Date(startDate);
+			endDate.setHours(startDate.getHours() + 1);
+			var groundName = '<%=vo.getGround_Name()%>';
+			               
+			goGroundB_time(startDate, endDate, assign,groundName);
+		}
+		
+		
+		 
+		  	
+  	function goGroundB_time(startDate, endDate ,assign , groundName) {
 		$.ajax({
 			url:'/naonnaTest/bookingGround.do',
-			type:'POST',
-			dataType: "json",
+			type:'POST',			
 			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-			data:{	'bookNumber': index,
-					'groundName':"${sessionScope.groundName}",
-				 	'matchingID' : "" ,
+			data:{	'bookNumber': startDate,
+					'groundName':groundName ,
+				 	'matchingID' : "asdfqwef" ,
 				 	'nickname': "${sessionScope.nickname}",	
 				 	'startTime' : startDate,
 				 	'assign' : assign,
 				 	'endTime' : endDate},
 				 	
-				succeess:function(){
-					alert("예약성공!!");
-				} 	
-			});
-		}
-   
+				 success:function(){
+				 		alert('성공');
+				 	}
+			});	
+	}
+		
+  
   	
   function res() {
      // location.href = "ground_info.do"
@@ -451,7 +451,7 @@ $('#reserve').click (function(){
   </div>
   <!-- end main content -->
   <div class="button-container">
-  	<div class="payment"><button class="btn btn-success" id="reserve">예약하기</button></div>
+  	<div class="payment"><button class="btn btn-success" id="reserve" onclick="res3()">예약하기</button></div>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
   	<%if(session.getAttribute("admin") !=null){ %>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>

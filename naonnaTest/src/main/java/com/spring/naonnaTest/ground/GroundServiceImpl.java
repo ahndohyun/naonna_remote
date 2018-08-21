@@ -99,10 +99,19 @@ public class GroundServiceImpl implements GroundService{
 	}
 	
 	@Override
-	public int Ground_Book_JSON(BookingVO bookingvo) {
+	public BookingVO Ground_Book_JSON(BookingVO bookingvo) {
+		
 		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
-		  int res = groundMapper.modifyBooking(bookingvo);
-		return res;
+		BookingVO reservelist = groundMapper.modifyBooking(bookingvo);
+		return reservelist;
+	}
+	
+	@Override
+	public ArrayList<BookingVO> Ground_Bookedlist_JSON(BookingVO bookingvo) {
+		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+		ArrayList<BookingVO> reservelist = groundMapper.selectBooking(bookingvo);
+		return reservelist;
+		
 	}
 
 }
