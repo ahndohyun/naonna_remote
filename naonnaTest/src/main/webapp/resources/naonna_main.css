@@ -6,7 +6,7 @@ body {
     max-width: 100%;
 }
 .main {
-	margin-top : 150px;
+	margin-top : 100px;
 }
 /* start top menu */
 .top_menu {
@@ -52,34 +52,19 @@ body {
 /* side-profile */
 .side-profile {
   display : inline-block;
-  height : 500px;
+  
   margin-top: 200px;
 }
 
-.container-content .main {            /*->이거 주석하면 로그인 안눌림*/
-   display : inline-block;
-   right : 0;
-   width : 80%;
-   position : absolute;
-   top : 50px;
-   padding : 10px;
-}
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
   text-align: center;
   font-family: arial;
   background-color : white;
 }
-.card a {
-  text-decoration: none;
-  font-size: 14px;
-  color: black;
-}
-.card p {
-   color : black;
-}
+
+
 /* The Modal*/
 #LoginModal {
     display: none;
@@ -107,17 +92,10 @@ ul[name=login_select]{
 .close{
   margin-top: -10px;
 }
-#admin_login, #admin_login_pw {
-	width: 500px;
-  height: 35px;
-  margin-left: -50px;
-  margin-bottom: 20px;
-  padding-left: 20px;
-}
 .kakao_login{
-	margin-left:130px;
-	margin-top: 50px;
-	margin-bottom: 20px;
+	margin-left: 5px;
+	margin-top: 30px;
+	margin-bottom: 15px;
 }
 button[name=login], a[name=join_btn], #submitbut{
   border: none;

@@ -26,10 +26,10 @@
         background-color: #9C6C87;
 		padding:10px;
 		padding-top:20px;
+		width: 100%;
      }
      #matching_title {
      	font-size : 25px;
-     	font-weight : 800;
      }
      
      .subject-location{
@@ -181,8 +181,8 @@
 	}
 	.matching_list{
 		padding : 0;
+		width: 100%;
 	}
-	
 	.tmatching_header th{
 		text-align:center;
 		/* border: 1px solid silver; */
@@ -368,10 +368,9 @@
 	</form>	
 
 		<div class="main col-sm-10">
-			<div class="col-sm-8">
+			<div class="col-sm-10 col-sm-offset-1">
 				<p id="matching_title">매칭 검색</p>
-			</div>
-			<div class="matching-filter col-sm-8">
+				<div class="matching-filter col-sm-8 container-fluid">
 					<div class="filter-location">
 						<h4>위치</h4>
 						<form action="#">
@@ -412,7 +411,7 @@
 					<button type="button" class="btn btn-danger matching_button" id="search_matching">매칭검색</button>
 						</div>
 			
-			<div class="matching_list col-sm-8">
+			<div class="matching_list col-sm-8 container-fluid">
 				<table class="matching_table col-sm-12">
 					<thead class="tmatching_header">
 						<tr class="bg-primary">
@@ -443,7 +442,7 @@
 			      									</tr>
 			            							<tr class="table_row">
 			      										<td class="table_menu">매칭제목</td>
-			      										<td class="table_contents"><input type="text" name="matchingID" placeholder="Enter Matching Title" required></td>
+			      										<td class="table_contents"><input type="text" name="matchingID" placeholder="매칭 제목을 입력하세요." required></td>
 			      									</tr>
 			      									
 			      									<tr class="table_row">
@@ -485,10 +484,10 @@
 			      									</tr>
 			      									<tr class="table_row">
 			      										<td class="table_menu">초기 인원</td>
-			      										<td class="table_contents"><input type="number" class="form-control" name="people" placeholder="Enter Matching Population" required></td>
+			      										<td class="table_contents"><input type="number" class="form-control" name="people" placeholder="매칭 인원을 입력하세요." required></td>
 			      									</tr>
 			      								</table>
-			      								<button type="submit" name="create">Create</button>
+			      								<button type="submit" name="create">매칭 생성</button>
 			                				</form>
 			            				</div>	
 			            			</div>
@@ -497,7 +496,6 @@
 						</div>
 			</div>
 		</div>
-		<!-- main contents end -->
-	</div>
+		</div>
 </body>
 </html>

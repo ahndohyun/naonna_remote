@@ -58,11 +58,14 @@ String ground_name = (String)session.getAttribute("groundName");
      overflow : hidden;
    }
    .ground_name {
+   		display : inline-block;
    		font-size : 24px;
    		font-weight : 550;
+   		margin-top : 15px;
    }
    .ground_addr {
-   		font-size : 20px;
+   		display : inline-block;
+   		font-size : 18px;
    		font-weight : 500;
    		margin-left : 20px;
    }
@@ -100,7 +103,7 @@ String ground_name = (String)session.getAttribute("groundName");
    
    /* Position the "next button" to the right */
    .next {
-     left: 825px;
+     left: 855px;
      border-radius: 3px 0 0 3px;
    }
    
@@ -139,7 +142,6 @@ String ground_name = (String)session.getAttribute("groundName");
      display: table;
      clear: both;
    }
-   
    /* Six columns side by side */
    .column {
      float: left;
@@ -162,9 +164,12 @@ String ground_name = (String)session.getAttribute("groundName");
    }
    .ground-detail-size {
    	margin-top : 50px;
+   	padding : 0;
+   	margin-bottom : 40px;
    }
    .ground-detail-contents {
    	margin-top : 15px;
+   	padding : 15px 0 0 0;
    }
    .ground-detail-contents .container p{
    		font-size : 20px;
@@ -243,6 +248,10 @@ String ground_name = (String)session.getAttribute("groundName");
       list-style-type : none;
       
    }
+   .side_m {
+   		margin-left : -15px;
+   		padding : 0;
+   }
    .ground-notice-1 ul li, .ground-notice-3 ul li{
       margin :  0 0 10px -20px;
       font-size : 12px;
@@ -253,17 +262,14 @@ String ground_name = (String)session.getAttribute("groundName");
    }
    .payment, .back-to-list {
       display : inline-block;
-      width : 200px;
-      margin : 40px 8px 0;
+      float: right;
+      margin-bottom: 15px;
    }
-   .payment {
-      margin-left : 360px;
-   }
-   .btn {
-      height : 60px;
+   .back-to-list{
+   	margin-right: 25px;
    }
    .contents-row{
-   		margin-top : 40px;
+   		margin-top : 20px;
    }
    .form-control {
    		display : inline-block;
@@ -272,6 +278,24 @@ String ground_name = (String)session.getAttribute("groundName");
    #search_matching {
    		height : 29px;
    }
+   #datePick {
+   	width : 100px;
+   	margin-left : 60px;
+   }
+   .container p, .container {
+   	max-width : 500px;
+   }
+   .ground-header th{
+		text-align:center;
+		height: 30px;
+		font-size:15px;
+	}
+	.ground-body tr, td{
+		text-align:center;
+		border-bottom: 1px solid silver;
+		verticle-align:middle;
+		height: 30px;
+	}
   </style>
   <script>
 	$(document).ready(function() {
@@ -448,8 +472,7 @@ String ground_name = (String)session.getAttribute("groundName");
 
 <body>
 	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-
-	<div class="col-sm-2">
+	<div class="col-sm-2 side_m">
 		<div class="row">
 			<%if(session.getAttribute("admin") != null){ %>
 			<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
@@ -461,7 +484,7 @@ String ground_name = (String)session.getAttribute("groundName");
 
 <!-- start main content -->
   <div class="main col-sm-10">
-  	<div class="detail-container col-sm-8">
+  	<div class="detail-container col-sm-10 col-sm-offset-1">
   	
      <div>
         <p class="ground_name">${vo.ground_Name}</p>
@@ -567,36 +590,33 @@ String ground_name = (String)session.getAttribute("groundName");
 	  		<div class="ground-detail-icon col-sm-2"><img src="https://www.iamground.kr/img/icons/sh.png"></div>
 	  		<div class="ground-detail-textmore col-sm-3 col-sm-offset-1"><p>${vo.shower }</p></div>
   		</div>
+  		<div class="row contents-row" id="row3">
+  			<input type="text" class="form-control" id="datePick" name="datetimes" style="width: 200px;" />
+			<button type="button" class="fas fa-search" id="search_matching"></button>
+  		</div>
   	</div>  		
   </div>
 
-	<div class=" filter-location col-sm-6 col-sm-offset-3">
-		<!--  시간 선택 API  -->
-		<input type="text" class="form-control" id="datePick" name="datetimes" style="width: 70%" />
-		<button type="button" class="fas fa-search" id="search_matching"></button>
-	</div>
-	<div class="timetable container-board">
 		<table class="table">
-			<thead>
-				<tr class="success">
+			<thead class="ground-header">
+				<tr class="bg-primary">
 					<th>대관 시간</th>
 					<th>가격</th>
 					<th>예약 내용</th>
 					<th>예약가능여부</th>
 				</tr>
 			</thead>
-			<tbody class="table-body" id="ground_print">
+			<tbody class="ground-body" id="ground_print">
 			</tbody>
 		</table>
-	</div>
+
 	<div class="button-container">
-  	<div class="payment"><button class="btn btn-success">결제하기</button></div>
-  	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
+	<div class="payment"><button class="btn btn-success">결제하기</button></div>
+	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
   	<%if(session.getAttribute("admin") !=null){ %>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
   	<%} %>
   </div>
-	</div>
 	</div>
 	</div>
 </body>

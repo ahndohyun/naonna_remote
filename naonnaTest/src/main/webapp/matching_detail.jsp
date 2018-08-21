@@ -74,6 +74,12 @@
        .table tr td {
           padding : 15px;
        }
+       .card_team_info img{
+       		width : 100%;
+       }
+       .sub_main {
+       		padding : 0;
+       }
   </style>
 	
 	<script>
@@ -209,7 +215,7 @@
 				console.log("teamDetail" + data);
 				$('#homeDetail').attr("href", "team_detail.do?team_name="+ data.team_name);
 				var output = '';
-				$('#teamEmblem').attr("src", '/naonnaTest/image/' + data.emblem)
+				/* $('#teamEmblem').attr("src", '/naonnaTest/image/' + data.emblem) */
 				$('#teamName').text("");
 				$('#ability').text("");
 				$('#area').text("");
@@ -242,20 +248,16 @@
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>	
-	
 
       <div class="main col-sm-10">
-         <div class="player-board-container col-sm-12">
+      	<div class="col-sm-10 col-sm-offset-1 sub_main">
             <div class="player-nameboard col-sm-12">
                <h1 id="page_title">매칭 상세 정보</h1>
             </div>
             <div class="player-table-container row justify-content-md-center col-sm-12">
-               <div class="team-name row">
-                  <h2 class="team-name-p" id="matchingID"></h2>
-               </div>
                <div class="col-sm-4 team-info">
                   <div class="card card_team_info" id="teamDetail">
-                           <img id="teamEmblem" class="card-img-top" src="http://img.insight.co.kr/static/2017/03/16/700/K7TX4ZUWQPM421C45J08.jpg" alt="winter">
+                           <img id="teamEmblem" class="card-img-top" src="./image/han.jpg" alt="winter">
                            <div class="card-body">
                                <h3 id="teamName" class="card-title text-center">팀 이름</h3><br>
                                <p id="ability" class="card-text text-center">실력 : </p>
@@ -290,16 +292,11 @@
 	                      	<option value='${sessionScope.teamName}'>내 팀으로 참여</option>
 	                      </select>
 	                       <button class="btn btn-primary" id="match_wanna">참가 신청</button>
-
-	                     
-
                       <button class="btn btn-warning" onclick="history.back()">목록으로</button>
                       <button class="btn btn-warning" id="finish">참가 마감</button>
                </div>
             </div>
          </div>
       </div>
-      <!-- main contents end -->
-   </div>
 </body>
 </html>

@@ -8,8 +8,37 @@
 <title>Insert title here</title>
 <style>
 .card{
-	margin-top:200px
+	margin-top:150px
 }
+#profile_img {
+	height : 250px;
+}
+#message_line {
+	display : inline-block;
+	font-size: 16px;
+  	color: black;
+  	font-weight : 550;
+  	letter-spacing : 1.5px;
+  	margin-right : 10px;
+  	margin-left : 35px;
+  	margin-bottom : -15px;
+}
+#message {
+	height : 23px;
+}
+.sidemenu_text, .card a{
+	margin-top : 15px;
+	text-decoration: none;
+  	font-size: 16px;
+  	color: black;
+  	font-weight : 550;
+  	letter-spacing : 1.5px;
+}
+.sidemenu_text:hover, .card a:hover {
+	color : red;
+}
+
+
 </style>
 <script>
   // start 카카오톡 API
@@ -291,13 +320,13 @@
     <div class="container-fluid">
     <div class="row">
       <div class="card side-profile">
-      	<img src="https://t1.daumcdn.net/cfile/tistory/213D18435900DDE00E" alt="John" style="width: 100%">
-				<p><a href="#" id="myPage"></a></p>
-				<p><a href="#" id="myTeam"></a></p>
-				<a href="messageHome.do" >Message</a><div class="btn btn-danger" id="message"></div>
+      	<img src="http://i.imgur.com/MI0CuQd.jpg" id="profile_img" alt="John" style="width: 100%">
+				<p class="sidemenu_text"><a href="#" id="myPage"></a></p>
+				<p class="sidemenu_text"><a href="#" id="myTeam"></a></p>
+				<p id="message_line"><a href="messageHome.do" >Message</a></p><div class="btn btn-danger" id="message"></div>
         <!-- show login modal -->
 				<button id="login-button" type="button" data-toggle="modal" data-target="#LoginModal" name="login_btn">Login</button>
-				<div id="kakao-logout-group">로그아웃</div>
+				<div id="kakao-logout-group"><p class="sidemenu_text">로그아웃</p></div>
 				
 		<!-- Modal -->
         <div class="modal fade" id="LoginModal" role="dialog">
@@ -313,7 +342,7 @@
 
                 <div class="tab-content">
                   <div id="login_P" class="tab-pane fade in active">
-                    <div id="kakao-logged-group"></div>
+                    <div id="kakao-logged-group" class="kakao_login"></div>
                       <a id="custom-login-btn" href="javascript:loginWithKakao()" style="cursor:hand;"></a>
                   </div>
                   

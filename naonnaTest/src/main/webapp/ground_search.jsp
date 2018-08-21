@@ -59,7 +59,7 @@ body{
 	margin-left: 250px;
 }
 .ground-list-table{
-	width:882px;
+	width:100%;
 }
 .ground-list-table th{
 	height: 40px;
@@ -259,7 +259,7 @@ body{
 	</form>	
 	
 		<div class="main col-sm-10">
-			<div class="container-filter col-sm-10">
+			<div class="container-filter col-sm-10 col-sm-offset-1">
 				<p id="ground_title">경기장 검색</p>
 				<div class="container-filter-box container-fluid">
 					<div class="groundValue row">
