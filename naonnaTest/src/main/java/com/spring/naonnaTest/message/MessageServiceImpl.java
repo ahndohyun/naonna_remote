@@ -75,4 +75,18 @@ public class MessageServiceImpl implements MessageService{
 		}
 	}
 	
+	public void deleteMsg(String[] message) {
+		
+		try {
+			MessageMapper messageMapper = sqlSession.getMapper(MessageMapper.class);
+			for(String msg : message) {
+				messageMapper.deleteMessage(msg);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+	}
+	
 }

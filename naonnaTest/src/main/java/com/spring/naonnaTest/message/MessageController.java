@@ -74,4 +74,21 @@ public class MessageController {
 		return 1;
 	}
 	
+	@RequestMapping(value = "/deleteMessage.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public int delMsg(String[] message) {
+		for(String str : message) {
+			System.out.println(str);
+		}
+		
+		try {
+			messageService.deleteMsg(message);
+		}
+		catch (Exception e){
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+		
+		return 1;
+	}
+	
 }
