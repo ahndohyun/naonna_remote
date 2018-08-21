@@ -79,11 +79,15 @@
 
 <body>
 	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
+	
+	<div class="col-sm-2">
+		<div class="row">
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+		</div>
+	</div>
 
-	<div class="container-content">
-		<!-- start main content -->
-		<div class="main col-sm-9">
+
+		<div class="main col-sm-10">
 			<div class="player-board-container col-sm-12">
 				<div class="player-nameboard col-sm-12">
 					<h1 id="page_title">매칭 상세 정보</h1>
@@ -138,7 +142,5 @@
 				</div>
 			</div>
 		</div>
-		<!-- main contents end -->
-	</div>
 </body>
 </html>

@@ -6,7 +6,7 @@ body {
     max-width: 100%;
 }
 .main {
-	margin-top : 80px;
+	margin-top : 150px;
 }
 /* start top menu */
 .top_menu {
@@ -49,8 +49,38 @@ body {
 .secondMenu:hover{
 	color:black !important;
 }
+/* side-profile */
+.side-profile {
+  display : inline-block;
+  height : 500px;
+  margin-top: 200px;
+}
 
-/* The Modal (background) */
+.container-content .main {            /*->이거 주석하면 로그인 안눌림*/
+   display : inline-block;
+   right : 0;
+   width : 80%;
+   position : absolute;
+   top : 50px;
+   padding : 10px;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  background-color : white;
+}
+.card a {
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
+}
+.card p {
+   color : black;
+}
+/* The Modal*/
 #LoginModal {
     display: none;
     position: fixed;
@@ -86,7 +116,7 @@ ul[name=login_select]{
 }
 .kakao_login{
 	margin-left:130px;
-	margin-top: 35px;
+	margin-top: 50px;
 	margin-bottom: 20px;
 }
 button[name=login], a[name=join_btn], #submitbut{
@@ -113,15 +143,31 @@ a[name=join_btn]{
 #join label{
   display : block;
   font-size: 18px;
-  margin: auto;
   text-align: left;
-  margin-left: 13px;
+  margin-left: 43px;
+  margin-bottom: 5px;
 }
-
-input[name=ground_admin], input[name=ground_ad_pw], input[name=ground_ad_pin], input[name=ground_name]{
+input[name=ground_ad], input[name=ground_adpw]{
   width: 500px;
   height: 35px;
-  margin-left: 20px;
+  margin-left: -50px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+input[name=ground_admin]{
+  width: 300px;
+  height: 35px;
+  display: inline-block;
+  margin-left: -80px;
+  margin-right: 12px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+input[name=ground_ad_pw], input[name=ground_ad_pin], input[name=ground_name]{
+  width: 300px;
+  height: 35px;
+  display: inline-block;
+  margin-left: -176px;
   margin-bottom: 20px;
   padding-left: 20px;
 }

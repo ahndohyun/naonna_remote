@@ -255,7 +255,18 @@ button[name="create"], [name="reset"]{
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-     <div class="main col-sm-8 col-sm-offset-2"><br>
+ 	
+ 	<div class="col-sm-2">
+		<div class="row">
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+		</div>
+	</div>
+	
+	<form name="kakaoId">
+		<input type="hidden" name="kakao_Id">
+	</form>
+	
+     <div class="main col-sm-10"><br>
      <p id="team_title">팀관리</p>
         <div class="team-filter container-fluid">
            <div class="team-filter-row">

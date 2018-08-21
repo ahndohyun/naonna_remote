@@ -239,8 +239,7 @@
 				success:function(data) {
 					$('#print_match').html('');		//기존 것 날려주고..		
 					var output = '';
-					$.each(data, function(
-							index, match) {		//새로 뿌리기
+					$.each(data, function(index, match) {		//새로 뿌리기
 						var d = new Date(match.playDate);
 						var y = d.getFullYear();
 						var m = (d.getMonth()+1);
@@ -357,16 +356,22 @@
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
+
+	<div class="col-sm-2">
+		<div class="row">
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+		</div>
+	</div>
+	
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>	
 
-		<div class="main col-sm-12">
-			<div class="col-sm-8 col-sm-offset-2">
+		<div class="main col-sm-10">
+			<div class="col-sm-8">
 				<p id="matching_title">매칭 검색</p>
 			</div>
-			<div class="matching-filter col-sm-8 col-sm-offset-2">
+			<div class="matching-filter col-sm-8">
 					<div class="filter-location">
 						<h4>위치</h4>
 						<form action="#">
@@ -407,7 +412,7 @@
 					<button type="button" class="btn btn-danger matching_button" id="search_matching">매칭검색</button>
 						</div>
 			
-			<div class="matching_list col-sm-8 col-sm-offset-2">
+			<div class="matching_list col-sm-8">
 				<table class="matching_table col-sm-12">
 					<thead class="tmatching_header">
 						<tr class="bg-primary">

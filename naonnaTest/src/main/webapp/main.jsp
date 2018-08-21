@@ -38,12 +38,18 @@
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-
+ 	
+	<div class="col-sm-2">
+		<div class="row">
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+		</div>
+	</div>
+	
 	  	<form name="kakaoId">
 			<input type="hidden" name="kakao_Id">
 		</form>	
-	
-	  	<div class="mainy container-fluid">
+		
+	  	<div class="mainy col-sm-10">
 		  	<div class="row">
 		  		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		    		<!-- Indicators -->

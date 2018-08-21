@@ -7,13 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <style>
-	.side-profile {
-		margin: 0 auto;
-		margin-top: 70px;
-	}
+.card{
+	margin-top:200px
+}
 </style>
-
-
 <script>
   // start 카카오톡 API
     $(document).ready(function() {
@@ -28,6 +25,7 @@
 	    		if(s != "") {
 					$('#login-button').hide();
 	    			outUserInfo(s);
+	    			outMessage(n);
 	    			
 	    		}
 	    		else {
@@ -54,10 +52,29 @@
 	     				$('#myPage').attr("href", "myPage.do?nickname=" + data.nickname);
 	     				$('#myTeam').append(data.teamName);
 	     				$('#myTeam').attr('href', "team_detail.do?team_name="+data.teamName);
-	     				$('#matching').append(data.teamName);
-	     				$('#myTeam').attr('href', "myMatching.do?team_name="+data.teamName);
-	     				$('#booking').append(data.teamName);
-	     				$('#myTeam').attr('href', "myBooking.do?team_name="+data.teamName);
+	     			},
+	     			error:function() {
+	     				alert("새로고침을 눌러주세요..outUserInfo");			
+	     			}
+	     		});
+	
+	       }
+	       
+	       function outMessage(n) {
+	     		$.ajax({
+	     			url:'/naonnaTest/countMessage.do',     			
+	     			type:'POST',
+	     			dataType: "json",
+	     			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+	     			data : {
+	     					'nickname' : n
+	     				},
+	     			
+	     			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+	     			success:function(data) {
+	     				if(data > 0) {
+	     					$('#message').append(data);	   
+	     				}
 	     			},
 	     			error:function() {
 	     				alert("새로고침을 눌러주세요..outUserInfo");			
@@ -137,9 +154,7 @@
 	        } else {
 	          createKakaotalkLogin();
 	        }
-	        
-	        
-	        
+
 	        $('#ground_admin').blur(function(){
 	        	if($('#ground_admin').val().leng<4){
 	        		$('#adminHelper').text('아이디는 4자이상')
@@ -273,20 +288,13 @@
 	</script>   
 </head>
 <body>
-    <div class="side-profile col-sm-3 col-sm-offset-1">
-      <div class="sidecard">
-        <!--로그인과 로그아웃 구분하기 하위 메뉴에 히든주기!!!!!!!!!!!!!! -->
+    <div class="container-fluid">
+    <div class="row">
+      <div class="card side-profile">
+      	<img src="https://t1.daumcdn.net/cfile/tistory/213D18435900DDE00E" alt="John" style="width: 100%">
 				<p><a href="#" id="myPage"></a></p>
 				<p><a href="#" id="myTeam"></a></p>
-				<p><a href="#" id="matching"></a></p>
-				<p><a href="#" id="booking"></a></p>
-
-
-
-
-
-
-
+				<a href="messageHome.do" >Message</a><div class="btn btn-danger" id="message"></div>
         <!-- show login modal -->
 				<button id="login-button" type="button" data-toggle="modal" data-target="#LoginModal" name="login_btn">Login</button>
 				<div id="kakao-logout-group">로그아웃</div>
@@ -313,9 +321,9 @@
                   <div id="login_A" class="tab-pane fade">
                   	<form action="login_a.do" method="post">
 	                    <label for="ground_admin"><b>Username</b></label>
-	                    <input type="text"  placeholder="Enter ID" name="ground_admin" required>
+	                    <input type="text"  placeholder="Enter ID" name="ground_ad" required>
 	                    <label for="ground_ad_pw"><b>Password</b></label>
-	                    <input type="password" placeholder="Enter Password" name="ground_ad_pw" required>
+	                    <input type="password" placeholder="Enter Password" name="ground_adpw" required>
 	                    <button type="submit" name="login">Login</button>
 	                    <a href="#" data-toggle="modal" data-target="#JoinModal" name="join_btn">Join</a>
                     </form> 
@@ -342,7 +350,7 @@
 				  
                   <label for="ground_admin"><b>Id</b></label>
                   <input type="text" id="ground_admin" name="ground_admin" placeholder="Enter id"  required>				 
-				  <input type="button" value="중복확인" id="idck" >
+				  <input type="button" value="중복확인" id="idck" class="btn btn-primary">
 				  <br/><span id="adminHelper"></span>
 				  
                   <label for="ground_ad_pw"><b>Password</b></label>
@@ -366,10 +374,7 @@
             </div>
           </div>
         </div>
-        
-        
-        
-        
+      </div>
       </div>
     </div>
     <!-- side menu bar end -->

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ page import="java.util.*" %>  
 <%@ page import="com.spring.naonnaTest.ground.*" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -9,12 +8,10 @@
 <%
 String admin = (String)session.getAttribute("admin");
 String ground_name = (String)session.getAttribute("groundName");
-
 %>
 
-
  <% 
- 	GroundVO vo = (GroundVO)request.getAttribute("vo"); 	
+ GroundVO vo = (GroundVO)request.getAttribute("vo"); 	
  %>
  
 <!DOCTYPE html>
@@ -36,9 +33,11 @@ String ground_name = (String)session.getAttribute("groundName");
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <!-- 캘린더 라이브러리-->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/naonna_main.css">
+  
   <style>
-     body {
+  body {
   font-family: Arial;
   margin: 0;
    }
@@ -48,7 +47,7 @@ String ground_name = (String)session.getAttribute("groundName");
    }
    
    .main {
-      margin-top : 40px;
+      margin-top : 80px;
    }
    img {
      vertical-align: middle;
@@ -58,15 +57,23 @@ String ground_name = (String)session.getAttribute("groundName");
      position: relative;
      overflow : hidden;
    }
-   
+   .ground_name {
+   		font-size : 24px;
+   		font-weight : 550;
+   }
+   .ground_addr {
+   		font-size : 20px;
+   		font-weight : 500;
+   		margin-left : 20px;
+   }
    /* Hide the images by default */
    .mySlides {
-      width : 400px;
+      width : 100%;
      display: none;
    }
    .mySlides img {
-      width : 400px;
-      height : 300px;
+      width : 100%;
+      height : 400px;
    }
    
    /* Add a pointer when hovering over the thumbnail images */
@@ -85,7 +92,7 @@ String ground_name = (String)session.getAttribute("groundName");
      margin-top: -50px;
      color: white;
      font-weight: bold;
-     font-size: 20px;
+     font-size: 30px;
      border-radius: 0 3px 3px 0;
      user-select: none;
      -webkit-user-select: none;
@@ -93,7 +100,7 @@ String ground_name = (String)session.getAttribute("groundName");
    
    /* Position the "next button" to the right */
    .next {
-     left: 370px;
+     left: 825px;
      border-radius: 3px 0 0 3px;
    }
    
@@ -114,15 +121,18 @@ String ground_name = (String)session.getAttribute("groundName");
    
    /* Container for image text */
    .caption-container {
-     width : 400px;
+     width : 100%;
      text-align: center;
      background-color: #222;
      padding: 2px 16px;
      color: black;
    }
    .row {
-      width : 400px;
+      width : 100%;
       margin-left : 0px;
+   }
+   #row2 {
+   		margin-top : -10px;
    }
    .row:after {
      content: "";
@@ -149,24 +159,39 @@ String ground_name = (String)session.getAttribute("groundName");
    .active,
    .demo:hover {
      opacity: 1;
-   }   
+   }
+   .ground-detail-size {
+   	margin-top : 50px;
+   }
+   .ground-detail-contents {
+   	margin-top : 15px;
+   }
+   .ground-detail-contents .container p{
+   		font-size : 20px;
+   		font-weight : 500;
+   }
+   .addr_t {
+   		margin-left : 20px;
+   }
    .ground-detail {
-      width : 500px;
-      margin : 30px 40px 0 -150px;
-      padding : 20px 0px 0px 10px;
-   }
-   .ground-detail-contents img {
-      width : 80px;
-   }
-   .ground-dtail-texts {
       margin-top : 10px;
+      padding : 0;
+   }
+   .ground-detail-icon img {
+      width : 60px;
+      height :60px;
+   }
+   .ground-detail-texts {
+      margin-top : 20px;
    }
    .ground-detail-textmore {
-      margin : 8px 2px 3px -2px;
+      margin : 20px 10px;
       text-align : center;
    }
-   .gorund-detail-textmore p {
-      color : blue;
+   .ground-detail-textmore p {
+      color : black;
+      font-weight : 500;
+      font-size : 15px;
    }
    .ground-detail-size-texts {
       display : inline-block;
@@ -178,9 +203,8 @@ String ground_name = (String)session.getAttribute("groundName");
    }
    
    .formal-ground-size {
-      width : 315px;
-      height : 210px;
-      margin-left : 72.5px;
+      width : 100%;
+      height : 270px;
    }
    .small-box {
       width : 17px;
@@ -224,7 +248,8 @@ String ground_name = (String)session.getAttribute("groundName");
       font-size : 12px;
    }
    .ground-pics {
-      margin : 20px 40px 0px 110px;
+     margin-top : 20px;
+     padding : 0;
    }
    .payment, .back-to-list {
       display : inline-block;
@@ -237,10 +262,16 @@ String ground_name = (String)session.getAttribute("groundName");
    .btn {
       height : 60px;
    }
-   .timetable {
-   	  margin-top : 800px;
+   .contents-row{
+   		margin-top : 40px;
    }
-
+   .form-control {
+   		display : inline-block;
+   		height : 30px;
+   }
+   #search_matching {
+   		height : 29px;
+   }
   </style>
   <script>
 	$(document).ready(function() {
@@ -268,14 +299,12 @@ String ground_name = (String)session.getAttribute("groundName");
 							console.log("output:" + output);
 							$('#ground_print').append(output);												
 						});						
-						
 					},
 					error:function() {
 						alert("새로고침을 눌러주세요.")
 					}
 				});
 			}
-			
 			printGround();
 			
           	 $(function() {
@@ -418,21 +447,27 @@ String ground_name = (String)session.getAttribute("groundName");
 </head>
 
 <body>
-<!-- Top menu -->
-    <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-   <!-- main contents -->
-   
-	<div class="container-content">
-	<%if(session.getAttribute("admin") != null){ %>
-		<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
-	<%}%>
+	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+
+	<div class="col-sm-2">
+		<div class="row">
+			<%if(session.getAttribute("admin") != null){ %>
+			<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
+		<%} else {%>
+			<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+		<%} %>
+		</div>
+	</div>
 
 <!-- start main content -->
-  <div class="main col-sm-8"><br>
+  <div class="main col-sm-10">
+  	<div class="detail-container col-sm-8">
+  	
      <div>
-        <h3>${vo.ground_Name}</h3>
+        <p class="ground_name">${vo.ground_Name}</p>
+        <p class="ground_addr">${vo.ground_addr} </p>
      </div>
-      <div class="ground-pics col-sm-6">
+      <div class="ground-pics col-sm-12">
        <div class="mySlides">
           <div class="numbertext">1 / 3</div>
              <img src="<spring:url value='/image/${vo.photo1}' />" style="width:100%" />            
@@ -458,13 +493,13 @@ String ground_name = (String)session.getAttribute("groundName");
 
            <div class="row">
              <div class="column">
-               <img class="demo cursor" src="https://gif.fmkorea.com/files/attach/new/20161213/486616/47017249/533826390/223e96e691e76354f671b407d997f2d2.gif" style="width:100%" onclick="currentSlide(1)">
+               <img class="demo cursor" src="<spring:url value="/image/${vo.photo1}"/>" style="width:100%" onclick="currentSlide(1)">
              </div>
              <div class="column">
-               <img class="demo cursor" src="http://cdnweb01.wikitree.co.kr/webdata/editor/201704/21/img_20170421085646_f1d41d88.jpg" style="width:100%" onclick="currentSlide(2)">
+               <img class="demo cursor" src="<spring:url value="/image/${vo.photo2}"/>" style="width:100%" onclick="currentSlide(2)">
              </div>
              <div class="column">
-               <img class="demo cursor" src="http://kstatic.inven.co.kr/upload/2016/05/15/bbs/i13095811292.jpg" style="width:100%" onclick="currentSlide(3)">
+               <img class="demo cursor" src="<spring:url value="/image/${vo.photo3}"/>" style="width:100%" onclick="currentSlide(3)">
              </div>
              </div>
   <script>
@@ -498,24 +533,12 @@ String ground_name = (String)session.getAttribute("groundName");
    }
   </script>
   </div>
-  <div class="ground-detail col-sm-6">
-  	<div class="ground-detail-contents col-sm-12">
-  		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/chun.png"></div>
-  		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/jo.png"></div>
-  		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/ju.png"></div>
-  		<div class="ground-detail-icon col-sm-3"><img src="https://www.iamground.kr/img/icons/sh.png"></div>
-  	</div>
-  	<div class="ground-detail-texts col-sm-12" id="ground_print">
-  		<div class="ground-detail-textmore col-sm-3"><p>${vo.grass }</p></div>
-  		<div class="ground-detail-textmore col-sm-3"><p>${vo.light }</p></div>
-  		<div class="ground-detail-textmore col-sm-3"><p>${vo.parking }</p></div>
-  		<div class="ground-detail-textmore col-sm-3"><p>${vo.shower }</p></div> 
-  	</div>
-  	
-  	<div class="ground-detail-size col-sm-12">
+  <div class="ground-detail col-sm-12">
+  	<div class="ground-detail-size col-sm-6">
   		<div class="ground-detail-size-pics">
   			<img class="formal-ground-size" src="https://www.iamground.kr/img/sample/ssize.jpg">
   		</div>
+  		
   		<div class="ground-detail-size-texts col-sm-12">
 			<div class="ground-detail-size-fieldtext col-sm-6">
 				<div class="gray-box small-box"></div>
@@ -527,27 +550,30 @@ String ground_name = (String)session.getAttribute("groundName");
 			</div>  			
   		</div>
   	</div>
-  	<div class="ground-detail-addr col-sm-12">
-  		<p>${vo.ground_addr} </p>
-  		<p>${vo.ground_city }</p>
-  	</div>
+  	<div class="ground-detail-contents col-sm-6">
+  		<div class="row contents-row">
+  			<div class="container"><p>주소</p></div>
+  			<p class="addr_t">${vo.ground_addr} </p>
+  		</div>
+  		<div class="row contents-row">
+	  		<div class="ground-detail-icon col-sm-2"><img src="https://www.iamground.kr/img/icons/chun.png"></div>
+	  		<div class="ground-detail-textmore col-sm-3 col-sm-offset-1"><p>${vo.grass }</p></div>
+	  		<div class="ground-detail-icon col-sm-2"><img src="https://www.iamground.kr/img/icons/jo.png"></div>
+	  		<div class="ground-detail-textmore col-sm-3 col-sm-offset-1"><p>${vo.light }</p></div>
+  		</div>
+  		<div class="row contents-row" id="row2">
+	  		<div class="ground-detail-icon col-sm-2"><img src="https://www.iamground.kr/img/icons/ju.png"></div>
+	  		<div class="ground-detail-textmore col-sm-3 col-sm-offset-1"><p>${vo.parking }</p></div>
+	  		<div class="ground-detail-icon col-sm-2"><img src="https://www.iamground.kr/img/icons/sh.png"></div>
+	  		<div class="ground-detail-textmore col-sm-3 col-sm-offset-1"><p>${vo.shower }</p></div>
+  		</div>
+  	</div>  		
   </div>
-  <!-- end main content -->
-  <div class="button-container">
-  	<div class="payment"><button class="btn btn-success">결제하기</button></div>
-  	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
-  	<%if(session.getAttribute("admin") !=null){ %>
-  	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
-  	<%} %>
-  </div>
-  </div>
-</div>
-<!-- main contents end -->
-<div class=" filter-location">
-		<h4>날짜</h4>
+
+	<div class=" filter-location col-sm-6 col-sm-offset-3">
 		<!--  시간 선택 API  -->
-		<input type="text" id="datePick" name="datetimes" style="width: 55%" />
-		<button type="button" class="btn btn-primary" id="search_matching">검색</button>
+		<input type="text" class="form-control" id="datePick" name="datetimes" style="width: 70%" />
+		<button type="button" class="fas fa-search" id="search_matching"></button>
 	</div>
 	<div class="timetable container-board">
 		<table class="table">
@@ -562,6 +588,16 @@ String ground_name = (String)session.getAttribute("groundName");
 			<tbody class="table-body" id="ground_print">
 			</tbody>
 		</table>
+	</div>
+	<div class="button-container">
+  	<div class="payment"><button class="btn btn-success">결제하기</button></div>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
+  	<%if(session.getAttribute("admin") !=null){ %>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
+  	<%} %>
+  </div>
+	</div>
+	</div>
 	</div>
 </body>
 </html>

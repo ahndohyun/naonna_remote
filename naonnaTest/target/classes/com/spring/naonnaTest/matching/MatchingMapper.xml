@@ -16,9 +16,19 @@
       <result property="matFin" column="matFin"/>
    </resultMap>
    
+   <resultMap type="PlayerVO" id="playerResultMap">
+      <result property="matchingID" column="MATCHINGID"/>
+      <result property="nickname" column="nickname"/>
+      <result property="people" column="people"/>
+   </resultMap>
+   
  	<!--  id는 Mapper.java(여기서 PeopleMapper.java)에 동일하게 사용해야된다.  -->  
    <select id ="getMatchingList" resultMap="matchingResultMap">
       select * from matching where play_date > sysdate order by play_date
+   </select>
+   
+   <select id ="printPlayers" resultMap="playerResultMap">
+      select * from player where matchingID = #{matchingID}
    </select>
    
    <select id ="searchMatchingList" resultMap="matchingResultMap">
@@ -35,12 +45,20 @@
    		insert into matching (matchingid, hometeam, play_date, match_Location, people) values ( #{matchingID}, #{homeTeam}, #{playDate}, #{matchLocation}, #{people} )
    </insert>
    
+    <insert id="addPlayer" parameterType="com.spring.naonnaTest.matching.PlayerVO">
+   		insert into player values ( #{nickname}, #{matchingID}, #{people} )
+   </insert>
+   
    <select id ="detailMatching" parameterType="String" resultMap="matchingResultMap">
       select * from matching where matchingID = #{matchingID, javaType=String}
    </select>
    
    <update id = "matchFin" parameterType="String">
    		update matching set matFin = 1 where matchingID = #{matchingID, javaType=String}
+   </update>
+   
+   <update id = "confirmMatchMessage" parameterType="com.spring.naonnaTest.matching.PlayerVO">
+   		update message set confirm = 1 where matchingID = #{matchingID, javaType=String}
    </update>
 
 </mapper>

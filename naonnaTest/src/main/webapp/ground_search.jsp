@@ -247,17 +247,23 @@ body{
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
+ 	
+	<div class="col-sm-2">
+		<div class="row">
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+		</div>
+	</div>
+	
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>	
 	
-		<div class="main col-sm-12">
-			<div class="container-filter col-sm-8 col-sm-offset-2">
+		<div class="main col-sm-10">
+			<div class="container-filter col-sm-10">
 				<p id="ground_title">경기장 검색</p>
 				<div class="container-filter-box container-fluid">
 					<div class="groundValue row">
-						<div class="valueName">
+						<div class="valueName">     
 							<p>위치</p>
 						</div>
 						<div class="value-field col-sm-4">
