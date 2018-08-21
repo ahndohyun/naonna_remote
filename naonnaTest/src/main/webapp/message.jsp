@@ -115,7 +115,7 @@
    	   			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
    	   			success:function(data) {
    	   				alert("메세지가 삭제되었습니다.");
-   	   				window.location.reload()
+   	   				window.location.reload();
    	   			},
    	   			error:function() {
    	   				alert("새로고침을 눌러주세요.");			

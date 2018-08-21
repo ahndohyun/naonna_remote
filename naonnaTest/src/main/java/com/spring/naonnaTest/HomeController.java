@@ -4,15 +4,14 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles requests for the application home page.
@@ -76,11 +75,17 @@ public class HomeController {
 	
 	@RequestMapping(value = "/qna.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String go_qna() {
-		return "qna";
+		return "client_chat";
 	}
 	
 	@RequestMapping(value = "/messageHome.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String go_message() {
+		return "message";
+	}
+	
+	@RequestMapping(value = "/KakaoLogout.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public String Kakaologout(HttpSession session) {
+		session.invalidate();
 		return "message";
 	}
 	

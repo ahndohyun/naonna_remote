@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,14 +20,13 @@
 		console.log(s);
 		
 		if (Kakao.Auth.getRefreshToken() != undefined && Kakao.Auth.getRefreshToken().replace(/ /gi,"") != "") {
-			createKakaotalkLogout();
+// 			createKakaotalkLogout();
 			getKakaotalkUserProfile();
 		} else {
 			createKakaotalkLogin();
 		}
 	
 		if (s != "") {
-
 			$('#login-button').hide();
 			outUserInfo(s);
 			outMessage(n);
@@ -81,12 +81,14 @@
 					if (data > 0) {
 						$('#message').append(data);
 					}
+					else {
+						$('#message').hide();
+					}
 				},
 				error : function() {
-					alert("새로고침을 눌러주세요..outUserInfo");
+					alert("새로고침을 눌러주세요..");
 				}
 			});
-	
 		}
 	
 		function getKakaotalkUserProfile() {
@@ -125,7 +127,7 @@
 					success : function(authObj) {
 // 						alert(JSON.stringify(authObj));
 						getKakaotalkUserProfile();
-						createKakaotalkLogout();
+// 						createKakaotalkLogout();
 					},
 					fail : function(err) {
 						console.log("CreateKakaotalkLogin():"+ err);
@@ -156,7 +158,8 @@
 	});
 	
 	function createKakaotalkLogout() {
-		Kakao.Auth.logout();
+		window.location.href = "KakaoLogout.do";
+		alert("로그아웃 되었습니다.");
 	}
 
 

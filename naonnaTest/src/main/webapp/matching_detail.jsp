@@ -240,6 +240,12 @@
 		<input type="hidden" name="kakao_Id">
 	</form>	
 	
+	<div>
+		<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
+			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
+		</jsp:include>	
+	</div>
+	
       <!-- start main content -->
       <div class="main col-sm-9">
          <div class="player-board-container col-sm-12">
