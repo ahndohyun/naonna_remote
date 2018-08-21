@@ -83,6 +83,10 @@ public class GroundController {
 		return str;
 	}
 	
+	
+	
+	
+	
 	@RequestMapping(value = "/ground_detail.do", method = RequestMethod.GET)
 	public ModelAndView That_Ground_Info(GroundVO vo) {
 		String Ground_Name = vo.getGround_Name();
@@ -233,4 +237,29 @@ public class GroundController {
 		
 	}
 
+	@RequestMapping(value = "/bookingGround.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
+	public String Ground_Book_JSON(BookingVO bookingvo, HttpServletResponse response) throws Exception{
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		int res =  groundService.Ground_Book_JSON(bookingvo);
+		System.out.print("res : " + res);
+		if(res == 1) {
+			out.println("<script>");
+			out.println("alert('그라운드 예약 완료')");
+			out.println("location.href= 'ground_info.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('그라운드예약 실패')");
+			out.println("history.back();");
+			out.println("</script>");
+		}
+		
+		return null;
+		
+
+	
+	}
 }

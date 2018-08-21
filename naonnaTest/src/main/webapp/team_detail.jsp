@@ -167,11 +167,7 @@
                        <td>${vo.area } </td>
                     </tr>
                     <tr>
-<<<<<<< HEAD
                        <td>  연령대 </td>
-=======
-                       <td> 최근 연령대 </td>
->>>>>>> b3f36e962fcf04577a661583685866d97f0a38e4
                        <td> ${vo.age } </td>
                     </tr>
                     <tr>
@@ -184,15 +180,9 @@
                     </tr>
                     <tr>
                        <td> 팀 소개 </td>
-<<<<<<< HEAD
                        <td> ${vo.intro }
                        </td>
                     </tr>
-=======
-                       <td> ${vo.intro }</td>
-                    </tr>
-                    
->>>>>>> b3f36e962fcf04577a661583685866d97f0a38e4
                  </tbody>
                  <tfoot id="teamMember">
                  	<!-- 자바스크립트 멤버 출력 -->

@@ -43,6 +43,59 @@ if (session.getAttribute("admin") == null){
 		border : 3px solid red;
 	}
 </style>
+<script >
+/* $(document).ready(function() {
+	
+	//$('#inputFile1').blur(function(){
+  	  
+   	 	if($('#inputFile1').val() == '')
+   	 	{       				
+  			$('#imgfile1Helper').text('이미지1 등록해주세요.');      		
+  			$('#imgfile1').focus();
+  		}	        	          	
+     	else
+     	{
+	     	$('#imgfile1Helper').text('');
+	     	$('#inputFile2').focus();
+     	}
+     			  
+     //}); 
+	
+	$('#inputFile2').blur(function(){
+		
+		if($('#inputFile2').val() == '')
+		{       				
+			$('#imgfile2Helper').text('이미지2 등록해주세요.');      		
+			$('#inputFile2').focus();
+		}	        	          	
+	  	else
+	  	{
+	  		$('#imgfile1Helper').text('');
+	  		$('#inputFile3').focus();
+			  	
+	  	}
+			  	  
+	}); 
+	
+	$('#inputFile3').blur(function(){
+		
+		if($('#inputFile3').val() == '')
+		{       				
+			$('#imgfile3Helper').text('이미지3 등록해주세요.');      		
+			$('#inputFile3').focus();
+		}	        	          	
+		else
+		{
+			$('#imgfile3Helper').text('');	
+		}
+			  	  
+	}); 
+	
+	
+});
+ */
+</script>
+
 <body>
     <jsp:include page="./menu_bar/top_nav.jsp" flush="true"></jsp:include>
 	<!-- main contents -->
@@ -182,18 +235,21 @@ if (session.getAttribute("admin") == null){
 			       <div class="col-sm-6">
 			       	   <%-- <img src="<spring:url value='/image/${vo.photo1}'/>" > --%>
      			       <input type="file" class="form-control" name="imgfile1" id="inputFile1" value='${vo.photo1}'>
+     			       <br/><span id="imgfile1Helper"></span>
     		       </div>
     		   </div>
     		   <div class="ground-upload form-group">
 		       	   <label for="inputFile2" class="col-sm-2 control-label">경기장사진2</label>
 			       <div class="col-sm-6">
      			       <input type="file" class="form-control" name="imgfile2" id="inputFile2" value=${vo.photo2}>
+     			       <br/><span id="imgfile2Helper"></span>
     		       </div>
     		   </div>
     		   <div class="ground-upload form-group">
 		       	   <label for="inputFile3" class="col-sm-2 control-label">경기장사진3</label>
 			       <div class="col-sm-6">
      			       <input type="file" class="form-control" name="imgfile3" id="inputFile3" value=${vo.photo3}>
+     			        <br/><span id="imgfile3Helper"></span>
     		       </div>
     		   </div>
 		       <div class="button-container"><input class="btn btn-success" type="button" value="등록" onclick="fnAction('updateGround.do')"/></div>

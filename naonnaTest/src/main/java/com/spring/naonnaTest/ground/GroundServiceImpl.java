@@ -97,5 +97,12 @@ public class GroundServiceImpl implements GroundService{
 		 
 		return res;
 	}
+	
+	@Override
+	public int Ground_Book_JSON(BookingVO bookingvo) {
+		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+		  int res = groundMapper.modifyBooking(bookingvo);
+		return res;
+	}
 
 }

@@ -116,8 +116,12 @@
    	light = #{light}, week_morning = #{week_morning}, week_evening = #{week_evening},weekend_morning=#{weekend_morning},weekend_evening=#{weekend_evening},
    	rule=#{rule},ground_people=#{ground_people},photo1=#{photo1},photo2=#{photo2},photo3=#{photo3},ground_admin=#{ground_admin} where ground_Name=#{ground_Name}
     </update>
-     
-     
+    
+    <update id="modifybooking" parameterType = "com.spring.naonnaTest.ground.BookingVO">
+     update booking set bookNumber = #{bookNumber}, matchingID = #{matchingID}, nickname = #{nickname},
+     assign = #{assign}, startTime = #{startTime}, endTime = #{endTime}, confirm =#{confirm} where groundName = #{groundName}
+    </update>
+    
    <!-- 
    <insert id ="insertGround2" parameterType = "hashmap" >
    	insert into ground_soccer values(#{ground_Name, javaType=String}, #{ground_admin jdbcType=VARCHAR2}, #{ground_addr},#{ground_city},#{grass},#{shower},#{parking},
