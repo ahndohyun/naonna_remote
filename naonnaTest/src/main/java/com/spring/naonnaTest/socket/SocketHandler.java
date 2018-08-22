@@ -54,8 +54,8 @@ public class SocketHandler extends TextWebSocketHandler{
 		
 		//session.getAttribute() : HandshakeInterceptor의 beforeHandshake() 메소드에서 저장한 map을 가져온다
 		Map<String, Object> map = session.getAttributes();
-		String userId = (String) map.get("userId");
-		System.out.println("전송자 아이디 : " + userId);
+		String nickname = (String) map.get("nickname");
+		System.out.println("전송자 아이디 : " + nickname);
 		
 		for(WebSocketSession client_session: this.sessionSet) {
 			if(client_session.isOpen()) {
