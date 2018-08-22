@@ -259,6 +259,7 @@ body, html{
 	<div class="col-sm-2">
 		<div class="row">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+
 		</div>
 	</div>
 	

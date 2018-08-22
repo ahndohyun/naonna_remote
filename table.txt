@@ -90,6 +90,12 @@ CREATE TABLE PLAYER (
     PEOPLE NUMBER
 );
 
+create Table team_member(
+    team_name varchar2(100),
+    nickname varchar2(100),
+    join_date date
+);
+
 select * from user_info;
 select * from team;
 select * from matching;

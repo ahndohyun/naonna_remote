@@ -35,4 +35,9 @@
 	<select id="printMsg" resultMap="MessageResultMap">
 		select * from message where getPeople = #{nickname} order by message_date desc
 	</select>
+	
+	<delete id="deleteMessage" parameterType="String">
+		delete from message where message = #{msg}
+	</delete>
+	
 </mapper>

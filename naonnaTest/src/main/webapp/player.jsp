@@ -149,6 +149,17 @@
 	<!-- main contents -->
 
 	<div class="container-content">
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+
+	<form name="kakaoId">
+		<input type="hidden" name="kakao_Id">
+	</form>	
+	
+	<div>
+		<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
+			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
+		</jsp:include>	
+	</div>
 		<!-- start main content -->
 		<div class="main col-sm-8">
 			<div class="player-board-container col-sm-12">

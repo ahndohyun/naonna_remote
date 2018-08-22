@@ -60,7 +60,7 @@
 					
 					output += "<input type='hidden' id='matchingID' value='" +msg.matchingID+"'>";
 					output += "<input type='hidden' id='people' value='" +msg.people+"'>";
-			  		output += "<tr><td><input type='checkbox' class='checkBox'></td>"			//이거 바꾸면 아래 바꿔줘야함.
+			  		output += "<tr><td><input type='checkbox' class='checkBox' value=\"" + msg.message + "\"></td>"			//이거 바꾸면 아래 바꿔줘야함.
 					output += "<td id='msgSendID'>" + msg.sendPeople + "</td>";
 					output += "<td id='msgContent'" +index+ ">" + msg.message + "</td>";
 					output += "<td>" + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + "</td>";
@@ -91,32 +91,38 @@
    			$('.checkBox').prop('checked', true);
    		});
    		
-//    		$('#msgDelete').click(function() {
-//    			var arr = 
-//    			$.ajax({
-//    	   			url:'/naonnaTest/confirmPlayer.do',     			
-//    	   			type:'POST',
-//    	   			dataType: "json",
-//    	   			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-//    	   			data : {
-//    	   					'message' : []
-//    	   				},
+   		
+   		$('#msgDelete').click(function() {
+   			var chkArr = new Array($('.checkBox:checked').length);
+		    var cnt = 0;
+		    
+   			$('.checkBox:checked').each(function() { 
+   		        chkArr[cnt] = $(this).val();
+   		        cnt += 1; 		        
+   		   });
+   			
+   			console.log(chkArr);
+   			jQuery.ajaxSettings.traditional = true;
+
+   			$.ajax({
+   	   			url:'/naonnaTest/deleteMessage.do',     			
+   	   			type:'POST',
+   	   			dataType: "json",
+   	   			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+   	   			data : {
+   	   					'message' : chkArr
+   	   				},
    	   			
-//    	   			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
-//    	   			success:function(data) {
-//    	   				console.log(data);
-//    	   				if(data == 1) {
-//    	   					alert("매칭이 승낙되었습니다.");
-//    	   					$('#confirm').attr('disabled', true);
-//    	   					$('#reject').attr('disabled', true);
-//    	   				}
-   	   				
-//    	   			},
-//    	   			error:function() {
-//    	   				alert("새로고침을 눌러주세요.");			
-//    	   			}
-//    	       });
-//    		});
+   	   			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+   	   			success:function(data) {
+   	   				alert("메세지가 삭제되었습니다.");
+   	   				window.location.reload();
+   	   			},
+   	   			error:function() {
+   	   				alert("새로고침을 눌러주세요.");			
+   	   			}
+   	       });
+   		});
    		
   	});
   	

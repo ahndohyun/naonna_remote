@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -41,148 +42,158 @@
 
 </style>
 <script>
-  // start 카카오톡 API
-    $(document).ready(function() {
- 
-    	// 사용할 앱의 JavaScript 키를 설정해 주세요.
-        Kakao.init('aecd4acbce2512282f0d82282be7ebb3');
-        
-			var s = "${sessionScope.forPerson}";
-			var n = "${sessionScope.nickname}";
-			console.log(s);
-			
-	    		if(s != "") {
-					$('#login-button').hide();
-	    			outUserInfo(s);
-	    			outMessage(n);
-	    			
-	    		}
-	    		else {
-					$('#kakao-logout-group').hide();
-	    		}
-	    	  
-	       function outUserInfo(s) {
-				console.log(s);
-	     		$.ajax({
-	     			url:'/naonnaTest/printUserInfo.do',     			
-	     			type:'POST',
-	     			dataType: "json",
-	     			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-	     			data : {
-	     					'forPerson' : s
-	     				},
-	     			
-	     			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
-	     			success:function(data) {
-	     				if(data.userPhoto != null) {
-	     					$('#profileImage').attr('src','/naonnaTest/image/' + data.userPhoto);
-	     				}
-	     				$('#myPage').append(data.nickname);
-	     				$('#myPage').attr("href", "myPage.do?nickname=" + data.nickname);
-	     				$('#myTeam').append(data.teamName);
-	     				$('#myTeam').attr('href', "team_detail.do?team_name="+data.teamName);
-	     			},
-	     			error:function() {
-	     				alert("새로고침을 눌러주세요..outUserInfo");			
-	     			}
-	     		});
-	
-	       }
-	       
-	       function outMessage(n) {
-	     		$.ajax({
-	     			url:'/naonnaTest/countMessage.do',     			
-	     			type:'POST',
-	     			dataType: "json",
-	     			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-	     			data : {
-	     					'nickname' : n
-	     				},
-	     			
-	     			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
-	     			success:function(data) {
-	     				if(data > 0) {
-	     					$('#message').append(data);	   
-	     				}
-	     			},
-	     			error:function() {
-	     				alert("새로고침을 눌러주세요..outUserInfo");			
-	     			}
-	     		});
-	
-	       }
-	
-			function getKakaotalkUserProfile() {
-				Kakao.API.request({
-		             url: '/v1/user/me',
-		             
-		             success: function(res) {
-		            	 var form = document.kakaoId;
-		            	 form.kakao_Id.value = res.id;            	 
-		            	 form.action = '/naonnaTest/distUserInfo.do';
-		            	 form.method='POST';
-		            	 form.submit();		
-		             },
-		             fail: function(error) {
-		               alert("실패!");
-		             }
-		        });
-			}
-	       
-	        
-	        function createKakaotalkLogin() {
-	          $("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
-	//           var loginBtn = $("<a/>", {
-	//             "class": "kakao-login-btn",
-	//             "text": "카카오톡으로 로그인"
-	//           });
-	          var loginBtn = $("<img/>", {
-	             "src" : "resources/kakao_account_login_btn_medium_wide.png",
-	             "alt" : "로그인 그림"
-	          });
-	
-	          loginBtn.click(function() {
-	            Kakao.Auth.login({
-	              persistAccessToken: true,
-	              persistRefreshToken: true,
-	              success: function(authObj) {
-	                	getKakaotalkUserProfile();
-	//               	createKakaotalkLogout();
-	              },
-	              fail: function(err) {
-	                console.log("CreateKakaotalkLogin():" + err);
-	              }
-	            });
-	          });
-	          $("#kakao-logged-group").prepend(loginBtn)
-	        }
-	
-	        function createKakaotalkLogout() {
-	          $("#kakao-logout-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
-	          var logoutBtn = $("<a/>", {
-	            "class": "kakao-logout-btn",
-	            "text": "로그아웃"
-	          });
-	
-	          logoutBtn.click(function() {
-	            Kakao.Auth.logout();
-	            createKakaotalkLogin();
-	            $("#kakao-profile").text("");
-	          });
-	          $("#kakao-logout-group").prepend(logoutBtn);
-	        }
-	        
-	        $('#kakao-logout-group').on("click", function(){
-	        	Kakao.Auth.logout();
-				Kakao.Auth.cleanup();
-	        });
-	        
-	        if (Kakao.Auth.getRefreshToken() != undefined && Kakao.Auth.getRefreshToken().replace(/ /gi, "") != "") {
-	          createKakaotalkLogout();
-	          getKakaotalkUserProfile();
-	        } else {
-	          createKakaotalkLogin();
-	        }
+// start 카카오톡 API
+$(document).ready(function() {
+
+   // 사용할 앱의 JavaScript 키를 설정해 주세요.
+   Kakao.init('aecd4acbce2512282f0d82282be7ebb3');
+
+   var s = "${sessionScope.forPerson}";
+   var n = "${sessionScope.nickname}";
+   console.log(s);
+   
+   if (Kakao.Auth.getRefreshToken() != undefined && Kakao.Auth.getRefreshToken().replace(/ /gi,"") != "") {
+//       createKakaotalkLogout();
+      getKakaotalkUserProfile();
+   } else {
+      createKakaotalkLogin();
+   }
+
+   if (s != "") {
+      $('#login-button').hide();
+      outUserInfo(s);
+      outMessage(n);
+
+   } else {
+      $('#printMessage').hide();
+      $('#message').hide();
+      $('#kakao-logout-group').hide();
+   }
+
+   function outUserInfo(s) {
+      console.log(s);
+      $.ajax({
+         url : '/naonnaTest/printUserInfo.do',
+         type : 'POST',
+         dataType : "json",
+         contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+         data : {
+            'forPerson' : s
+         },
+
+         //제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+         success : function(data) {
+            if (data.userPhoto != null) {
+               $('#profileImage').attr('src','/naonnaTest/image/'+ data.userPhoto);
+            }
+            $('#myPage').append(data.nickname);
+            $('#myPage').attr("href", "myPage.do?nickname="+ data.nickname);
+            $('#myTeam').append(data.teamName);
+            $('#myTeam').attr('href',"team_detail.do?team_name=" + data.teamName);
+
+         },
+         error : function() {
+            alert("새로고침을 눌러주세요..outUserInfo");
+         }
+      });
+
+   }
+
+   function outMessage(n) {
+      $.ajax({
+         url : '/naonnaTest/countMessage.do',
+         type : 'POST',
+         dataType : "json",
+         contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+         data : {
+            'nickname' : n
+         },
+
+         //제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+         success : function(data) {
+            if (data > 0) {
+               $('#message').append(data);
+            }
+            else {
+               $('#message').hide();
+            }
+         },
+         error : function() {
+            alert("새로고침을 눌러주세요..");
+         }
+      });
+   }
+
+   function getKakaotalkUserProfile() {
+      Kakao.API.request({
+         url : '/v1/user/me',
+
+         success : function(res) {
+//             alert(Kakao.Auth.getAccessToken());
+            Kakao.Auth.getAccessToken();
+            var form = document.kakaoId;
+            form.kakao_Id.value = res.id;
+            form.action = '/naonnaTest/distUserInfo.do';
+            form.method = 'POST';
+            form.submit();
+         },
+         fail : function(error) {
+            alert("실패!");
+         }
+      });
+   }
+
+   function createKakaotalkLogin() {
+      $("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
+      var loginBtn = $("<img/>",
+            {
+               "src" : "resources/kakao_account_login_btn_medium_wide.png",
+               "alt" : "로그인 그림"
+            });
+
+      loginBtn.click(function() {
+         
+         Kakao.Auth.login({
+            persistAccessToken : false,
+            persistRefreshToken : false,
+
+            success : function(authObj) {
+//                alert(JSON.stringify(authObj));
+               getKakaotalkUserProfile();
+//                createKakaotalkLogout();
+            },
+            fail : function(err) {
+               console.log("CreateKakaotalkLogin():"+ err);
+            }
+         });
+      });
+      $("#kakao-logged-group").prepend(loginBtn)
+   }
+   
+});
+
+
+
+//end of kakao
+
+//start multiple modal
+
+$(function() {
+   return $(".modal").on("show.bs.modal", function() {
+      var curModal;
+      curModal = this;
+      $(".modal").each(function() {
+         if (this != curModal) {
+            $(this).modal("hide");
+         }
+      });
+   });
+});
+
+function createKakaotalkLogout() {
+   window.location.href = "KakaoLogout.do";
+   alert("로그아웃 되었습니다.");
+}
 
 	        $('#ground_admin').blur(function(){
 	        	if($('#ground_admin').val().leng<4){
@@ -227,27 +238,7 @@
 	            	}
 	          	  
 	           });
-	                      
-      });
-  
-    
-      //end of kakao
-
-      //start multiple modal
-      
-      $(function() { 
-    	  return $(".modal").on("show.bs.modal", function() {
-          var curModal;
-          curModal = this;
-          $(".modal").each(function() {
-            if(this != curModal) {
-              $(this).modal("hide");
-            }
-          });
-        });
-
-      });
-      //end of multiple modal
+     
      </script>  
      
       <script>
@@ -314,19 +305,21 @@
        			}       	       	  
                }); 
           });    	             
-	</script>   
+	</script>
 </head>
 <body>
     <div class="container-fluid">
     <div class="row">
       <div class="card side-profile">
-      	<img src="http://i.imgur.com/MI0CuQd.jpg" id="profile_img" alt="John" style="width: 100%">
+      	<img src="http://i.imgur.com/MI0CuQd.jpg" id="profileImage" alt="John" style="width: 100%">
 				<p class="sidemenu_text"><a href="#" id="myPage"></a></p>
 				<p class="sidemenu_text"><a href="#" id="myTeam"></a></p>
-				<p id="message_line"><a href="messageHome.do" >Message</a></p><div class="btn btn-danger" id="message"></div>
+				<p id="message_line"><a id="printMessage" href="messageHome.do" >Message</a></p>
+				<div class="btn btn-danger" id="message"></div>
         <!-- show login modal -->
-				<button id="login-button" type="button" data-toggle="modal" data-target="#LoginModal" name="login_btn">Login</button>
-				<div id="kakao-logout-group"><p class="sidemenu_text">로그아웃</p></div>
+				<button id="login-button" type="button" data-toggle="modal" 
+				data-target="#LoginModal" name="login_btn">Login</button>
+				<div id="kakao-logout-group" onclick="createKakaotalkLogout()"><p class="sidemenu_text">로그아웃</p></div>
 				
 		<!-- Modal -->
         <div class="modal fade" id="LoginModal" role="dialog">
@@ -406,6 +399,5 @@
       </div>
       </div>
     </div>
-    <!-- side menu bar end -->
 </body>
 </html>

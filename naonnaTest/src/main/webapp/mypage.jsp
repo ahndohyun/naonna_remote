@@ -82,6 +82,16 @@
 
    <div class="container-content">
       
+	<form name="kakaoId">
+		<input type="hidden" name="kakao_Id">
+	</form>	
+	
+	<div>
+		<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
+			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
+		</jsp:include>	
+	</div>
+	
   <!-- start main content -->
  
    <!-- start mypage_body -->

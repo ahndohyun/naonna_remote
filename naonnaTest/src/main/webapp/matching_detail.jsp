@@ -256,6 +256,7 @@
 
       <div class="main col-sm-10">
       	<div class="col-sm-10 col-sm-offset-1 sub_main">
+
             <div class="player-nameboard col-sm-12">
                <p id="page_title">매칭 상세 정보</p>
             </div>

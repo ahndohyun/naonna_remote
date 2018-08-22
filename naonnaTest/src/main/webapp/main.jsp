@@ -15,7 +15,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
 
   <style>
@@ -68,7 +67,7 @@
 				    <!-- Wrapper for slides -->
 				    <div class="carousel-inner" role="listbox">
 				      <div class="item active">
-				        <img src="image/main1.png" alt="main1" style="height:662px;" >
+				        <img src="./image/main1.png" alt="main1" style="height:662px;" >
 				        <div class="carousel-caption">
 				          <h3>매칭신청</h3>
 				          <p>경기를 합시닷</p>
@@ -76,7 +75,7 @@
 				      </div>
 		
 				      <div class="item">
-				        <img src="image/main2.png" alt="main" style="height:662px;">
+				        <img src="./image/main2.png" alt="main" style="height:662px;">
 				        <div class="carousel-caption">
 				          <h3>경기장 대관</h3>
 				          <p>근처에 있는 경기장을 확인해 보세요.</p>
@@ -84,7 +83,7 @@
 				      </div>
 				    
 				      <div class="item">
-				        <img src="image/main3.png" alt="Los Angeles" style="height:662px;">
+				        <img src="./image/main3.png" alt="Los Angeles" style="height:662px;">
 				        <div class="carousel-caption">
 				          <h3>팀</h3>
 				          <p>함께 경기를 할 팀을 찾아보세요.</p>

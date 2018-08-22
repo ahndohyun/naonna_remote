@@ -8,4 +8,5 @@ public interface MessageMapper {
 	public int countMsg(String nickname);
 	public ArrayList<MessageVO> printMsg(String nickname);
 	public void insertMessageTeam(MessageVO vo);
+	public void deleteMessage(String msg);
 }

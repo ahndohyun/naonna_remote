@@ -366,7 +366,6 @@
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>	
-
 		<div class="main col-sm-10">
 			<div class="col-sm-10 col-sm-offset-1">
 				<p id="matching_title">매칭 검색</p>
@@ -497,5 +496,10 @@
 			</div>
 		</div>
 		</div>
+		<%-- <div>
+		<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
+			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
+		</jsp:include>	
+	</div> --%>
 </body>
 </html>

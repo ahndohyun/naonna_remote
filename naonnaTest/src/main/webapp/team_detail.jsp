@@ -129,7 +129,7 @@
 	   			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
 	   			success:function(data) {
 	   				alert("주장님께서 승낙하시면 가입 완료가 됩니다.");
-	   				
+	   				window.location.reload();
 	   			},
 	   			error:function() {
 	   				alert("새로고침을 눌러주세요.");			

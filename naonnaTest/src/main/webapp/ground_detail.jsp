@@ -482,6 +482,16 @@ String ground_name = (String)session.getAttribute("groundName");
 		</div>
 	</div>
 
+	<form name="kakaoId">
+		<input type="hidden" name="kakao_Id">
+	</form>	
+	
+	<div>
+		<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
+			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
+		</jsp:include>	
+	</div>
+	
 <!-- start main content -->
   <div class="main col-sm-10">
   	<div class="detail-container col-sm-10 col-sm-offset-1">
