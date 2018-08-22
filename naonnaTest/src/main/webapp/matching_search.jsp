@@ -22,14 +22,27 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
   <style>
+  .main {
+  	margin-top : 145px;
+  }
+  	.monami {
+		background-image : url("https://i1.wp.com/thesefootballtimes.co/wp-content/uploads/2016/03/55f80d2448bdd.jpg?fit=1500%2C900&ssl=1");
+		height: 727px;
+	}
      .matching-filter {
-        background-color: #9C6C87;
-		padding:10px;
-		padding-top:20px;
+        background-color: #333333;
+		padding:0 10px 0 10px;
 		width: 100%;
+		opacity : 0.8;
      }
      #matching_title {
-     	font-size : 25px;
+     	font-size:30px;
+		color : white;
+		font-weight : 700;
+		background-color : #333333;
+		margin : 0;
+		opacity : 0.8;
+		padding : 20px 0 0 16px;
      }
      
      .subject-location{
@@ -356,16 +369,16 @@
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-
-	<div class="col-sm-2">
-		<div class="row">
-		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+	<div class="monami">
+		<div class="col-sm-2">
+			<div class="row">
+			<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+			</div>
 		</div>
-	</div>
 	
-	<form name="kakaoId">
-		<input type="hidden" name="kakao_Id">
-	</form>	
+		<form name="kakaoId">
+			<input type="hidden" name="kakao_Id">
+		</form>	
 		<div class="main col-sm-10">
 			<div class="col-sm-10 col-sm-offset-1">
 				<p id="matching_title">매칭 검색</p>
@@ -407,7 +420,7 @@
 						<!--  시간 선택 API  -->
 						<input type="text" id="datePick_Search" name="datetimes" class="time_search form-control" />
 					</div>
-					<button type="button" class="btn btn-danger matching_button" id="search_matching">매칭검색</button>
+					<button type="button" class="btn btn-primary matching_button" id="search_matching">매칭검색</button>
 						</div>
 			
 			<div class="matching_list col-sm-8 container-fluid">
@@ -425,7 +438,7 @@
 					</tbody>
 				</table>
 				<div class="matching_main">
-						<button class="btn btn-danger" id="matching_create" type="button" data-toggle="modal">매칭등록</button>
+						<button class="btn btn-primary" id="matching_create" type="button" data-toggle="modal">매칭등록</button>
 							<div class="modal fade" id="MatchingModal" role="dialog">
           						<div class="modal-dialog">
             						<div class="modal-content">
@@ -494,6 +507,7 @@
 			            	</div>
 						</div>
 			</div>
+		</div>
 		</div>
 		</div>
 		<%-- <div>

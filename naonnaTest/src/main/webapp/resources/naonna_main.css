@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- NAONNA main -->
-body {
-    font: 400 15px/1.8 Lato, sans-serif;
-    color: black;
-    max-width: 100%;
+body, html{
+	height : 100%;
+	color : white;
+	font: 400 15px/1.8 Lato, sans-serif;
 }
-
 /* start top menu */
 .monami {
 	position : relative;
@@ -13,12 +12,10 @@ body {
 	background-repaet : no-repeat;
 	background-size : cover;
 	height : 100%;
-	z-index : 1;
 }
 .main {
 	margin-top : 100px;
 	opacity : 1;
-	z-index : 10;
 }
 .top_menu {
     font-family: Montserrat, sans-serif;

@@ -478,14 +478,12 @@ String nickname = (String)session.getAttribute("nickname");
 	});
 	 
 		function res3(){
-			
 			var startDate = new Date($('#datePick').val());
 			var assign = $('#hours').val();
 			assign = assign*1;
 			var endDate = new Date(startDate);
 			endDate.setHours(startDate.getHours() + 1);
-			var groundName = '<%=vo.getGround_Name()%>';
-			               
+			var groundName = '<%=vo.getGround_Name()%>';    
 			goGroundB_time(startDate, endDate, assign,groundName);
 		}
 		

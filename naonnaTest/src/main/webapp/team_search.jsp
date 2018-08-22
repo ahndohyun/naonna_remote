@@ -20,8 +20,21 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
+  	.monami {
+    	background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg");
+    	height : 727px;
+  	}
+  	.main {
+  		margin-top : 150px;
+  	}
      .team-filter {
-     	background-color : skyblue;
+     	background-color: #333333;
+		padding:0 10px 0 10px;
+		width: 100%;
+		opacity : 0.8;
+     }
+     .row {
+     	margin-bottom : 20px;
      }
      .row p {
      	font-weight : 700;
@@ -142,15 +155,27 @@ button[name="create"], [name="reset"]{
 	margin-bottom : 20px;
 }
 #team_title {
-	font-size : 25px;
-	font-weight : 540;
+	font-size:30px;
+		color : white;
+		font-weight : 700;
+		background-color : #333333;
+		margin : 0;
+		opacity : 0.8;
+		padding : 20px 0 0 16px;
 }
 .team-filter-row {
 	padding : 20px 5px;
 }
+.team-filter-row p{
+	text-align : right;
+	font-weight : 500;
+	
+}
+
 
 .btn-search-select {
 	float : right;
+	margin-top : 30px;
 	margin-right : 14px;
 	width : 100px;
 }
@@ -252,7 +277,7 @@ button[name="create"], [name="reset"]{
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
- 	
+ 	<div class="monami">
  	<div class="col-sm-2">
 		<div class="row">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
@@ -309,7 +334,7 @@ button[name="create"], [name="reset"]{
               <div class="team-filter-name col-sm-2"><p> 주장 닉네임 </p></div>
               <div class="team-filter-value col-sm-4"><input type="text" class="form-control" id="capid" placeholder="주장의 닉네임을 입력하세요."></div>
         	  <div class="team-search">
-        	  	<button type="button" class="btn btn-danger btn-search-select" id="target">팀 검색</button>
+        	  	<button type="button" class="btn btn-primary btn-search-select" id="target">팀 검색</button>
         	  </div>
         	  </div>
         	</div>
@@ -330,16 +355,6 @@ button[name="create"], [name="reset"]{
 	           </tbody>
            </table>
         </div>
-        
-        <div class="container-page col-sm-4 col-sm-offset-4">
-	        <ul class="pagination">
-	          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-	          <li class="page-item"><a class="page-link" href="#">1</a></li>
-	          <li class="page-item active"><a class="page-link" href="#">2</a></li>
-	          <li class="page-item"><a class="page-link" href="#">3</a></li>
-	          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-	        </ul>
-      </div>
       <div>
       <button class="btn btn-primary" id="team_create" type="button" data-toggle="modal" data-target="#TeamModal">팀생성</button>
  				<div class="modal fade" id="TeamModal" role="dialog">
@@ -421,6 +436,7 @@ button[name="create"], [name="reset"]{
                 </div>
           </div>
        </div>
+    </div>
     </div>   
 </body>
 </html>

@@ -26,8 +26,8 @@
       filter: grayscale(80%); /* make all photos black and white */ 
       width: 100%;
   }
-  .carousel-inner {
-  	
+  .carousel-caption {
+  	top : 500px;
   }
   .carousel-caption h3 {
       color: #fff !important;
@@ -37,7 +37,9 @@
   	letter-spacing : 2px;
   	font-weight : 800;
   }
-  
+  .glyphicon-chevron-left:hover, .glyphicon-chevron-right:hover {
+  	color : red;
+  }
   </style> 
 </head>
 
@@ -67,26 +69,29 @@
 				    <!-- Wrapper for slides -->
 				    <div class="carousel-inner" role="listbox">
 				      <div class="item active">
-				        <img src="./image/main1.png" alt="main1" style="height:662px;" >
+				        <img src="/naonnaTest/resources/image/main4.png" alt="main1" style="height:727px;" >
 				        <div class="carousel-caption">
-				          <h3>매칭신청</h3>
-				          <p>경기를 합시닷</p>
+				          <h3>경기장 대관</h3>
+				          <p>근처에 있는 경기장을 확인해 보세요.</p>
+				        	<a class="btn btn-danger" href="ground_info.do" target="_self">자세히 보기</a>
 				        </div>      
 				      </div>
 		
 				      <div class="item">
-				        <img src="./image/main2.png" alt="main" style="height:662px;">
+				        <img src="/naonnaTest/resources/image/main5.jpg" alt="main" style="height:727px;">
 				        <div class="carousel-caption">
-				          <h3>경기장 대관</h3>
-				          <p>근처에 있는 경기장을 확인해 보세요.</p>
+				          <h3>매칭신청</h3>
+				          <p>경기를 합시닷</p>
+				          <a class="btn btn-danger" href="matching_search.do" target="_self">자세히 보기</a>
 				        </div>      
 				      </div>
 				    
 				      <div class="item">
-				        <img src="./image/main3.png" alt="Los Angeles" style="height:662px;">
+				        <img src="https://i.ytimg.com/vi/Ug9ggn7niq4/maxresdefault.jpg" alt="Los Angeles" style="height:727px;">
 				        <div class="carousel-caption">
 				          <h3>팀</h3>
 				          <p>함께 경기를 할 팀을 찾아보세요.</p>
+				          <a class="btn btn-danger" href="team_search.do" target="_self">자세히 보기</a>
 				        </div>      
 				      </div>
 		   			 </div>

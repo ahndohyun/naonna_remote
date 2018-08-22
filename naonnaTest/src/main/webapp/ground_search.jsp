@@ -26,7 +26,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/naonna_main.css">
 	
 <style>
-body, html{
+body, html {
 	height : 100%;
 	color : white;
 }
@@ -41,7 +41,13 @@ body, html{
 	opacity : 0.8;
 }
 #ground_title{
-	font-size:25px;
+	font-size:30px;
+	color : white;
+	font-weight : 700;
+	background-color : #333333;
+	margin : 0;
+	opacity : 0.8;
+	padding : 20px 0 0 16px;
 }
 .valueName{
 	font-size: 20px;

@@ -35,10 +35,18 @@
   	font-weight : 550;
   	letter-spacing : 1.5px;
 }
-.sidemenu_text:hover, .card a:hover {
+
+.sidemenu_text:hover, .card a:hover, button[name=login]:hover  {
 	color : red;
 }
-
+ a[name=join_btn]{
+	color : white;
+}
+  #login-button{
+	border : none;
+	width : 100%;
+	border-radius : 5%;
+}
 
 </style>
 <script>
@@ -65,6 +73,7 @@ $(document).ready(function() {
       outMessage(n);
 
    } else {
+	  $('#profileImage').hide();
       $('#printMessage').hide();
       $('#message').hide();
       $('#kakao-logout-group').hide();
@@ -311,6 +320,7 @@ function createKakaotalkLogout() {
     <div class="container-fluid">
     <div class="row">
       <div class="card side-profile">
+       <div class="bf_login">
       	<img src="http://i.imgur.com/MI0CuQd.jpg" id="profileImage" alt="John" style="width: 100%">
 				<p class="sidemenu_text"><a href="#" id="myPage"></a></p>
 				<p class="sidemenu_text"><a href="#" id="myTeam"></a></p>
@@ -320,7 +330,7 @@ function createKakaotalkLogout() {
 				<button id="login-button" type="button" data-toggle="modal" 
 				data-target="#LoginModal" name="login_btn">Login</button>
 				<div id="kakao-logout-group" onclick="createKakaotalkLogout()"><p class="sidemenu_text">로그아웃</p></div>
-				
+		</div>		
 		<!-- Modal -->
         <div class="modal fade" id="LoginModal" role="dialog">
           <div class="modal-dialog">
