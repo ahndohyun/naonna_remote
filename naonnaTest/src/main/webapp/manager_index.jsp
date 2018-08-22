@@ -214,7 +214,7 @@ function res() {
 </head>
 
 <body>
-    <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+    <jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
    <!-- main contents -->
 
    <div class="container-content">
@@ -229,7 +229,7 @@ function res() {
             <div class="show-ground row col-sm-12">
                <div class="content-title col-sm-12">
                   <h3 class="bookingtitle content-title-name">예약현황</h3>
-                  <a href="#" class="right mov-btn btn btn-success">더보기</a>
+                 <!--  <a href="#" class="right mov-btn btn btn-success">더보기</a> -->
                </div>
                <table class="table table-straped table-hover">
                   <thead>

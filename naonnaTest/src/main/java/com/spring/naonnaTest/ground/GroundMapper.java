@@ -22,5 +22,6 @@ public interface GroundMapper {
 	void confirmMat(BookingVO bookingvo);
 	void confirmMessage(BookingVO bookingvo);
 	GroundVO groundPriceInfo(String groundName);
+	
 	//int insertGround2(HashMap<String, String> map);
 }

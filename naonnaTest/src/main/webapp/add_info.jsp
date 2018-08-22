@@ -49,15 +49,15 @@ $(document).ready(function() {
                       
                       } else {
                           alert("사용가능한 아이디입니다.");                        
-                          $("#act_city").focus();                       
+                        $("#act_city").focus();                       
                           idck = 1;
-                          
+                    
                       }
                   },
                   error:function( request,status, error) {
       				alert("code:" +request.status + "\n" +"message:" + request.responseText + "\n" + "error :" +error);
       			}
-              });
+              });            
           });
        });
 	</script>

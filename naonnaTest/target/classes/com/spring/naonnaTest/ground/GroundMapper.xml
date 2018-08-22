@@ -136,6 +136,8 @@
     <select id="groundPriceInfo" parameterType="String" resultMap = "GroundResultMap">
    		select * from ground_soccer where ground_name = trim(#{groundName})
     </select>
+    
+    
    <!-- 
    <insert id ="insertGround2" parameterType = "hashmap" >
    	insert into ground_soccer values(#{ground_Name, javaType=String}, #{ground_admin jdbcType=VARCHAR2}, #{ground_addr},#{ground_city},#{grass},#{shower},#{parking},

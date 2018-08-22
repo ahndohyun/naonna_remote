@@ -317,6 +317,17 @@ String nickname = (String)session.getAttribute("nickname");
 	
   }
 
+  function res3() {
+	  var abc;
+	  abc=confirm(' 경기장을 삭제하시겠습니까?');
+	  if(abc){
+	  location.href = "ground_delete.do?ground_Name="+"<%=ground_name%>"
+	  alert('삭제 완료');
+	  }
+	  else{
+		  history.go(-1);
+	  }
+  }
   </script>
 </head>
 
@@ -328,6 +339,7 @@ String nickname = (String)session.getAttribute("nickname");
 	<div class="container-content">
 	<%if(session.getAttribute("admin") != null){ %>
 		<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
+		<jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
 	<%}else { %>	
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
 	<%} %>
@@ -435,7 +447,7 @@ String nickname = (String)session.getAttribute("nickname");
   		<p>${vo.ground_addr} </p>
   		<p>${vo.ground_city }</p>
   	</div>
-  						
+  				<%if(session.getAttribute("admin") == null){ %>		
   					<div class="groundValue" id="timeGround">
 						<div class="valueName">
 							<h5>날짜</h5>
@@ -448,14 +460,17 @@ String nickname = (String)session.getAttribute("nickname");
 								<input type="number" id="hours" value="0" style="width: 10%;" />							 	
 							</div>									
 					</div>
-	
+					<%} %>
   </div>
   <!-- end main content -->
   <div class="button-container">
+  	<%if(session.getAttribute("nickname") !=null){ %>
   	<div class="payment"><button class="btn btn-success" id="reserve" onclick="res3()">예약하기</button></div>
+  	<%} %>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
   	<%if(session.getAttribute("admin") !=null){ %>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res3()">경기장 삭제</button></div>
   	<%} %>
   </div>
   </div>
