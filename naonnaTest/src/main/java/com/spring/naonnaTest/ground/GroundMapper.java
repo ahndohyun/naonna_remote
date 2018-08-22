@@ -17,8 +17,10 @@ public interface GroundMapper {
 	
 	GroundVO getThatUpdateGroundList(String ground_name);	
 	int modifyGround(GroundVO vo);
-	BookingVO modifyBooking(BookingVO bookingvo);
+	int addBooking(BookingVO bookingvo);
 	ArrayList<BookingVO> selectBooking(BookingVO bookingvo);
-	
+	void confirmMat(BookingVO bookingvo);
+	void confirmMessage(BookingVO bookingvo);
+	GroundVO groundPriceInfo(String groundName);
 	//int insertGround2(HashMap<String, String> map);
 }

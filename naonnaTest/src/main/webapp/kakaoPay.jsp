@@ -10,6 +10,8 @@
 <!--     <script src="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/js/lib/jquery.min.js"></script> -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/common_payment.js?v=version"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/kakaoPayjas.js?v=version"></script>
 
 <script>
         var hash = "6d2439a7875de774d196f898def5a53b3eff5f28f56505cb9097a73d209bcdc7";
@@ -20,18 +22,18 @@
         var isFailPost = false;
         var isApprovalPost = false;
         
+        
         $(document).ready(function() {
         	
         	IMP.init('imp02341854');
         	
         	$('#imp').on('click', function() {
-            	alert("음?");
             	IMP.request_pay({
             	    pg : 'inicis', // version 1.1.0부터 지원.
             	    pay_method : 'card',
             	    merchant_uid : 'merchant_' + new Date().getTime(),
-            	    name : '주문명:결제테스트',
-            	    amount : 14000,
+            	    name : "${requestScope.groundName}" + "결제입니다.",
+            	    amount : "${requestScope.groundPrice}",
             	    buyer_email : 'iamport@siot.do',
             	    buyer_name : '구매자이름',
             	    buyer_tel : '010-1234-5678',
@@ -55,10 +57,13 @@
         });
         
         
+        function res(){
+        	history.go(-1);
+        }
+        
 </script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/common_payment.js?v=version"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/kakaoPayjas.js?v=version"></script>
+
 
 </head>
 <body>
@@ -100,7 +105,7 @@
             </div>
             <div class="layer_foot">
                 <button id="confirmCancelButton" class="btn_layer2">취소</button>
-                <button id="confirmOkButton" class="btn_layer2">확인</button>
+                <button id="confirmOkButton" class="btn_layer2" onclick= "res()">확인</button>
             </div>
         </div>
     </div>
@@ -201,8 +206,7 @@
 							
 						</div>
 						<div class="area_btn">
-							<button type="submit" class="btn_submit" disabled="disabled">결제요청</button>
-							<input type="button" id="imp" value="TEST">
+							<input class="btn_submit" type="button" id="imp" value="결제">
 						</div>
 					</fieldset>
 				</form>

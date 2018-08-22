@@ -276,21 +276,18 @@ String nickname = (String)session.getAttribute("nickname");
 			var assign = $('#hours').val();
 			assign = assign*1;
 			var endDate = new Date(startDate);
-			endDate.setHours(startDate.getHours() + 1);
+			endDate.setHours(startDate.getHours() + assign);
 			var groundName = '<%=vo.getGround_Name()%>';
 			               
 			goGroundB_time(startDate, endDate, assign,groundName);
-		}
-		
-		
-		 
+		} 
 		  	
   	function goGroundB_time(startDate, endDate ,assign , groundName) {
 		$.ajax({
 			url:'/naonnaTest/bookingGround.do',
 			type:'POST',			
 			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-			data:{	'bookNumber': startDate,
+			data:{	'bookNumber': "20180809",
 					'groundName':groundName ,
 				 	'matchingID' : "asdfqwef" ,
 				 	'nickname': "${sessionScope.nickname}",	
@@ -298,10 +295,14 @@ String nickname = (String)session.getAttribute("nickname");
 				 	'assign' : assign,
 				 	'endTime' : endDate},
 				 	
-				 success:function(){
-				 		alert('성공');
-				 	}
+				 	success: function(data) {
+				 		alert('예약 완료되었습니다.');			 		
+				 	},
+				 	 error:function( request,status, error) {
+						alert("code:" +request.status + "\n" +"message:" + request.responseText + "\n" + "error :" +error);
+					} 
 			});	
+			
 	}
 		
   
@@ -444,7 +445,7 @@ String nickname = (String)session.getAttribute("nickname");
 								<h6>날짜 선택</h6>
 								<input type="text" id="datePick" name="datetimes" style="width: 25%" />										
 								<h6> 대여 시간</h6>
-								<input type="number" id="hour" value="0" style="width: 10%;" />							 	
+								<input type="number" id="hours" value="0" style="width: 10%;" />							 	
 							</div>									
 					</div>
 	

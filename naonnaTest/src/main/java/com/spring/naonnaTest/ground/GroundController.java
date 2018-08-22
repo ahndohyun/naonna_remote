@@ -239,28 +239,29 @@ public class GroundController {
 
 	@RequestMapping(value = "/bookingGround.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
-	public String Ground_Book_JSON(BookingVO bookingvo) {
+	public String Ground_Book_JSON(BookingVO bookingvo, HttpServletResponse response)  throws Exception {
+		System.out.println("booknumber : " + bookingvo.getBookNumber());
 		System.out.println("groundname : " + bookingvo.getGroundName());	
-		BookingVO list = groundService.Ground_Book_JSON(bookingvo);
+		System.out.println("machingId : " + bookingvo.getMatchingID());	
+		System.out.println("nickname : " + bookingvo.getNickname());	
+		System.out.println("startTime : " + bookingvo.getStartTime());	
+		System.out.println("assign : " + bookingvo.getAssign());	
+		System.out.println("endTime : " + bookingvo.getEndTime());	
 		
-		String str = "";
-		ObjectMapper mapper = new ObjectMapper();
+		//BookingVO list = 
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		groundService.Ground_Book_JSON(bookingvo);	
+
 		
-		try {
-			str = mapper.writeValueAsString(list);
-			System.out.println("str=" + str);
-		}
-		catch (Exception e){
-			System.out.println("first() mapper : " + e.getMessage());
-		}
-		
-		return str;
+		return null;
 	}
 	
 	
 	@RequestMapping(value = "/getAdminBookingJSON.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
 	public String Ground_Bookedlist_JSON(BookingVO bookingvo) {
+		
 		ArrayList<BookingVO> Bookinglist = groundService.Ground_Bookedlist_JSON(bookingvo);
 
 		String str = "";
@@ -268,7 +269,7 @@ public class GroundController {
 		
 		try {
 			str = mapper.writeValueAsString(Bookinglist);
-			System.out.println("str=" + str);
+			System.out.println("getAdmin str=" + str);
 		}
 		catch (Exception e){
 			System.out.println("first() mapper : " + e.getMessage());
@@ -276,5 +277,34 @@ public class GroundController {
 		
 		return str;
 		
+	}
+	
+	@RequestMapping(value = "/confirmMatching.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
+	public int matchingConfirm(BookingVO vo) {
+		System.out.println(vo.getNickname());
+		System.out.println(vo.getGroundName());
+		System.out.println(vo.getBookNumber());
+		groundService.matchingCon(vo);
+		System.out.println(vo.getNickname());
+		return 1;	
+	}
+	
+	@RequestMapping(value = "/kakaoPay.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public ModelAndView kakaoPay(String groundName) {
+		ModelAndView mnv = new ModelAndView();
+		GroundVO groundVO = null;
+		try {
+			System.out.println("groundName 카카오페이 = " + groundName);
+			groundVO = groundService.groundPrice(groundName);
+			mnv.addObject("groundPrice", groundVO.getWeek_morning());
+			mnv.addObject("groundName", groundVO.getGround_Name());
+			mnv.setViewName("kakaoPay");
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+
+		return mnv;
 	}
 }

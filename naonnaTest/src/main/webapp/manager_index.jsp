@@ -34,6 +34,7 @@
 $(document).ready(function() {
 	function printBooking() {
 		var groundName = "${sessionScope.groundName}"
+
 			console.log(groundName);
 		$('#booking_print').empty();
 		$.ajax({
@@ -42,26 +43,69 @@ $(document).ready(function() {
 			dataType: "json",
 			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 			data : { 
-						'ground_Name' : groundName
+						'groundName' : groundName
 			},
-			success:function(index,booking) {																
-														
-					var output = '';
-					output += '<tr>';
-					
-//					output += '<td> <a link href="ground_detail.do?ground_Name='+data.ground_Name + '">' + data.ground_Name  + '</td>';
-					output += '<td>' + booking.nickname + '</td>';
-					output += '<td>' + booking.startTime + '</td>';				
-					output += '<td>' + booking.assign + '</td>';
-					output += '<td>' + booking.confirm + '</td>';
-					output += '</tr>';
-					console.log("output:" + output);
-					$('#booking_print').append(output);												
-										
-				
+			success:function(data) {																
+					$.each(data, function(index, booking) {
+
+						var d = new Date(booking.startTime);
+						var y = d.getFullYear();
+						var m = (d.getMonth()+1);
+						if(m < 10) {
+							m = "0" + m;
+						}
+						var da = d.getDate();
+						if(da < 10) {
+							da = "0" + da;
+						}
+						var h = d.getHours();
+						if(h < 10) {
+							h = "0" + h;
+						}
+						var mi = d.getMinutes();
+						if(mi < 10) {
+							mi = "0" + mi;
+						}
+						
+						var de = new Date(booking.endTime);
+						var ye = de.getFullYear();
+						var me = (de.getMonth()+1);
+						if(me < 10) {
+							me = "0" + me;
+						}
+						var dae = de.getDate();
+						if(dae < 10) {
+							dae = "0" + dae;
+						}
+						var he = de.getHours();
+						if(he < 10) {
+							he = "0" + h;
+						}
+						var mie = de.getMinutes();
+						if(mie < 10) {
+							mie = "0" + mie;
+						}
+						
+						var output = '';
+						output += '<tr>';						
+						output += '<td>' + booking.nickname + '</td>';
+						output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
+						output += '<td>' + ye + '-' + me + '-' + dae + '&nbsp' + he + ':' + mie + '</td>';
+						output += '<td>' + booking.assign*1 + '</td>';
+						if(booking.confirm != 1) {
+							output += "<td><input type='button' id='confirm' onclick='click_confirm(\"" +booking.nickname +"\", \""+ booking.groundName    +" \" )'></td>";
+							output += "<td><input type='button' class='reject' id='reject'" + "></td></tr>";
+						}
+						else{
+							output += "<td><input type='button' id='confirm' disabled='true'></td>";
+							output += "<td><input type='button' id='reject' disabled='true'></td></tr>";
+						}
+						console.log("output:" + output);
+						$('#booking_print').append(output);						
+					});														
 			},
-			error:function() {
-				alert("새로고침을 눌러주세요.")
+			error:function( request,status, error) {
+				alert("code:" +request.status + "\n" +"message:" + request.responseText + "\n" + "error :" +error);
 			}
 		});
 		
@@ -117,6 +161,36 @@ printGround();
 
 
 });
+
+function click_confirm(nickname, groundName) {
+
+	$.ajax({
+		url:'/naonnaTest/confirmMatching.do',     			
+		type:'POST',
+		dataType: "json",
+		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+		data : {
+				'nickname' : nickname,
+				"groundName" : groundName,
+				'bookNumber' : "${sessionScope.admin}",
+				"groundName" : "${sessionScope.groundName}"
+			},
+		
+		//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+		success:function(data) {
+			console.log(data);
+			if(data == 1) {
+				alert("경기를 허락하셨습니다..");
+				$('#confirm').attr('disabled', true);
+				$('#reject').attr('disabled', true);
+			}
+		},
+		error:function() {
+			alert("새로고침을 눌러주세요.");			
+		}
+		 });
+
+	}
 		
 function res() {
     location.href = "ground_regi.do"
@@ -162,7 +236,10 @@ function res() {
                      <tr>
                         <th>예약자</th>
                         <th>예약날짜</th>
-                        <th>사용시간</th>
+                        <th>종료시간</th>
+                        <th>총 대여 시간</th>
+                        <th>승낙</th>
+                        <th>거부</th>
                      </tr>
                   </thead>
                   <tbody id="booking_print"></tbody>
