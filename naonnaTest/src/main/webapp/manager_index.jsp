@@ -35,6 +35,44 @@
 <script>
 
 $(document).ready(function() {
+	function printBooking() {
+		var groundName = "${sessionScope.groundName}"
+			console.log(groundName);
+		$('#booking_print').empty();
+		$.ajax({
+			url:'/naonnaTest/getAdminBookingJSON.do',
+			type:'POST',
+			dataType: "json",
+			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+			data : { 
+						'ground_Name' : groundName
+			},
+			success:function(index,booking) {																
+														
+					var output = '';
+					output += '<tr>';
+					
+//					output += '<td> <a link href="ground_detail.do?ground_Name='+data.ground_Name + '">' + data.ground_Name  + '</td>';
+					output += '<td>' + booking.nickname + '</td>';
+					output += '<td>' + booking.startTime + '</td>';				
+					output += '<td>' + booking.assign + '</td>';
+					output += '<td>' + booking.confirm + '</td>';
+					output += '</tr>';
+					console.log("output:" + output);
+					$('#booking_print').append(output);												
+										
+				
+			},
+			error:function() {
+				alert("새로고침을 눌러주세요.")
+			}
+		});
+		
+	}
+	
+	printBooking();
+	
+	
 function printGround() {
 	
 	
@@ -51,23 +89,23 @@ function printGround() {
 					'ground_admin' : admin
 		},
 		success:function(data) {																
-			$.each(data, function(index, ground) {														
+													
 				var output = '';
 				output += '<tr>';
-				output += '<tr>' + ground.ground_admin + '</th>';
-				output += '<td>' + ground.ground_Name  + '</td>';
-				//output += '<td> <a link href="ground_detail.do?ground_Name='+ground.ground_Name + '">' + ground.ground_Name  + '</td>';
-				output += '<td>' + ground.ground_addr + '</td>';
-				output += '<td>' + ground.grass + '</td>';
-				output += '<td>' + ground.shower + '</td>';
-				output += '<td>' + ground.parking + '</td>';
-				output += '<td>' + ground.light + '</td>';
-				output += '<td>' + ground.ground_size + '</td>';
-				output += '<td>' + ground.ground_people + '</td>';
+				
+				output += '<td> <a link href="ground_detail.do?ground_Name='+data.ground_Name + '">' + data.ground_Name  + '</td>';
+				output += '<td>' + data.ground_admin + '</td>';				
+				output += '<td>' + data.ground_addr + '</td>';
+				output += '<td>' + data.grass + '</td>';
+				output += '<td>' + data.shower + '</td>';
+				output += '<td>' + data.parking + '</td>';
+				output += '<td>' + data.light + '</td>';
+				output += '<td>' + data.ground_size + '</td>';
+				output += '<td>' + data.ground_people + '</td>';
 				output += '</tr>';
 				console.log("output:" + output);
 				$('#ground_print').append(output);												
-			});						
+									
 			
 		},
 		error:function() {
@@ -130,28 +168,7 @@ function res() {
                         <th>사용시간</th>
                      </tr>
                   </thead>
-                  <tbody>
-                     <tr>
-                        <td>김경우</td>
-                        <td>2018.08.14</td>
-                        <td>2</td>
-                     </tr>
-                     <tr>
-                        <td>김도우</td>
-                        <td>2018.08.07</td>
-                        <td>3</td>
-                     </tr>
-                     <tr>
-                        <td>안도현</td>
-                        <td>2018.08.07</td>
-                        <td>2</td>
-                     </tr>
-                     <tr>
-                        <td>정상완</td>
-                        <td>2018.08.15</td>
-                        <td>5</td>
-                     </tr>
-                  </tbody>
+                  <tbody id="booking_print"></tbody>
                </table>
             </div>
             <div class="show-book row col-sm-12">
@@ -163,8 +180,9 @@ function res() {
                <table class="table table-straped table-hover">
                   <thead>
                      <tr>
-                     		<th>경기장 관리자</th>
+                     		
                        		<th>경기장 이름</th>
+                       		<th>경기장 관리자</th>
 							<th>주소</th>
 							<th>인조잔디</th>
 							<th>샤워시설</th>

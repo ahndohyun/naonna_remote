@@ -8,6 +8,7 @@
 <%
 String admin = (String)session.getAttribute("admin");
 String ground_name = (String)session.getAttribute("groundName");
+String nickname = (String)session.getAttribute("nickname");
 %>
 
  <% 
@@ -34,7 +35,7 @@ String ground_name = (String)session.getAttribute("groundName");
 <!-- 캘린더 라이브러리-->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/naonna_main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/naonna_main.css">
   
   <style>
   body {
@@ -456,15 +457,70 @@ String ground_name = (String)session.getAttribute("groundName");
 	
 </script>
   <script>
- 
+  
+  
+  
+	  $(function() {
+			 
+			var currentDate = new Date();
+		  $('input[name="datetimes"]').daterangepicker({
+			
+	
+			singleDatePicker : true,
+		 		timePicker: true,
+		    showDropdowns: true, 
+		    startDate: moment().startOf('hour'),
+		    minDate : currentDate,
+		    locale: {
+		       format: 'YYYY/M/DD hh:00'
+		    }
+		  });
+	});
+	 
+		function res3(){
+			
+			var startDate = new Date($('#datePick').val());
+			var assign = $('#hours').val();
+			assign = assign*1;
+			var endDate = new Date(startDate);
+			endDate.setHours(startDate.getHours() + 1);
+			var groundName = '<%=vo.getGround_Name()%>';
+			               
+			goGroundB_time(startDate, endDate, assign,groundName);
+		}
+		
+		
+		 
+		  	
+  	function goGroundB_time(startDate, endDate ,assign , groundName) {
+		$.ajax({
+			url:'/naonnaTest/bookingGround.do',
+			type:'POST',			
+			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+			data:{	'bookNumber': startDate,
+					'groundName':groundName ,
+				 	'matchingID' : "asdfqwef" ,
+				 	'nickname': "${sessionScope.nickname}",	
+				 	'startTime' : startDate,
+				 	'assign' : assign,
+				 	'endTime' : endDate},
+				 	
+				 success:function(){
+				 		alert('성공');
+				 	}
+			});	
+	}
+		
+  
+  	
   function res() {
      // location.href = "ground_info.do"
 	 history.go(-1);
    }
   
   function res2() {
-	  location.href = "ground_updating.do?ground_name="+ <%=ground_name%>
-	// location.href = "ground_updating.do?"
+	  location.href = "ground_updating.do?ground_Name="+"<%=ground_name%>"
+	
   }
 
   </script>
@@ -481,7 +537,6 @@ String ground_name = (String)session.getAttribute("groundName");
 		<%} %>
 		</div>
 	</div>
-
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>	
@@ -491,7 +546,6 @@ String ground_name = (String)session.getAttribute("groundName");
 			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
 		</jsp:include>	
 	</div>
-	
 <!-- start main content -->
   <div class="main col-sm-10">
   	<div class="detail-container col-sm-10 col-sm-offset-1">
@@ -583,6 +637,7 @@ String ground_name = (String)session.getAttribute("groundName");
 			</div>  			
   		</div>
   	</div>
+<<<<<<< HEAD
   	<div class="ground-detail-contents col-sm-6">
   		<div class="row contents-row">
   			<div class="container"><p>주소</p></div>

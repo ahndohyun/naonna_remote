@@ -291,7 +291,7 @@ function createKakaotalkLogout() {
        			}else if($('#ground_ad_pw').val() == ''){
        				$('#ground_ad_pw').focus();
        				$('#ad_pwHelper').text('비밀번호가 공백입니다.');
-       			//나이 공백체크
+       			//핀번호 공백체크
        			}else if($('#ground_ad_pin').val() == ''){
        				$('#ground_ad_pin').focus();
        				$('#ad_pinHelper').text('pin번호가 공백입니다.');

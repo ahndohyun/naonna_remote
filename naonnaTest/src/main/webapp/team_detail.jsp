@@ -196,8 +196,7 @@
                        <td> 팀 소개 </td>
                        <td> ${vo.intro }</td>
                     </tr>
-                    
-                 </tbody>
+                   </tbody>
                  <tfoot id="teamMember">
                  	<!-- 자바스크립트 멤버 출력 -->
                  </tfoot>
