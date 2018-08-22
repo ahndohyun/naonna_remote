@@ -27,10 +27,7 @@
   .table {
   	margin : 10px 0 5px 80px;
   }
-  .row {
-  	border-right : 2px solid red;
-  	border-bottom : 2px solid red;
-  }
+ 
   .team-name-container {
   	margin : 20px;
   }
@@ -40,8 +37,7 @@
   	margin : 10px;
   }
   .page_name {
-  	background-color : red;
-  	color : white;
+  	color : black;
   	margin : 0;
   	padding : 10px 15px;
   }
@@ -52,8 +48,6 @@
   	font-weight : 800;
   }
   .team-detail-header{
-    border-left : 2px solid red;
-    border-right : 2px solid red;
   	display:inline-block;
   	float:left;
   	margin : 0;
@@ -173,7 +167,7 @@
               </div>
            </div>
            <div class="team-detail-contents col-sm-6">
-              <table class="table table-bordered table-striped table-hover">
+              <table class="table table-bordered table-striped">
                  <thead>
 
                  </thead>

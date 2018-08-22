@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <style>
-.card{
+.side-profile{
 	margin-top:150px
 }
 #profile_img {

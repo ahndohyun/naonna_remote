@@ -26,13 +26,19 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/naonna_main.css">
 	
 <style>
-body{
-	background-color:
+body, html{
+	height : 100%;
+	color : white;
 }
+.monami {
+	background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg")
+}
+
 .container-filter-box{
-	background-color: #BDBDBF;
+	background-color: #333333;
 	padding:10px;
 	padding-top:20px;
+	opacity : 0.8;
 }
 #ground_title{
 	font-size:25px;
@@ -44,6 +50,7 @@ body{
 }
 .groundValue{
 	margin-bottom: 20px;
+	opacity : 1.0;
 }
 .ground-calendar-text{
 	font-size: 17px;
@@ -74,6 +81,7 @@ body{
 	verticle-align:middle;
 	height: 45px;
 }
+
 </style>
 
 <script>
@@ -247,7 +255,7 @@ body{
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
- 	
+ 	<div class="monami">
 	<div class="col-sm-2">
 		<div class="row">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
@@ -382,6 +390,7 @@ body{
 				</table>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

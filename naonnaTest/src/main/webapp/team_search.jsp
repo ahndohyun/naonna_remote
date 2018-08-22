@@ -70,7 +70,6 @@
 }
 /* 모달바디 */
 .team_title{
-	font-family: sans-serif;
 	font-size: 20px;
 	margin-left: 45%;
 }
@@ -144,21 +143,19 @@ button[name="create"], [name="reset"]{
 }
 #team_title {
 	font-size : 25px;
-	font-weight : 700;
-	color : black;
-	letter-spacing : 1.8px;
+	font-weight : 540;
 }
 .team-filter-row {
 	padding : 20px 5px;
 }
-.row {
-	padding : 10px 2px;
-	margin : 10px 3px;
-}
+
 .btn-search-select {
 	float : right;
 	margin-right : 14px;
 	width : 100px;
+}
+.contents_table th {
+	text-align : center;
 }
   </style>
   
@@ -266,8 +263,9 @@ button[name="create"], [name="reset"]{
 		<input type="hidden" name="kakao_Id">
 	</form>
 	
-     <div class="main col-sm-10"><br>
-     <p id="team_title">팀관리</p>
+     <div class="main col-sm-10">
+     <div class="col-sm-10 col-sm-offset-1">
+     	<p id="team_title">팀관리</p>
         <div class="team-filter container-fluid">
            <div class="team-filter-row">
            	  <div class="row">
@@ -318,21 +316,18 @@ button[name="create"], [name="reset"]{
         </div>
         
         <div class="container-board">           
-           <table class="table">
-           <thead>
-               <tr class="bg-primary">
-                 <th>팀명</th>
-                 <th>위치</th>
-                 <th>팀 주장</th>
-                 <th>실력</th>
-                 <th>인원</th>
-               </tr>
-          </thead>
-           <tbody class="table-body" id="team_print">
-           		
-           
-              
-           </tbody>
+           <table class="table contents_table">
+	           <thead class="team-header">
+	               <tr class="bg-primary">
+	                 <th>팀명</th>
+	                 <th>위치</th>
+	                 <th>팀 주장</th>
+	                 <th>실력</th>
+	                 <th>인원</th>
+	               </tr>
+	          </thead>
+	           <tbody class="team-body" id="team_print">  
+	           </tbody>
            </table>
         </div>
         
@@ -424,8 +419,8 @@ button[name="create"], [name="reset"]{
                 		</div>
                 	</div>
                 </div>
-                </div>
-        
+          </div>
+       </div>
     </div>   
 </body>
 </html>
