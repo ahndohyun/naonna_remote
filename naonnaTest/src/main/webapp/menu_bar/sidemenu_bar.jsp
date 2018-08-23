@@ -47,7 +47,16 @@
 	width : 100%;
 	border-radius : 5%;
 }
-
+.bf_login{
+	height:0;
+}
+.login_other{
+	display: block;
+	width: 300px;
+	height: 49px;
+	margin-left: 137px;
+	margin-bottom: 15px;
+}
 </style>
 <script>
 // start 카카오톡 API
@@ -77,6 +86,7 @@ $(document).ready(function() {
       $('#printMessage').hide();
       $('#message').hide();
       $('#kakao-logout-group').hide();
+      $('.sidemenu_text').hide();
    }
 
    function outUserInfo(s) {
@@ -95,6 +105,7 @@ $(document).ready(function() {
             if (data.userPhoto != null) {
                $('#profileImage').attr('src','/naonnaTest/image/'+ data.userPhoto);
             }
+
             $('#myPage').append(data.nickname);
             $('#myPage').attr("href", "myPage.do?nickname="+ data.nickname);
             $('#myTeam').append(data.teamName);
@@ -347,6 +358,8 @@ function createKakaotalkLogout() {
                   <div id="login_P" class="tab-pane fade in active">
                     <div id="kakao-logged-group" class="kakao_login"></div>
                       <a id="custom-login-btn" href="javascript:loginWithKakao()" style="cursor:hand;"></a>
+                    <img src="/naonnaTest/resources/image/naverlogin.png" alt="naver_login" class="login_other">
+                    <img src="/naonnaTest/resources/image/facebooklogin.png" alt="facebook_login" class="login_other">
                   </div>
                   
 				  <!-- 로그인 부분 -->

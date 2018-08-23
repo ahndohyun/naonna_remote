@@ -635,7 +635,7 @@ String nickname = (String)session.getAttribute("nickname");
 			</div>  			
   		</div>
   	</div>
-<<<<<<< HEAD
+  	
   	<div class="ground-detail-contents col-sm-6">
   		<div class="row contents-row">
   			<div class="container"><p>주소</p></div>

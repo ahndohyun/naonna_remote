@@ -61,18 +61,14 @@ body, html{
 /* side-profile */
 .side-profile {
   display : inline-block;
-  
   margin-top: 200px;
 }
-
-
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   text-align: center;
   font-family: arial;
   background-color : white;
 }
-
 
 /* The Modal*/
 #LoginModal {
@@ -126,6 +122,7 @@ button[name=login], a[name=join_btn], #submitbut{
 a[name=join_btn]{
   padding: 10px;
   border-radius: 6px;
+  margin-bottom: 0px;
 }
 #join label{
   display : block;
