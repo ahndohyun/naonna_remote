@@ -99,19 +99,56 @@ public class GroundServiceImpl implements GroundService{
 	}
 	
 	@Override
-	public BookingVO Ground_Book_JSON(BookingVO bookingvo) {
-		
-		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
-		BookingVO reservelist = groundMapper.modifyBooking(bookingvo);
-		return reservelist;
+	public void Ground_Book_JSON(BookingVO bookingvo) {
+		try {
+			GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+			groundMapper.addBooking(bookingvo);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
 	public ArrayList<BookingVO> Ground_Bookedlist_JSON(BookingVO bookingvo) {
-		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
-		ArrayList<BookingVO> reservelist = groundMapper.selectBooking(bookingvo);
-		return reservelist;
+		ArrayList<BookingVO> Bookinglist = null;
+		
+		try {
+			GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+			Bookinglist = groundMapper.selectBooking(bookingvo);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		return Bookinglist;
 		
 	}
-
+	
+	@Override
+	public void matchingCon(BookingVO bookingvo) {
+		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+		
+		try {
+			groundMapper.confirmMessage(bookingvo);
+			groundMapper.confirmMat(bookingvo);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public GroundVO groundPrice(String groundName) {
+		GroundMapper groundMapper = sqlSession.getMapper(GroundMapper.class);
+		GroundVO groundVO = null;
+		try {
+			groundVO = groundMapper.groundPriceInfo(groundName);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return groundVO;
+	}
+	
 }

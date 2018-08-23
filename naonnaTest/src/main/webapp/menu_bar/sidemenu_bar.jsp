@@ -269,7 +269,7 @@ function createKakaotalkLogout() {
           $("#idck").click(function() {
               
               //userid 를 param.
-              var userid =  $("#admin").val(); 
+              var userid =  $("#ground_admin").val(); 
               
               $.ajax({
                   async: true,
@@ -366,9 +366,9 @@ function createKakaotalkLogout() {
                   <div id="login_A" class="tab-pane fade">
                   	<form action="login_a.do" method="post">
 	                    <label for="ground_admin"><b>Username</b></label>
-	                    <input type="text"  placeholder="Enter ID" name="ground_ad" required>
+	                    <input type="text"  placeholder="Enter ID" name="ground_admin" required>
 	                    <label for="ground_ad_pw"><b>Password</b></label>
-	                    <input type="password" placeholder="Enter Password" name="ground_adpw" required>
+	                    <input type="password" placeholder="Enter Password" name="ground_ad_pw" required>
 	                    <button type="submit" name="login">Login</button>
 	                    <a href="#" data-toggle="modal" data-target="#JoinModal" name="join_btn">Join</a>
                     </form> 

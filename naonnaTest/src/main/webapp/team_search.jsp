@@ -88,7 +88,7 @@
 }
 #team_close{
 	margin-top: 3px;
-	margin-right: -45px;
+	margin-right: 5px;
 	outline: none;
 }
 .create_modal_table{
@@ -373,7 +373,8 @@ button[name="create"], [name="reset"]{
            							</tr>          						
            							<tr class="table_row">
            								<td class="table_menu">닉네임</td>
-           								<td class="table_contents"><input disabled="true" name="nickname" value='${sessionScope.nickname}' required> ${sessionScope.nickname} </td>
+           								<td class="table_contents">${sessionScope.nickname}<input type="hidden" name="nickname" value='${sessionScope.nickname}' required></td>
+           								
            								
            							</tr>
            							<tr class="table_row">

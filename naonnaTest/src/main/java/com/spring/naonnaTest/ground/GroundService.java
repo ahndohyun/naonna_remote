@@ -15,8 +15,10 @@ public interface GroundService {
 	GroundVO That_UpdateGround_Info(String ground_Name);
 	int updateThatGround(GroundVO vo);
 	
-	BookingVO Ground_Book_JSON(BookingVO bookingvo);
+	void Ground_Book_JSON(BookingVO bookingvo);
 	ArrayList<BookingVO> Ground_Bookedlist_JSON(BookingVO bookingvo);
+	void matchingCon(BookingVO bookingvo);
+	GroundVO groundPrice(String groundName);
 	
 	//ArrayList<GroundVO> That_Ground_Info_JSON(GroundVO vo);
 	//public void insertGround2(HashMap<String, String> map);

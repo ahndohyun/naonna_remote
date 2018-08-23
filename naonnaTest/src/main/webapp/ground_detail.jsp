@@ -482,20 +482,17 @@ String nickname = (String)session.getAttribute("nickname");
 			var assign = $('#hours').val();
 			assign = assign*1;
 			var endDate = new Date(startDate);
-			endDate.setHours(startDate.getHours() + 1);
-			var groundName = '<%=vo.getGround_Name()%>';    
+			endDate.setHours(startDate.getHours() + assign);
+			var groundName = '<%=vo.getGround_Name()%>';
 			goGroundB_time(startDate, endDate, assign,groundName);
-		}
-		
-		
-		 
+		} 
 		  	
   	function goGroundB_time(startDate, endDate ,assign , groundName) {
 		$.ajax({
 			url:'/naonnaTest/bookingGround.do',
 			type:'POST',			
 			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-			data:{	'bookNumber': startDate,
+			data:{	'bookNumber': "20180809",
 					'groundName':groundName ,
 				 	'matchingID' : "asdfqwef" ,
 				 	'nickname': "${sessionScope.nickname}",	
@@ -503,10 +500,14 @@ String nickname = (String)session.getAttribute("nickname");
 				 	'assign' : assign,
 				 	'endTime' : endDate},
 				 	
-				 success:function(){
-				 		alert('성공');
-				 	}
+				 	success: function(data) {
+				 		alert('예약 완료되었습니다.');			 		
+				 	},
+				 	 error:function( request,status, error) {
+						alert("code:" +request.status + "\n" +"message:" + request.responseText + "\n" + "error :" +error);
+					} 
 			});	
+			
 	}
 		
   
@@ -521,6 +522,17 @@ String nickname = (String)session.getAttribute("nickname");
 	
   }
 
+  function res3() {
+	  var abc;
+	  abc=confirm(' 경기장을 삭제하시겠습니까?');
+	  if(abc){
+	  location.href = "ground_delete.do?ground_Name="+"<%=ground_name%>"
+	  alert('삭제 완료');
+	  }
+	  else{
+		  history.go(-1);
+	  }
+  }
   </script>
 </head>
 
@@ -530,6 +542,7 @@ String nickname = (String)session.getAttribute("nickname");
 		<div class="row">
 			<%if(session.getAttribute("admin") != null){ %>
 			<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
+			<jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
 		<%} else {%>
 			<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
 		<%} %>
@@ -544,6 +557,7 @@ String nickname = (String)session.getAttribute("nickname");
 			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
 		</jsp:include>	
 	</div>
+
 <!-- start main content -->
   <div class="main col-sm-10">
   	<div class="detail-container col-sm-10 col-sm-offset-1">
@@ -659,25 +673,30 @@ String nickname = (String)session.getAttribute("nickname");
   		</div>
   	</div>  		
   </div>
-
-		<table class="table">
-			<thead class="ground-header">
-				<tr class="bg-primary">
-					<th>대관 시간</th>
-					<th>가격</th>
-					<th>예약 내용</th>
-					<th>예약가능여부</th>
-				</tr>
-			</thead>
-			<tbody class="ground-body" id="ground_print">
-			</tbody>
-		</table>
+	<%if(session.getAttribute("admin") == null){ %>		
+  					<div class="groundValue" id="timeGround">
+						<div class="valueName">
+							<h5>날짜</h5>
+						</div>										
+							<!--  시간 선택 API  -->
+							<div class="demo-section k-content" id="timer">
+								<h6>날짜 선택</h6>
+								<input type="text" id="datePick" name="datetimes" style="width: 25%" />										
+								<h6> 대여 시간</h6>
+								<input type="number" id="hours" value="0" style="width: 10%;" />							 	
+							</div>									
+					</div>
+					<%} %>
 
 	<div class="button-container">
-	<div class="payment"><button class="btn btn-success">결제하기</button></div>
-	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
+	<%if(session.getAttribute("nickname") !=null){ %>
+  	<div class="payment"><button class="btn btn-success" id="reserve" onclick="res3()">예약하기</button></div>
+  	<%} %>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
+
   	<%if(session.getAttribute("admin") !=null){ %>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res3()">경기장 삭제</button></div>
   	<%} %>
   </div>
 	</div>

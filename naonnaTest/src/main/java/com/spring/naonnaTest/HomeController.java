@@ -91,7 +91,7 @@ public class HomeController {
 	@RequestMapping(value = "/KakaoLogout.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String Kakaologout(HttpSession session) {
 		session.invalidate();
-		return "message";
+		return "main";
 	}
 	
 	

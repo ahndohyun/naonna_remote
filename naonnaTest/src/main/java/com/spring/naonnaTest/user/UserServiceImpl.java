@@ -67,4 +67,12 @@ public class UserServiceImpl implements UserService{
 		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 		userMapper.updateProfile(vo);
 	}
+	
+	@Override
+	public int nickcheck(String nickname) {
+	UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+	int check = userMapper.getUserNick(nickname);
+	
+	return check;
+	}
 }
