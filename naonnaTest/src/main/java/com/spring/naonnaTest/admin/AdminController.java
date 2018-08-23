@@ -96,12 +96,12 @@ public class AdminController {
 	
 	@RequestMapping("idcheck.do")
     @ResponseBody
-    public Map<Object, Object> idcheck(@RequestBody String admin) {
-        
+    public Map<Object, Object> idcheck(@RequestBody String ground_admin) {
+        System.out.println("admin : " +ground_admin);
         int count = 0;
         Map<Object, Object> map = new HashMap<Object, Object>();
  
-        count = adminService.idcheck(admin);
+        count = adminService.idcheck(ground_admin);
         map.put("cnt", count);
  
         return map;

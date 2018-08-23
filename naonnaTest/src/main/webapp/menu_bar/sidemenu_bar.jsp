@@ -136,6 +136,118 @@
 			$("#kakao-logged-group").prepend(loginBtn)
 		}
 		
+		$('#ground_admin').blur(function(){
+	    	if($('#ground_admin').val().leng<4){
+	    		$('#adminHelper').text('아이디는 4자이상')
+	    		$('#ground_admin').focus();
+	    	}
+	    	else{
+	    		$('#adminHelper').text('');
+	    		
+	    	}
+	    	  
+	      });
+	      
+	      $('#ground_ad_pw').blur(function(){
+	    	  
+	    	 if($('#ground_ad_pw').val() == ''){       				
+	   			$('#ad_pwHelper').text('비밀번호가 공백입니다.');      		
+	   			
+	   		}	        	  
+	    	 else if($('#ground_ad_pw').val().leng<4){
+	      		$('#ad_pwHelper').text('비밀번호는 4자이상')
+	      		$('#ground_ad_pw').focus();
+	      	}          	
+	      	else{
+	      		$('#ad_pwHelper').text('');	          		
+	      	}
+	      	  
+	       }); 
+		  
+		  $('#ground_ad_pin').blur(function(){
+	      	if($('#ground_ad_pin').val().length < 2){
+	      		$('#ad_pinHelper').text('pin번호는 3자리입니다')
+	      		$('#ground_ad_pin').focus();
+	      	}
+	      	else if ($('#ground_ad_pin').val() != 'aaa'){            		
+	      		$('#ad_pinHelper').text('알려드린 pin번호를 입력하세요');
+	      		$('#ground_ad_pin').focus();
+	      	}
+	      	else{
+	        		$('#ad_pinHelper').text('');
+	        		$('#ground_name').focus();
+	        	}
+	      	  
+	       });
+
+		  var idck = 0;
+          $(function() {
+              //idck 버튼을 클릭했을 때 
+              $("#idck").click(function() {
+                  
+                  var ground_admin =  $("#ground_admin").val(); 
+                  
+                  $.ajax({
+                      async: true,
+                      type : 'POST',
+                      data : ground_admin,
+                      url : "idcheck.do",
+                      dataType : "json",
+                      contentType: "application/json; charset=UTF-8",
+                      success : function(data) {
+                          if (data.cnt > 0) {
+                              
+                              alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                             //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                             // $("#admin").addClass("has-error")
+                             // $("#admin").removeClass("has-success")
+                              $("#admin").focus();
+                      
+                          } else {
+                              alert("사용가능한 아이디입니다.");
+                              //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                              //$("#admin").addClass("has-success")
+                              // $("#admin").removeClass("has-error")
+                              $("#password").focus();
+                              //아이디가 중복하지 않으면  idck = 1 
+                              idck = 1;
+                              
+                          }
+                      },
+                      error:function( request,status, error) {
+            				alert("code:" +request.status + "\n" +"message:" + request.responseText + "\n" + "error :" +error);
+            			}
+                  });
+              });
+	          
+
+	           $('#submitbut').click(function () {
+	             	//아이디공백체크
+	       			if($('#ground_admin').val() == ''){
+	       				$('#ground_admin').focus();
+	       				$('#adminHelper').text('아이디가 공백입니다.');
+	       				
+	       			//비밀번호 공백체크
+	       			}else if($('#ground_ad_pw').val() == ''){
+	       				$('#ground_ad_pw').focus();
+	       				$('#ad_pwHelper').text('비밀번호가 공백입니다.');
+	       			//핀번호 공백체크
+	       			}else if($('#ground_ad_pin').val() == ''){
+	       				$('#ground_ad_pin').focus();
+	       				$('#ad_pinHelper').text('pin번호가 공백입니다.');
+	       			}
+	       			else if($('#ground_name').val() == ''){
+	       				$('#ground_name').focus();
+	       				$('#ground_nameHelper').text('해당 경기장이름이 공백입니다.');
+	       			}
+	       			else {
+	       				 $('#joinForm').submit();
+	       			}       	       	  
+	               }); 
+	          });
+		
+		
+		
 	});
 	
 	
@@ -160,126 +272,8 @@
 		alert("로그아웃 되었습니다.");
 	}
 
-
-	$('#ground_admin').blur(function(){
-    	if($('#ground_admin').val().leng<4){
-    		$('#adminHelper').text('아이디는 4자이상')
-    		$('#ground_admin').focus();
-    	}
-    	else{
-    		$('#adminHelper').text('');
-    		$('#ground_ad_pw').focus();
-    	}
-    	  
-      });
-      
-      $('#ground_ad_pw').blur(function(){
-    	  
-    	 if($('#ground_ad_pw').val() == ''){       				
-   			$('#ad_pwHelper').text('비밀번호가 공백입니다.');      		
-   			$('#ground_ad_pw').focus();
-   		}	        	  
-    	 else if($('#ground_ad_pw').val().leng<4){
-      		$('#ad_pwHelper').text('비밀번호는 4자이상')
-      		$('#ground_ad_pw').focus();
-      	}          	
-      	else{
-      		$('#ad_pwHelper').text('');	          		
-      	}
-      	  
-       }); 
-	  
-	  $('#ground_ad_pin').blur(function(){
-      	if($('#ground_ad_pin').val().length < 2){
-      		$('#ad_pinHelper').text('pin번호는 3자리입니다')
-      		$('#ground_ad_pin').focus();
-      	}
-      	else if ($('#ground_ad_pin').val() != 'aaa'){            		
-      		$('#ad_pinHelper').text('알려드린 pin번호를 입력하세요');
-      		$('#ground_ad_pin').focus();
-      	}
-      	else{
-        		$('#ad_pinHelper').text('');
-        		$('#ground_name').focus();
-        	}
-      	  
-       });
-                  
-
-
 	//end of multiple modal
 	
-	
-     //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
-      var idck = 0;
-      $(function() {
-          //idck 버튼을 클릭했을 때 
-          $("#idck").click(function() {
-              
-              //userid 를 param.
-              var userid =  $("#admin").val(); 
-              
-              $.ajax({
-                  async: true,
-                  type : 'POST',
-                  data : userid,
-                  url : "idcheck.do",
-                  dataType : "json",
-                  contentType: "application/json; charset=UTF-8",
-                  success : function(data) {
-                      if (data.cnt > 0) {
-                          
-                          alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
-                         //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
-                         // $("#admin").addClass("has-error")
-                         // $("#admin").removeClass("has-success")
-                          $("#admin").focus();
-                          
-                      
-                      } else {
-                          alert("사용가능한 아이디입니다.");
-                          //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
-                          //$("#admin").addClass("has-success")
-                          // $("#admin").removeClass("has-error")
-                          $("#password").focus();
-                          //아이디가 중복하지 않으면  idck = 1 
-                          idck = 1;
-                          
-                      }
-                  },
-                  error : function(error) {
-                      
-                      alert("error : " + error);
-                  }
-              });
-          });
-          
-
-           $('#submitbut').click(function () {
-             	//아이디공백체크
-       			if($('#ground_admin').val() == ''){
-       				$('#ground_admin').focus();
-       				$('#adminHelper').text('아이디가 공백입니다.');
-       				
-       			//비밀번호 공백체크
-       			}else if($('#ground_ad_pw').val() == ''){
-       				$('#ground_ad_pw').focus();
-       				$('#ad_pwHelper').text('비밀번호가 공백입니다.');
-       			//핀번호 공백체크
-       			}else if($('#ground_ad_pin').val() == ''){
-       				$('#ground_ad_pin').focus();
-       				$('#ad_pinHelper').text('pin번호가 공백입니다.');
-       			}
-       			else if($('#ground_name').val() == ''){
-       				$('#ground_name').focus();
-       				$('#ground_nameHelper').text('해당 경기장이름이 공백입니다.');
-       			}
-       			else {
-       				 $('#joinForm').submit();
-       			}       	       	  
-               }); 
-          });
-        	             
 
 </script>
 

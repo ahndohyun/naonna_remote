@@ -342,6 +342,7 @@ String nickname = (String)session.getAttribute("nickname");
 		<jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
 	<%}else { %>	
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+	<% } %>
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>	
@@ -474,8 +475,7 @@ String nickname = (String)session.getAttribute("nickname");
   	<%if(session.getAttribute("admin") !=null){ %>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res3()">경기장 삭제</button></div>
-  	<%} %>
-  </div>
+	<%} %>
   </div>
 </div>
 <!-- main contents end -->

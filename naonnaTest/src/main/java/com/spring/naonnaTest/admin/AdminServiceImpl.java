@@ -62,9 +62,9 @@ public class AdminServiceImpl implements AdminService {
 	
 
 	@Override
-	public int idcheck (String admin) {
+	public int idcheck (String ground_admin) {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
-		int check = adminMapper.getAdminId(admin);
+		int check = adminMapper.getAdminId(ground_admin);
 		
 		return check;
 		
