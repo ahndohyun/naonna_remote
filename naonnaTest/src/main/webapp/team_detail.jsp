@@ -167,7 +167,7 @@
                        <td>${vo.area } </td>
                     </tr>
                     <tr>
-                       <td> 최근 연령대 </td>
+                       <td>  연령대 </td>
                        <td> ${vo.age } </td>
                     </tr>
                     <tr>
@@ -180,9 +180,9 @@
                     </tr>
                     <tr>
                        <td> 팀 소개 </td>
-                       <td> ${vo.intro }</td>
+                       <td> ${vo.intro }
+                       </td>
                     </tr>
-                    
                  </tbody>
                  <tfoot id="teamMember">
                  	<!-- 자바스크립트 멤버 출력 -->

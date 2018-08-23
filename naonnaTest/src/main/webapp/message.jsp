@@ -72,6 +72,9 @@
 							output += "<td><input type='button' onclick='click_joinTeam(\"" +msg.teamName +"\", \""+ msg.sendPeople + "\")'></td>";
 							output += "<td><input type='button' class='reject' id='reject'" + "></td></tr>";
 						}
+						if(msg.message = '대관신청이 완료되었습니다.') {
+							output += "<td><a href='kakaoPay.do?groundName=" + msg.groundName +"'>결제 </a></td>"
+						}
 					}
 					else{
 						output += "<td><input type='button' id='confirm' disabled='true'></td>";
@@ -160,6 +163,7 @@
  		 });
 
   	}
+
   	
   	function click_joinTeam(teamName, sendPeople) {
   		$.ajax({

@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-
 <script>
 	// start 카카오톡 API
 	$(document).ready(function() {
@@ -140,7 +139,6 @@
 	});
 	
 	
-
 	//end of kakao
 
 	//start multiple modal
@@ -163,8 +161,126 @@
 	}
 
 
+	$('#ground_admin').blur(function(){
+    	if($('#ground_admin').val().leng<4){
+    		$('#adminHelper').text('아이디는 4자이상')
+    		$('#ground_admin').focus();
+    	}
+    	else{
+    		$('#adminHelper').text('');
+    		$('#ground_ad_pw').focus();
+    	}
+    	  
+      });
+      
+      $('#ground_ad_pw').blur(function(){
+    	  
+    	 if($('#ground_ad_pw').val() == ''){       				
+   			$('#ad_pwHelper').text('비밀번호가 공백입니다.');      		
+   			$('#ground_ad_pw').focus();
+   		}	        	  
+    	 else if($('#ground_ad_pw').val().leng<4){
+      		$('#ad_pwHelper').text('비밀번호는 4자이상')
+      		$('#ground_ad_pw').focus();
+      	}          	
+      	else{
+      		$('#ad_pwHelper').text('');	          		
+      	}
+      	  
+       }); 
+	  
+	  $('#ground_ad_pin').blur(function(){
+      	if($('#ground_ad_pin').val().length < 2){
+      		$('#ad_pinHelper').text('pin번호는 3자리입니다')
+      		$('#ground_ad_pin').focus();
+      	}
+      	else if ($('#ground_ad_pin').val() != 'aaa'){            		
+      		$('#ad_pinHelper').text('알려드린 pin번호를 입력하세요');
+      		$('#ground_ad_pin').focus();
+      	}
+      	else{
+        		$('#ad_pinHelper').text('');
+        		$('#ground_name').focus();
+        	}
+      	  
+       });
+                  
+
 
 	//end of multiple modal
+	
+	
+     //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+      var idck = 0;
+      $(function() {
+          //idck 버튼을 클릭했을 때 
+          $("#idck").click(function() {
+              
+              //userid 를 param.
+              var userid =  $("#admin").val(); 
+              
+              $.ajax({
+                  async: true,
+                  type : 'POST',
+                  data : userid,
+                  url : "idcheck.do",
+                  dataType : "json",
+                  contentType: "application/json; charset=UTF-8",
+                  success : function(data) {
+                      if (data.cnt > 0) {
+                          
+                          alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                         //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                         // $("#admin").addClass("has-error")
+                         // $("#admin").removeClass("has-success")
+                          $("#admin").focus();
+                          
+                      
+                      } else {
+                          alert("사용가능한 아이디입니다.");
+                          //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                          //$("#admin").addClass("has-success")
+                          // $("#admin").removeClass("has-error")
+                          $("#password").focus();
+                          //아이디가 중복하지 않으면  idck = 1 
+                          idck = 1;
+                          
+                      }
+                  },
+                  error : function(error) {
+                      
+                      alert("error : " + error);
+                  }
+              });
+          });
+          
+
+           $('#submitbut').click(function () {
+             	//아이디공백체크
+       			if($('#ground_admin').val() == ''){
+       				$('#ground_admin').focus();
+       				$('#adminHelper').text('아이디가 공백입니다.');
+       				
+       			//비밀번호 공백체크
+       			}else if($('#ground_ad_pw').val() == ''){
+       				$('#ground_ad_pw').focus();
+       				$('#ad_pwHelper').text('비밀번호가 공백입니다.');
+       			//핀번호 공백체크
+       			}else if($('#ground_ad_pin').val() == ''){
+       				$('#ground_ad_pin').focus();
+       				$('#ad_pinHelper').text('pin번호가 공백입니다.');
+       			}
+       			else if($('#ground_name').val() == ''){
+       				$('#ground_name').focus();
+       				$('#ground_nameHelper').text('해당 경기장이름이 공백입니다.');
+       			}
+       			else {
+       				 $('#joinForm').submit();
+       			}       	       	  
+               }); 
+          });
+        	             
+
 </script>
 
 </head>
@@ -200,35 +316,36 @@
 						<div class="modal-content">
 							<div class="modal-body">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
+				
+                <ul class="nav nav-tabs nav-justified" name="login_select">
+                  <li class="active"><a data-toggle="tab" href="#login_P">사용자 로그인</a></li>
+                  <li><a data-toggle="tab" href="#login_A">관리자 로그인</a></li>
+                </ul>
 
-								<ul class="nav nav-tabs nav-justified" name="login_select">
-									<li class="active"><a data-toggle="tab" href="#login_P">사용자
-											로그인</a></li>
-									<li><a data-toggle="tab" href="#login_A">관리자 로그인</a></li>
-								</ul>
-
-								<div class="tab-content">
-									<div id="login_P" class="tab-pane fade in active">
-										<div id="kakao-logged-group"></div>
-										<a id="custom-login-btn" href="javascript:loginWithKakao()"
-											style="cursor: hand;"></a>
-									</div>
-
-									<div id="login_A" class="tab-pane fade">
-										<label for="uname"><b>Username</b></label> <input type="text"
-											placeholder="Enter Username" name="uname" required> <label
-											for="psw"><b>Password</b></label> <input type="password"
-											placeholder="Enter Password" name="psw" required>
-										<button type="submit" name="login">Login</button>
-										<a href="#" data-toggle="modal" data-target="#JoinModal"
-											name="join_btn">Join</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- end of login modal  -->
+                <div class="tab-content">
+                  <div id="login_P" class="tab-pane fade in active">
+                    <div id="kakao-logged-group"></div>
+                      <a id="custom-login-btn" href="javascript:loginWithKakao()" style="cursor:hand;"></a>
+                  </div>
+                  
+				  <!-- 로그인 부분 -->
+				  <form action="login_a.do" method="post">
+                  <div id="login_A" class="tab-pane fade">
+                    <label for="ground_admin"><b>Username</b></label>
+                    <input type="text"  placeholder="Enter ID" name="ground_admin" required>
+                    <label for="ground_ad_pw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="ground_ad_pw" required>
+                    <button type="submit" name="login">Login</button>
+                    <a href="#" data-toggle="modal" data-target="#JoinModal" name="join_btn">Join</a>
+                  </div>
+                  </form>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of login modal  -->
 
 				<div class="modal fade" id="JoinModal">
 					<div class="modal-dialog">
@@ -237,35 +354,43 @@
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h3>Only for Ground_Admin!!!</h3>
 							</div>
+				             <div class="modal-body">
+				                <div id="join">
+				                
+									<!-- 회원가입 부분  -->
+								  <form id="joinForm" action="joinAdmin.do" method="post">
+								  
+				                  <label for="ground_admin"><b>Id</b></label>
+				                  <input type="text" id="ground_admin" name="ground_admin" placeholder="Enter id"  required>				 
+								  <input type="button" value="중복확인" id="idck" >
+								  <br/><span id="adminHelper"></span>
+								  
+				                  <label for="ground_ad_pw"><b>Password</b></label>
+				                  <input type="password" id="ground_ad_pw" name="ground_ad_pw" placeholder="Enter Password" required>
+				                  <br/><span id="ad_pwHelper"></span>
+				                                                    
+				                  <label for="ground_ad_pin"><b>PIN</b></label>
+				                  <input type="password" id="ground_ad_pin" name="ground_ad_pin" placeholder="Enter PIN" required>
+				                  <br/><span id="ad_pinHelper"></span>
+				                                 
+				                  <label for="ground_name"><b>Ground Name</b></label>
+				                  <input type="text" id="ground_name" name="ground_name" placeholder="Enter Ground Name"  required>
+				                  <br/><span id="ground_nameHelper"></span>
+				                </div>
+				                </div>
+				              </div>
+				
+				              <div class="modal-footer">
+				                <button type="button" id="submitbut" name="join" >Join</button>
+				                <button type="reset" name="reset">Reset</button>
+				              </div>
+				              </form> 
+				            </div>
+				          </div>
+				        </div>
+				      </div>
+				    </div>
+				    <!-- side menu bar end -->
 
-							<div class="modal-body">
-								<div id="join">
-
-
-									<label for="email"><b>Email</b></label> <input type="text"
-										placeholder="Enter Email" name="email" required> <label
-										for="psw_A"><b>Password</b></label> <input type="password"
-										placeholder="Enter Password" name="psw_A" required> <label
-										for="psw_repeat"><b>Repeat Password</b></label> <input
-										type="password" placeholder="Repeat password"
-										name="psw_repeat" required> <label for="PIN"><b>PIN</b></label>
-									<input type="text" placeholder="Enter PIN" name="pin" required>
-
-									<label for="grouond_name"><b>Ground Name</b></label> <input
-										type="text" placeholder="Enter Ground Name"
-										name="grouond_name" required>
-								</div>
-							</div>
-
-							<div class="modal-footer">
-								<button type="submit" name="join">Join</button>
-								<button type="reset" name="reset">Reset</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- side menu bar end -->
 </body>
 </html>

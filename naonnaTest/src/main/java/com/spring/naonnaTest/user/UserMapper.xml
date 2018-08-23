@@ -40,7 +40,10 @@
       update user_info set user_photo = #{userPhoto} where nickname = #{nickname}
    </update>
    
-
+	<select id="getUserNick" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM user_info WHERE nickname = #{nickname}
+          
+</select>
    
 </mapper>
    

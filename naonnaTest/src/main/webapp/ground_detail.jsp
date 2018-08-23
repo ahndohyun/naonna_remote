@@ -6,9 +6,15 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <% request.setCharacterEncoding("utf-8"); %> 
 
+<%
+String admin = (String)session.getAttribute("admin");
+String ground_name = (String)session.getAttribute("groundName");
+String nickname = (String)session.getAttribute("nickname");
+
+%>
+
  <% 
- 	GroundVO vo = (GroundVO)request.getAttribute("vo");
- 	
+ 	GroundVO vo = (GroundVO)request.getAttribute("vo"); 	
  %>
  
 <!DOCTYPE html>
@@ -24,8 +30,23 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/naonna_main.css">
+ <!-- 캘린더 라이브러리-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<!-- 캘린더 라이브러리-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<!-- 캘린더 라이브러리-->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<!-- 캘린더 라이브러리-->
+
+
+
+<!--  star rating api -->
+<script async custom-element="amp-form"
+	src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/naonna_main.css"> 
+  
   <style>
   	body {
   font-family: Arial;
@@ -229,11 +250,84 @@
 
   </style>
   <script>
- 
+  
+  
+  
+	  $(function() {
+			 
+			var currentDate = new Date();
+		  $('input[name="datetimes"]').daterangepicker({
+			
+	
+			singleDatePicker : true,
+		 		timePicker: true,
+		    showDropdowns: true, 
+		    startDate: moment().startOf('hour'),
+		    minDate : currentDate,
+		    locale: {
+		       format: 'YYYY/M/DD hh:00'
+		    }
+		  });
+	});
+	 
+		function res3(){
+			
+			var startDate = new Date($('#datePick').val());
+			var assign = $('#hours').val();
+			assign = assign*1;
+			var endDate = new Date(startDate);
+			endDate.setHours(startDate.getHours() + assign);
+			var groundName = '<%=vo.getGround_Name()%>';
+			               
+			goGroundB_time(startDate, endDate, assign,groundName);
+		} 
+		  	
+  	function goGroundB_time(startDate, endDate ,assign , groundName) {
+		$.ajax({
+			url:'/naonnaTest/bookingGround.do',
+			type:'POST',			
+			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+			data:{	'bookNumber': "20180809",
+					'groundName':groundName ,
+				 	'matchingID' : "asdfqwef" ,
+				 	'nickname': "${sessionScope.nickname}",	
+				 	'startTime' : startDate,
+				 	'assign' : assign,
+				 	'endTime' : endDate},
+				 	
+				 	success: function(data) {
+				 		alert('예약 완료되었습니다.');			 		
+				 	},
+				 	 error:function( request,status, error) {
+						alert("code:" +request.status + "\n" +"message:" + request.responseText + "\n" + "error :" +error);
+					} 
+			});	
+			
+	}
+		
+  
+  	
   function res() {
-      location.href = "ground_info.do"
+     // location.href = "ground_info.do"
+	 history.go(-1);
    }
+  
+  function res2() {
+	  location.href = "ground_updating.do?ground_Name="+"<%=ground_name%>"
+	
+  }
 
+  function res3() {
+	  var abc;
+	  abc=confirm(' 경기장을 삭제하시겠습니까?');
+	  if(abc){
+	  location.href = "ground_delete.do?ground_Name="+"<%=ground_name%>"
+	  alert('삭제 완료');
+	  }
+	  else{
+		  history.go(-1);
+	  }
+  }
   </script>
 </head>
 
@@ -243,18 +337,15 @@
 	<!-- main contents -->
 
 	<div class="container-content">
+	<%if(session.getAttribute("admin") != null){ %>
+		<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
+		<jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
+	<%}else { %>	
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
-
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>	
-	
-	<div>
-		<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
-			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
-		</jsp:include>	
-	</div>
-	
+
 <!-- start main content -->
   <div class="main col-sm-8"><br>
   	<div>
@@ -347,7 +438,7 @@
   		<div class="ground-detail-size-texts col-sm-12">
 			<div class="ground-detail-size-fieldtext col-sm-6">
 				<div class="gray-box small-box"></div>
-				<p>경기장(100 x 70)</p>
+				<p>경기장${vo.ground_size }</p>
 			</div>
 			<div class="ground-detail-size-formaltext col-sm-6">
 				<div class="green-box small-box"></div>
@@ -359,11 +450,31 @@
   		<p>${vo.ground_addr} </p>
   		<p>${vo.ground_city }</p>
   	</div>
+  				<%if(session.getAttribute("admin") == null){ %>		
+  					<div class="groundValue" id="timeGround">
+						<div class="valueName">
+							<h5>날짜</h5>
+						</div>										
+							<!--  시간 선택 API  -->
+							<div class="demo-section k-content" id="timer">
+								<h6>날짜 선택</h6>
+								<input type="text" id="datePick" name="datetimes" style="width: 25%" />										
+								<h6> 대여 시간</h6>
+								<input type="number" id="hours" value="0" style="width: 10%;" />							 	
+							</div>									
+					</div>
+					<%} %>
   </div>
   <!-- end main content -->
   <div class="button-container">
-  	<div class="payment"><button class="btn btn-success">결제하기</button></div>
+  	<%if(session.getAttribute("nickname") !=null){ %>
+  	<div class="payment"><button class="btn btn-success" id="reserve" onclick="res3()">예약하기</button></div>
+  	<%} %>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
+  	<%if(session.getAttribute("admin") !=null){ %>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
+  	<div class="back-to-list"><button class="btn btn-success" onclick="res3()">경기장 삭제</button></div>
+  	<%} %>
   </div>
   </div>
 </div>

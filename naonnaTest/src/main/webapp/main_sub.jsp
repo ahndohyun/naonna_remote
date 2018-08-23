@@ -283,28 +283,30 @@
                 <div id="join">
 
 				  <form action="joinadmin.do" method="post">
-                  <label for="ground_ad_id"><b>Email</b></label>
-                  <input type="text" placeholder="Enter id" name="ground_ad_id" required>
+                  <label for="ground_admin"><b>Id</b></label>
+                  <input type="text" placeholder="Enter id" name="ground_admin" required>
 				  <input type="button" value="중복확인" onclick='idCheck()'>
                   <label for="ground_ad_pw"><b>Password</b></label>
                   <input type="password" placeholder="Enter Password" name="ground_ad_pw" required>
-
+<!-- 
                   <label for="ground_ad_repw"><b>Repeat Password</b></label>
-                  <input type="password" placeholder="Repeat password" name="ground_ad_repw" required>
+                  <input type="password" placeholder="Repeat password" name="ground_ad_repw" required> -->
 
                   <label for="ground_ad_pin"><b>PIN</b></label>
                   <input type="text" placeholder="Enter PIN" name="ground_ad_pin" required>
 
-                  <label for="grouond_name"><b>Ground Name</b></label>
-                  <input type="text" placeholder="Enter Ground Name" name="grouond_name" required>
+                  <label for="ground_name"><b>Ground Name</b></label>
+                  <input type="text" placeholder="Enter Ground Name" name="ground_name" required>
+                <button type="submit" name="join">Join</button>
+                <button type="reset" name="reset">Reset</button>
+                </form>
                 </div>
               </div>
 
               <div class="modal-footer">
-                <button type="submit" name="join">Join</button>
-                <button type="reset" name="reset">Reset</button>
+
               </div>
-              </form>
+
             </div>
           </div>
         </div>

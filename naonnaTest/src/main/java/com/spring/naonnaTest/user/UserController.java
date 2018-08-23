@@ -1,6 +1,8 @@
 package com.spring.naonnaTest.user;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -168,4 +171,17 @@ public class UserController {
 		return str;
 	}
 
+	
+	@RequestMapping("nickcheck.do")
+    @ResponseBody
+    public Map<Object, Object> idcheck(@RequestBody String nickname) {
+        System.out.println("String nickname :" + nickname);
+        int count = 0;
+        Map<Object, Object> map = new HashMap<Object, Object>();
+ 
+        count = userService.nickcheck(nickname);
+        map.put("cnt", count);
+ 
+        return map;
+    }
 }

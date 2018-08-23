@@ -1,7 +1,5 @@
 package com.spring.naonnaTest.user;
 
-import java.util.ArrayList;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,5 +64,13 @@ public class UserServiceImpl implements UserService{
 		System.out.println("vo.getUserPhoto(service) = " + vo.getUserPhoto());
 		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 		userMapper.updateProfile(vo);
+	}
+	
+	@Override
+	public int nickcheck(String nickname) {
+	UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+	int check = userMapper.getUserNick(nickname);
+	
+	return check;
 	}
 }
