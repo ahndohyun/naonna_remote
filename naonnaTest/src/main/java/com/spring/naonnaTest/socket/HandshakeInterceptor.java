@@ -24,7 +24,7 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor {
 		//String id = (String) req.getParameter("id");
 		//HttpSession 에 저장된 이용자의 아이디를 추출하는 경우
 		String nickname = (String)req.getSession().getAttribute("nickname");
-//		String id = "admin";
+//		String id = "admin";	
 		map.put("nickname", nickname);
 		System.out.println("HTTPSession에 저장된 nickname : "+ nickname);
 

@@ -87,7 +87,13 @@
    		
    		
    		$('#checkAll').on('click', function() {
-   			$('.checkBox').prop('checked', true);
+   			if($('#checkAll').prop("checked") == true) {
+   				$('.checkBox').prop('checked', true);
+   			}
+   			else {
+   				$('.checkBox').prop('checked', false);
+   			}
+   			
    		});
    		
    		
