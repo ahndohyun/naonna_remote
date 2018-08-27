@@ -121,8 +121,9 @@
                   </thead>
                   <tbody id="notice_print"></tbody>
                </table>
-               
+               <%if(session.getAttribute("superadmin") != null){ %>	
                <span id="right"><button class="wirte-button btn btn-primary" onclick="res1()">글쓰기</button></span>
+               <%} %>
             </div>
          </div>
       </div>

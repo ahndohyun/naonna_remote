@@ -136,7 +136,9 @@
             	
             </div>
             <div class= "">
+            <%if(session.getAttribute("superadmin") != null){ %>	
                <span id="right"><button class="wirte-button btn btn-primary" onclick="res1()">삭제</button></span>
+            <%} %>
                <span id="left"><button class="wirte-button btn btn-danger" onclick="res2()">뒤로가기</button></span>
             </div>
          </div>
