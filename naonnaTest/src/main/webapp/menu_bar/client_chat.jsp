@@ -83,7 +83,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 		document.getElementById("output").textContent += (s + "\n");
 	}
 	
-	w = new WebSocket("ws://localhost:8800/naonnaTest/broadcasting?id=guest");
+	w = new WebSocket("ws://localhost:8800/naonnaTest/broadcasting");
 	
 	w.onopen = function() {
 		log("상담을 시작합니다.");

@@ -90,21 +90,23 @@ $(document).ready(function() {
 						}
 						
 						var output = '';
-						output += '<tr>';						
-						output += '<td>' + booking.nickname + '</td>';
-						output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
-						output += '<td>' + ye + '-' + me + '-' + dae + '&nbsp' + he + ':' + mie + '</td>';
-						output += '<td>' + booking.assign*1 + '</td>';
-						if(booking.confirm != 1) {
-							output += "<td><input type='button' id='confirm' onclick='click_confirm(\"" +booking.nickname +"\", \""+ booking.groundName    +" \" )'></td>";
-							output += "<td><input type='button' class='reject' id='reject'" + "></td></tr>";
+						if(booking.nickname != null){
+							output += '<tr>';						
+							output += '<td>' + booking.nickname + '</td>';
+							output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
+							output += '<td>' + ye + '-' + me + '-' + dae + '&nbsp' + he + ':' + mie + '</td>';
+							output += '<td>' + booking.assign*1 + '</td>';
+							if(booking.confirm != 1) {
+								output += "<td><input type='button' id='confirm' onclick='click_confirm(\"" +booking.nickname +"\", \""+ booking.groundName    +" \" )'></td>";
+								output += "<td><input type='button' class='reject' id='reject'" + "></td></tr>";
+							}
+							else{
+								output += "<td><input type='button' id='confirm' disabled='true'></td>";
+								output += "<td><input type='button' id='reject' disabled='true'></td></tr>";
+							}
+							console.log("output:" + output);
+							$('#booking_print').append(output);
 						}
-						else{
-							output += "<td><input type='button' id='confirm' disabled='true'></td>";
-							output += "<td><input type='button' id='reject' disabled='true'></td></tr>";
-						}
-						console.log("output:" + output);
-						$('#booking_print').append(output);						
 					});														
 			},
 			error:function( request,status, error) {
@@ -218,7 +220,7 @@ function res() {
 
 <body>
   <jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
-
+   <jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
    <!-- main contents -->
 
    <div class="container-content">

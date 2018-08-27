@@ -97,7 +97,8 @@ if (session.getAttribute("admin") == null){
 </script>
 
 <body>
-    <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+    <jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
+   <jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
 	<!-- main contents -->
 
 	<div class="container-content">

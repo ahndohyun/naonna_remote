@@ -128,16 +128,10 @@ a[name=join_btn]{
   display : block;
   font-size: 18px;
   text-align: left;
-  margin-left: 43px;
+  margin-left: 100px;
   margin-bottom: 5px;
 }
-input[name=ground_ad], input[name=ground_adpw]{
-  width: 500px;
-  height: 35px;
-  margin-left: -50px;
-  margin-bottom: 20px;
-  padding-left: 20px;
-}
+
 input[name=ground_admin]{
   width: 300px;
   height: 35px;
@@ -147,11 +141,21 @@ input[name=ground_admin]{
   margin-bottom: 20px;
   padding-left: 20px;
 }
-input[name=ground_ad_pw], input[name=ground_ad_pin], input[name=ground_name]{
+#ground_admin, input[name=ground_ad_pw], input[name=ground_ad_pin], input[name=ground_name]{
   width: 300px;
   height: 35px;
   display: inline-block;
-  margin-left: -176px;
+  margin-left: -20px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+#ground_admin {
+	margin-left : 80px;
+}
+#ground_admin_login1, #ground_admin_login2 {
+  width: 500px;
+  height: 35px;
+  margin-left: -50px;
   margin-bottom: 20px;
   padding-left: 20px;
 }

@@ -17,6 +17,9 @@ public class MessageDAO {
 		try {
 			MessageMapper messageMapper = sqlSession.getMapper(MessageMapper.class);
 			messageMapper.playerMSG(vo);
+//			message = vo.getMatchingID() + "매칭 신청이 완료되었습니다.";
+//			vo.setMessage(message);
+//			messageMapper.finishMatching(vo);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

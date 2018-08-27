@@ -9,4 +9,6 @@ public interface MessageMapper {
 	public ArrayList<MessageVO> printMsg(String nickname);
 	public void insertMessageTeam(MessageVO vo);
 	public void deleteMessage(String msg);
+	public void finishMatching(MessageVO vo);
+	public void finishJoinTeam(MessageVO vo);
 }

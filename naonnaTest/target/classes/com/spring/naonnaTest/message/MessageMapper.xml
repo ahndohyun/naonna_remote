@@ -27,6 +27,14 @@
 	<insert id="insertMessageTeam" parameterType="com.spring.naonnaTest.message.MessageVO">
 		insert into message (getpeople, sendpeople, team_name, message, message_Date) values ( #{getPeople}, #{sendPeople}, #{teamName}, #{message}, sysdate)
 	</insert>
+	
+	<insert id="finishJoinTeam" parameterType="com.spring.naonnaTest.message.MessageVO">
+		insert into message (getpeople, sendpeople, team_name, message, message_Date) values ( #{sendPeople}, #{getPeople}, #{teamName}, #{message}, sysdate)
+	</insert>
+	
+	<insert id="finishMatching" parameterType="com.spring.naonnaTest.message.MessageVO">
+		insert into message (getpeople, sendpeople, team_name, message, message_Date) values ( #{sendPeople}, #{getPeople}, #{teamName}, #{message}, sysdate)
+	</insert>
 	 
 	<select id="countMsg" parameterType="String" resultType="int">
 		select count(*) from message where confirm is null and getPeople = #{nickname}

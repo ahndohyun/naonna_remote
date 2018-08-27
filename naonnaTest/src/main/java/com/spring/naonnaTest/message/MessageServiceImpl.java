@@ -68,6 +68,9 @@ public class MessageServiceImpl implements MessageService{
 			System.out.println(message);
 			vo.setMessage(message);
 			messageMapper.insertMessageTeam(vo);
+//			message = vo.getTeamName() + "팀 가입에 가입되셨습니다.";
+//			vo.setMessage(message);
+//			messageMapper.finishJoinTeam(vo);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

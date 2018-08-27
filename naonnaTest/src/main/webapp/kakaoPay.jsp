@@ -6,8 +6,8 @@
    <title>카카오페이</title>
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
-<!--     <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/css/common.min.css"> -->
-<!--     <script src="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/js/lib/jquery.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/css/common.min.css">
+    <script src="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/js/lib/jquery.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/common_payment.js?v=version"></script>

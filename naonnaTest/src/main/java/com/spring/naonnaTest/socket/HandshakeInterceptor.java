@@ -2,6 +2,8 @@ package com.spring.naonnaTest.socket;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
@@ -16,14 +18,15 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor {
 		
 		//위의 파라미터 중, attributes 에 값을 저장하면 웹소켓 핸들러 클래스의 websocketsession 에 전달된다
 		System.out.println("Before HandShake");
-		ServletServerHttpRequest req = (ServletServerHttpRequest)request;
+		ServletServerHttpRequest ssreq = (ServletServerHttpRequest)request;
+		HttpServletRequest req = ssreq.getServletRequest();
 		System.out.print("URI : " + request.getURI());
 		//String id = (String) req.getParameter("id");
 		//HttpSession 에 저장된 이용자의 아이디를 추출하는 경우
-		//String id = (String)req.getSession().getAttribute("id");
-		String id = "admin";
-		map.put("userId", id);
-		System.out.println("HTTPSession에 저장된 ID : "+ id);
+		String nickname = (String)req.getSession().getAttribute("nickname");
+//		String id = "admin";	
+		map.put("nickname", nickname);
+		System.out.println("HTTPSession에 저장된 nickname : "+ nickname);
 
 		return super.beforeHandshake(request, response, wsHandler, map);
 	}

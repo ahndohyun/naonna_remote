@@ -521,18 +521,6 @@ String nickname = (String)session.getAttribute("nickname");
 	  location.href = "ground_updating.do?ground_Name="+"<%=ground_name%>"
 	
   }
-
-  function res3() {
-	  var abc;
-	  abc=confirm(' 경기장을 삭제하시겠습니까?');
-	  if(abc){
-	  location.href = "ground_delete.do?ground_Name="+"<%=ground_name%>"
-	  alert('삭제 완료');
-	  }
-	  else{
-		  history.go(-1);
-	  }
-  }
   </script>
 </head>
 
@@ -557,7 +545,6 @@ String nickname = (String)session.getAttribute("nickname");
 			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
 		</jsp:include>	
 	</div>
-
 <!-- start main content -->
   <div class="main col-sm-10">
   	<div class="detail-container col-sm-10 col-sm-offset-1">
@@ -667,13 +654,7 @@ String nickname = (String)session.getAttribute("nickname");
 	  		<div class="ground-detail-icon col-sm-2"><img src="https://www.iamground.kr/img/icons/sh.png"></div>
 	  		<div class="ground-detail-textmore col-sm-3 col-sm-offset-1"><p>${vo.shower }</p></div>
   		</div>
-  		<div class="row contents-row" id="row3">
-  			<input type="text" class="form-control" id="datePick" name="datetimes" style="width: 200px;" />
-			<button type="button" class="fas fa-search" id="search_matching"></button>
-  		</div>
-  	</div>  		
-  </div>
-	<%if(session.getAttribute("admin") == null){ %>		
+  					<%if(session.getAttribute("admin") == null){ %>		
   					<div class="groundValue" id="timeGround">
 						<div class="valueName">
 							<h5>날짜</h5>
@@ -687,7 +668,10 @@ String nickname = (String)session.getAttribute("nickname");
 							</div>									
 					</div>
 					<%} %>
-
+  		
+  	</div>  		
+  </div>
+					
 	<div class="button-container">
 	<%if(session.getAttribute("nickname") !=null){ %>
   	<div class="payment"><button class="btn btn-success" id="reserve" onclick="res3()">예약하기</button></div>
@@ -696,7 +680,6 @@ String nickname = (String)session.getAttribute("nickname");
 
   	<%if(session.getAttribute("admin") !=null){ %>
   	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
-  	<div class="back-to-list"><button class="btn btn-success" onclick="res3()">경기장 삭제</button></div>
   	<%} %>
   </div>
 	</div>
