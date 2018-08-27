@@ -18,6 +18,13 @@
       .ds-btn li{ list-style:none; float:left; padding:10px; }
       .ds-btn li a span{padding-left:15px;padding-right:5px;width:100%;display:inline-block; text-align:left;}
       .ds-btn li a span small{width:100%; display:inline-block; text-align:left;}
+    	.monami {
+			background-image : url("https://i1.wp.com/thesefootballtimes.co/wp-content/uploads/2016/03/55f80d2448bdd.jpg?fit=1500%2C900&ssl=1");
+			height: 727px;
+		}
+		 .main {
+        	margin-top : 150px;
+     	}
        .btn-container {
           margin-top : 40px;
        }
@@ -46,8 +53,9 @@
        }
        #page_title {
            font-weight : 600;
-           font-size : 24px;
+           font-size : 30px;
            margin-bottom : 15px;
+           color : white;
        }
        .team-name {
           text-align : center;
@@ -76,14 +84,22 @@
        .card_team_info img{
        		width : 100%;
        }
-       .sub_main {
-       		padding : 0;
-       }
+       
        #teamEmblem {
        		height : 200px;
        }
        .btn-collection{
        	float: right;
+       }
+       .player-table-container {
+       		background-color : #111;
+       		color : #DDD;
+       		padding: 15px;
+       		border : 3px solid #A52A2A;
+       		opacity : 0.9;
+       }
+       #matchingInfo {
+       		border-bottom : 1px solid;
        }
   </style>
 	
@@ -243,7 +259,7 @@
 
 <body>
   	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	
+	<div class="monami">
 	<div class="col-sm-2">
 		<div class="row">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
@@ -255,28 +271,27 @@
 	</form>	
 
       <div class="main col-sm-10">
-      	<div class="col-sm-10 col-sm-offset-1 sub_main">
-
-            <div class="player-nameboard col-sm-12">
-               <p id="page_title">매칭 상세 정보</p>
-            </div>
-            <div class="player-table-container row justify-content-md-center col-sm-12">
+      	<div class="col-sm-9 col-sm-offset-1 sub_main">
+            
+            <div class="player-table-container row justify-content-md-center">
+            	<div class="player-nameboard col-sm-12">
+               		<p id="page_title">매칭 상세 정보</p>
+            	</div>
                <div class="col-sm-4 team-info">
                   <div class="card_team_info" id="teamDetail">
-                           <img id="teamEmblem" class="card-img-top" src="./image/han.jpg" alt="winter">
                            <div class="card-body">
-                               <h3 id="teamName" class="card-title text-center">팀 이름</h3><br>
-                               <p id="ability" class="card-text text-center">실력 : </p>
-                               <p id="area" class="card-text text-center">주 활동 지역 : 지구</p>
+                               <h4 id="teamName" class="card-title text-center">팀 이름</h4><br>
+                               <p id="ability" class="card-text">실력 : </p>
+                               <p id="area" class="card-text">주 활동 지역 : 지구</p>
                                <a class="btn btn-primary btn-block" id="homeDetail">자세히보기</a>
                            </div>
                       </div>
                    </div>
                    <div class="col-sm-8">
                       <div class="matching_info">
-                         <table class="table table-striped" id="matchingInfo">
+                         <table class="table" id="matchingInfo">
                          </table>
-                         <table class="table table-striped" id="playerInfo">
+                         <table class="table" id="playerInfo">
                          </table>
                          
                       </div>
@@ -302,6 +317,7 @@
                		</div>
             </div>
          </div>
+      </div>
       </div>
 </body>
 </html>

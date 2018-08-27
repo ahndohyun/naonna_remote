@@ -81,11 +81,17 @@ body, html {
 	max-width:100%;
 	text-align:center;
 }
-.ground-list-table-body tr, td{
+.ground-list-table-body tr, .ground-list-table-body td, .ground-list-table-body a{
 	text-align:center;
-	border-bottom: 1px solid silver;
 	verticle-align:middle;
 	height: 45px;
+	background-color : white;
+	color : black;
+	text-decoration : none;
+	letter-spacing : 1.4px;
+}
+.ground-list-table-body a:hover {
+	color : red;
 }
 
 </style>

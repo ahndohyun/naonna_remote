@@ -56,7 +56,7 @@
 		  <script>
 		      var showingz = function() {
 		        var sHTML = $('.summernote').summernote('code');
-		        alert(sHTML);
+		        
 		      };
   </script>
 	  			</div>

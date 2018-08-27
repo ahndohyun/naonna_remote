@@ -202,11 +202,17 @@
 		height: 40px;
 		font-size:15px;
 	}
-	.tmatching_body tr, td{
+	.tmatching_body tr, .tmatching_body td, .tmatching_body a{
 		text-align:center;
-		border-bottom: 1px solid silver;
 		verticle-align:middle;
 		height: 45px;
+		background-color : white;
+		color : black;
+		text-decoration : none;
+		letter-spacing : 1.4px;
+	}
+	.tmatching_body a:hover {
+		color : red;
 	}
   </style>
 
@@ -424,7 +430,7 @@
 						</div>
 			
 			<div class="matching_list col-sm-8 container-fluid">
-				<table class="matching_table col-sm-12">
+				<table class="matching_table table table-hover col-sm-12">
 					<thead class="tmatching_header">
 						<tr class="bg-primary">
 							<th>매 칭 이 름</th>						

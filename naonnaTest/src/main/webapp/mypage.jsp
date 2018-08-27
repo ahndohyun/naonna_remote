@@ -48,80 +48,139 @@
 </script>
 
 <style>
-
+	.monami {
+		background-image : url("https://i1.wp.com/thesefootballtimes.co/wp-content/uploads/2016/03/55f80d2448bdd.jpg?fit=1500%2C900&ssl=1");
+		height: 727px;
+	}
+	.main {
+        margin-top : 150px;
+     }
+     .mypage{
+     	background-color: #111;
+	    color: #DDD;
+	    padding: 15px;
+	    border: 3px solid #A52A2A;
+	    opacity: 0.9;
+     }
+     .mypageTitle{
+     	color: white;
+		font-weight: 600;
+		font-size: 30px;
+		margin-left: 15px;
+		margin-bottom : 30px;
+     }
+     input[name=email] {
+     	margin-left : 0;
+     }
+     .letterArea {
+     	margin-top : 8px;
+     }
+     #picControl1 {
+     	display : inline-block;
+     	width : 55%;
+     	height: 40px;
+     }
+     #picControl2{
+     	display : inline-block;
+     	width : 23%;
+     	margin : -10px 0 0 10px;
+     	height : 40px;
+     	background-color : red;
+     	border-color : red;
+     	color : white;
+     }
+     .mypage_button{
+     	background-color : red;
+     	border-color : red;
+     	color : white;
+     	border-radius : 4px;
+     	height : 40px;
+     	margin : 20px 0 10px 300px;
+     	border:none;
+     	outline:0;
+     	
+     }
+     .mypage_label {
+     	text-align : left;
+     }
 </style>
 </head>
 
 <body>
-    <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-   <!-- main contents -->
-	<div class="col-sm-2">
+   <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+ 	<div class="monami">
+ 	<div class="col-sm-2">
 		<div class="row">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
 		</div>
 	</div>
+	
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>
+	
 	<div class="main col-sm-10">
-   		<div class="container-content">
-			<div>
-				<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
-				<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
-				</jsp:include>	
-			</div>
-     <div class="col-sm-10 col-sm-offset-1">
-      <div class="container mypage">
+     <div class="col-sm-8 col-sm-offset-2">
+      <div class="mypage">
          <div class="mypageTitle">
-            <h3>My Page</h3><hr>
+            <p>마이페이지</p>
          </div>
          <form class="form-horizontal" id="mypageForm" action="update_profile.do" method="post" enctype="multipart/form-data">
                <input type="hidden" name="nickname" id="nickname1">
                <input type="hidden" name="kakao_Id">
                <div class="form-group">
-               	<label class="mypage_label col-sm-2 control-label">프로필 이미지 :</label>
-               		<div class="col-sm-3"> 
-               			<input type="file" class="form-control" name="imgfile" />
-               			<input type="submit" class="form-control" value="사진 변경 " />
-               		</div>  
+               	<label class="mypage_label col-sm-3 control-label">프로필 이미지</label>
+               		<div class="col-sm-9"> 
+               			<input type="file" id="picControl1" class="form-control" name="imgfile" />
+               			<input type="submit" id="picControl2" class="form-control" value="사진 변경 " />
+               		</div>
+               			  
                	</div>    	  
        	 </form>
-            <form class="form-horizontal" id="mypageForm" action="update_userinfo.do" method="post">
+            <form class="form-horizontal" id="mypageForm2" action="update_userinfo.do" method="post">
                <input type="hidden" name="kakao_Id">
                <input type="hidden" name="nickname" id="nickname2">
                <div class="form-group">
-               	<label class="mypage_label col-sm-2 control-label">Nickname :</label>
-               		<div class="col-sm-3"> 
+               	<label class="mypage_label col-sm-3 control-label">닉네임</label>
+               		<div class="col-sm-7 letterArea"> 
                   		<span name="nickname" id = "nickname"> </span>
                		</div>  
                	</div> 
-               <div>
-               
-                   
+               <div class="form-group">
+                  <label class="mypage_label col-sm-3 control-label">이메일</label>
+                  <div class="col-sm-5"> 
+                  	<input type="email" class="form-control" name="email" id="email">
+                  </div> 
                </div>
-               <div>
-                  <label class="mypage_label">E-mail</label> 
-                  <input type="email" name="email" id="email"> 
+               <div class="form-group">
+                  <label id="locControl"class="mypage_label col-sm-3 control-label">활동지역</label>
+                  <div class="col-sm-3"> 
+                  	<input type="text" class="form-control" name="city" id = "city">
+                  </div> 
                </div>
-               <div>
-                  <label class="mypage_label">Location</label> 
-                  <input type="text" name="city" id = "city"> 
+               <div class="form-group">
+                  <label class="mypage_label col-sm-3 control-label">성별</label>
+                  <div class="col-sm-3 letterArea"> 
+                  	<span name="gender" id="gender"> </span>
+                  </div> 
                </div>
-               <div>
-                  <label class="mypage_label">Gender</label> 
-                  <span name="gender" id="gender"> </span> 
+               <div class="form-group">
+                  <label class="mypage_label col-sm-3 control-label">나이</label>
+                  <div class="col-sm-3"> 
+                  	<input type="number" class="form-control" name="age" id="age">
+                  </div> 
                </div>
-               <div>
-                  <label class="mypage_label">Age</label> 
-                  <input type="number" name="age" id="age"> 
+               <div class="form-group">
+                  <label class="mypage_label col-sm-3 control-label">팀명</label>
+                  <div class="col-sm-5 letterArea"> 
+                  	<span name ="teamName" id = "teamname"> </span>
+                  </div> 
                </div>
-               <div>
-                  <label class="mypage_label">Team name</label> 
-                  <span name ="teamName" id = "teamname"> </span> 
-               </div>
-               <div>
-                  <label class="mypage_label">Position</label> 
-                  <input type="text" name="position" id="position"> 
+               <div class="form-group">
+                  <label class="mypage_label col-sm-3 control-label">포지션</label>
+                  <div class="col-sm-5"> 
+                  	<input type="text" class="form-control" name="position" id="position">
+                  </div> 
                </div>   
                <div>
                   <button type="submit" class="mypage_button">회원정보 변경</button>
@@ -131,8 +190,6 @@
    </div>
    </div>
    </div>
-  <!-- main body end -->
- </div>
 </body>
 
 </html>

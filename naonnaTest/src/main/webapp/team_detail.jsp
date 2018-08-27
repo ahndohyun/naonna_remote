@@ -24,8 +24,25 @@
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   
   <style>
+  .monami {
+			background-image : url("https://i1.wp.com/thesefootballtimes.co/wp-content/uploads/2016/03/55f80d2448bdd.jpg?fit=1500%2C900&ssl=1");
+			height: 727px;
+		}
+	.main {
+        margin-top : 150px;
+     }
+     .team-detail{
+     	background-color: #111;
+	    color: #DDD;
+	    padding: 15px;
+	    border: 3px solid #A52A2A;
+	    opacity: 0.9;
+     }
   .table {
   	margin : 10px 0 5px 80px;
+  	font-size : 16px;
+  	letter-spacing : 1.4px;
+  	font-weight : 545;
   }
  
   .team-name-container {
@@ -37,9 +54,10 @@
   	margin : 10px;
   }
   .page_name {
-  	color : black;
-  	margin : 0;
-  	padding : 10px 15px;
+  	color: white;
+	font-weight: 600;
+	font-size: 30px;
+	margin-left: 15px;
   }
   .page_name h2 {
   	font-weight : 900;
@@ -71,15 +89,27 @@
   }
   .table td:first-child {
   	width : 20%;
-  	text-align : center;
+  	text-align : left;
+  	background-color : red;
+  	color : white;
+  	
   }
   .table td:nth-child(2){
   	width : 80%;
   	padding : 9px 0 0 30px;
+  	background-color : #777;
+  	color : black;
   }
   .team_emblem{
   	width:100px;
   	height:100px;
+  }
+  .last_row{
+  	
+  }
+  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+  	border : none;
+  	text-align : left;
   }
   </style>
 
@@ -101,8 +131,9 @@
    				$('#teamMember').html('');
    				output += "<tr><td>구성원</td><td>"
    				$.each(data, function(index, member) {
-   						output += member.nickname
+   						output += "<a href='go_#MypageModal?nickname="+ member.nickname + "'>"+ member.nickname +"</a>";
    						output += "&nbsp&nbsp&nbsp"
+   							
    				});
    				output += "</td></tr>"
    				
@@ -144,7 +175,7 @@
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
- 	
+ 	<div class="monami">
  	<div class="col-sm-2">
 		<div class="row">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
@@ -156,8 +187,8 @@
 	</form>
 	
      <div class="main col-sm-10">
-       <div class ="team-detail col-sm-8 col-sm-offset-2">
-        <div class="page_name"><h2>팀 상세 보기</h2></div>
+       <div class ="team-detail col-sm-9 col-sm-offset-1">
+        <div class="page_name"><p>팀 상세 보기</p></div>
         <div class="team-detail-container container-fluid">
           <div class="row">
            <div class="team-detail-header">
@@ -167,7 +198,7 @@
               </div>
            </div>
            <div class="team-detail-contents col-sm-6">
-              <table class="table table-bordered table-striped">
+              <table class="table">
                  <thead>
 
                  </thead>
@@ -192,23 +223,30 @@
                        <td> 인원 </td>
                        <td> ${vo.number_team } </td>
                     </tr>
-                    <tr>
+                    <tr class="last_row">
                        <td> 팀 소개 </td>
                        <td> ${vo.intro }</td>
                     </tr>
                    </tbody>
                  <tfoot id="teamMember">
-                 	<!-- 자바스크립트 멤버 출력 -->
                  </tfoot>
               </table>
               <div class="team-join-button btn btn-primary" id="joinTeam"><p>팀 가입하기</p></div>
            </div>
-           
         </div>   
        </div>
        </div>
       </div>
-    <!-- main contents end -->
-
+      <div class="modal fade" id="MypageModal" role="dialog">
+                   <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-body">
+                             <span class="team_title">마이페이지</span>
+                             <button type="button" id="team_close" class="close" data-dismiss="modal">&times;</button>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+	</div>
 </body>
 </html>

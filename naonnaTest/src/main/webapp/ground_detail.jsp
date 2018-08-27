@@ -46,7 +46,11 @@ String nickname = (String)session.getAttribute("nickname");
    * {
      box-sizing: border-box;
    }
-   
+   .monami {
+       background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg");
+       height : 1200px;
+       background-attachment: fixed;
+     }
    .main {
       margin-top : 80px;
    }
@@ -63,12 +67,15 @@ String nickname = (String)session.getAttribute("nickname");
    		font-size : 24px;
    		font-weight : 550;
    		margin-top : 15px;
+   		margin-left : 350px;
+   		color : #DDD;
    }
    .ground_addr {
    		display : inline-block;
    		font-size : 18px;
    		font-weight : 500;
    		margin-left : 20px;
+   		color : #DDD;
    }
    /* Hide the images by default */
    .mySlides {
@@ -168,9 +175,11 @@ String nickname = (String)session.getAttribute("nickname");
    	padding : 0;
    	margin-bottom : 40px;
    }
+   
    .ground-detail-contents {
    	margin-top : 15px;
    	padding : 15px 0 0 0;
+   	color : #ddd;
    }
    .ground-detail-contents .container p{
    		font-size : 20px;
@@ -206,6 +215,7 @@ String nickname = (String)session.getAttribute("nickname");
    }
    .ground-detail-size-fieldtext, .ground-detail-size-formaltext {
       display :inline-block;
+      
    }
    
    .formal-ground-size {
@@ -225,7 +235,7 @@ String nickname = (String)session.getAttribute("nickname");
       background-color: #466626;
    }
    .ground-detail-size-fieldtext p, .ground-detail-size-formaltext p{
-      color : black;
+      color : #ddd;
       font-size : 10px;
       display : inline-block;
       margin-left : 3px;
@@ -272,6 +282,9 @@ String nickname = (String)session.getAttribute("nickname");
    .contents-row{
    		margin-top : 20px;
    }
+   .contents-row p {
+   		color : #ddd;
+   }
    .form-control {
    		display : inline-block;
    		height : 30px;
@@ -279,13 +292,17 @@ String nickname = (String)session.getAttribute("nickname");
    #search_matching {
    		height : 29px;
    }
-   #datePick {
+	#timer h6 {
+		display : inline;
+	}
+   #datePick, #hours {
    	width : 100px;
-   	margin-left : 60px;
+   	margin-left : 20px;
+   	margin-right : 40px;
+   	display : inline-block;
+   	color : black;
    }
-   .container p, .container {
-   	max-width : 500px;
-   }
+   
    .ground-header th{
 		text-align:center;
 		height: 30px;
@@ -296,6 +313,9 @@ String nickname = (String)session.getAttribute("nickname");
 		border-bottom: 1px solid silver;
 		verticle-align:middle;
 		height: 30px;
+	}
+	.groundValue {
+		margin-left : 20px;
 	}
   </style>
   <script>
@@ -526,6 +546,7 @@ String nickname = (String)session.getAttribute("nickname");
 
 <body>
 	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+	<div class="monami">
 	<div class="col-sm-2 side_m">
 		<div class="row">
 			<%if(session.getAttribute("admin") != null){ %>
@@ -541,9 +562,7 @@ String nickname = (String)session.getAttribute("nickname");
 	</form>	
 	
 	<div>
-		<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
-			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
-		</jsp:include>	
+			
 	</div>
 <!-- start main content -->
   <div class="main col-sm-10">
@@ -682,6 +701,7 @@ String nickname = (String)session.getAttribute("nickname");
   	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
   	<%} %>
   </div>
+	</div>
 	</div>
 	</div>
 </body>
