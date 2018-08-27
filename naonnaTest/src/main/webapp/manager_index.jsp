@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <% 
 	String admin = (String)request.getAttribute("admin");		
 	String ground_name = (String)request.getAttribute("groundName");
@@ -13,6 +14,7 @@
 		out.print("</script>");
 	}
 %>
+
 <html lang="utf-8">
 
 <head>
@@ -31,6 +33,7 @@
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
 
 <script>
+
 $(document).ready(function() {
 	function printBooking() {
 		var groundName = "${sessionScope.groundName}"
@@ -216,11 +219,11 @@ function res() {
 </head>
 
 <body>
-    <jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
+  <jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
+   <jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
    <!-- main contents -->
 
    <div class="container-content">
-      <jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
   <!-- start main content -->
    
    
@@ -282,5 +285,5 @@ function res() {
   <!-- main body end -->
 
 </body>
-
 </html>
+

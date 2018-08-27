@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class GroundController {
 
 	@Autowired
-	private GroundService groundService;
+	private GroundService groundService; //DI 하는 것.
 		
 	@RequestMapping(value = "/getGroundJSON.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody			//자바 객체를 http 객체에 담아 저장하고 싶을때
@@ -71,7 +71,7 @@ public class GroundController {
 		ArrayList<GroundVO> list = groundService.Ground_Time_Json(groundvo, bookingvo);
 
 		String str = "";
-		ObjectMapper mapper = new ObjectMapper();
+		ObjectMapper mapper = new ObjectMapper(); // KV 사용하여 JSon 양식과 맞게함.
 		
 		try {
 			str = mapper.writeValueAsString(list);
@@ -101,7 +101,8 @@ public class GroundController {
 		System.out.println("불러오기  complete??");
 		return result;
 		
-	}
+	}	
+
 	
 	@RequestMapping(value = "/insertGround.do", method = RequestMethod.POST)
 	public ModelAndView Insert_Ground_Info(GroundVO vo ,MultipartHttpServletRequest multiRequest)  throws Exception {

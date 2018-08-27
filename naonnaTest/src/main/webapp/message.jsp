@@ -17,9 +17,10 @@
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
-     thead tr{
-        text-align : center;
-     }
+  	thead tr{
+  		text-align : center;
+  	}
+
   </style>
   
   <script>
@@ -195,19 +196,21 @@
 </head>
 
 <body>
-    <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-   <!-- main contents -->
-
-   <div class="container-content">
-      <jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
-  <!-- start main content -->
-     <form name="kakaoId">
-      <input type="hidden" name="kakao_Id">
-   </form>   
-  <div class="main col-sm-8"><br>
+ 	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+ 	
+	<div class="col-sm-2">
+		<div class="row">
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+		</div>
+	</div>
+	
+	  	<form name="kakaoId">
+			<input type="hidden" name="kakao_Id">
+		</form>	
+  <div class="main col-sm-10"><br>
     <!-- main content first low -->
       <div class="row">
-         <div class="container-fluid col-sm-12 manager-index">
+         <div class="container-fluid col-sm-10 col-sm-offset-1 manager-index">
             <div class="show-ground row col-sm-12">
                <div class="content-title col-sm-12">
                   <h3 class="bookingtitle content-title-name">알림창</h3>
@@ -237,7 +240,5 @@
   <!-- end main content -->
   </div>
   <!-- main body end -->
-
 </body>
-
 </html>

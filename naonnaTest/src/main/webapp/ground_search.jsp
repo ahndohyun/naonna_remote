@@ -1,154 +1,93 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.*, com.spring.naonnaTest.ground.*" %>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
-  <!-- <link rel="stylesheet" href="naonna_main.css"> -->
-  <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
-<!-- 캘린더 라이브러리-->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<!-- 캘린더 라이브러리-->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<!-- 캘린더 라이브러리-->
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<!-- 캘린더 라이브러리-->
-
-
-
-<!--  star rating api -->
-<script async custom-element="amp-form"
-	src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/naonna_main.css">
-<style>
-.container-groundFilter {
-	border: 2px solid black;
-}
-
-.container-groundSearch {
-	vertical-align: middle;
-	display: block;
-	position: relative;
-	width: 800px;
-	height: 500px;
-	left: 60px;
-}
-
-.groundValue {
-	padding: 0px;
-	border: 2px solid black;
-	height: 80px;
-	margin: auto;
-}
-
-.form-select {
-	margin-top: 5px;
-}
-
-.valueName {
-	background-color: black;
-	width: 100px;
-	display: inline-block;
-	height: 40px;
-	margin: 20px;
-}
-
-.valueName h3 {
-	color: white;
-	text-align: center;
-	letter-spacing: 2px;
-	font-size : 14px;
-}
-
-.form-select-citydetail {
-	display: inline-block;
-	margin: auto;
-}
-
-.demo-section {
-	margin-left: 12px;
-}
-
-#timer, #timer input {
-	display: inline;
-}
-
-#timer h4 {
-	display: inline-block;
-	font-size: 12px;
-	letter-spacing: 1px;
-	margin-right: 20px;
-}
-
-#start, #end {
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
+	<link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
+	<!-- 캘린더 라이브러리-->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<!-- 캘린더 라이브러리-->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<!-- 캘린더 라이브러리-->
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	<!-- 캘린더 라이브러리-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/naonna_main.css">
 	
+<style>
+body, html {
+	height : 100%;
+	color : white;
+}
+.monami {
+	background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg")
 }
 
-.form-horizontal {
-	display: inline-block;
-	left: 10px;
+.container-filter-box{
+	background-color: #333333;
+	padding:10px;
+	padding-top:20px;
+	opacity : 0.8;
 }
-
-
-#sel1 {
-	display: inline-block;
-	width: 300px;
+#ground_title{
+	font-size:30px;
+	color : white;
+	font-weight : 700;
+	background-color : #333333;
+	margin : 0;
+	opacity : 0.8;
+	padding : 20px 0 0 16px;
 }
-
-#sel2 {
-	display: inline-block;
-	width: 300px;
-}
-
-#sel3 {
-	display: inline;
-	width: 150px;
-}
-
-#sel3>p {
-	display: inline;
-}
-
-#rating {
-	display: inline-block;
-}
-
-.radio, .form-select-city {
-	display: inline-block;
-}
-
-.form-select-price {
-	display: inline;
-}
-
-.form-selection {
-	display: inline-block;
-	margin: auto;
-	margin-top: 5px;
-}
-
-.parkinglot {
-	display: inline;
+.valueName{
+	font-size: 20px;
 	margin-left: 20px;
+	margin-bottom:0;
+}
+.groundValue{
+	margin-bottom: 20px;
+	opacity : 1.0;
+}
+.ground-calendar-text{
+	font-size: 17px;
+	display: inline-block;
+	margin-left: 20px;
+	margin-right: 15px;
+}
+.ground-calendar-input{
+	margin-right: 30px;
+	display : inline-block;
+}
+.ground-search-btn{
+	margin-left: 250px;
+}
+.ground-list-table{
+	width:100%;
+}
+.ground-list-table th{
+	height: 40px;
+	font-size:15px;
+	background-color:;
+	max-width:100%;
+	text-align:center;
+}
+.ground-list-table-body tr, td{
+	text-align:center;
+	border-bottom: 1px solid silver;
+	verticle-align:middle;
+	height: 45px;
 }
 
-.table {
-	position: absolute;
-	top: 300px;
-}
 </style>
 
 <script>
@@ -186,31 +125,6 @@
 			}
 			
 			printGround();
-			
-			/* 
-			$('#ground.ground_Name').on('click',function(){
-					alert('gjf');
-					location.href="ground_detail.do?ground.ground_Name=" +ground.ground_Name;
-				});			
-						 */
-			/*  $(document).on('click', '#ground.ground_Name', function() {
-		         alert('ground_detail 이동');
-		         //location href ="ground_detail.do";
-		         alert('성공1');
-		      });  */
-		
-			/* $('#ground.ground_Name').on('click', function() {
-		         alert('thatground 이동');
-		         location.href ="ground_detail.do?ground.ground_Name="+ground.ground_Name;
-		         
-		      }); */
-		      
-		     /* 
-				$('#ground.ground_Name').on('click', function() {
-			        alert('thatground 이동');
-			        location.href ="ground_detail.do?ground.ground_Name="+ground.ground_Name;
-				 });
-			 */
 			
 			
 			$('#sel2').on('change',function(){
@@ -253,9 +167,7 @@
         		    }
         		  });
     		});
-          	 
           	$('#time_Submit').click (function(){
-          		
           		var startDate = new Date($('#datePick').val());
           		var assign = $('#hours').val();
           		assign = assign*1;
@@ -263,9 +175,7 @@
           		endDate.setHours(startDate.getHours() + 1);
           		goDAO_time(startDate, endDate);
           	});	
-
 	});
-	
 	function goDAO_time(startDate, endDate) {
 		$.ajax({
 			url:'/naonnaTest/time_ground_dao.do',
@@ -283,9 +193,7 @@
 				 	'endTime' : endDate},
 			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
 			success:function(data) {
-				
 				$('#ground_print').html('');		//기존 것 날려주고..
-				
 				$.each(data, function(index, ground) {		//새로 뿌리기
 					var output = '';
 					output += '<tr>';
@@ -309,7 +217,6 @@
 			}
 		});
 	}
-	
 	function goDAO() {
 		$.ajax({
 			url:'/naonnaTest/filter_ground_dao.do',
@@ -322,11 +229,10 @@
 				 	'parking' : $('#sel4').val(),
 				 	'shower' : $('#sel5').val(),
 				 	'light' : $('#sel6').val()},
+			//JSon으로 data를 보내고, 그 보낼 data의 정보를 이렇게 지정해주어 나중에 request mapping에서 부합한 객체가 있으면 이와같이 작동하여 java에서 사용.
 			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
 			success:function(data) {
-				
 				$('#ground_print').html('');		//기존 것 날려주고..
-				
 				$.each(data, function(index, ground) {		//새로 뿌리기
 					var output = '';
 					output += '<tr>';
@@ -340,69 +246,51 @@
 					output += '<td>' + ground.ground_people + '</td>';
 					output += '</tr>';
 					console.log("output:" + output);
-					$('#ground_print').append(output);
-										
+					$('#ground_print').append(output);						
 				});
-				
 				console.log(data);
-			
 			},
 			error:function() {
 				alert("ajax통신 실패!!");
 			}
 		});	
-	
 	}
-	
-	/* 		
-	 $(document).on('click', '#godetail', function() {
-         alert('ground_detail 이동');
-         href ="ground_detail.do"
-         alert('성공`1');
-      }); */
-	
 </script>
 
 </head>
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
-
-	<div class="container-content">
+ 	<div class="monami">
+	<div class="col-sm-2">
+		<div class="row">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+
+		</div>
+	</div>
+	
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>	
-
-	<div>
-		<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
-			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
-		</jsp:include>	
-	</div>
-
-		<!-- start main content -->
-		<div class="main col-sm-8">
-			<br>
-			<!-- main content first low -->
-			<div class="container-groundSearch">
-				<h1>경기장 검색</h1>
-				<div class="container-groundFilter">
-					<div class="groundValue">
-						<div class="valueName">
-							<h3>위치</h3>
+	
+		<div class="main col-sm-10">
+			<div class="container-filter col-sm-10 col-sm-offset-1">
+				<p id="ground_title">경기장 검색</p>
+				<div class="container-filter-box container-fluid">
+					<div class="groundValue row">
+						<div class="valueName">     
+							<p>위치</p>
 						</div>
-						<div class="form-select-city">
+						<div class="value-field col-sm-4">
 							<form class="form-selection">
 								<select class="form-control" id="sel1">
 									<option value="서울시">서울특별시</option>
 								</select>
 							</form>
 						</div>
-						<div class="form-select-citydetail">
+						<div class="value-field col-sm-4">
 							<form name="city_name" class="form-selection" method="post" action="filter_city.do">
 								<div class="form-select">
-									<!-- <select class="form-control" name="ground_city" id="sel1" onChange="javascript:city_filter();"> -->
 									<select class="form-control" name="ground_city" id="sel2">
 										<option value=''>구 선택</option>									
 										<option>강남구</option>
@@ -436,12 +324,11 @@
 						</div>
 					</div>
 					
-
-					<div class="groundValue">
+					<div class="groundValue row">
 						<div class="valueName">
-							<h3>세부사항</h3>
+							<p>세부사항</p>
 						</div>
-						<div class="form-select-city">
+						<div class="form-value col-sm-3">
 							<form class="form-selection">
 								<select class="form-control" id="sel3">
 									<option value="">운동장 종류</option>
@@ -451,7 +338,7 @@
 								</select>
 							</form>
 						</div>
-						<div class="form-select-city">
+						<div class="form-value col-sm-3">
 							<form class="form-selection">
 								<select class="form-control" id="sel4">
 									<option value="">주차장</option>
@@ -459,7 +346,7 @@
 								</select>
 							</form>
 						</div>
-						<div class="form-select-city">
+						<div class="form-value col-sm-3">
 							<form class="form-selection">
 								<select class="form-control" id="sel5">
 									<option value="">샤워장</option>
@@ -467,7 +354,7 @@
 								</select>
 							</form>
 						</div>
-						<div class="form-select-city">
+						<div class="form-value col-sm-3">
 							<form class="form-selection">
 								<select class="form-control" id="sel6">
 									<option value=''>조명</option>
@@ -476,28 +363,25 @@
 							</form>
 						</div>
 					</div>
-						
-					<div class="groundValue" id="timeGround">
+					
+					<div class="groundValue row" id="timeGround">
 						<div class="valueName">
-							<h3>날짜</h3>
+							<p>날짜</p>
 						</div>
 							<!--  시간 선택 API  -->
 							<div class="demo-section k-content" id="timer">
-								<h4>날짜 선택</h4>
-								<input type="text" id="datePick" name="datetimes" style="width: 25%" />
-								<h4>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 대여 시간</h4>
-								<input type="number" id="hours" value="0" style="width: 5%;" />시간&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								<input type="button" id="time_Submit" value="지정">
+								<h4 class="ground-calendar-text">날짜 선택</h4>
+								<input class="form-control ground-calendar-input" type="text" id="datePick" name="datetimes" style="width: 25%" />
+								<h4 class="ground-calendar-text">대여 시간</h4>
+								<input type="number" id="hours" value="0" style="width: 5%;"/>시간
+								<input class="ground-search-btn btn btn-primary" type="button" id="time_Submit" value="검색">
 							</div>					
 					</div>
-						
-      <!--  groundFilter end -->					
-			</div>
-
-			<div class="container-board">
-				<table class="table">
-					<thead>
-						<tr class="success">
+				</div>
+			<div>
+				<table class="ground-list-table">
+					<thead class="ground-list-table-header">
+						<tr class="bg-primary">
 							<th>경기장 이름</th>
 							<th>주소</th>
 							<th>인조잔디</th>
@@ -508,13 +392,12 @@
 							<th>경기 인원 추천</th>
 						</tr>
 					</thead>
-					<tbody class="table-body" id="ground_print">
+					<tbody class="ground-list-table-body" id="ground_print">
 					</tbody>
 				</table>
 			</div>
-			<!-- end main content -->
 		</div>
-
-	<!-- main contents end -->
+	</div>
+	</div>
 </body>
 </html>

@@ -48,73 +48,56 @@
 </script>
 
 <style>
-   .mypage{
-      width:100%;
-   }
-   .mypage_label{
-      width: 25%;
-      margin: 15px;
-   }
-   input[name="email"]{
-      width:178.4px;
-      height:26px;
-      margin-left:-2px;
-   }
-   .mypage_button{
-      border: none;
-      outline: 0;
-      margin-top: 20px;
-      display: inline-block;
-      padding: 8px;
-      color: white;
-      background-color: #000;
-      text-align: center;
-      cursor: pointer;
-      width:55%;
-      font-size: 18px;
-   }
+
 </style>
 </head>
 
 <body>
     <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
    <!-- main contents -->
-
-   <div class="container-content">
-      <jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
-      
+	<div class="col-sm-2">
+		<div class="row">
+		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+		</div>
+	</div>
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
-	</form>	
-	
-	<div>
-		<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
-			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
-		</jsp:include>	
-	</div>
-	
-  <!-- start main content -->
- 
-   <!-- start mypage_body -->
-     <div class="col-sm-8">
+	</form>
+	<div class="main col-sm-10">
+   		<div class="container-content">
+			<div>
+				<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
+				<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
+				</jsp:include>	
+			</div>
+     <div class="col-sm-10 col-sm-offset-1">
       <div class="container mypage">
          <div class="mypageTitle">
             <h3>My Page</h3><hr>
          </div>
-         <div>
-         <form id="mypageForm" action="update_profile.do" method="post" enctype="multipart/form-data">
+         <form class="form-horizontal" id="mypageForm" action="update_profile.do" method="post" enctype="multipart/form-data">
                <input type="hidden" name="nickname" id="nickname1">
                <input type="hidden" name="kakao_Id">
-               <label class="mypage_label">프로필 이미지 :</label> 
-               		<span><input type="file" name="imgfile" /> </span>   
-               		<input type="submit" value="사진 변경 " />  
+               <div class="form-group">
+               	<label class="mypage_label col-sm-2 control-label">프로필 이미지 :</label>
+               		<div class="col-sm-3"> 
+               			<input type="file" class="form-control" name="imgfile" />
+               			<input type="submit" class="form-control" value="사진 변경 " />
+               		</div>  
+               	</div>    	  
        	 </form>
-            <form id="mypageForm" action="update_userinfo.do" method="post">
-               <div>
+            <form class="form-horizontal" id="mypageForm" action="update_userinfo.do" method="post">
                <input type="hidden" name="kakao_Id">
                <input type="hidden" name="nickname" id="nickname2">
-                  <label class="mypage_label">Nickname</label> 
-                  <span name="nickname" id = "nickname"> </span> 
+               <div class="form-group">
+               	<label class="mypage_label col-sm-2 control-label">Nickname :</label>
+               		<div class="col-sm-3"> 
+                  		<span name="nickname" id = "nickname"> </span>
+               		</div>  
+               	</div> 
+               <div>
+               
+                   
                </div>
                <div>
                   <label class="mypage_label">E-mail</label> 
@@ -144,8 +127,9 @@
                   <button type="submit" class="mypage_button">회원정보 변경</button>
                </div>
             </form>
-         </div>
       </div>
+   </div>
+   </div>
    </div>
   <!-- main body end -->
  </div>

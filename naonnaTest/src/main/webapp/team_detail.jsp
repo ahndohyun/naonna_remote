@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <% request.setCharacterEncoding("utf-8"); %> 
- 
  <% 
  	TeamVO vo = (TeamVO)request.getAttribute("vo");
  %>
@@ -23,38 +22,46 @@
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
+  
   <style>
-  .team-detail {
-  	border : 1px solid black;
-  	margin-top : 47px;
-  }
-  .team-name-container img {
-  	width : 200px;
-  	height : 200px;
-  }
-  .page_name {
-  	border-bottom : 1px solid black;
-  }
-  .page_name h2 {
-  	font-weight : 900;
+  .table {
+  	margin : 10px 0 5px 80px;
   }
  
   .team-name-container {
   	margin : 20px;
   }
+  .team-name-container img {
+  	width : 200px;
+  	height : 200px;
+  	margin : 10px;
+  }
+  .page_name {
+  	color : black;
+  	margin : 0;
+  	padding : 10px 15px;
+  }
+  .page_name h2 {
+  	font-weight : 900;
+  }
    #team-name{
   	font-weight : 800;
   }
-  .team-detail-container {
+  .team-detail-header{
+  	display:inline-block;
+  	float:left;
+  	margin : 0;
   }
   .team-detail-contents {
   	padding : 10px;
+  	display:inline-block;
   }
+  
   .team-join-button {
   	float : right;
   	height : 50px;
   	width : 160px;
-  	margin-top : 30px;
+  	margin-top : 20px;
   }
   .team-join-button p{
   	font-size : 16px;
@@ -63,14 +70,19 @@
   	letter-spacing : 3px;
   }
   .table td:first-child {
-  	width : 140px;
+  	width : 20%;
   	text-align : center;
   }
   .table td:nth-child(2){
+  	width : 80%;
   	padding : 9px 0 0 30px;
   }
+  .team_emblem{
+  	width:100px;
+  	height:100px;
+  }
   </style>
-  
+
   <script>
   	$(document).ready(function() {
   		
@@ -127,33 +139,35 @@
   	});
   	
   </script>
+
 </head>
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
-
-	<div class="container-content">
+ 	
+ 	<div class="col-sm-2">
+		<div class="row">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+		</div>
+	</div>
+	
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>
-   
-   <!-- start main content -->
-     <div class="main col-sm-8"><br>
-     <!-- team detail start -->
-       <div class ="team-detail col-sm-12">
+	
+     <div class="main col-sm-10">
+       <div class ="team-detail col-sm-8 col-sm-offset-2">
         <div class="page_name"><h2>팀 상세 보기</h2></div>
-        <div class="team-detail-container col-sm-12">
+        <div class="team-detail-container container-fluid">
+          <div class="row">
            <div class="team-detail-header">
-              <div class="team-name-container col-sm-4">
-              <h3 id="team-name">${vo.team_name}</h3>
+              <div class="team-name-container">
+                <h3 id="team-name">${vo.team_name}</h3>
               	<img src="<spring:url value='./image/${vo.emblem}' />"/>
               </div>
-              <div class="team-join-button btn btn-success" id="joinTeam"><p>팀 가입하기</p></div>
            </div>
-           <div class="container team-detail-contents col-sm-12">
-              <table class="table table-bordered table-striped table-hover">
+           <div class="team-detail-contents col-sm-6">
+              <table class="table table-bordered table-striped">
                  <thead>
 
                  </thead>
@@ -180,19 +194,20 @@
                     </tr>
                     <tr>
                        <td> 팀 소개 </td>
-                       <td> ${vo.intro }
-                       </td>
+                       <td> ${vo.intro }</td>
                     </tr>
-                 </tbody>
+                   </tbody>
                  <tfoot id="teamMember">
                  	<!-- 자바스크립트 멤버 출력 -->
                  </tfoot>
               </table>
+              <div class="team-join-button btn btn-primary" id="joinTeam"><p>팀 가입하기</p></div>
            </div>
+           
         </div>   
        </div>
+       </div>
       </div>
-    </div>
     <!-- main contents end -->
 
 </body>

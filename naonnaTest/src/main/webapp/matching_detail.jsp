@@ -15,9 +15,9 @@
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   
   <style>
-       .ds-btn li{ list-style:none; float:left; padding:10px; }
-    .ds-btn li a span{padding-left:15px;padding-right:5px;width:100%;display:inline-block; text-align:left;}
-    .ds-btn li a span small{width:100%; display:inline-block; text-align:left;}
+      .ds-btn li{ list-style:none; float:left; padding:10px; }
+      .ds-btn li a span{padding-left:15px;padding-right:5px;width:100%;display:inline-block; text-align:left;}
+      .ds-btn li a span small{width:100%; display:inline-block; text-align:left;}
        .btn-container {
           margin-top : 40px;
        }
@@ -45,7 +45,9 @@
           color : red;
        }
        #page_title {
-           font-weight : 900;
+           font-weight : 600;
+           font-size : 24px;
+           margin-bottom : 15px;
        }
        .team-name {
           text-align : center;
@@ -68,11 +70,20 @@
        .card_team_info {
           float : left;
        }
-       .table {
-          margin-top : 40px;
-       }
        .table tr td {
           padding : 15px;
+       }
+       .card_team_info img{
+       		width : 100%;
+       }
+       .sub_main {
+       		padding : 0;
+       }
+       #teamEmblem {
+       		height : 200px;
+       }
+       .btn-collection{
+       	float: right;
        }
   </style>
 	
@@ -209,7 +220,7 @@
 				console.log("teamDetail" + data);
 				$('#homeDetail').attr("href", "team_detail.do?team_name="+ data.team_name);
 				var output = '';
-				$('#teamEmblem').attr("src", '/naonnaTest/image/' + data.emblem)
+				/* $('#teamEmblem').attr("src", '/naonnaTest/image/' + data.emblem) */
 				$('#teamName').text("");
 				$('#ability').text("");
 				$('#area').text("");
@@ -232,33 +243,27 @@
 
 <body>
   	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
-
-	<div class="container-content">
+	
+	<div class="col-sm-2">
+		<div class="row">
 		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+		</div>
+	</div>
+
 	<form name="kakaoId">
 		<input type="hidden" name="kakao_Id">
 	</form>	
-	
-	<div>
-		<jsp:include page="./menu_bar/client_chat.jsp" flush="false">
-			<jsp:param value='${sessionScope.nickname}' name="sessionNick"/>
-		</jsp:include>	
-	</div>
-	
-      <!-- start main content -->
-      <div class="main col-sm-9">
-         <div class="player-board-container col-sm-12">
+
+      <div class="main col-sm-10">
+      	<div class="col-sm-10 col-sm-offset-1 sub_main">
+
             <div class="player-nameboard col-sm-12">
-               <h1 id="page_title">매칭 상세 정보</h1>
+               <p id="page_title">매칭 상세 정보</p>
             </div>
             <div class="player-table-container row justify-content-md-center col-sm-12">
-               <div class="team-name row">
-                  <h2 class="team-name-p" id="matchingID"></h2>
-               </div>
                <div class="col-sm-4 team-info">
-                  <div class="card card_team_info" id="teamDetail">
-                           <img id="teamEmblem" class="card-img-top" src="http://img.insight.co.kr/static/2017/03/16/700/K7TX4ZUWQPM421C45J08.jpg" alt="winter">
+                  <div class="card_team_info" id="teamDetail">
+                           <img id="teamEmblem" class="card-img-top" src="./image/han.jpg" alt="winter">
                            <div class="card-body">
                                <h3 id="teamName" class="card-title text-center">팀 이름</h3><br>
                                <p id="ability" class="card-text text-center">실력 : </p>
@@ -270,14 +275,12 @@
                    <div class="col-sm-8">
                       <div class="matching_info">
                          <table class="table table-striped" id="matchingInfo">
-								<!-- 자바스크립트 출력 -->
                          </table>
                          <table class="table table-striped" id="playerInfo">
-								<!-- 자바스크립트 출력 -->
                          </table>
                          
                       </div>
-
+						<div class="btn-collection">
 	                      <select class="btn btn-primary" id="selectPeople" name="people">
 	                      	<option value="1">혼자 참여</option>
 	                      	<option value="2">둘이 참여</option>
@@ -293,16 +296,12 @@
 	                      	<option value='${sessionScope.teamName}'>내 팀으로 참여</option>
 	                      </select>
 	                       <button class="btn btn-primary" id="match_wanna">참가 신청</button>
-
-	                     
-
                       <button class="btn btn-warning" onclick="history.back()">목록으로</button>
                       <button class="btn btn-warning" id="finish">참가 마감</button>
-               </div>
+                      </div>
+               		</div>
             </div>
          </div>
       </div>
-      <!-- main contents end -->
-   </div>
 </body>
 </html>

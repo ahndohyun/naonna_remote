@@ -172,7 +172,6 @@
 	<!-- main contents -->
 
 	<div class="container-content">
-		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
 
 		<!-- start main content -->
 		<div class="main col-sm-8">

@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>  
+<%@ page import="com.spring.naonnaTest.notice.*" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,182 +18,116 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
-  <!-- <link rel="stylesheet" href="naonna_main.css"> -->
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
-  	 .naonna-board-container {
-  	 	margin-top : 15px;
-  	 }
-  	 .naonna-board-container h3 {
-  	 	font-weight : 700;
-  	 	display : inline-block;
-  	 }
-  	 .board-container {
-  	 	margin-top : 80px;
-  	 }
-  	 .table {
-  	 	margin-top : 30px;
-  	 }
-     .table thead td, .table tbody td:first-child, .table tbody td:nth-child(2), table tbody td:nth-child(3), table tbody td:nth-child(4) {
-     	text-align : center;
+     .monami {
+       background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg");
+       height : 727px;
      }
+     .main {
+        margin-top : 150px;
+     }
+     #notice_title {
+      font-size:30px;
+      color : white;
+      font-weight : 700;
+      background-color : #333333;
+      margin : 0;
+      opacity : 0.9;
+      padding : 20px 0 0 16px;
+   }
+   .notice-table{
+      background-color: #333333;
+      padding:0 10px 0 10px;
+      width: 100%;
+      opacity : 0.9;
+   }
+      .table {
+         margin-top : 30px;
+         background-color : black;
+         text-align : center;
+         opacity:1;
+      }
    
-   	 #right {
-   	 	margin-top : 20px;
-   	 	float : right;
-   	 }
+       #right {
+          margin-top : 20px;
+          float : right;
+          margin-bottom: 20px;
+       }
   </style>
 
-
 <script>
-	$(document).ready(function() {
-	    $(function() {
+   $(document).ready(function() {
+	   function printNotice() {
+			$('#notice_print').empty();
 			$.ajax({
-				url:'/naonnaTest/print_matching.do',
+				url:'/naonnaTest/getNoticeList.do',
 				type:'POST',
 				dataType: "json",
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
-				success:function(data) {
-					
-					$('#print_match').html('');		//기존 것 날려주고..		
-					var output = '';
-					$.each(data, function(
-							index, match) {		//새로 뿌리기
-						var d = new Date(match.playDate);
-						var y = d.getFullYear();
-						var m = (d.getMonth()+1);
-						var da = d.getDate();
-						var h = d.getHours();
-						var mi = d.getMinutes();
-						
-						
+				success:function(data) {																
+					$.each(data, function(index, notice) {														
+						var output = '';
 						output += '<tr>';
-						output += '<td>' + match.matchLocation + '</td>';
-						output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
-						output += '<td>' + match.homeTeam + '</td>';
-						output += '<td>' + match.matchingID + '</td>';
-						output += '<td>' + match.people + '</td>';
-						output += '<td><button type="button" class="btn btn-success" id="match_want">신청</button></td>';
+						output += '<td> <a link href="notice_datail.do?title='+ notice.title + '">' + notice.title  + '</td>'; 
+						output += '<td>' + notice.writer + '</td>';
+						output += '<td>' + notice.write_date + '</td>';						
 						output += '</tr>';
 						console.log("output:" + output);
-						
-					});
-					$('#print_match').html(output);
-					console.log(data);
+						$('#notice_print').append(output);												
+					});						
+					
 				},
 				error:function() {
-					alert("ajax통신 실패!!");
+					alert("새로고침을 눌러주세요.")
 				}
 			});
-		});
-
-		$(document).on('click', '#match_want', function() {
-			alert('되니?!!!!');
-		});
-
-		$('#search_matching').click(function(){
-			var matchingCity = $('#city').val();
-	  		var matchDate = new Date($('#datePick').val());
-	  		search_match(matchDate, matchingCity);
-		});
+		}
 		
-	});
-		
-	function search_match(matchDate, matchingCity) {
-		$.ajax({
-			url:'/naonnaTest/searchMatching.do',
-			type:'POST',
-			dataType: "json",
-			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-			data:{	'matchLocation' : matchingCity,
-					'playDate' : matchDate},
-			
-			//제이슨 형식의 리턴된 데이터는 아래의 data가 받음
-			success:function(data) {
-				
-				$('#print_match').html('');		//기존 것 날려주고..
-				
-				$.each(data, function(index, match) {		//새로 뿌리기
-					
-					var d = new Date(match.playDate);
-					var y = d.getFullYear();
-					var m = (d.getMonth()+1);
-					var da = d.getDate();
-					var h = d.getHours();
-					var mi = d.getMinutes();
-					
-					var output = '';
-					output += '<tr>';
-					output += '<td>' + match.matchLocation + '</td>';
-					output += '<td>' + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + '</td>';
-					output += '<td>' + match.homeTeam + '</td>';
-					output += '<td>' + match.matchingID + '</td>';
-					output += '<td>' + match.people + '</td>';
-					output += '<td><input type="button" class="btn btn-success" id="match_want">신청</td>';
-
-					output += '</tr>';
-					console.log("output:" + output);
-					$('#print_match').append(output);
-				});
-				
-				console.log(data);
-			},
-			error:function() {
-				alert("ajax통신 실패!!");
-			}	
-		});
-	}
+	   printNotice();
+   });
+   function res1 (){
+	   location.href="notice_page.do"
+   }
 
 </script>
 </head>
 
 <body>
- 	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
-
-	<div class="container-content">
-		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
-
-		<!-- start main content -->
-		<div class="main col-sm-8">
-			<div class="naonna-board-container col-sm-12">
-				<div class="menu-nameboard col-sm-12">
-					<h3>공지 사항</h3>
-					<span id="right"><button class="wirte-button btn btn-success">글쓰기</button></span>
-				</div>
-				<div class="board-container">
-					<table class="board-table table table-striped table-hover">
-						<thead>
-							<tr>
-								<td>제목</td>
-								<td>작성자</td>
-								<td>등록날짜</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>안도현 좀 똑바로 해라</td>
-								<td>Admin</td>
-								<td>2018.08.05</td>
-							</tr>
-							<tr>
-								<td>김경우 밖에 나가서 pt 8번 20회 하도록 해</td>
-								<td>Admin</td>
-								<td>2018.08.05</td>
-							</tr>
-							<tr>
-								<td>NAONNA 사용시 유의사항</td>
-								<td>Admin</td>
-								<td>2018.08.05</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<!-- main contents end -->
-	</div>
+    <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+    <div class="monami">
+    <div class="col-sm-2">
+      <div class="row">
+      <jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+      </div>
+   </div>
+   
+   <form name="kakaoId">
+      <input type="hidden" name="kakao_Id">
+   </form>
+   
+      <div class="main col-sm-10">
+         <div class="col-sm-9 col-sm-offset-1">
+            <p id="notice_title">공지사항</p>
+            <div class="container-fluid notice-table">
+               <table class="board-table table table-hover">
+                  <thead>
+                     <tr class="bg-primary">
+                        <td>제목</td>
+                        <td>작성자</td>
+                        <td>등록날짜</td>
+                     </tr>
+                  </thead>
+                  <tbody id="notice_print"></tbody>
+               </table>
+               
+               <span id="right"><button class="wirte-button btn btn-primary" onclick="res1()">글쓰기</button></span>
+            </div>
+         </div>
+      </div>
+      <!-- main contents end -->
+   </div>
 
 
 </body>

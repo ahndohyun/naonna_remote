@@ -10,13 +10,55 @@
     <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/css/common.min.css">
     <script src="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/js/lib/jquery.min.js"></script>
 <script>
-		var hash = "64de5f22bbee8299f394c084ec1c7a58e56694e528aa41aeb21186cee65de062";
+		/* var hash = "64de5f22bbee8299f394c084ec1c7a58e56694e528aa41aeb21186cee65de062";
 		var failUrl = "https://developers.kakao.com/payment/web/fail/b072d95b-6a78-4dcc-a384-55d69945f8b0";
 		var remainingSec = 894;
 		var cancelUrl = "https://developers.kakao.com/payment/web/cancel/b072d95b-6a78-4dcc-a384-55d69945f8b0";
 		var isCancelPost = false;
 		var isFailPost = false;
-		var isApprovalPost = false;
+		var isApprovalPost = false; */
+		 var hash = "6d2439a7875de774d196f898def5a53b3eff5f28f56505cb9097a73d209bcdc7";
+        var failUrl = "https://developers.kakao.com/payment/web/fail/2e079972-951b-4ef1-84d6-9c838014c723";
+        var remainingSec = 900;
+        var cancelUrl = "https://developers.kakao.com/payment/web/cancel/2e079972-951b-4ef1-84d6-9c838014c723";
+        var isCancelPost = false;
+        var isFailPost = false;
+        var isApprovalPost = false;
+        
+        $(document).ready(function() {
+           
+           IMP.init('imp02341854');
+           
+           $('#imp').on('click', function() {
+               alert("음?");
+               IMP.request_pay({
+                   pg : 'inicis', // version 1.1.0부터 지원.
+                   pay_method : 'card',
+                   merchant_uid : 'merchant_' + new Date().getTime(),
+                   name : '주문명:결제테스트',
+                   amount : 14000,
+                   buyer_email : 'iamport@siot.do',
+                   buyer_name : '구매자이름',
+                   buyer_tel : '010-1234-5678',
+                   buyer_addr : '서울특별시 강남구 삼성동',
+                   buyer_postcode : '123-456',
+                   m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+               }, function(rsp) {
+                   if ( rsp.success ) {
+                       var msg = '결제가 완료되었습니다.';
+                       msg += '고유ID : ' + rsp.imp_uid;
+                       msg += '상점 거래ID : ' + rsp.merchant_uid;
+                       msg += '결제 금액 : ' + rsp.paid_amount;
+                       msg += '카드 승인번호 : ' + rsp.apply_num;
+                   } else {
+                       var msg = '결제에 실패하였습니다.';
+                       msg += '에러내용 : ' + rsp.error_msg;
+                   }
+                   alert(msg);
+               });
+            });
+        });
+
 	</script>
 	
 	<script src="//t1.daumcdn.net/kakaopay/tesla/20180108/pg_web/js/lib/spin.min.js"></script>

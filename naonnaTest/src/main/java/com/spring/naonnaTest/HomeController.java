@@ -100,4 +100,9 @@ public class HomeController {
 		return "manager_index";
 	}
 	
+	@RequestMapping(value = "/notice_page.do", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	public String go_notice_Page() {
+		return "writing_notice";
+	}
+	
 }

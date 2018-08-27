@@ -36,11 +36,10 @@
 	}
 </style>
 <body>
-    <jsp:include page="./menu_bar/top_nav.jsp" flush="true"></jsp:include>
+    <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
 	<!-- main contents -->
 
 	<div class="container-content">
-		<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
 		
 		<!-- start main content -->
 		<div class="main col-sm-8">
