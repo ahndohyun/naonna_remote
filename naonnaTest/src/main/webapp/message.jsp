@@ -47,6 +47,9 @@
      .makeBtn1, .makeBtn2{
      	height : 26px;
      }
+     #msgDelete{
+     	margin: 10px 0 5px 20px;
+     }
   </style>
   
   <script>

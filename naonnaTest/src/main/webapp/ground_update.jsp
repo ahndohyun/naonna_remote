@@ -31,16 +31,49 @@ if (session.getAttribute("admin") == null){
    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
 </head>
 <style>
-
-	.button-container {
-		float : right;
+	.monami {
+       background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg");
+       height : 727px;
+     }
+     .main {
+        margin-top : 50px;
+     }
+     .sideprofile{
+     	margin-top: 100px;
+     	text-align:center;
+     }
+     .form-group {
+		font-size : 15px;
+		color: white;
 	}
-	.form-group {
-		font-size : 11px;
-		font-weight : 400;
+	.form-group h2{
+		margin-left: 30px;
+		margin-bottom: 20px;
+		margin-top: 10px;
+		font-weight: 600;
+		letter-spacing: 1.4;
 	}
 	#multiform {
-		border : 3px solid red;
+		border : 2px solid red;
+		background-color: #333333;
+	  	padding:20px 20px 50px 25px;
+	  	width: 100%;
+	  	opacity : 0.8;
+	  	color: white;
+	}
+	.control-label{
+		margin-left: -10px;
+	}
+	.shower{
+		margin-left: -90px;
+	}
+	.button-container {
+		float : right;
+		border: none;
+      	outline: 0;
+	}
+	.picture{
+		margin-bottom: 0;
 	}
 </style>
 <script >
@@ -97,19 +130,15 @@ if (session.getAttribute("admin") == null){
 </script>
 
 <body>
-    <jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
-   <jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
+    <div class="monami">
+			<div class="col-sm-2 sideprofile">
+   				<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
+   			</div>
 
-	<div class="container-content">
-		<!-- start main content -->
-		<div class="main col-sm-8">
-	<div class="inputform container col-sm-12">
-		<div class="col-sm-8 col-sm-offset-4">
-   			<h1>경기장 수정사항</h1>
-   		</div>
+	<div class="main col-sm-8 col-sm-offset-1">
 		   <form class="form-horizontal" id="multiform" action="updateGround.do" method="post" enctype="multipart/form-data">
 				<div class="ground-upload form-group">
+					<h2>경기장 수정사항</h2>
 		       	   <label for="inputGroundName" class="col-sm-2 control-label">경기장이름</label>
 			       <div class="col-sm-2">
 			     	<%-- <p>${vo.ground_Name}</p> --%>
@@ -152,7 +181,7 @@ if (session.getAttribute("admin") == null){
 						  </label>						  
 					   </div>
     		       </div>
-		       	   <label class="col-sm-1 control-label">샤워시설</label>
+		       	   <label class="col-sm-2 control-label shower">샤워시설</label>
 			       <div class="col-sm-2">
 			           <div class="radio-inline">
 			       		 <label>
@@ -230,7 +259,7 @@ if (session.getAttribute("admin") == null){
      			       <input type="text" class="form-control" name="ground_people" id="inputGroundPeople" value=${vo.ground_people}>
     		       </div>
     		   </div>     
-		       <div class="ground-upload form-group">
+		       <div class="ground-upload form-group picture">
 		       	   <label for="inputFile1" class="col-sm-2 control-label">경기장사진1</label>
 			       <div class="col-sm-6">
 			       	   <%-- <img src="<spring:url value='/image/${vo.photo1}'/>" > --%>
@@ -238,14 +267,14 @@ if (session.getAttribute("admin") == null){
      			       <br/><span id="imgfile1Helper"></span>
     		       </div>
     		   </div>
-    		   <div class="ground-upload form-group">
+    		   <div class="ground-upload form-group picture">
 		       	   <label for="inputFile2" class="col-sm-2 control-label">경기장사진2</label>
 			       <div class="col-sm-6">
      			       <input type="file" class="form-control" name="imgfile2" id="inputFile2" value=${vo.photo2}>
      			       <br/><span id="imgfile2Helper"></span>
     		       </div>
     		   </div>
-    		   <div class="ground-upload form-group">
+    		   <div class="ground-upload form-group picture">
 		       	   <label for="inputFile3" class="col-sm-2 control-label">경기장사진3</label>
 			       <div class="col-sm-6">
      			       <input type="file" class="form-control" name="imgfile3" id="inputFile3" value=${vo.photo3}>
@@ -264,6 +293,5 @@ if (session.getAttribute("admin") == null){
    </script>
    </div>
      </div>
-   </div>
 </body>
 </html>

@@ -73,4 +73,13 @@ public class UserServiceImpl implements UserService{
 	
 	return check;
 	}
+	
+	@Override
+	   public UserVO getTeamUser (String nickname) {
+	      UserVO vo =null;
+	      UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+	      vo = userMapper.myUserInfo(nickname);
+	      
+	      return vo;
+	   }
 }

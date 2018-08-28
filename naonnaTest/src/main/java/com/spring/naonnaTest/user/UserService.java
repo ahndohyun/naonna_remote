@@ -9,5 +9,6 @@ public interface UserService {
 	void updateInfo(UserVO vo);
 	void updateProfile(UserVO vo);
 	int nickcheck(String nickname);
+	UserVO getTeamUser (String nickname);
 	
 }

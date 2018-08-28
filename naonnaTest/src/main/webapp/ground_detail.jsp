@@ -38,14 +38,19 @@ String nickname = (String)session.getAttribute("nickname");
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/naonna_main.css">
   
   <style>
-  body {
-  font-family: Arial;
-  margin: 0;
-   }
-   
    * {
      box-sizing: border-box;
    }
+   body {
+  	font-family: Arial;
+  	margin: 0;
+  	overflow-x: hidden;
+  	}
+  	html, body {
+  		max-width : 100%;
+  	}
+   
+  
    .monami {
        background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg");
        height : 1200px;
@@ -58,10 +63,6 @@ String nickname = (String)session.getAttribute("nickname");
      vertical-align: middle;
    }
    
-   .container {
-     position: relative;
-     overflow : hidden;
-   }
    .ground_name {
    		display : inline-block;
    		font-size : 24px;
@@ -545,16 +546,21 @@ String nickname = (String)session.getAttribute("nickname");
 </head>
 
 <body>
-	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<div class="monami">
-	<div class="col-sm-2 side_m">
-		<div class="row">
-			<%if(session.getAttribute("admin") != null){ %>
+	<%if(session.getAttribute("admin") != null){ %>
+			<div class="monami">
+			<div class="col-sm-2 side_m">
+			<div class="row">
 			<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
-			<jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
 		<%} else {%>
+			<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
+			<div class="monami">
+			<div class="col-sm-2 side_m">
+			<div class="row">
 			<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+			
 		<%} %>
+	
+			
 		</div>
 	</div>
 	<form name="kakaoId">

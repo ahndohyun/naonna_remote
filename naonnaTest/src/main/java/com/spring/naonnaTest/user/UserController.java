@@ -184,4 +184,25 @@ public class UserController {
  
         return map;
     }
+	
+	
+	@RequestMapping(value = "/teamUserInfo.do", method = RequestMethod.GET)
+	   public ModelAndView TeamUserInfo (String nickname){
+	      System.out.println("nickname : " + nickname);
+	      ModelAndView mnv = new ModelAndView();
+	      UserVO teamuserinfo = null;
+	      try {
+	         teamuserinfo = userService.getTeamUser(nickname);
+	         
+	         mnv.addObject("teamuserinfo", teamuserinfo);
+	         mnv.setViewName("team_memberInfo");
+	      }
+
+	      catch (Exception e) {
+	         e.getMessage();
+	         e.printStackTrace();
+	      }
+
+	      return mnv;
+	   }
 }
