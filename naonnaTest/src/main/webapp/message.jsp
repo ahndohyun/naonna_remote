@@ -17,10 +17,36 @@
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
   <style>
-  	thead tr{
+  	.table tr{
   		text-align : center;
+  		color: white;
   	}
-
+  	.table th{
+  		text-align: center;
+  	}
+	.monami {
+       background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg");
+       height : 727px;
+     }
+     .main {
+        margin-top : 120px;
+     }
+     .show-ground{
+     	 background-color: #333333;
+	     padding:0 10px 0 10px;
+	     width: 100%;
+	     opacity : 0.8;
+     }
+     .bookingtitle{
+	      font-size:30px;
+	      color : white;
+	      font-weight : 700;
+	      margin : 0;
+	      padding : 20px 0 0 16px;
+     }
+     .makeBtn1, .makeBtn2{
+     	height : 26px;
+     }
   </style>
   
   <script>
@@ -66,14 +92,14 @@
 					output += "<td>" + y + '-' + m + '-' + da + '&nbsp' + h + ':' + mi + "</td>";
 					if(msg.confirm != 1) {
 						if(msg.matchingID != null) {
-							output += "<td><input type='button' onclick='click_confirm(\"" +msg.matchingID +"\", \""+ msg.sendPeople + "\", \""+ msg.people  + "\")'></td>";
-							output += "<td><input type='button' class='reject' id='reject'" + "></td></tr>";
+							output += "<td><input class='btn btn-success makeBtn1' type='button' onclick='click_confirm(\"" +msg.matchingID +"\", \""+ msg.sendPeople + "\", \""+ msg.people  + "\")'></td>";
+							output += "<td><input class='btn btn-danger makeBtn2' type='button' class='reject' id='reject'" + "></td></tr>";
 						}
 						else if(msg.teamName !=null) {
-							output += "<td><input type='button' onclick='click_joinTeam(\"" +msg.teamName +"\", \""+ msg.sendPeople + "\")'></td>";
-							output += "<td><input type='button' class='reject' id='reject'" + "></td></tr>";
+							output += "<td><input class='btn btn-success makeBtn1' type='button' onclick='click_joinTeam(\"" +msg.teamName +"\", \""+ msg.sendPeople + "\")'></td>";
+							output += "<td><input class='btn btn-danger makeBtn2' type='button' class='reject' id='reject'" + "></td></tr>";
 						}
-						if(msg.message = '대관신청이 완료되었습니다.') {
+						if(msg.message == '대관신청이 완료되었습니다.') {
 							output += "<td><a href='kakaoPay.do?groundName=" + msg.groundName +"'>결제 </a></td>"
 						}
 					}
@@ -197,28 +223,25 @@
 
 <body>
  	<jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
- 	
-	<div class="col-sm-2">
-		<div class="row">
-		<jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
-		</div>
-	</div>
-	
-	  	<form name="kakaoId">
-			<input type="hidden" name="kakao_Id">
-		</form>	
-  <div class="main col-sm-10"><br>
-    <!-- main content first low -->
+    <div class="monami">
+    <div class="col-sm-2">
       <div class="row">
-         <div class="container-fluid col-sm-10 col-sm-offset-1 manager-index">
+      <jsp:include page="./menu_bar/sidemenu_bar.jsp" flush="true"></jsp:include>
+      </div>
+   </div>
+   
+   <form name="kakaoId">
+      <input type="hidden" name="kakao_Id">
+   </form>
+   
+  <div class="main col-sm-10"><br>
+         <div class="col-sm-10 col-sm-offset-1 manager-index">
             <div class="show-ground row col-sm-12">
-               <div class="content-title col-sm-12">
-                  <h3 class="bookingtitle content-title-name">알림창</h3>
-               </div>
-             <div class="button-container">
-                <button class="btn btn-primary" id="msgDelete">삭제</button>
-             </div>
-               <table class="table table-straped table-hover">
+                 <p class="bookingtitle content-title-name">알림창</p>
+	             <div class="button-container">
+	                <button class="btn btn-danger" id="msgDelete">삭제</button>
+	             </div>
+               <table class="table table-straped">
                   <thead>
                      <tr>
                         <th><input type="checkbox" id='checkAll'/></th>
@@ -229,8 +252,7 @@
                         <th>거부</th>
                      </tr>
                   </thead>
-                  <tbody id="messageList">
-                     
+                  <tbody id="messageList"> 
                   </tbody>
                </table>
             </div>

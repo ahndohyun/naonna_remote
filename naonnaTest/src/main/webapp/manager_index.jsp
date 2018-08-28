@@ -31,7 +31,71 @@
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aecd4acbce2512282f0d82282be7ebb3"></script>
   <link href="${pageContext.request.contextPath}/resources/naonna_main.css" rel="stylesheet" type="text/css"/>
-
+	<style>
+	 .monami {
+       background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg");
+       height : 727px;
+     }
+     .main {
+        margin-top : 150px;
+     }
+   .content-title-name {
+      display : inline;
+   }
+   .show-ground {
+      background-color: #333333;
+	  padding:20px 20px 0 25px;
+	  width: 100%;
+	  opacity : 0.8;
+	  color: white;
+	  margin-top : -40px;
+   }
+    .show-book {
+      background-color: #333333;
+	  padding:40px 30px 0 10px;
+	  width: 100%;
+	  opacity : 0.8;
+	  color: white;
+   }
+   .sideprofile{
+   	margin-top: -100px;
+   }
+   .bookingtitle{
+	    color:white;
+   }
+   .right {
+      float : right;
+      border: none;
+      outline: 0;
+   }
+   .makeBtn1, .makeBtn2{
+     	height : 26px;
+     }
+     .content-title{
+     	margin-bottom : 20px;
+     }
+     .bookingtable1{
+     	margin-top: 15px;
+     	text-align: center;
+     }
+     .bookingtable1 thead>tr>th{
+     	text-align: center;
+     }
+     .bookingtable2{
+     	margin-left: 10px;
+     	text-align: center;
+     }
+     .bookingtable2 thead>tr>th{
+     	text-align: center;
+     }
+     .bookingtable2 a, .bookingtable2 a:hover{
+     	text-decoration : none;
+     	color : white;
+     }
+     .bookingtable2 a:hover {
+     	color : red;
+     }
+</style>
 <script>
 
 $(document).ready(function() {
@@ -97,12 +161,12 @@ $(document).ready(function() {
 							output += '<td>' + ye + '-' + me + '-' + dae + '&nbsp' + he + ':' + mie + '</td>';
 							output += '<td>' + booking.assign*1 + '</td>';
 							if(booking.confirm != 1) {
-								output += "<td><input type='button' id='confirm' onclick='click_confirm(\"" +booking.nickname +"\", \""+ booking.groundName    +" \" )'></td>";
-								output += "<td><input type='button' class='reject' id='reject'" + "></td></tr>";
+								output += "<td><input class='makeBtn1 btn btn-success' type='button' id='confirm' onclick='click_confirm(\"" +booking.nickname +"\", \""+ booking.groundName    +" \" )'></td>";
+								output += "<td><input class='makeBtn2 btn btn-danger' type='button' class='reject' id='reject'" + "></td></tr>";
 							}
 							else{
-								output += "<td><input type='button' id='confirm' disabled='true'></td>";
-								output += "<td><input type='button' id='reject' disabled='true'></td></tr>";
+								output += "<td><input class='makeBtn1 btn btn-success' type='button' id='confirm' disabled='true'></td>";
+								output += "<td><input class='makeBtn2 btn btn-danger' type='button' id='reject' disabled='true'></td></tr>";
 							}
 							console.log("output:" + output);
 							$('#booking_print').append(output);
@@ -201,89 +265,58 @@ function res() {
     location.href = "ground_regi.do"
  }
 </script>
-<style>
-   .content-title-name {
-      display : inline;
-   }
-   .manager-index {
-      margin-top : 4vw;
-   }
-   .mov-btn {
-   
-   }
-   .right {
-      float : right;
-   }
-</style>
+
 
 </head>
 
 <body>
-  <jsp:include page="./menu_bar/topAdminNavi.jsp" flush="true"></jsp:include>
-   <jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
-   <!-- main contents -->
-
-   <div class="container-content">
-  <!-- start main content -->
-   
-   
-  <div class="main col-sm-8"><br>
-    <!-- main content first low -->
-      <div class="row">
-         <div class="container-fluid col-sm-12 manager-index">
-            <div class="show-ground row col-sm-12">
-               <div class="content-title col-sm-12">
-                  <h3 class="bookingtitle content-title-name">예약현황</h3>
-                 <!--  <a href="#" class="right mov-btn btn btn-success">더보기</a> -->
-               </div>
-               <table class="table table-straped table-hover">
-                  <thead>
-                     <tr>
-                        <th>예약자</th>
-                        <th>예약날짜</th>
-                        <th>종료시간</th>
-                        <th>총 대여 시간</th>
-                        <th>승낙</th>
-                        <th>거부</th>
-                     </tr>
-                  </thead>
-                  <tbody id="booking_print"></tbody>
-               </table>
-            </div>
-            <div class="show-book row col-sm-12">
-               <div class="content-title col-sm-12">
-                  <h3 class="bookingtitle content-title-name">운동장 정보</h3>
-                  <button class="right mov-btn btn btn-success" onclick="res()">경기장 등록</a>
-                  
-               </div>
-               <table class="table table-straped table-hover">
-                  <thead>
-                     <tr>
-                     		
-                       		<th>경기장 이름</th>
-                       		<th>경기장 관리자</th>
-							<th>주소</th>
-							<th>인조잔디</th>
-							<th>샤워시설</th>
-							<th>주차장</th>
-							<th>조명</th>
-							<th>크기</th>
-							<th>경기 인원 추천</th>
-                        
-                     </tr>
-                  </thead>
-                 
-                  <tbody class="table-body" id="ground_print"></tbody>
-                
-               </table>
-            </div>
-         </div>    
-      </div>
-  </div>
-  <!-- end main content -->
-  </div>
-  <!-- main body end -->
-
+		<div class="monami">
+			<div class="col-sm-2 sideprofile">
+   				<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
+   			</div>
+		      	<div class="main col-sm-8 col-sm-offset-1">
+		         <div class="container-fluid col-sm-12 manager-index">
+		            <div class="show-ground row col-sm-12">
+		               <h2 class="bookingtitle content-title-name">예약현황</h2>
+		               <table class="table table-straped bookingtable1">
+		                  <thead>
+		                     <tr>
+		                        <th>예약자</th>
+		                        <th>예약날짜</th>
+		                        <th>종료시간</th>
+		                        <th>총 대여 시간</th>
+		                        <th>승낙</th>
+		                        <th>거부</th>
+		                     </tr>
+		                  </thead>
+		                  <tbody id="booking_print"></tbody>
+		               </table>
+		            </div>
+		            <div class="show-book row col-sm-12">
+		               <div class="content-title col-sm-12">
+		                  <h2 class="bookingtitle content-title-name">운동장 정보</h2>
+		                  <button class="right mov-btn btn btn-success" onclick="res()">경기장 등록</button>
+		               </div>
+		               <table class="table table-straped bookingtable2">
+		                  <thead>
+		                     <tr>
+		                       		<th>경기장 이름</th>
+		                       		<th>경기장 관리자</th>
+									<th>주소</th>
+									<th>인조잔디</th>
+									<th>샤워시설</th>
+									<th>주차장</th>
+									<th>조명</th>
+									<th>크기</th>
+									<th>경기 인원 추천</th>
+		                     </tr>
+		                  </thead>
+		               		<tbody class="table-body" id="ground_print"></tbody>
+		               </table>
+	            </div>
+	         </div>    
+	      </div>
+	  </div>
 </body>
 </html>
 

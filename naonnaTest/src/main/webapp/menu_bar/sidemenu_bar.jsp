@@ -30,10 +30,6 @@ a {
 #profile_img {
 	height : 250px;
 }
-
-#message {
-	height : 23px;
-}
 .sidemenu_text, .card a{
 	margin-top : 10px;
 	text-align : center;
@@ -71,6 +67,15 @@ a {
 	height: 49px;
 	margin-left: 137px;
 	margin-bottom: 15px;
+}
+#message_line{
+	display: inline;
+	
+}
+#message {
+	margin-left : 10px;
+	height : 32px;
+	display: inline;
 }
 </style>
 <script>

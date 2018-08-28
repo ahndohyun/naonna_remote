@@ -131,7 +131,7 @@
    				$('#teamMember').html('');
    				output += "<tr><td>구성원</td><td>"
    				$.each(data, function(index, member) {
-   						output += "<a href='go_#MypageModal?nickname="+ member.nickname + "'>"+ member.nickname +"</a>";
+   						output += '<a href="#" data-target="#MypageModal" data-toggle="modal">' + member.nickname +'</a>';
    						output += "&nbsp&nbsp&nbsp"
    							
    				});
@@ -240,10 +240,19 @@
       <div class="modal fade" id="MypageModal" role="dialog">
                    <div class="modal-dialog">
                      <div class="modal-content">
+                     	<div class="modal-header">
+                     		<span class="team_title">마이페이지</span>
+                            <button type="button" id="team_close" class="close" data-dismiss="modal">&times;</button>
+                     	</div>
                         <div class="modal-body">
-                             <span class="team_title">마이페이지</span>
-                             <button type="button" id="team_close" class="close" data-dismiss="modal">&times;</button>
-                         </div>
+                             <label>닉네임</label>
+                             <label>이메일</label>
+                             <label>활동지역</label>
+                             <label>성별</label>
+                             <label>나이</label>
+                             <label>팀명</label>
+                             <label>포지션</label>
+                        </div>
                       </div>
                    </div>
                 </div>

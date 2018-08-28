@@ -29,9 +29,9 @@
      }
      .team-filter {
         background-color: #333333;
-      padding:0 10px 0 10px;
-      width: 100%;
-      opacity : 0.8;
+	    padding:0 10px 0 10px;
+	    width: 100%;
+	    opacity : 0.8;
      }
      .row {
         margin-bottom : 20px;

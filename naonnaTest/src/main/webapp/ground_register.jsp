@@ -23,32 +23,58 @@
    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
 </head>
 <style>
-
-	.button-container {
-		float : right;
-	}
+	.monami {
+       background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg");
+       height : 727px;
+     }
+     .main {
+        margin-top : 70px;
+     }
+     .sideprofile{
+     	margin-top: 100px;
+     	text-align:center;
+     }
 	.form-group {
-		font-size : 11px;
-		font-weight : 400;
+		font-size : 15px;
+		color: white;
+	}
+	.form-group h2{
+		margin-left: 30px;
+		margin-bottom: 20px;
+		margin-top: 10px;
+		font-weight: 600;
+		letter-spacing: 1.4;
 	}
 	#multiform {
-		border : 3px solid red;
+		border : 2px solid red;
+		background-color: #333333;
+	  	padding:20px 20px 50px 25px;
+	  	width: 100%;
+	  	opacity : 0.8;
+	  	color: white;
+	}
+	.control-label{
+		margin-left: -10px;
+	}
+		.shower{
+		margin-left: -90px;
+	}
+	.button-container {
+		float : right;
+		border: none;
+      	outline: 0;
 	}
 </style>
 <body>
-    <jsp:include page="./menu_bar/topnavi.jsp" flush="true"></jsp:include>
-	<!-- main contents -->
-
-	<div class="container-content">
-		
-		<!-- start main content -->
-		<div class="main col-sm-8">
-	<div class="inputform container col-sm-12">
-		<div class="col-sm-8 col-sm-offset-4">
-   			<h1>경기장 등록!!</h1>
-   		</div>
+	<div class="monami">
+			<div class="col-sm-2 sideprofile">
+   				<jsp:include page="./menu_bar/sidemenuAdmin_bar.jsp" flush="true"></jsp:include>
+   			</div>
+   			
+		<div class="main col-sm-8 col-sm-offset-1">
 		   <form class="form-horizontal" id="multiform" action="insertGround.do" method="post" enctype="multipart/form-data">
 				<div class="ground-upload form-group">
+					<h2>경기장 등록</h2>
 		       	   <label for="inputGroundName" class="col-sm-2 control-label">경기장 이름</label>
 			       <div class="col-sm-2">
      			       <input type="text" class="form-control" name="ground_Name" id="inputGroundName" value=<%=ground_name%>
@@ -117,7 +143,7 @@
 						  </label>
 					   </div>
     		       </div>
-		       	   <label class="col-sm-1 control-label">샤워시설</label>
+		       	   <label class="col-sm-2 control-label shower ">샤워시설</label>
 			       <div class="col-sm-2">
 			           <div class="radio-inline">
 			       		 <label>
@@ -216,8 +242,7 @@
 		       <div class="button-container"><input class="btn btn-success" type="submit" value="등록"/></div>
 		   </form>
 		   
-   </div>
+   		</div>
      </div>
-   </div>
 </body>
 </html>
