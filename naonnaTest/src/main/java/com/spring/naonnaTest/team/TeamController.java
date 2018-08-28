@@ -14,12 +14,16 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spring.naonnaTest.user.UserService;
 
 @Controller
 public class TeamController {
 	
 	@Autowired
 	private TeamService teamService;
+	
+	@Autowired
+	private UserService userService;
 		
 	@RequestMapping(value = "/getTeamlistJSON.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody			
@@ -139,10 +143,14 @@ public class TeamController {
 	
 	@RequestMapping(value = "/joinTeamMem.do",  method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody		 	
-	public int memberInsert(TeamVO vo) {
-	
+	public int memberInsert(TeamVO vo, String nickname, String team_name ) {
+		System.out.println("nickname :"+nickname);
+		System.out.println("team_name :"+team_name);
+		
 		try {
+			userService.updateTeam(nickname, team_name);
 			teamService.insertMember(vo);
+			
 		}
 		catch (Exception e){
 			System.out.println("first() mapper : " + e.getMessage());

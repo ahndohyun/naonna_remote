@@ -11,4 +11,6 @@ public interface UserService {
 	int nickcheck(String nickname);
 	UserVO getTeamUser (String nickname);
 	
+	void updateTeam(String nickname, String team_name);
+	
 }

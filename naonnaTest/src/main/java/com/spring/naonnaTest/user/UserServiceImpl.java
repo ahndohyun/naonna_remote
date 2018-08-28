@@ -82,4 +82,16 @@ public class UserServiceImpl implements UserService{
 	      
 	      return vo;
 	   }
+	
+	@Override
+	public void updateTeam(String nickname, String team_name) {
+		 UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		 try {
+		 userMapper.updateTeamName(nickname,team_name);
+		 }
+		 catch(Exception e) {
+			 e.getMessage();
+			 e.getStackTrace();
+		 }
+	}
 }

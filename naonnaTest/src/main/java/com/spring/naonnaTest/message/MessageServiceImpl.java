@@ -64,7 +64,7 @@ public class MessageServiceImpl implements MessageService{
 			MessageMapper messageMapper = sqlSession.getMapper(MessageMapper.class);
 			System.out.println(vo.getGetPeople());
 			String message = null;
-			message = vo.getGetPeople() + "님께서 팀 가입을 신청하셨습니다.";
+			message = vo.getSendPeople() + "님께서 팀 가입을 신청하셨습니다.";
 			System.out.println(message);
 			vo.setMessage(message);
 			messageMapper.insertMessageTeam(vo);

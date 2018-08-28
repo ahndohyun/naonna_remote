@@ -42,8 +42,11 @@
    
 	<select id="getUserNick" parameterType="String" resultType="Integer">
       SELECT COUNT(*) FROM user_info WHERE nickname = #{nickname}
-          
-</select>
+    </select>
+    
+    <update id="updateTeamName" parameterType="String">
+      update user_info set team_name=#{team_name} where nickname=#{nickname}
+    </update>
    
 </mapper>
    
