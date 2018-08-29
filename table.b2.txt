@@ -136,6 +136,19 @@ CREATE TABLE MESSAGE (
     GROUND_NAME VARCHAR2(100)
 );
 
+
+CREATE TABLE PLAYER (
+    NICKNAME VARCHAR2(50),
+    MATCHINGid VARCHAR2(200),
+    PEOPLE NUMBER
+);
+
+create Table team_member(
+    team_name varchar2(100),
+    nickname varchar2(100),
+    join_date date
+);
+
 select * from user_info;
 select * from team;
 select * from matching;

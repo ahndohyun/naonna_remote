@@ -9,6 +9,6 @@ public interface UserMapper {
 	void updateProfile(UserVO vo);
 	int getUserNick(String nickname);
 	
-	void updateTeamName(String nickname,String team_name);
+	void updateTeamName(UserVO vo1);
 
 }

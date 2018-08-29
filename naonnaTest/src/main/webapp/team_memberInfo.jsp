@@ -46,6 +46,7 @@
 </style>
 </head>
 <body>
+
 	<div class="memberinfo">
 		<div class="info_title">유저정보</div><hr>
 		<div class="info_body">

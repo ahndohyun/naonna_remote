@@ -2,6 +2,8 @@ package com.spring.naonnaTest.team;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.naonnaTest.user.UserService;
+import com.spring.naonnaTest.user.UserVO;
 
 @Controller
 public class TeamController {
@@ -143,14 +146,13 @@ public class TeamController {
 	
 	@RequestMapping(value = "/joinTeamMem.do",  method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody		 	
-	public int memberInsert(TeamVO vo, String nickname, String team_name ) {
-		System.out.println("nickname :"+nickname);
-		System.out.println("team_name :"+team_name);
+	public int memberInsert(TeamVO vo) {
+		
 		
 		try {
-			userService.updateTeam(nickname, team_name);
-			teamService.insertMember(vo);
 			
+			teamService.insertMember(vo);
+
 		}
 		catch (Exception e){
 			System.out.println("first() mapper : " + e.getMessage());

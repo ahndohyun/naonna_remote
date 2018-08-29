@@ -1,5 +1,8 @@
 package com.spring.naonnaTest.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,10 +87,11 @@ public class UserServiceImpl implements UserService{
 	   }
 	
 	@Override
-	public void updateTeam(String nickname, String team_name) {
+	public void updateTeam(UserVO vo1) {		 
+		
 		 UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 		 try {
-		 userMapper.updateTeamName(nickname,team_name);
+		 userMapper.updateTeamName(vo1);
 		 }
 		 catch(Exception e) {
 			 e.getMessage();

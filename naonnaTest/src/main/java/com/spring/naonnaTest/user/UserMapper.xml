@@ -44,7 +44,7 @@
       SELECT COUNT(*) FROM user_info WHERE nickname = #{nickname}
     </select>
     
-    <update id="updateTeamName" parameterType="String">
+    <update id="updateTeamName" parameterType="com.spring.naonnaTest.user.UserVO">
       update user_info set team_name=#{team_name} where nickname=#{nickname}
     </update>
    

@@ -96,6 +96,10 @@ create Table team_member(
     join_date date
 );
 
+create Table notice{
+
+
+
 select * from user_info;
 select * from team;
 select * from matching;

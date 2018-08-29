@@ -29,17 +29,21 @@
 body, html {
 	height : 100%;
 	color : white;
+	min-height: 727px;
+	
 }
 .monami {
 	background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg");
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
+    min-height: 727px;
+    height: 100%;
 }
 
 .container-filter-box{
 	background-color: #333333;
 	padding:10px;
 	padding-top:20px;
-	opacity : 0.8;
+	opacity : 0.8;	
 }
 #ground_title{
 	font-size:30px;
