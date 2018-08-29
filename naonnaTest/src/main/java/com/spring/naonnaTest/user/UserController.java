@@ -39,14 +39,16 @@ public class UserController {
 				
 			} else {
 				mnv.setViewName("main");
-				session.setAttribute("forPerson", forPerson);
-				session.setAttribute("nickname", info.getNickname());
+				session.setAttribute("forPerson", forPerson);			
+				 session.setAttribute("nickname", info.getNickname());
+				
 				if(info.getCap() == 1) {
 					session.setAttribute("cap", info.getCap());
 				}
 				if(info.getTeamName() != null) {
 					session.setAttribute("teamName", info.getTeamName());
 				}
+				
  				System.out.println(info.getNickname());
 			}
 		}
