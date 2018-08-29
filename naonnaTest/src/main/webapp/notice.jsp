@@ -45,11 +45,18 @@
    }
       .table {
          margin-top : 30px;
-         background-color : black;
+         background-color : white;
          text-align : center;
          opacity:1;
       }
-   
+      tbody > tr > td > a{
+      	color: black;
+      	text-decoration: none;
+      }
+      tbody > tr > td > a:hover{
+      	color: red;
+      	text-decoration: none;
+      }
        #right {
           margin-top : 20px;
           float : right;
@@ -114,7 +121,7 @@
          <div class="col-sm-9 col-sm-offset-1">
             <p id="notice_title">공지사항</p>
             <div class="container-fluid notice-table">
-               <table class="board-table table table-hover">
+               <table class="board-table table">
                   <thead>
                      <tr class="bg-primary">
                         <td>제목</td>
@@ -124,9 +131,9 @@
                   </thead>
                   <tbody id="notice_print"></tbody>
                </table>
-              <%--  <%if(session.getAttribute("superadmin") != null){ %>   --%> 
+              <%if(session.getAttribute("nickname").equals("superadmin")){ %>
                <span id="right"><button class="wirte-button btn btn-primary" onclick="res1()">글쓰기</button></span>
-               <%-- <%} %> --%>
+               <%} %>
             </div>
          </div>
       </div>

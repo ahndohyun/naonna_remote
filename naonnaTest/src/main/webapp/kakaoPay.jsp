@@ -55,8 +55,8 @@
             });
         });
 
-        function res(){
-        	history.go(-1);
+        function onOk(){
+        	location.href="messageHome.do"
         }
 </script>
 
@@ -102,7 +102,7 @@
             </div>
             <div class="layer_foot">
                 <button id="confirmCancelButton" class="btn_layer2">취소</button>
-                <button id="confirmOkButton" class="btn_layer2" onclick= "res()">확인</button>
+                <button id="confirmOkButton" class="btn_layer2" >확인</button>
             </div>
         </div>
     </div>
