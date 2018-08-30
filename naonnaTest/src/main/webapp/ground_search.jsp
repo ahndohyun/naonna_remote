@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>경기장 검색</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
@@ -78,7 +78,6 @@ body, html {
 .ground-list-table th{
 	height: 40px;
 	font-size:15px;
-	background-color:;
 	max-width:100%;
 	text-align:center;
 }
@@ -94,7 +93,12 @@ body, html {
 .ground-list-table-body a:hover {
 	color : red;
 }
-
+.ground-list-table-body td{
+	border-bottom: 1px solid #D5D5D5;
+} 
+.drp-calendar, #hours{
+	color: black;
+}
 </style>
 
 <script>

@@ -17,7 +17,7 @@
 <html>
 <head>
    <meta charset="UTF-8">
-   <title>Insert title here</title>
+   <title>경기장 등록</title>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
 		letter-spacing: 1.4;
 	}
 	#multiform {
-		border : 2px solid red;
+		/* border : 2px solid red; */
 		background-color: #333333;
 	  	padding:20px 20px 50px 25px;
 	  	width: 100%;
@@ -63,6 +63,9 @@
 		float : right;
 		border: none;
       	outline: 0;
+	}
+	#inputFile1, #inputFile2, #inputFile3{
+		height: 40px;
 	}
 </style>
 <body>

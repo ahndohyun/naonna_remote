@@ -19,7 +19,7 @@ String nickname = (String)session.getAttribute("nickname");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>경기장 상세 정보</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
@@ -36,7 +36,6 @@ String nickname = (String)session.getAttribute("nickname");
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/naonna_main.css">
-  
   <style>
    * {
      box-sizing: border-box;
@@ -49,8 +48,6 @@ String nickname = (String)session.getAttribute("nickname");
   	html, body {
   		max-width : 100%;
   	}
-   
-  
    .monami {
        background-image : url("https://lh3.googleusercontent.com/-hrYUHGyoYz4/WIz2mUMTahI/AAAAAAAABNM/d6u3yCje50EBAzYhVFMM3nkPCzjYXtCFACJoC/w1366-h768/Download-Fernando-Torres-Free-HD-Football-Wallpapers_Fotor.jpg");
        height : 1200px;
@@ -59,21 +56,25 @@ String nickname = (String)session.getAttribute("nickname");
    .main {
       margin-top : 80px;
    }
+   .detail-container{
+   	 background-color: #333333;
+		padding:10px;
+		padding-top:20px;
+   }
    img {
      vertical-align: middle;
    }
    
    .ground_name {
    		display : inline-block;
-   		font-size : 24px;
+   		font-size : 22px;
    		font-weight : 550;
-   		margin-top : 15px;
-   		margin-left : 350px;
+   		margin-left : 10px;
    		color : #DDD;
    }
    .ground_addr {
    		display : inline-block;
-   		font-size : 18px;
+   		font-size : 15px;
    		font-weight : 500;
    		margin-left : 20px;
    		color : #DDD;
@@ -94,8 +95,7 @@ String nickname = (String)session.getAttribute("nickname");
    }
    
    /* Next & previous buttons */
-   .prev,
-   .next {
+   .prev, .next {
      cursor: pointer;
      position: absolute;
      top: 40%;
@@ -112,7 +112,7 @@ String nickname = (String)session.getAttribute("nickname");
    
    /* Position the "next button" to the right */
    .next {
-     left: 855px;
+     left: 440px;
      border-radius: 3px 0 0 3px;
    }
    
@@ -143,9 +143,6 @@ String nickname = (String)session.getAttribute("nickname");
       width : 100%;
       margin-left : 0px;
    }
-   #row2 {
-   		margin-top : -10px;
-   }
    .row:after {
      content: "";
      display: table;
@@ -172,14 +169,10 @@ String nickname = (String)session.getAttribute("nickname");
      opacity: 1;
    }
    .ground-detail-size {
-   	margin-top : 50px;
-   	padding : 0;
-   	margin-bottom : 40px;
+   		margin-top: -10px;
    }
    
    .ground-detail-contents {
-   	margin-top : 15px;
-   	padding : 15px 0 0 0;
    	color : #ddd;
    }
    .ground-detail-contents .container p{
@@ -191,37 +184,19 @@ String nickname = (String)session.getAttribute("nickname");
    }
    .ground-detail {
       margin-top : 10px;
-      padding : 0;
-   }
-   .ground-detail-icon img {
-      width : 60px;
-      height :60px;
-   }
-   .ground-detail-texts {
-      margin-top : 20px;
-   }
-   .ground-detail-textmore {
-      margin : 20px 10px;
-      text-align : center;
-   }
-   .ground-detail-textmore p {
-      color : black;
-      font-weight : 500;
-      font-size : 15px;
    }
    .ground-detail-size-texts {
       display : inline-block;
       width : 400px;
       margin : 10px 30px 0px;
+      margin-bottom: 15px;
    }
    .ground-detail-size-fieldtext, .ground-detail-size-formaltext {
       display :inline-block;
-      
-   }
-   
+   }   
    .formal-ground-size {
       width : 100%;
-      height : 270px;
+      height : 300px;
    }
    .small-box {
       width : 17px;
@@ -269,8 +244,6 @@ String nickname = (String)session.getAttribute("nickname");
       font-size : 12px;
    }
    .ground-pics {
-     margin-top : 20px;
-     padding : 0;
    }
    .payment, .back-to-list {
       display : inline-block;
@@ -282,6 +255,7 @@ String nickname = (String)session.getAttribute("nickname");
    }
    .contents-row{
    		margin-top : 20px;
+   		display: inline-block;
    }
    .contents-row p {
    		color : #ddd;
@@ -315,8 +289,42 @@ String nickname = (String)session.getAttribute("nickname");
 		verticle-align:middle;
 		height: 30px;
 	}
+	.icon-row{
+		color: white;
+		margin-top: 5px;
+		margin-bottom: 20px;
+	}
+	.ground-detail-icon{
+		display: inline-block;
+	}
+	 .ground-detail-icon img{
+      width : 40px;
+      height :40px;
+      margin-right: 10px;
+   } 
 	.groundValue {
 		margin-left : 20px;
+	}
+	.ground-detail-textmore {
+		display: inline-block;
+		margin-right: 25px;
+	}
+	.grass{
+		margin-left: 5px;
+	}
+	.booking-box{
+		color: white;
+		margin-top: -20px;
+		margin-bottom: 21px;
+	}
+	.valueName{
+		font-size: 20px;
+	}
+	.date-text{
+		display: inline-block;
+	}
+	#reserve{
+		margin-right: 30px;
 	}
   </style>
   <script>
@@ -570,7 +578,7 @@ String nickname = (String)session.getAttribute("nickname");
 	<div>
 			
 	</div>
-<!-- start main content -->
+
   <div class="main col-sm-10">
   	<div class="detail-container col-sm-10 col-sm-offset-1">
   	
@@ -578,7 +586,7 @@ String nickname = (String)session.getAttribute("nickname");
         <p class="ground_name">${vo.ground_Name}</p>
         <p class="ground_addr">${vo.ground_addr} </p>
      </div>
-      <div class="ground-pics col-sm-12">
+      <div class="ground-pics col-sm-6">
        <div class="mySlides">
           <div class="numbertext">1 / 3</div>
              <img src="<spring:url value='/image/${vo.photo1}' />" style="width:100%" />            
@@ -644,8 +652,23 @@ String nickname = (String)session.getAttribute("nickname");
    }
   </script>
   </div>
-  <div class="ground-detail col-sm-12">
-  	<div class="ground-detail-size col-sm-6">
+  <div class="ground-detail col-sm-6">
+  	<div class="booking-box">
+  					<%if(session.getAttribute("admin") == null){ %>		
+  					<div class="groundValue" id="timeGround">
+						<div class="valueName">
+							<p>날짜</p>
+						</div>										
+							<div class="demo-section k-content" id="timer">
+								<h5 class="date-text">날짜 선택</h5>
+								<input type="text" id="datePick" name="datetimes" style="width: 25%" />										
+								<h5 class="date-text"> 대여 시간</h5>
+								<input type="number" id="hours" value="0" style="width: 10%;" />							 	
+							</div>									
+					</div>
+					<%} %>	
+				</div>	
+  	<div class="ground-detail-size col-sm-12">
   		<div class="ground-detail-size-pics">
   			<img class="formal-ground-size" src="https://www.iamground.kr/img/sample/ssize.jpg">
   		</div>
@@ -662,49 +685,28 @@ String nickname = (String)session.getAttribute("nickname");
   		</div>
   	</div>
   	
-  	<div class="ground-detail-contents col-sm-6">
-  		<div class="row contents-row">
-  			<div class="container"><p>주소</p></div>
-  			<p class="addr_t">${vo.ground_addr} </p>
+  		<div class="icon-row">
+	  		<div class="ground-detail-icon grass"><img src="https://www.iamground.kr/img/icons/chun.png"></div>
+	  		<div class="ground-detail-textmore"><p>${vo.grass }</p></div>
+	  		<div class="ground-detail-icon"><img src="https://www.iamground.kr/img/icons/jo.png"></div>
+	  		<div class="ground-detail-textmore"><p>${vo.light }</p></div>
+	  		<div class="ground-detail-icon"><img src="https://www.iamground.kr/img/icons/ju.png"></div>
+	  		<div class="ground-detail-textmore"><p>${vo.parking }</p></div>
+	  		<div class="ground-detail-icon"><img src="https://www.iamground.kr/img/icons/sh.png"></div>
+	  		<div class="ground-detail-textmore"><p>${vo.shower }</p></div>
   		</div>
-  		<div class="row contents-row">
-	  		<div class="ground-detail-icon col-sm-2"><img src="https://www.iamground.kr/img/icons/chun.png"></div>
-	  		<div class="ground-detail-textmore col-sm-3 col-sm-offset-1"><p>${vo.grass }</p></div>
-	  		<div class="ground-detail-icon col-sm-2"><img src="https://www.iamground.kr/img/icons/jo.png"></div>
-	  		<div class="ground-detail-textmore col-sm-3 col-sm-offset-1"><p>${vo.light }</p></div>
-  		</div>
-  		<div class="row contents-row" id="row2">
-	  		<div class="ground-detail-icon col-sm-2"><img src="https://www.iamground.kr/img/icons/ju.png"></div>
-	  		<div class="ground-detail-textmore col-sm-3 col-sm-offset-1"><p>${vo.parking }</p></div>
-	  		<div class="ground-detail-icon col-sm-2"><img src="https://www.iamground.kr/img/icons/sh.png"></div>
-	  		<div class="ground-detail-textmore col-sm-3 col-sm-offset-1"><p>${vo.shower }</p></div>
-  		</div>
-  					<%if(session.getAttribute("admin") == null){ %>		
-  					<div class="groundValue" id="timeGround">
-						<div class="valueName">
-							<h5>날짜</h5>
-						</div>										
-							<!--  시간 선택 API  -->
-							<div class="demo-section k-content" id="timer">
-								<h6>날짜 선택</h6>
-								<input type="text" id="datePick" name="datetimes" style="width: 25%" />										
-								<h6> 대여 시간</h6>
-								<input type="number" id="hours" value="0" style="width: 10%;" />							 	
-							</div>									
-					</div>
-					<%} %>
   		
-  	</div>  		
+  				
   </div>
 					
 	<div class="button-container">
 	<%if(session.getAttribute("nickname") !=null){ %>
-  	<div class="payment"><button class="btn btn-success" id="reserve" onclick="res3()">예약하기</button></div>
+  	<div class="payment"><button class="btn btn-primary" id="reserve" onclick="res3()">예약하기</button></div>
   	<%} %>
-  	<div class="back-to-list"><button class="btn btn-success" onclick="res()">목록으로</button></div>
+  	<div class="back-to-list"><button class="btn btn-primary" onclick="res()">목록으로</button></div>
 
   	<%if(session.getAttribute("admin") !=null){ %>
-  	<div class="back-to-list"><button class="btn btn-success" onclick="res2()">경기장 수정</button></div>
+  	<div class="back-to-list"><button class="btn btn-primary" onclick="res2()">경기장 수정</button></div>
   	<%} %>
   </div>
 	</div>

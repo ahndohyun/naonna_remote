@@ -57,6 +57,7 @@ a {
 	color : white;
 	background-color : #333333;
 	outline:0;
+	margin-left: 15px;
 }
 .bf_login{
 	height:0;

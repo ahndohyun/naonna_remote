@@ -6,7 +6,7 @@
 
 <head>
   <!-- NAONNA -->
-  <title>NAONNA 경기장예약 매칭 사이트 </title>
+  <title>마이페이지</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -61,6 +61,7 @@
 	    padding: 15px;
 	    border: 3px solid #A52A2A;
 	    opacity: 0.9;
+	    margin-top: -40px;
      }
      .mypageTitle{
      	color: white;

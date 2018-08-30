@@ -4,7 +4,7 @@
 
 
 <% 
-	String admin = (String)request.getAttribute("admin");		
+	String admin = (String)session.getAttribute("admin");		
 	String ground_name = (String)request.getAttribute("groundName");
 	
 	if (session.getAttribute("admin") == null){
@@ -19,7 +19,7 @@
 
 <head>
   <!-- NAONNA -->
-  <title>NAONNA 경기장예약 매칭 사이트 </title>
+  <title>경기장 관리자 페이지</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

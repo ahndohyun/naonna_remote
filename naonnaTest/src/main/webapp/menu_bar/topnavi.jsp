@@ -25,15 +25,8 @@
 		<li><a href="matching_search.do" class="firstMenu">매칭신청</a></li>
 		
 		<li><a href="team_search.do" class="firstMenu">팀관리</a></li>
-
-        <li class="dropdown">
-          <a class="dropdown-toggle firstMenu" data-toggle="dropdown" href="#">고객센터
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="notice.do" class="secondMenu">공지사항</a></li>
-            <li><a href="faq.do" class="secondMenu">FAQ</a></li>
-          </ul>
-        </li>
+		
+		<li><a href="notice.do" class="firstMenu">공지사항</a></li>
       </ul>
     </div>
   </nav>

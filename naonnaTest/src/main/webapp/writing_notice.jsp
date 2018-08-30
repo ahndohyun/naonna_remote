@@ -4,7 +4,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-   <title>Insert title here</title>
+   <title>공지사항 글쓰기 입력 페이지</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Insert title here</title>
         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -51,6 +51,8 @@
       }
       #cancelBtn {
          width : 100px;
+         float: right;
+         margin-right: 20px;
       }
    </style>
 </head>
@@ -73,9 +75,9 @@
             <input type="hidden" class="summernote" name="contents" id="contents" />
             <!-- <div class="summernote" name="contents"></div> -->
             
-              <button id="altim" class="btn btn-primary" onclick="showingz()" type="button">작성완료</button>
+              <button id="altim" class="btn btn-success" onclick="showingz()" type="button">작성완료</button>
               </form>
-              <button class="btn btn-danger" id="cancelBtn" onclick="res2()">뒤로가기</button>
+              <button class="btn btn-primary" id="cancelBtn" onclick="res2()">뒤로가기</button>
         
         
         <script>

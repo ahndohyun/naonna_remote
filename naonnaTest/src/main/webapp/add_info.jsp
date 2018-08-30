@@ -10,7 +10,7 @@
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>부가정보 입력 폼</title>
+   <title>부가정보 입력 페이지</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
@@ -72,7 +72,7 @@ $(document).ready(function() {
         margin: 150px 450px 200px 450px;
         background-color: #444444;
         padding: 20px;
-        opacity: 0.6;
+        opacity: 0.9;
      }
      .add_title{
         text-align: center;

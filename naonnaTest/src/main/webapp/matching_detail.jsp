@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>매칭 상세정보</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -99,7 +99,10 @@
        		opacity : 0.9;
        }
        #matchingInfo {
-       		border-bottom : 1px solid;
+       		margin-bottom: 4px;
+       }
+       .joinpeople{
+       		width: 180px;
        }
   </style>
 	
@@ -156,7 +159,7 @@
 	   				console.log("용병 =" + data);
 	   				output = "";
 	   				$.each(data, function(index, player) {
-	   					output += "<tr><td>참여자 : </td><td>" + player.nickname +" 외 " + player.people + "명" + "</td></tr>";
+	   					output += "<tr><td class='joinpeople'>참여자 </td><td>" + player.nickname +" 외 " + player.people + "명" + "</td></tr>";
 	   				});
 	   				$('#playerInfo').html(output);
 	   			},

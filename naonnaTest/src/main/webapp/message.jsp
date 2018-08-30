@@ -5,7 +5,7 @@
 
 <head>
   <!-- NAONNA -->
-  <title>NAONNA 경기장예약 매칭 사이트 </title>
+  <title>쪽지함</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -107,8 +107,8 @@
 						}
 					}
 					else{
-						output += "<td><input type='button' id='confirm' disabled='true'></td>";
-						output += "<td><input type='button' id='reject' disabled='true'></td></tr>";
+						output += "<td><input type='button' id='confirm' class='btn btn-success makeBtn1' disabled='true'></td>";
+						output += "<td><input type='button' id='reject' class='btn btn-danger makeBtn2' disabled='true'></td></tr>";
 					}
    				});
    				$('#messageList').html(output);  
