@@ -2,7 +2,10 @@ package com.spring.naonnaTest.team;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,12 +17,16 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spring.naonnaTest.user.UserService;
 
 @Controller
 public class TeamController {
 	
 	@Autowired
 	private TeamService teamService;
+	
+	@Autowired
+	private UserService userService;
 		
 	@RequestMapping(value = "/getTeamlistJSON.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody			
@@ -137,18 +144,51 @@ public class TeamController {
 		return str;
 	}
 	
-	@RequestMapping(value = "/joinTeamMem.do",  method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/joinTeamMema.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody		 	
-	public int memberInsert(TeamVO vo) {
-	
+	public int memberInsert(TeamVO vo , HttpSession session) {
+		System.out.println("nickname");
+		System.out.println("nickname :" + vo.getNickname());
+		System.out.println("team_name :" + vo.getTeam_name());
+		int i =0;
 		try {
+			
 			teamService.insertMember(vo);
+		
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("nickname", vo.getNickname());
+			map.put("team_name", vo.getTeam_name());
+			teamService.updateTeam(map);
+			session.setAttribute("teamName", vo.getTeam_name());
+			System.out.println("session teamName :" + session.getAttribute("teamName"));
+			i =1;
 		}
 		catch (Exception e){
 			System.out.println("first() mapper : " + e.getMessage());
 		}
 		
-		return 1;
+		return i;
 	}
+	
+	@RequestMapping(value = "/teambroke.do", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public int teamout(String nickname) {
+		System.out.println("nickname: " + nickname );
+		
+		int i = 0;
+		try {
+			   userService.goWithdrawTeam(nickname);
+			i =teamService.teamCut(nickname);
+			return i;	
+			
+		}
+		catch(Exception e) {
+			System.out.println("first() mapper : " + e.getMessage());
+		}
+		
+		return i;
+	}
+	
+	
 	
 }

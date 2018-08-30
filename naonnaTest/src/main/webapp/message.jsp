@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html lang="utf-8">
 
 <head>
@@ -107,8 +107,8 @@
 						}
 					}
 					else{
-						output += "<td><input type='button' id='confirm' class='btn btn-success makeBtn1' disabled='true'></td>";
-						output += "<td><input type='button' id='reject' class='btn btn-danger makeBtn2' disabled='true'></td></tr>";
+						output += "<td><input type='button' id='confirm' disabled='true'></td>";
+						output += "<td><input type='button' id='reject' disabled='true'></td></tr>";
 					}
    				});
    				$('#messageList').html(output);  
@@ -196,8 +196,11 @@
 
   	
   	function click_joinTeam(teamName, sendPeople) {
-  		$.ajax({
-			url:'/naonnaTest/joinTeamMem.do',     			
+  		console.log("teamName : " + teamName);
+  		console.log("sendPeople : " + sendPeople);
+  		
+  		$.ajax({             
+			url:'/naonnaTest/joinTeamMema.do',     			
 			type:'POST',
 			dataType: "json",
 			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
@@ -214,10 +217,13 @@
 					$('#confirm').attr('disabled', true);
 					$('#reject').attr('disabled', true);
 				}
+				else {
+					alert("값 전달 안됨");
+				}
 				
 			},
-			error:function() {
-				alert("새로고침을 눌러주세요.");			
+			error:function( request,status, error) {
+				alert("code:" +request.status + "\n" +"message:" + request.responseText + "\n" + "error :" +error);
 			}
  		 });
   	}
@@ -262,8 +268,5 @@
           </div>    
       </div>
   </div>
-  <!-- end main content -->
-  </div>
-  <!-- main body end -->
 </body>
 </html>

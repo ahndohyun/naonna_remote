@@ -4,9 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <% request.setCharacterEncoding("utf-8"); %> 
- <% 
+  <% 
     TeamVO vo = (TeamVO)request.getAttribute("vo");
     
+ %>
+ <% 
+ String teamName = (String)session.getAttribute("teamName");
  %>
 <!DOCTYPE html>
 <html>
@@ -115,9 +118,6 @@
      width:100px;
      height:100px;
   }
-  .last_row{
-     
-  }
   .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
      border : none;
      text-align : left;
@@ -129,7 +129,7 @@
 
   <script>
      $(document).ready(function() {
-        
+        console.log('${sessionScope.teamName}');
         $.ajax({
             url:'/naonnaTest/printTeamMember.do',              
             type:'POST',
@@ -182,6 +182,61 @@
           });
         });
         
+        
+        $('#withdrawTeam').click(function (){
+        	 $.ajax({
+                 url:'/naonnaTest/teamWithdraw.do',              
+                 type:'POST',
+                 dataType: "json",
+                 contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+                 data : {                      
+                       'nickname' : "${sessionScope.nickname}",                      
+                    },
+                 
+                 //제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+                 success:function(data) { 
+                	 console.log(data);
+                	 if(data == 1){
+	                    alert("팀 탈퇴했습니다. ");
+	                    location.href="team_search.do";
+                	 }
+                 },
+                 error:function() {
+                     alert("재 로그인 해주세요");         
+                  }
+            });
+          });
+        
+        $('#breakupTeam').click(function (){
+        	
+        	if(confirm('정말 해체하시겠습니까 ?') == true){
+        		$.ajax({
+                    url:'/naonnaTest/teambroke.do',              
+                    type:'POST',
+                    dataType: "json",
+                    contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+                    data : {                      
+                          'nickname' : "${sessionScope.nickname}",                      
+                       },
+                    
+                    //제이슨 형식의 리턴된 데이터는 아래의 data가 받음
+                    success:function(data) { 
+                   	 console.log(data);
+                   	 if(data == 1){
+   	                    alert("팀 해체했습니다.");
+   	                    location.href="team_search.do";
+                   	 }   
+                    },
+                    error:function( request,status, error) {
+        				alert("code:" +request.status + "\n" +"message:" + request.responseText + "\n" + "error :" +error);
+        			}
+               });
+        	}
+        	else{
+        		history.go(-1);
+        	}
+        })
+
      });
         
      function userinfo(nickname){         
@@ -193,7 +248,6 @@
        }
      
   </script>
-
 </head>
 
 <body>
@@ -256,11 +310,12 @@
               </table>
            </div>
            <div class="buttonRow col-sm-9 col-sm-offset-2">
-           <%if(session.getAttribute("teamName") != null){%>
+           <%
+            if((session.getAttribute("teamName") != null) &&(session.getAttribute("cap") == null)){%>
               <div class="team-delete-button btn btn-danger" id="withdrawTeam"><p>팀탈퇴</p></div>
-            <%} else{ %>
+            <% } if((session.getAttribute("teamName") == null)){ %>
              <div class="team-join-button btn btn-primary" id="joinTeam"><p>팀가입</p></div>
-             <%} %>
+            <%} %>
             <%if(vo.getNickname().equals(session.getAttribute("nickname"))){%>
               <div class="team-cancel-button btn btn-warning" id="breakupTeam"><p>팀해체</p></div>
             <%} %>

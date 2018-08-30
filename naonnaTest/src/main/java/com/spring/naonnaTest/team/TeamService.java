@@ -1,6 +1,7 @@
 package com.spring.naonnaTest.team;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface TeamService {
 	
@@ -12,4 +13,6 @@ public interface TeamService {
 	void insertMember(TeamVO vo);
 	ArrayList<TeamMemberVO> memberPrint(String team_name);
 	
+	void updateTeam( HashMap<String,String> map);
+	int teamCut(String nickname);
 }

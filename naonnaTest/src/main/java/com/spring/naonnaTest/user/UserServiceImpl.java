@@ -1,5 +1,8 @@
 package com.spring.naonnaTest.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,4 +85,23 @@ public class UserServiceImpl implements UserService{
 	      
 	      return vo;
 	   }
+	
+	@Override
+	public int goWithdrawTeam(String nickname) {
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		
+		
+		userMapper.teamMemdelete(nickname);
+		int i = userMapper.teamDraw(nickname);
+		System.out.println("i :" + i);
+		
+		
+		
+		return i;
+	}
+	
+	public void  minusTeam(HashMap<String,Object> map) {
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		userMapper.minTeamMem(map);
+	}
 }

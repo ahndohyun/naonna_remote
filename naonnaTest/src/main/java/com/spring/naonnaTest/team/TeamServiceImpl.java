@@ -1,6 +1,7 @@
 package com.spring.naonnaTest.team;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,7 @@ public class TeamServiceImpl implements TeamService {
 	
 	@Override
 	public void insertMember(TeamVO vo) {
-
+		System.out.println("insertMember DAO");
 		try {
 			TeamMapper teamMapper = sqlSession.getMapper(TeamMapper.class);
 			teamMapper.insertTeamMember(vo);
@@ -106,5 +107,32 @@ public class TeamServiceImpl implements TeamService {
 		return list;
 		
 	}
+	
+	@Override
+	public void updateTeam(HashMap<String,String> map) {		 
+		
+		TeamMapper teamMapper = sqlSession.getMapper(TeamMapper.class);
+		 try {
+			 teamMapper.updateTeamName(map);
+		 }
+		 catch(Exception e) {
+			 e.getMessage();
+			 e.getStackTrace();
+		 }	 
+	}
 
+	@Override
+	public int teamCut(String nickname) {
+		TeamMapper teamMapper = sqlSession.getMapper(TeamMapper.class);
+		int i=0;
+		try {
+		teamMapper.catNumZero(nickname);
+		 i = teamMapper.teamdelete(nickname);
+		}
+		catch(Exception e) {
+			e.getMessage();
+			e.getStackTrace();
+		}
+		return i;
+	}
 }

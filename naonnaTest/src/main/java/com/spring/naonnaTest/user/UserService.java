@@ -1,5 +1,7 @@
 package com.spring.naonnaTest.user;
 
+import java.util.HashMap;
+
 public interface UserService {
 	
 	UserVO distMember(String forPerson);
@@ -10,5 +12,11 @@ public interface UserService {
 	void updateProfile(UserVO vo);
 	int nickcheck(String nickname);
 	UserVO getTeamUser (String nickname);
+	
+	int goWithdrawTeam(String nickname);
+	void minusTeam(HashMap<String,Object> map);
+	
+	
+	
 	
 }

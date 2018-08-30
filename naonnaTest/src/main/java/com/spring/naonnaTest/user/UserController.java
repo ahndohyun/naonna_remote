@@ -207,4 +207,32 @@ public class UserController {
 
 	      return mnv;
 	   }
+	
+	@RequestMapping(value = "/teamWithdraw.do" , method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int teamWithdraw (String nickname ,HttpSession session) {
+		System.out.println("nickname :" + nickname);
+		int i=0;
+		try {
+			System.out.println("팀 세션 : " + session.getAttribute("teamName"));
+			
+			HashMap<String, Object> map = new HashMap<String, Object>();			
+			map.put("team_name", session.getAttribute("teamName"));
+			userService.minusTeam(map);
+			
+			i = userService.goWithdrawTeam(nickname);	
+			session.removeAttribute("teamName");
+			System.out.println("i : " + i);
+			System.out.println("지워짐 :" + session.getAttribute("teamName"));
+	
+			return i;
+		}
+		catch(Exception e) {
+			e.getMessage();
+			e.getStackTrace();
+		}
+		
+		return i;
+	}
+	
 }

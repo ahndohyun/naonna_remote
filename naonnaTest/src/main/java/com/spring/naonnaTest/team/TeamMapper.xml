@@ -82,5 +82,18 @@
    <select id="printTeamMember" parameterType="String" resultMap="teamMemberResultMap">
       SELECT * FROM team_member where team_name = #{team_name, javaType=String} order by join_date
    </select>
+   
+   <update id="updateTeamName" parameterType="hashmap">
+      update user_info set team_name=#{team_name} where nickname=#{nickname}
+   </update>
+   
+   <delete id="teamdelete" parameterType="String" >
+     delete from team where nickname=#{nickname}
+   </delete>
+   
+   <update id="catNumZero" parameterType="String">
+     update user_info set cap = 0 where nickname=#{nickname}
+   </update>
+   
 
 </mapper>

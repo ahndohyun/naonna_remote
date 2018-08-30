@@ -1,6 +1,7 @@
 package com.spring.naonnaTest.team;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.spring.naonnaTest.ground.GroundVO;
 
@@ -16,5 +17,10 @@ public interface TeamMapper {
 	void plusTeamPeople(TeamVO vo);
 	void joinConfirm(TeamVO vo);
 	public ArrayList<TeamMemberVO> printTeamMember(String team_name);
+	
+	void updateTeamName(HashMap<String,String> map);
+	int teamdelete(String nickname);
+	void catNumZero(String nickname);
+	
 	
 }
